@@ -1,0 +1,3 @@
+[submodule "GradleExtensions"]
+	path = GradleExtensions
+	url = git@git.exozet.com:Mobile/GradleExtensions.git
