@@ -96,23 +96,19 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':common-ui')
 
     implementation libs.multidex
-
     implementation libs.appcompat
     implementation libs.constraintLayout
-
     implementation libs.playServicesMaps
     implementation libs.playServicesLocation
     implementation libs.playServicesGcm
-
     implementation libs.butterknife
-
     implementation libs.commonUtils
     implementation libs.deviceInfo
     implementation libs.bloodHound
-
     implementation libs.connectionBuddy
     implementation libs.smartLocation
     implementation libs.googlePlayForceUpdate
@@ -120,30 +116,20 @@ dependencies {
     implementation libs.permissionDispatcher
     kapt libs.permissionDispatcherProcessor
     implementation libs.timeBomb
-
     implementation libs.recyclerview
     implementation libs.recyclerViewPresenter
-
     implementation(libs.crashlytics) {
         transitive = true;
     }
-
     implementation(libs.materialdrawer) {
         transitive = true
     }
-
     implementation libs.joda
-
     implementation libs.stetho
-
     implementation libs.markdownview
-
     implementation libs.rxmarkdown
-
     implementation libs.processPhoenix
-
     testImplementation testLibs.junit
-
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
