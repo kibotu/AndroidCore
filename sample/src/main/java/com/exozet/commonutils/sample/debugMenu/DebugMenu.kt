@@ -149,11 +149,11 @@ class DebugMenu {
 
             R.string.screen_markdown_changelog -> FragmentExtensions.replaceToBackStackByFading<BaseFragment>(MarkdownFragment().setArgument(Bundler().putString(MarkdownFragment.MARKDOWN_FILENAME, "CHANGELOG.md").get()))
 
-           // R.string.screen_camera -> (ContextHelper.getActivity() as MainActivity).openCameraAskingPermission()
+        // R.string.screen_camera -> (ContextHelper.getActivity() as MainActivity).openCameraAskingPermission()
 
-            //R.string.screen_login -> (ContextHelper.getActivity() as MainActivity).openLoginFragment()
+        //R.string.screen_login -> (ContextHelper.getActivity() as MainActivity).openLoginFragment()
 
-            //R.string.screen_home -> FragmentExtensions.replaceToBackStackByFading(HomeFragment())
+        //R.string.screen_home -> FragmentExtensions.replaceToBackStackByFading(HomeFragment())
 
 //            R.string.screen_start -> FragmentExtensions.replaceToBackStackByFading(StartFragment())
 
@@ -163,7 +163,7 @@ class DebugMenu {
 //
 //            R.string.screen_documents -> replaceToBackStackByFading(DocumentsFragment())
 
-            //R.string.screen_user -> FragmentExtensions.replaceToBackStackByFading(UserFragment())
+        //R.string.screen_user -> FragmentExtensions.replaceToBackStackByFading(UserFragment())
 
         }
 
