@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- time bomb in days -->
+    <integer name="time_bomb_delay">28</integer>
+
+    <!-- debug flags -->
+    <bool name="enable_logging">true</bool>
+    <bool name="use_stetho">true</bool>
+    <bool name="flag_keep_screen_on">true</bool>
+    <bool name="unlock_screen_on_start">true</bool>
+    <bool name="force_update">false</bool>
+    <bool name="enable_debug_menu">true</bool>
+
+    <!-- analytics -->
+    <bool name="enable_google_analytics">false</bool>
+    <string name="google_analytics_tracking_id">empty</string>
+
+</resources>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.App" parent="Base.Theme.App">
+
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="Base.Theme.App" parent="Theme.AppCompat.DayNight.NoActionBar">
+
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/colorControlHighlight</item>
+
+        <!--<item name="android:windowBackground">@drawable/layer_app_screen</item> -->
+
+    </style>
+
+    <!--<style name="Theme.App.LaunchScreen">-->
+        <!--<item name="android:windowBackground">@drawable/layer_launch_screen</item>-->
+    <!--</style>-->
+
+    <!--<style name="Theme.App.Toolbar">-->
+        <!--<item name="android:textColorPrimary">@color/white</item>-->
+        <!--<item name="actionMenuTextColor">@color/white</item>-->
+        <!--<item name="android:textColorSecondary">@color/white</item>-->
+        <!--<item name="android:textColorHint">@color/white</item>-->
+    <!--</style>-->
+
+    <!--<style name="Theme.App.Toolbar.Popup" parent="ThemeOverlay.AppCompat.Light">-->
+        <!--<item name="android:textColor">@color/globalMenuItemText</item>-->
+    <!--</style>-->
+
+    <!--<style name="Theme.App.Button.Appcompat" parent="@android:style/Widget.Button">-->
+        <!--<item name="colorControlHighlight">@color/colorControlHighlight</item>-->
+        <!--<item name="colorButtonNormal">@color/colorButtonNormal</item>-->
+        <!--<item name="android:textColor">@color/white</item>-->
+    <!--</style>-->
+
+    <!--<style name="Theme.App.Button.Appcompat.Decision" >-->
+    <!--</style>-->
+
+    <!--<style name="Theme.App.EditText.Register.Appcompat" parent="Theme.App">-->
+        <!--<item name="android:textColorPrimary">@color/login_grey_color</item>-->
+        <!--<item name="colorPrimary">@color/login_grey_color</item>-->
+        <!--<item name="colorAccent">@color/login_grey_color</item>-->
+        <!--<item name="colorControlActivated">@color/login_grey_color</item>-->
+        <!--<item name="android:textColor">@color/login_grey_color</item>-->
+        <!--<item name="android:textColorHint">@color/login_grey_color</item>-->
+        <!--<item name="colorControlNormal">@color/login_grey_color</item>-->
+    <!--</style>-->
+
+</resources>

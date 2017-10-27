@@ -1,1 +1,2 @@
-include ':app', ':common-ui'
+include ':sample'
+include ':common-ui'

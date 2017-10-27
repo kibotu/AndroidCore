@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+    <color name="dark_button_background">#00718F</color>
+
+
+    <color name="pressed_color">@android:color/white</color>
+    <color name="custom_tab_icon">@color/colorPrimary</color>
+    <color name="tab_fragments_background">#E4E4E4</color>
+    <color name="tab_user_selected">#FFFFFF</color>
+    <color name="tab_user_unselected">#D8D8D8</color>
+    <color name="tab_user_font">#033745</color>
+
+    <color name="colorControlHighlight">#aaffffff</color>
+    <color name="colorButtonNormal">#7C9EB2</color>
+    <color name="globalMenuItemText">#626064</color>
+
+    <color name="login_grey_color">#828282</color>
+
+    <color name="text_color_grey">#797979</color>
+
+    <color name="white">#ffffff</color>
+    <color name="md_red_500">#ffffff</color>
+
+</resources>

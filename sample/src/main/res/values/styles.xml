@@ -1,0 +1,69 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <!-- Base application theme. -->
+
+
+    <!--<style name="AppTheme" parent="MaterialDrawerTheme.Light">-->
+    <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+    <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+    <!--<item name="colorAccent">@color/colorAccent</item>-->
+    <!--<item name="windowActionModeOverlay">true</item>-->
+    <!--<item name="windowActionBar">false</item>-->
+    <!--<item name="windowNoTitle">true</item>-->
+    <!--</style>-->
+
+    <!--<style name="NoActionBar" parent="AppTheme">-->
+    <!--<item name="android:windowActionBar">false</item>-->
+    <!--<item name="android:windowNoTitle">true</item>-->
+    <!--</style>-->
+
+    <!--<style name="TabFragmentsInnerContentLayout">-->
+    <!--<item name="android:background">@android:color/white</item>-->
+    <!--<item name="android:layout_width">match_parent</item>-->
+    <!--<item name="android:layout_height">match_parent</item>-->
+    <!--<item name="android:orientation">vertical</item>-->
+    <!--<item name="android:paddingLeft">10dp</item>-->
+    <!--<item name="android:paddingRight">10dp</item>-->
+    <!--<item name="android:paddingTop">20dp</item>-->
+    <!--</style>-->
+
+
+    <!--<style name="BorderlessButtonBackground">-->
+    <!--<item name="android:clickable">true</item>-->
+    <!--<item name="android:background">?selectableItemBackground</item>-->
+    <!--</style>-->
+
+    <!--<style name="BorderlessButtonForeground" >-->
+    <!--<item name="android:clickable">true</item>-->
+    <!--<item name="android:foreground">?selectableItemBackground</item>-->
+    <!--</style>-->
+
+    <!--<style name="Widget.App.TextInputLayout.Register" parent="">-->
+    <!--&lt;!&ndash;<item name="android:theme">@style/Theme.App.EditText.Register.Appcompat</item>&ndash;&gt;-->
+    <!--<item name="errorTextAppearance">@style/TextAppearance.EditText.Error</item>-->
+    <!--</style>-->
+
+    <!--<style name="TextAppearance.EditText.Error" parent="@android:style/TextAppearance">-->
+    <!--<item name="android:textColor">@color/md_red_500</item>-->
+    <!--<item name="android:textSize">@dimen/body</item>-->
+    <!--</style>-->
+
+</resources>
