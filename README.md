@@ -51,15 +51,23 @@ Client project for AndroidCommonUtils. Insert Text here!!!
 [Fabric](https://fabric.io/exozet4/android/apps/de.gothaer.hi/issues?time=last-seven-days&event_type=all&subFilter=state&state=open&cohort=new)
 
 ## How to install
+
+    adb -s <device_name> install <apk_file>.apk
+    
+### CI 
+    
+    gradlew clean assembleRelease
+    
 ### Using Google Play
 [Playstore](https://www.google.com)
 ### Using Hockey App 
 [See Distribution](#distribution)
 ### Using Android Debug Bridge
 #### Debug
-	adb install app/build/outputs/apk/app-release.apk
+	adb -s <device_name> install app/build/outputs/apk/app-debug.apk
 #### Release
-    adb install app/build/outputs/apk/app-release.apk
+    adb -s <device_name> install app/build/outputs/apk/app-release.apk
+    
 ### Using Gradle
 #### Debug
 	./gradlew installDebug
@@ -70,13 +78,13 @@ Client project for AndroidCommonUtils. Insert Text here!!!
 [Mobile Provisioning](https://git.exozet.com/exozet/mobile-provisioning/tree/master/Gothaer/Hi%20At%20Gothaer)
 ## How to build
 
-0. (optional) requires java 7 and java 8 installation for [retrolambda](https://github.com/evant/gradle-retrolambda) @see [Additional Installation Notes](#additional-installation-notes)
+0. (optional) requires java 7 and java 8 installation @see [Additional Installation Notes](#additional-installation-notes)
 
 1. clone project
 
 		git clone git@git.exozet.com:gothaer/Hi-At-Gothaer-Android.git
 
-2. build using gradle (Note: requires gradle >= 3.3, java 1.8 and android build tools >= 25 installed)
+2. build using gradle (Note: requires gradle >= 4.1, java 1.8 and android build tools >= 25 installed)
 
 		gradle clean build 
     
@@ -95,12 +103,11 @@ Bitrise will automatically upload release to hockey app if something get changed
   
 ## Contributors
 
-* [Paul Sprotte](mailto:paul.sprotte@exozet.com)
-* [Jan Rabe](mailto:jan.rabe@exozet.com)  
+* [Armando Shkurti](mailto:armando.shkurti@exozet.com)
   
 ## Also see
 
-iOS Version MISSING
+iOS Version to be added
     
     
 ## Additional Installation Notes
