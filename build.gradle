@@ -14,7 +14,7 @@ buildscript {
         classpath plugin.hockeyApp
 
         classpath pluginLibrary.mavenGradle
-        classpath pluginLibrary.gradleBintryPlugin
+        classpath pluginLibrary.gradleBintrayPlugin
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
