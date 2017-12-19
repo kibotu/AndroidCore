@@ -1,0 +1,31 @@
+/**
+ *Bintray release configuration
+ */
+ext{
+    bintrayRepo = 'maven'
+    bintrayName = POM_BINTRAY_NAME
+
+    publishedGroupId = 'com.exozet.commonutils'
+    libraryName = POM_NAME
+    artifact = POM_ARTIFACT_ID
+    packagingType = POM_PACKAGING
+
+    libraryVersion = '1.0' // todo
+
+    libraryDescription = POM_DESCRIPTION
+
+    siteUrl = 'https://git.exozet.com/exozet-mobile/android-common-utils'
+    gitUrl = 'https://git.exozet.com/exozet-mobile/android-common-utils.git'
+
+    developerUser = bintray.user
+    developerApi = bintray.api
+    developerOrganization = bintray.organization
+
+    allLicenses = ["Apache-2.0"]
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0'
+    licenseName = 'Licensed under the Apache License, Version 2.0 (the "License")'
+}
+
+apply from: rootProject.file('jcenter/maven-install.gradle')
+
+apply from: rootProject.file('jcenter/bintray.gradle')
