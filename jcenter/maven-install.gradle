@@ -1,0 +1,41 @@
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = publishedGroupId // Maven publisher identifier for the artifact
+
+if (branchName().contains("release")) {
+    install {
+        repositories.mavenInstaller {
+            // generates POM.xml
+            pom.project {
+                packaging packagingType
+                groupId publishedGroupId
+                artifactId artifact
+
+                //description
+                name libraryName
+                description libraryDescription
+                url siteUrl
+
+                //license
+                licenses {
+                    license {
+                        name licenseName
+                        url licenseUrl
+                    }
+                }
+
+                developer {
+                    developer {
+                        id developerId
+                        name developerName
+                        email developerEmail
+                    }
+                }
+
+                scm {
+                    url siteUrl
+                }
+            }
+        }
+    }
+}

@@ -1,6 +1,9 @@
 /**
  *Bintray release configuration
  */
+Properties properties = new Properties()
+properties.load(project.rootProject.file('bintray.properties').newDataInputStream())
+
 ext{
     bintrayRepo = 'maven'
     bintrayName = POM_BINTRAY_NAME
@@ -17,9 +20,9 @@ ext{
     siteUrl = 'https://git.exozet.com/exozet-mobile/android-common-utils'
     gitUrl = 'https://git.exozet.com/exozet-mobile/android-common-utils.git'
 
-    developerUser = bintray.user
-    developerApi = bintray.api
-    developerOrganization = bintray.organization
+    developerUser = properties.getProperty('bintray.user')
+    developerApi = properties.getProperty('bintray.apiKey')
+    developerOrganization = properties.getProperty('bintray.organization')
 
     allLicenses = ["Apache-2.0"]
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0'
