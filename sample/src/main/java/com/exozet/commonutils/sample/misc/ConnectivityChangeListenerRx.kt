@@ -5,7 +5,6 @@ import android.app.Application
 import android.os.Bundle
 import com.common.android.utils.logging.Logger
 import com.zplesac.connectionbuddy.ConnectionBuddy
-import com.zplesac.connectionbuddy.cache.ConnectionBuddyCache
 import com.zplesac.connectionbuddy.interfaces.ConnectivityChangeListener
 import com.zplesac.connectionbuddy.models.ConnectivityEvent
 import rx.Observable
@@ -43,7 +42,7 @@ enum class ConnectivityChangeListenerRx : ConnectivityChangeListener {
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
                 ConnectionBuddy.getInstance().registerForConnectivityEvents(instance, instance)
                 if (savedInstanceState != null) {
-                    ConnectionBuddyCache.clearLastNetworkState(this)
+                    ConnectionBuddy.getInstance().configuration.networkEventsCache.clearLastNetworkState(this)
                 }
             }
 
