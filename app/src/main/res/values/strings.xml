@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AndroidCore</string>
+    <string name="preset_groups">"My House – 1, My House – 2, Sleeping Rooms, Day Rooms, Other"</string>
 </resources>
