@@ -1,14 +1,14 @@
 /**
- *Bintray release configuration
+ * Bintray release configuration
  */
 Properties properties = new Properties()
 properties.load(project.rootProject.file('bintray.properties').newDataInputStream())
 
-ext{
+ext {
     bintrayRepo = 'maven'
     bintrayName = POM_BINTRAY_NAME
 
-    publishedGroupId = 'com.exozet.commonutils'
+    publishedGroupId = 'com.exozet.android.core'
     libraryName = POM_NAME
     artifact = POM_ARTIFACT_ID
     packagingType = POM_PACKAGING
@@ -17,8 +17,8 @@ ext{
 
     libraryDescription = POM_DESCRIPTION
 
-    siteUrl = 'https://git.exozet.com/exozet-mobile/android-common-utils'
-    gitUrl = 'https://git.exozet.com/exozet-mobile/android-common-utils.git'
+    siteUrl = 'https://git.exozet.com/exozet-mobile/AndroidCore'
+    gitUrl = 'https://git.exozet.com/exozet-mobile/AndroidCore.git'
 
     developerUser = properties.getProperty('bintray.user')
     developerApi = properties.getProperty('bintray.apiKey')
