@@ -1,12 +1,12 @@
+apply from: "${project.rootDir}/android-gradle-extensions/utils.gradle"
+
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply from: "$rootDir/common-methods.gradle"
 
 android {
     compileSdkVersion compileSdkVer
     buildToolsVersion buildToolsVer
-
 
     defaultConfig {
         minSdkVersion minSdkVer
@@ -15,7 +15,6 @@ android {
         versionName simpleReleaseVersionName()
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
