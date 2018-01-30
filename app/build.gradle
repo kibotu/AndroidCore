@@ -26,15 +26,42 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    // region test options
+
+    testOptions {
+        unitTests.all {
+            jvmArgs '-noverify'
+            testLogging {
+                events "passed", "skipped", "failed", "standardOut", "standardError"
+                outputs.upToDateWhen { false }
+                showStandardStreams = true
+            }
+            ignoreFailures = true
+        }
+        unitTests.returnDefaultValues = true
+        unitTests.includeAndroidResources = true
+    }
+
+    // endregion
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    androidTestImplementation androidTestLibs.espressoRunner
+    androidTestImplementation androidTestLibs.espressoCore
+
+    testImplementation testLibs.junit
+    testImplementation testLibs.jsonUnit
+    testImplementation testLibs.jsonUnitFluent
+    testImplementation testLibs.robolectricSnapshot
+    testImplementation testLibs.truth
+
     implementation libs.kotlinJre8
     implementation libs.appcompat
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    implementation libs.constraintLayout
+
     implementation project(':core')
+    implementation libs.logger
 }

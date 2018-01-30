@@ -17,8 +17,6 @@ android {
         targetSdkVersion targetSdkVer
         versionCode commitCount()
         versionName simpleReleaseVersionName()
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -43,12 +41,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation libs.appcompat
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    implementation libs.kotlinJre8
+    compileOnly libs.appcompat
+    compileOnly libs.kotlinJre8
+    compileOnly libs.logger
 }
 
 apply from: 'https://gist.githubusercontent.com/kibotu/994c9cc65fe623b76b76fedfac74b34b/raw/65ee52482ba65050e015f4b00d8d2fc9172a10e8/javadoc.gradle'

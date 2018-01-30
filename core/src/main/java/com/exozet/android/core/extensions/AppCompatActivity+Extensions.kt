@@ -1,4 +1,4 @@
-package com.exozet.android.core
+package com.exozet.android.core.extensions
 
 import android.support.annotation.IdRes
 import android.support.v4.app.Fragment
