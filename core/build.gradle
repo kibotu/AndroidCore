@@ -6,6 +6,7 @@ apply from: "${project.rootDir}/GradleExtensions/utils.gradle"
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.github.dcendents.android-maven'
 
 android {
     compileSdkVersion compileSdkVer
@@ -50,7 +51,6 @@ dependencies {
     })
 
     implementation libs.kotlinJre8
-
 }
 
 apply from: rootProject.file('bintray-config.gradle')

@@ -1,4 +1,4 @@
-package com.exozet.androidcommonutils
+package com.exozet.android.core
 
 import android.support.annotation.IdRes
 import android.support.v4.app.Fragment
@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
+
 
 /**
  * Created by armando.shkurti on 09/10/17.
@@ -42,7 +43,7 @@ fun AppCompatActivity.addWithStackFragment(fragment: Fragment, tag: String) {
 }
 
 fun AppCompatActivity.setupActionBar(@IdRes toolbarId: Int, action: ActionBar.() -> Unit) {
-    setSupportActionBar(findViewById(toolbarId))
+        setSupportActionBar(findViewById(toolbarId))
     supportActionBar?.run {
         action()
     }
