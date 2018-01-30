@@ -2,6 +2,11 @@ package com.exozet.android.core.provider
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
+
+/**
+ * Created by [Jan Rabe](https://about.me/janrabe).
+ */
 
 object GsonProvider {
 
@@ -20,7 +25,3 @@ object GsonProvider {
                 .create()
     }
 }
-
-fun Any.toJson(): String = GsonProvider.gson.toJson(this)
-
-fun Any.toJsonPrettyPrinting(): String = GsonProvider.gsonPrettyPrinting.toJson(this)

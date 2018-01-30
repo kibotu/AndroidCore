@@ -41,8 +41,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    compileOnly libs.appcompat
-    compileOnly libs.kotlinJre8
+    implementation libs.appcompat
+    implementation libs.kotlinJre8
     compileOnly libs.logger
 }
 
