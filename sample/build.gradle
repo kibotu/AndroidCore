@@ -95,7 +95,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation libs.kotlinJre8
-    implementation project(':common-ui')
+    implementation project(':core')
 
     implementation libs.multidex
     implementation libs.appcompat
