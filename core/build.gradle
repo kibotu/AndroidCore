@@ -1,4 +1,7 @@
-apply from: "${project.rootDir}/android-gradle-extensions/utils.gradle"
+ext {
+    versionName = '0.1'
+}
+apply from: "${project.rootDir}/GradleExtensions/utils.gradle"
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
@@ -48,9 +51,6 @@ dependencies {
 
     implementation libs.kotlinJre8
 
-}
-repositories {
-    mavenCentral()
 }
 
 apply from: rootProject.file('bintray-config.gradle')
