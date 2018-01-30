@@ -24,14 +24,6 @@ if (branchName().contains("release")) {
                     }
                 }
 
-                developer {
-                    developer {
-                        id developerId
-                        name developerName
-                        email developerEmail
-                    }
-                }
-
                 scm {
                     url siteUrl
                 }
