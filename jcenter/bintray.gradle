@@ -18,6 +18,7 @@ if (branchName().contains("release")) {
             vcsUrl = gitUrl
             licenses = allLicenses
             publish = true
+            override = true
             publicDownloadNumbers = false
             version {
                 released = new Date()
