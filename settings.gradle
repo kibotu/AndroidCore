@@ -1,2 +1,1 @@
-include ':sample'
-include ':common-ui'
+include ':app', ':core'

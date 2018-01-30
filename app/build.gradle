@@ -1,0 +1,67 @@
+ext {
+    versionName = '0.1'
+}
+apply from: "${project.rootDir}/GradleExtensions/utils.gradle"
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion compileSdkVer
+    buildToolsVersion buildToolsVer
+
+    defaultConfig {
+        applicationId "com.exozet.android.core.demo"
+
+        minSdkVersion minSdkVer
+        targetSdkVersion targetSdkVer
+        versionCode commitCount()
+        versionName simpleReleaseVersionName()
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // region test options
+
+    testOptions {
+        unitTests.all {
+            jvmArgs '-noverify'
+            testLogging {
+                events "passed", "skipped", "failed", "standardOut", "standardError"
+                outputs.upToDateWhen { false }
+                showStandardStreams = true
+            }
+            ignoreFailures = true
+        }
+        unitTests.returnDefaultValues = true
+        unitTests.includeAndroidResources = true
+    }
+
+    // endregion
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    androidTestImplementation androidTestLibs.espressoRunner
+    androidTestImplementation androidTestLibs.espressoCore
+
+    testImplementation testLibs.junit
+    testImplementation testLibs.jsonUnit
+    testImplementation testLibs.jsonUnitFluent
+    testImplementation testLibs.robolectricSnapshot
+    testImplementation testLibs.truth
+
+    implementation libs.kotlinJre8
+    implementation libs.appcompat
+    implementation libs.constraintLayout
+
+    implementation project(':core')
+    implementation libs.logger
+}

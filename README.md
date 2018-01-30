@@ -18,7 +18,7 @@
 
 ## Introduction
 
-Client project for AndroidCommonUtils. Insert Text here!!!
+Collection of re-usable android functions.
 
 ## Distribution
 
@@ -51,6 +51,12 @@ Client project for AndroidCommonUtils. Insert Text here!!!
 [Fabric](https://fabric.io/exozet4/android/apps/de.gothaer.hi/issues?time=last-seven-days&event_type=all&subFilter=state&state=open&cohort=new)
 
 ## How to install
+
+### Core Library
+
+
+
+### Sample App
 
     adb -s <device_name> install <apk_file>.apk
     
