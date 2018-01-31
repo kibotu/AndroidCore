@@ -17,8 +17,9 @@ ext {
 
     libraryDescription = POM_DESCRIPTION
 
-    siteUrl = 'https://git.exozet.com/exozet-mobile/AndroidCore'
-    gitUrl = 'https://git.exozet.com/exozet-mobile/AndroidCore.git'
+    libWebsiteUrl = 'https://git.exozet.com/exozet-mobile/AndroidCore'
+    libIssueTrackerUrl = 'https://git.exozet.com/exozet-mobile/AndroidCore/issues'
+    libVcsUrl = 'https://git.exozet.com/exozet-mobile/AndroidCore.git'
 
     developerUser = properties.getProperty('bintray.user')
     developerApi = properties.getProperty('bintray.apiKey')
@@ -27,6 +28,10 @@ ext {
     allLicenses = ["Apache-2.0"]
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0'
     licenseName = 'Licensed under the Apache License, Version 2.0 (the "License")'
+
+    developerId = "exozetag"
+    developerName = "Exozet GmbH"
+    developerEmail = "developer@exozet.com"
 }
 
 apply from: rootProject.file('jcenter/maven-install.gradle')

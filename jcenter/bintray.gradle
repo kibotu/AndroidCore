@@ -8,14 +8,16 @@ if (branchName().contains("release")) {
         key = developerApi
         configurations = ['archives']
 
+        // @see https://github.com/bintray/gradle-bintray-plugin#buildgradle
         pkg {
             repo = bintrayRepo
             name = bintrayName
             desc = libraryDescription
             userOrg = developerOrganization
 
-            websiteUrl = siteUrl
-            vcsUrl = gitUrl
+            websiteUrl = libWebsiteUrl
+            issueTrackerUrl = libIssueTrackerUrl
+            vcsUrl = libVcsUrl
             licenses = allLicenses
             publish = true
             override = true

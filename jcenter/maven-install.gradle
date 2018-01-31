@@ -14,7 +14,7 @@ if (branchName().contains("release")) {
                 //description
                 name libraryName
                 description libraryDescription
-                url siteUrl
+                url libWebsiteUrl
 
                 //license
                 licenses {
@@ -24,8 +24,17 @@ if (branchName().contains("release")) {
                     }
                 }
 
+                // developer info
+                developers {
+                    developer {
+                        id developerId
+                        name developerName
+                        email developerEmail
+                    }
+                }
+
                 scm {
-                    url siteUrl
+                    url libWebsiteUrl
                 }
             }
         }
