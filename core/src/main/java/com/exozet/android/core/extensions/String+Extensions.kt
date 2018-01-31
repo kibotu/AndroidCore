@@ -3,8 +3,6 @@
 package com.exozet.android.core.extensions
 
 import com.exozet.android.core.provider.GsonProvider
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import java.math.BigInteger
 import java.nio.charset.Charset
 import java.security.MessageDigest

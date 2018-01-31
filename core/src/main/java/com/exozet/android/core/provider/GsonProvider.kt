@@ -2,7 +2,6 @@ package com.exozet.android.core.provider
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.google.gson.reflect.TypeToken
 
 /**
  * Created by [Jan Rabe](https://about.me/janrabe).
