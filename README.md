@@ -13,7 +13,7 @@ Collection of re-usable android functions.
 
 ## How to install
 
-    implementation compile 'com.exozet.android.core:core:latest'
+    implementation compile 'com.exozet.android:core:latest'
 
 ## Continues Integration
 
