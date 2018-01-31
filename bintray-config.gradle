@@ -8,7 +8,7 @@ ext {
     bintrayRepo = 'maven'
     bintrayName = POM_BINTRAY_NAME
 
-    publishedGroupId = 'com.exozet.android.core'
+    publishedGroupId = 'com.exozet.android'
     libraryName = POM_NAME
     artifact = POM_ARTIFACT_ID
     packagingType = POM_PACKAGING
