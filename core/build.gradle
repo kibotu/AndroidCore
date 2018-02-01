@@ -7,6 +7,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: "com.jfrog.artifactory"
+apply plugin: 'maven-publish'
 
 android {
     compileSdkVersion compileSdkVer
@@ -52,3 +54,31 @@ apply from: 'https://gist.githubusercontent.com/kibotu/994c9cc65fe623b76b76fedfa
 
 apply from: rootProject.file('bintray-config.gradle')
 
+
+artifactory {
+    contextUrl = 'https://oss.jfrog.org'
+    resolve {
+        repository {
+            repoKey = 'libs-release'
+        }
+    }
+    publish {
+        repository {
+            repoKey = 'oss-snapshot-local' //The Artifactory repository key to publish to
+            //when using oss.jfrog.org the credentials are from Bintray. For local build we expect them to be found in
+            //~/.gradle/gradle.properties, otherwise to be set in the build server
+            username = developerUser
+            password = developerApi
+        }
+        defaults {
+            publications('mavenJava')
+        }
+    }
+    if (System.properties['https.proxyHost']) {
+        clientConfig.proxy.host = System.properties['https.proxyHost']
+        clientConfig.proxy.port = System.properties['https.proxyPort'].toInteger()
+    }
+//    clientConfig.info.setBuildName('new-strange-name')
+//    clientConfig.info.setBuildNumber('' + new java.util.Random(System.currentTimeMillis()).nextInt(20000))
+//    clientConfig.timeout = 600
+}

@@ -7,9 +7,14 @@ if (branchName().contains("release")) {
         user = developerUser
         key = developerApi
         configurations = ['archives']
+        publish = true
+        publications = ['mavenJava']
 
         // @see https://github.com/bintray/gradle-bintray-plugin#buildgradle
         pkg {
+
+            licenses = ['Apache-2.0']
+
             repo = bintrayRepo
             name = bintrayName
             desc = libraryDescription
@@ -19,12 +24,21 @@ if (branchName().contains("release")) {
             issueTrackerUrl = libIssueTrackerUrl
             vcsUrl = libVcsUrl
             licenses = allLicenses
-            publish = true
             override = true
             publicDownloadNumbers = false
             version {
                 released = new Date()
                 vcsTag = libraryVersion
+
+//                gpg {
+//                    sign = true //Determines whether to GPG sign the files. The default is false
+//                    passphrase = project.gpgPassphrase //Optional. The passphrase for GPG signing'
+//                }
+//                mavenCentralSync {
+//                    sync = true //Optional (true by default). Determines whether to sync the version to Maven Central.
+//                    user = ossUser //OSS user token
+//                    password = ossPassword //OSS user password
+//                }
             }
         }
     }
