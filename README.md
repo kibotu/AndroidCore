@@ -39,6 +39,18 @@ Collection of re-usable android functions.
     for tracking SMS
     SmsReceiver
 
+
+## todo
+
+- location broadcast receiver
+- markdown
+- rawoutput
+- unzip
+- fitness
+- video player
+- bundler
+- utils
+
 ## Contributors
 
 * [Armando Shkurti](mailto:armando.shkurti@exozet.com)
