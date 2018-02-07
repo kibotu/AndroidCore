@@ -1,4 +1,4 @@
-package de.charite.balsam.services.sms
+package com.exozet.android.core.services.receiver
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -6,7 +6,6 @@ import android.content.Intent
 import android.os.Build
 import android.provider.Telephony
 import android.telephony.SmsMessage
-import com.common.android.utils.extensions.BundleExtensions
 
 /**
  * Created by habib.birdal on 07.02.18.
@@ -24,7 +23,6 @@ import com.common.android.utils.extensions.BundleExtensions
 abstract class SmsReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
-        BundleExtensions.printBundle(intent.extras)
 
         if (intent.extras == null)
             return

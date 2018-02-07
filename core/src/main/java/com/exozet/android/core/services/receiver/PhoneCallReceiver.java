@@ -1,4 +1,4 @@
-package de.charite.balsam.services.calls;
+package com.exozet.android.core.services.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
