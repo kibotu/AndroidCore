@@ -25,9 +25,19 @@ Collection of re-usable android functions.
 
 [Gitlab Issues](https://git.exozet.com/exozet-mobile/AndroidCore/issues)
 
-### Sample App
+## Sample App
 
     adb -s <device_name> install <apk_file>.apk
+
+## Features
+
+### Receiver
+
+    for tracking incoming and outgoing phone calls
+    PhoneCallReceiver
+
+    for tracking SMS
+    SmsReceiver
 
 ## Contributors
 
