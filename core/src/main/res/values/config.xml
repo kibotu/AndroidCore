@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- debug flags -->
+
+    <bool name="enable_logging">true</bool>
+    <bool name="flag_keep_screen_on">false</bool>
+    <bool name="unlock_screen_on_start">false</bool>
+    <bool name="force_update">false</bool>
+    <bool name="enable_debug_menu">true</bool>
+
+    <string name="default_notification_channel_id">exozet</string>
+    <string name="channel_human_readable_title">exozet</string>
+
+</resources>

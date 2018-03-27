@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- placeholder -->
+
+    <string name="section">Section</string>
+    <string name="empty" />
+
+    <!-- actions -->
+
+    <string name="reset_app">Reset App</string>
+    <string name="restart_app">Restart App</string>
+    <string name="debug_ram">Toggle Logging RAM</string>
+    <string name="debug_current_threads">Log Current Threads</string>
+    <string name="debug_current_backstack">Log Current Backstack</string>
+    <string name="debug_current_fragment">Log Current Fragment</string>
+
+    <string name="debug_trigger_local_push_notification">Trigger Local Push</string>
+
+    <!-- screens -->
+
+    <string name="screen_splash">Splash Screen</string>
+    <string name="screen_markdown_readme">README.md</string>
+    <string name="screen_markdown_changelog">CHANGELOG.md</string>
+    <string name="debug_build_info">Build Info</string>
+
+    <!--  language -->
+
+    <string name="language_default">Default</string>
+    <string name="language_korean">Korean</string>
+
+    <string name="device_connected">Device is online.</string>
+    <string name="device_not_connected">Device is not online.</string>
+
+</resources>

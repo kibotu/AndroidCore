@@ -6,9 +6,11 @@ apply from: "${project.rootDir}/GradleExtensions/utils.gradle"
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: "com.jfrog.artifactory"
 apply plugin: 'maven-publish'
+apply plugin: 'com.getkeepsafe.dexcount'
 
 android {
     compileSdkVersion compileSdkVer
@@ -21,16 +23,7 @@ android {
         versionName simpleReleaseVersionName()
     }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-
     dexOptions {
-        preDexLibraries = false
-        jumboMode = false
         javaMaxHeapSize "4g"
         maxProcessCount 8
     }
@@ -42,15 +35,133 @@ android {
 }
 
 dependencies {
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation libs.appcompat
     implementation libs.kotlinJre8
-    compileOnly libs.logger
+
+    implementation libs.multidex
+
+    implementation libs.appcompat
+    implementation libs.constraintLayout
+
     compileOnly libs.rx2java
     compileOnly libs.rx2Android
+
+    implementation libs.butterknife
+
+    implementation libs.deviceInfo
+
+    implementation libs.connectionBuddy
+    implementation libs.googlePlayForceUpdate
+    implementation libs.permissionDispatcher
+    kapt libs.permissionDispatcherProcessor
+    implementation libs.timeBomb
+
+    implementation libs.recyclerview
+    implementation libs.recyclerViewPresenter
+
+    implementation(libs.crashlytics) {
+        transitive = true
+    }
+
+    implementation(libs.materialdrawer) {
+        transitive = true
+    }
+
+    implementation libs.joda
+
+    implementation libs.markdownview
+
+    implementation libs.rxmarkdown
+
+    implementation libs.processPhoenix
+
+    compileOnly libs.logger
+
+    implementation libs.playServicesAuth
+    implementation libs.firebaseMessaging
+    implementation libs.firebaseJobdispatcher
+
+    implementation libs.lifecycleExtensions
+    implementation libs.lifecycleCommonJava8
+    implementation libs.lifecycleRactiveStreams
 }
 
-apply from: 'https://gist.githubusercontent.com/kibotu/994c9cc65fe623b76b76fedfac74b34b/raw/65ee52482ba65050e015f4b00d8d2fc9172a10e8/javadoc.gradle'
+// region kapt
+
+kapt {
+    useBuildCache = true
+}
+
+// endregion
+
+// region coroutines
+
+kotlin {
+    experimental {
+        coroutines 'enable'
+    }
+}
+
+// endregion
+
+static def escape(Object value) {
+    return "\"$value\""
+}
+
+// endregion
+
+// region javadoc
+
+task generateSourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier 'sources'
+}
+
+task generateJavadocs(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task generateJavadocsJar(type: Jar) {
+    from generateJavadocs.destinationDir
+    classifier 'javadoc'
+}
+
+generateJavadocsJar.dependsOn generateJavadocs
+
+artifacts {
+    archives generateJavadocsJar
+    archives generateSourcesJar
+}
+
+// endregion
+
+task('printEnvironmentTask') {
+    println(System.getenv())
+}
+
+task('generateEnvironmentLogTask') {
+    // generateEnvironmentLog() for debugging purposes
+}
+
+task('generateChangelogTask') {
+    generateChangelog()
+}
+
+task('generateReleaseNotesTask') {
+    generateReleaseNotes()
+}
+
+task copyReadme(type: Copy) {
+    from "${project.rootDir}/README.md"
+    into "${project.rootDir}/app/src/main/assets"
+}
+
+preBuild.dependsOn printEnvironmentTask
+preBuild.dependsOn generateChangelogTask
+preBuild.dependsOn generateReleaseNotesTask
+preBuild.dependsOn copyReadme
 
 apply from: rootProject.file('bintray-config.gradle')
 

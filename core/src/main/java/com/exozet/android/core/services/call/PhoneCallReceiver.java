@@ -1,4 +1,4 @@
-package com.exozet.android.core.services.receiver;
+package com.exozet.android.core.services.call;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "761920839110",
+    "firebase_url": "https://androidcore-exozet.firebaseio.com",
+    "project_id": "androidcore-exozet",
+    "storage_bucket": "androidcore-exozet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:761920839110:android:588901dc9a9996c3",
+        "android_client_info": {
+          "package_name": "com.exozet.android.core.demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "761920839110-7kp2qohhetr2emeq7t8frmfr9mfpl36v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.exozet.android.core.demo",
+            "certificate_hash": "ae98a892e282182458bb7d2d3d366d13381f0801"
+          }
+        },
+        {
+          "client_id": "761920839110-1ev37noehfuu5qkqjf2qraefli0nvgci.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkiWv6PXIVlYmrf2BF6Y7TyO-S15SKXm0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "761920839110-1ev37noehfuu5qkqjf2qraefli0nvgci.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

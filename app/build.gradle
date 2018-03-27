@@ -1,11 +1,21 @@
 ext {
     versionName = '0.1'
+    VSC = 'https://git.exozet.com/exozet-mobile/AndroidCore'
 }
 apply from: "${project.rootDir}/GradleExtensions/utils.gradle"
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'realm-android'
+apply plugin: 'io.fabric'
+apply plugin: 'com.github.gfx.ribbonizer'
+apply plugin: 'build-time-tracker'
+apply plugin: 'img-optimizer'
+apply plugin: 'com.getkeepsafe.dexcount'
+apply plugin: 'android-rocket-launcher'
 
 android {
     compileSdkVersion compileSdkVer
@@ -20,9 +30,53 @@ android {
         versionName simpleReleaseVersionName()
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        try {
+            debug {
+                storeFile file('../debug.jks')
+                storePassword DEBUG_STORE_PASSWORD
+                keyAlias DEBUG_KEYSTORE_ALLIAS
+                keyPassword DEBUG_KEY_PASSWORD
+            }
+        }
+        catch (final ignored) {
+            throw new InvalidUserDataException('You should define DEBUG_KEYSTORE_ALLIAS, DEBUG_STORE_PASSWORD, DEBUG_KEY_PASSWORD in gradle.properties.')
+        }
+        try {
+            release {
+                storeFile file('../release.jks')
+                storePassword RELEASE_STORE_PASSWORD
+                keyAlias RELEASE_KEYSTORE_ALIAS
+                keyPassword RELEASE_KEY_PASSWORD
+            }
+        } catch (final ignored) {
+            throw new InvalidUserDataException('You should define RELEASE_KEYSTORE_ALIAS, RELEASE_STORE_PASSWORD, RELEASE_KEY_PASSWORD in gradle.properties.')
+        }
+    }
+
     buildTypes {
-        release {
+
+        debug {
+            signingConfig signingConfigs.debug
+            pseudoLocalesEnabled false
+            debuggable true
             minifyEnabled false
+            crunchPngs false
+            shrinkResources false
+            zipAlignEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            initWith(buildTypes.debug)
+            applicationIdSuffix ""
+            signingConfig signingConfigs.release
+            debuggable false
+            minifyEnabled false
+            crunchPngs false
+            shrinkResources false
+            zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -52,18 +106,19 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
+    implementation libs.multidex
+
     androidTestImplementation androidTestLibs.espressoRunner
     androidTestImplementation androidTestLibs.espressoCore
 
     testImplementation testLibs.junit
     testImplementation testLibs.jsonUnit
     testImplementation testLibs.jsonUnitFluent
-    testImplementation testLibs.robolectricSnapshot
+    // testImplementation testLibs.robolectric
     testImplementation testLibs.truth
 
     implementation libs.kotlinJre8
     implementation libs.appcompat
-    implementation libs.constraintLayout
 
     implementation libs.rx2java
     implementation libs.rx2Android
@@ -71,3 +126,48 @@ dependencies {
     implementation project(':core')
     implementation libs.logger
 }
+
+configurations.all {
+    resolutionStrategy.force libs.multidex
+    resolutionStrategy.force libs.supportAnnotations
+    resolutionStrategy.force libs.supportV4
+    resolutionStrategy.force libs.supportV13
+    resolutionStrategy.force libs.appcompat
+    resolutionStrategy.force libs.cardview
+    resolutionStrategy.force libs.recyclerview
+    resolutionStrategy.force libs.design
+    resolutionStrategy.force libs.guava
+    resolutionStrategy.force libs.playServicesAuth
+    resolutionStrategy.force libs.firebaseCore
+    resolutionStrategy.force libs.firebaseMessaging
+    resolutionStrategy.force libs.firebaseJobdispatcher
+    resolutionStrategy.force libs.lifecycleExtensions
+    resolutionStrategy.force libs.lifecycleCommonJava8
+    resolutionStrategy.force libs.lifecycleRactiveStreams
+}
+
+// region build time tracker
+
+buildtimetracker {
+    reporters {
+        csv {
+            output "build/times.csv"
+            append true
+            header false
+        }
+
+        summary {
+            ordered false
+            threshold 50
+            barstyle "unicode"
+        }
+
+        csvSummary {
+            csv "build/times.csv"
+        }
+    }
+}
+
+// endregion
+
+apply plugin: 'com.google.gms.google-services'

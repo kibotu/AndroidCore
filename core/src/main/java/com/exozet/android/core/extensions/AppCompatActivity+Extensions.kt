@@ -1,3 +1,5 @@
+@file:JvmName("AppCompatActivityExtensions")
+
 package com.exozet.android.core.extensions
 
 import android.support.annotation.IdRes

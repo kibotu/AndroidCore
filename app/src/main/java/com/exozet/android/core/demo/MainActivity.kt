@@ -1,12 +1,8 @@
 package com.exozet.android.core.demo
 
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import com.exozet.android.core.base.BaseActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
+
 }
