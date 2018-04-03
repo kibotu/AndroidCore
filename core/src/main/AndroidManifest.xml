@@ -39,7 +39,10 @@
         android:name="android.hardware.touchscreen.multitouch.distinct"
         android:required="false" />
 
-    <application>
+    <application
+        android:allowBackup="false"
+        android:fullBackupContent="@xml/backup">
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="9e54af655b5d3cf5b3edc584e69d4eb846a74e20" />
