@@ -2,7 +2,7 @@ ext {
     versionName = '0.1'
     VSC = 'https://git.exozet.com/exozet-mobile/AndroidCore'
 }
-apply from: "${project.rootDir}/GradleExtensions/utils.gradle"
+apply from: "${project.rootDir}/dependencies/utils.gradle"
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'

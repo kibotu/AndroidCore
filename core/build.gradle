@@ -1,7 +1,7 @@
 ext {
     versionName = '0.1'
 }
-apply from: "${project.rootDir}/GradleExtensions/utils.gradle"
+apply from: "${project.rootDir}/dependencies/utils.gradle"
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
