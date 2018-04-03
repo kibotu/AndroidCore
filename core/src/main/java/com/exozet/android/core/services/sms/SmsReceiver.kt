@@ -27,7 +27,7 @@ abstract class SmsReceiver : BroadcastReceiver() {
         if (intent.extras == null)
             return
 
-        if(Build.VERSION.SDK_INT < 19)
+        if (Build.VERSION.SDK_INT < 19)
             return
 
         // @see https://developer.android.com/reference/android/telephony/SmsMessage.html

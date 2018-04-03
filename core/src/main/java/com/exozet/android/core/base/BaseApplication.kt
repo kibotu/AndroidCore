@@ -10,7 +10,6 @@ import android.os.Build.VERSION_CODES.N
 import android.provider.Settings
 import android.support.multidex.MultiDexApplication
 import com.crashlytics.android.Crashlytics
-import com.exozet.android.core.BuildConfig
 import com.exozet.android.core.R
 import com.exozet.android.core.extensions.resBoolean
 import com.exozet.android.core.extensions.resString

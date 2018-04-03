@@ -1,6 +1,5 @@
 package com.exozet.android.core.services.notifications
 
-import android.util.Log
 import com.firebase.jobdispatcher.JobParameters
 import com.firebase.jobdispatcher.JobService
 import net.kibotu.logger.Logger

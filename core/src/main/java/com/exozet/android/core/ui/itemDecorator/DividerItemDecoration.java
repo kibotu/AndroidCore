@@ -21,13 +21,13 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 
     public DividerItemDecoration(Context context, AttributeSet attrs) {
         final TypedArray a = context
-            .obtainStyledAttributes(attrs, new int[]{android.R.attr.listDivider});
+                .obtainStyledAttributes(attrs, new int[]{android.R.attr.listDivider});
         mDivider = a.getDrawable(0);
         a.recycle();
     }
 
     public DividerItemDecoration(Context context, AttributeSet attrs, boolean showFirstDivider,
-        boolean showLastDivider) {
+                                 boolean showLastDivider) {
         this(context, attrs);
         mShowFirstDivider = showFirstDivider;
         mShowLastDivider = showLastDivider;
@@ -38,7 +38,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
     }
 
     public DividerItemDecoration(Context context, int resId, boolean showFirstDivider,
-        boolean showLastDivider) {
+                                 boolean showLastDivider) {
         this(context, resId);
         mShowFirstDivider = showFirstDivider;
         mShowLastDivider = showLastDivider;
@@ -49,7 +49,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
     }
 
     public DividerItemDecoration(Drawable divider, boolean showFirstDivider,
-        boolean showLastDivider) {
+                                 boolean showLastDivider) {
         this(divider);
         mShowFirstDivider = showFirstDivider;
         mShowLastDivider = showLastDivider;
@@ -57,7 +57,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent,
-        RecyclerView.State state) {
+                               RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
         if (mDivider == null) {
             return;
@@ -146,7 +146,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
                 mOrientation = layoutManager.getOrientation();
             } else {
                 throw new IllegalStateException(
-                    "DividerItemDecoration can only be used with a LinearLayoutManager.");
+                        "DividerItemDecoration can only be used with a LinearLayoutManager.");
             }
         }
         return mOrientation;
