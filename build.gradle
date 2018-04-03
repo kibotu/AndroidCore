@@ -33,6 +33,7 @@ buildscript {
 }
 
 allprojects {
+
     repositories {
         google()
         jcenter()
@@ -43,6 +44,10 @@ allprojects {
         maven { url 'https://dl.bintray.com/kotlin/kotlin-dev/' }
         maven { url 'https://maven.fabric.io/public' }
     }
+
+    // disable javadoc generation
+    subprojects { tasks.withType(Javadoc).all { enabled = false } }
+    tasks.withType(Javadoc).all { enabled = false }
 }
 
 task clean(type: Delete) {
