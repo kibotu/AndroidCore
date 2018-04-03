@@ -23,6 +23,7 @@ android {
 
     defaultConfig {
         applicationId "com.exozet.android.core.demo"
+        multiDexEnabled true
 
         minSdkVersion minSdkVer
         targetSdkVersion targetSdkVer

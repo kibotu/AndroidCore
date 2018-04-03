@@ -21,6 +21,7 @@ android {
         targetSdkVersion targetSdkVer
         versionCode commitCount()
         versionName simpleReleaseVersionName()
+        multiDexEnabled true
     }
 
     dexOptions {
