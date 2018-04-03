@@ -119,22 +119,4 @@ class StringExtensionsTest : BaseTest() {
         Truth.assertThat("04-73-2F-02-93-C0".sha256())
                 .isEqualTo("0413e0cecd75d7bc0a463ed5593962257cfb4117b68c5fb3618ba4085721495e")
     }
-
-    @Test
-    fun arrayListFromRes() {
-
-        val expected = arrayListOf(
-                "My House – 1",
-                "My House – 2",
-                "Sleeping Rooms",
-                "Day Rooms",
-                "Other"
-        )
-
-        val actual = R.string.preset_groups.asCsv()
-
-        Truth.assertThat(actual).isNotNull()
-        Truth.assertThat(actual).isNotEmpty()
-        Truth.assertThat(actual).containsAllIn(expected)
-    }
 }

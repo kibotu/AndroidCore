@@ -115,7 +115,7 @@ dependencies {
     testImplementation testLibs.junit
     testImplementation testLibs.jsonUnit
     testImplementation testLibs.jsonUnitFluent
-    // testImplementation testLibs.robolectric
+    testImplementation testLibs.robolectric
     testImplementation testLibs.truth
 
     implementation libs.kotlinJre8
