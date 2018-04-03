@@ -2,6 +2,7 @@
 
 package com.exozet.android.core.extensions
 
+import android.content.Context
 import android.content.res.Resources
 import android.os.Build
 import android.support.v4.content.ContextCompat
@@ -76,3 +77,5 @@ val Int.html: Spanned
             Html.fromHtml(resString)
         }
     }
+
+fun Int.asCsv(context: Context = ContextHelper.getContext()!!): List<String> = context.resources.getString(this).split(",").map(String::trim).toList()
