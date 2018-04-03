@@ -2,7 +2,7 @@ ext {
     versionName = '0.1'
     VSC = 'https://git.exozet.com/exozet-mobile/AndroidCore'
 }
-apply from: "${project.rootDir}/dependencies/utils.gradle"
+apply from: "../dependencies/utils.gradle"
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
@@ -15,7 +15,7 @@ apply plugin: 'com.github.gfx.ribbonizer'
 apply plugin: 'build-time-tracker'
 apply plugin: 'img-optimizer'
 apply plugin: 'com.getkeepsafe.dexcount'
-apply plugin: 'android-rocket-launcher'
+//apply plugin: 'android-rocket-launcher'
 
 android {
     compileSdkVersion compileSdkVer
