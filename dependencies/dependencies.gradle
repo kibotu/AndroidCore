@@ -25,6 +25,8 @@ ext {
     robolectricVersion = '3.8'
 
     versionName = 0
+
+    VSC_PATH = '0'
 }
 
 ext.plugin = [
