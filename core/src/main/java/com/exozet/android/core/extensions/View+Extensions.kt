@@ -48,3 +48,7 @@ fun View?.hide(isHiding: Boolean = true) {
 fun View?.gone(isGone: Boolean = true) {
     this?.visibility = if (isGone) View.GONE else View.VISIBLE
 }
+
+internal infix fun View.onClick(function: () -> Unit) {
+    setOnClickListener { function() }
+}
