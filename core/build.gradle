@@ -1,15 +1,14 @@
 ext {
     versionName = '0.1'
 }
-apply from: "../dependencies/utils.gradle"
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.github.dcendents.android-maven'
-//apply plugin: "com.jfrog.artifactory"
-apply plugin: 'maven-publish'
+// apply plugin: "com.jfrog.artifactory"
+// apply plugin: 'maven-publish'
 apply plugin: 'com.getkeepsafe.dexcount'
 
 android {
