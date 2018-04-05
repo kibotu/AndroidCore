@@ -14,6 +14,42 @@ Collection of re-usable android functions.
 ## How to install
 
     implementation 'com.exozet.android:core:latest'
+    
+## Adding as submodule
+
+1) git clone git@git.exozet.com:exozet-mobile/AndroidCore.git
+2) git submodule add git@git.exozet.com:exozet-mobile/AndroidCore.git AndroidCore
+3) git commit -m 'Add AndroidCore'
+4) git push
+
+## Configure
+
+### CLI
+
+Enable in AndroidCore the deploy key for your project.
+
+https://git.exozet.com/exozet-mobile/AndroidCore/settings/repository
+
+### rootProject/settings.gradle
+
+    include ':app', 'core'
+    project(':core').projectDir = new File('AndroidCore/core')
+    
+#### rootProject/AndroidCore/build.gradle -> rootProject/AndroidCore/build.gradle    
+
+#### rootProject/AndroidCore/app/build.gradle -> rootProject/app/build.gradle
+
+#### rootProject/AndroidCore/gralde.properties -> rootProject/gradle.properties
+
+## Working with submodules
+
+1) commit && push changes to submodule
+2) commit && push new commit reference to main project
+
+### Gotchas
+
+- Git doesn't automatically checkout master branch on switching between branches on your main project.
+- Git doesn't delete removed or renamed submodules, so after switching branches old submodules may re-appear and want to be re-added. Just delete the old ghost-directory again and make sure to merge submodule changes to all branches.
 
 ## Continues Integration
 
