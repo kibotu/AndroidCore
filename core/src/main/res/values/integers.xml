@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created by ${USER} on ${DATE} at ${TIME}
+     email:shkurtiarmando@gmail.com -->
+<resources>
+
+    <integer name="rapid_animation">120</integer>
+
+    <item type="integer" name="selector_fade_duration">300</item>
+    <item type="integer" name="text_secret_duration">2200</item>
+
+    <item type="integer" name="activity_transition">400</item>
+
+    <item type="integer" name="fast_activity_transition">100</item>
+
+    <integer name="anim_duration_very_long">1500</integer>
+    <integer name="anim_duration_long">500</integer>
+    <integer name="anim_duration_medium">300</integer>
+
+</resources>

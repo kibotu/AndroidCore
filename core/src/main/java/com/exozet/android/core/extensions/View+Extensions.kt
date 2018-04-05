@@ -1,7 +1,10 @@
 package com.exozet.android.core.extensions
 
+import android.support.annotation.ColorRes
+import android.support.v4.content.ContextCompat
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 
 /**
  * Created by [Jan Rabe](https://about.me/janrabe).
@@ -51,4 +54,8 @@ fun View?.gone(isGone: Boolean = true) {
 
 internal infix fun View.onClick(function: () -> Unit) {
     setOnClickListener { function() }
+
+fun ProgressBar.indeterminateDrawableColor(@ColorRes color: Int) {
+    indeterminateDrawable.setColorFilter(
+            ContextCompat.getColor(context, color), android.graphics.PorterDuff.Mode.SRC_IN)
 }

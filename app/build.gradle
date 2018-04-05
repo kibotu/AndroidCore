@@ -6,7 +6,6 @@ ext {
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'realm-android'
 apply plugin: 'io.fabric'
@@ -29,6 +28,7 @@ android {
         versionCode commitCount()
         versionName simpleReleaseVersionName()
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
 
     signingConfigs {
@@ -119,12 +119,16 @@ dependencies {
 
     implementation libs.kotlinJre8
     implementation libs.appcompat
+    implementation libs.constraintLayout
+    implementation libs.design
+    implementation libs.cardview
 
     implementation libs.rx2java
     implementation libs.rx2Android
 
     implementation project(':core')
     implementation libs.logger
+    implementation libs.timberLogger
 }
 
 configurations.all {

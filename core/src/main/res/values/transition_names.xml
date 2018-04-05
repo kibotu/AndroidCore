@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Created by ${USER} on ${DATE} at ${TIME}
+     email:shkurtiarmando@gmail.com -->
+<resources>
+
+    <string name="transition_toolbar" translatable="false">toolbar_transition</string>
+
+</resources>

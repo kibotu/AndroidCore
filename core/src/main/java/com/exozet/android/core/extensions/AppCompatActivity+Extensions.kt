@@ -8,11 +8,20 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
+import com.exozet.android.core.R
 
 
 /**
  * Created by armando.shkurti on 09/10/17.
  */
+
+fun AppCompatActivity.replaceFragment(fragment: Fragment) {
+    replaceFragment(fragment, R.id.fragment_container, fragment.tag())
+}
+
+fun AppCompatActivity.replaceWithStackFragment(fragment: Fragment) {
+    replaceWithStackFragment(fragment, R.id.fragment_container, fragment.tag())
+}
 
 fun AppCompatActivity.replaceFragment(fragment: Fragment, @IdRes frameId: Int, tag: String) {
     supportFragmentManager.transact {
@@ -69,4 +78,8 @@ fun AppCompatActivity.clearFragmentBackStack() {
         val first = manager.getBackStackEntryAt(0)
         manager.popBackStack(first.id, FragmentManager.POP_BACK_STACK_INCLUSIVE)
     }
+}
+
+fun Fragment.tag(): String {
+    return javaClass.simpleName
 }

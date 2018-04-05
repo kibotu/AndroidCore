@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Core" parent="Base.Theme.Core">
+
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Core" parent="Theme.AppCompat.DayNight.NoActionBar">
+
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/white</item>
+
+        <!--<item name="android:windowBackground">@drawable/layer_app_screen</item> -->
+
+    </style>
+
+    <style name="Theme.Core.LaunchScreen">
+        <item name="android:windowBackground">@drawable/layer_launch_screen</item>
+    </style>
+
+    <style name="Theme.Core.Toolbar" parent="Theme.Core">
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="actionMenuTextColor">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+    </style>
+
+    <style name="Theme.Core.EditText.Appcompat.White" parent="Theme.Core">
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorAccent">@color/white</item>
+        <item name="colorControlActivated">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+
+    <style name="Theme.Core.Toolbar.Popup" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textColor">@color/globalMenuItemText</item>
+    </style>
+
+    <style name="Theme.Core.Button.Appcompat" parent="Widget.AppCompat.Button">
+        <item name="colorControlHighlight">@color/colorControlHighlight</item>
+        <item name="colorButtonNormal">@color/colorButtonNormal</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Theme.Core.SwitchTheme">
+        <item name="colorControlActivated">#009d5b</item>
+        <item name="colorSwitchThumbNormal">#BDBDBD</item>
+        <item name="android:colorForeground">#757575</item>
+    </style>
+
+</resources>
