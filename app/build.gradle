@@ -1,8 +1,7 @@
 ext {
-    versionName = '0.1'
-    VSC = 'https://git.exozet.com/exozet-mobile/AndroidCore'
+    versionName = VERSION_NAME
+    VSC = VSC_PATH
 }
-apply from: "../dependencies/utils.gradle"
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
@@ -22,7 +21,7 @@ android {
     buildToolsVersion buildToolsVer
 
     defaultConfig {
-        applicationId "com.exozet.android.core.demo"
+        applicationId APPLICATION_ID
         multiDexEnabled true
 
         minSdkVersion minSdkVer
@@ -35,7 +34,7 @@ android {
     signingConfigs {
         try {
             debug {
-                storeFile file('../debug.jks')
+                storeFile file(DEBUG_KEYSYORE_PATH)
                 storePassword DEBUG_STORE_PASSWORD
                 keyAlias DEBUG_KEYSTORE_ALLIAS
                 keyPassword DEBUG_KEY_PASSWORD
@@ -46,7 +45,7 @@ android {
         }
         try {
             release {
-                storeFile file('../release.jks')
+                storeFile file(RELEASE_KEYSYORE_PATH)
                 storePassword RELEASE_STORE_PASSWORD
                 keyAlias RELEASE_KEYSTORE_ALIAS
                 keyPassword RELEASE_KEY_PASSWORD
@@ -171,4 +170,4 @@ buildtimetracker {
 
 // endregion
 
-apply plugin: 'com.google.gms.google-services'
+// apply plugin: 'com.google.gms.google-services'
