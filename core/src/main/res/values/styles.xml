@@ -26,9 +26,9 @@
         <item name="android:foreground">?selectableItemBackground</item>
     </style>
 
-    <style name="Widget.App.TextInputLayout.Register" parent="">
+    <style name="Widget.App.TextInputLayout.Register" parent="Widget.Design.TextInputLayout">
         <item name="android:theme">@style/Theme.Core.EditText.Appcompat.White</item>
-        <item name="errorTextAppearance">@style/TextAppearance.EditText.Error</item>
+        <!--<item name="errorTextAppearance">@style/TextAppearance.EditText.Error</item>-->
     </style>
 
     <style name="TextAppearance.EditText.Error" parent="@android:style/TextAppearance">
