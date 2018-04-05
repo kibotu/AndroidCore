@@ -2,6 +2,7 @@ package com.exozet.android.core.utils;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.SparseArray;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -43,4 +44,7 @@ final public class CollectionExtensions {
         return l == null || l.length < 1;
     }
 
+    public static boolean isEmpty(@Nullable final SparseArray<?> collection) {
+        return collection == null || collection.size() == 0;
+    }
 }

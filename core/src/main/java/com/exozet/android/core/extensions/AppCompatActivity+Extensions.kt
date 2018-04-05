@@ -2,6 +2,9 @@
 
 package com.exozet.android.core.extensions
 
+import android.content.pm.PackageManager
+import android.os.Build.VERSION.SDK_INT
+import android.os.Build.VERSION_CODES.N
 import android.support.annotation.IdRes
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -9,6 +12,8 @@ import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import com.exozet.android.core.R
+import net.kibotu.ContextHelper.getActivity
+import net.kibotu.ContextHelper.getApplication
 
 
 /**
@@ -82,4 +87,14 @@ fun AppCompatActivity.clearFragmentBackStack() {
 
 fun Fragment.tag(): String {
     return javaClass.simpleName
+}
+
+fun enterPictureInPictureMode() {
+    if (supportsPictureInPicture()) {
+        getActivity()!!.enterPictureInPictureMode()
+    }
+}
+
+fun supportsPictureInPicture(): Boolean {
+    return SDK_INT >= N && getApplication()!!.packageManager.hasSystemFeature(PackageManager.FEATURE_PICTURE_IN_PICTURE)
 }

@@ -11,11 +11,16 @@ import android.support.annotation.DimenRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
 
+import java.util.Locale;
+
 import static android.os.Build.VERSION.SDK_INT;
+import static android.os.Build.VERSION_CODES.JELLY_BEAN_MR1;
 import static android.os.Build.VERSION_CODES.LOLLIPOP_MR1;
+import static net.kibotu.ContextHelper.getApplication;
 import static net.kibotu.ContextHelper.getContext;
 
 /**
@@ -70,6 +75,45 @@ final public class ResourceExtensions {
     @Nullable
     public static Drawable getDrawableByName(@NonNull final Context context, @NonNull final String drawable) {
         return ContextCompat.getDrawable(context, context.getResources().getIdentifier(drawable, "drawable", context.getPackageName()));
+    }
+
+    /**
+     * https://stackoverflow.com/a/9475663/1006741
+     *
+     * @param id     string resource id
+     * @param locale locale
+     * @return localized string
+     */
+    public static String getLocalizedString(@StringRes int id, Locale locale) {
+
+        if (SDK_INT > JELLY_BEAN_MR1) {
+            return getLocalizedResources(getApplication(), locale).getString(id);
+        }
+
+        Resources res = getApplication().getResources();
+        Configuration conf = res.getConfiguration();
+        Locale savedLocale = conf.locale;
+        conf.locale = locale; // whatever you want here
+        res.updateConfiguration(conf, null); // second arg null means don't change
+
+        // retrieve resources from desired locale
+        String text = res.getString(id);
+
+        // restore original locale
+        conf.locale = savedLocale;
+        res.updateConfiguration(conf, null);
+
+        return text;
+    }
+
+    @RequiresApi(api = JELLY_BEAN_MR1)
+    @NonNull
+    public static Resources getLocalizedResources(Context context, Locale desiredLocale) {
+        Configuration conf = context.getResources().getConfiguration();
+        conf = new Configuration(conf);
+        conf.setLocale(desiredLocale);
+        Context localizedContext = context.createConfigurationContext(conf);
+        return localizedContext.getResources();
     }
 
 }
