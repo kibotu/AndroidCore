@@ -17,10 +17,10 @@ Collection of re-usable android functions.
     
 ## Adding as submodule
 
-1) git clone git@git.exozet.com:exozet-mobile/AndroidCore.git
-2) git submodule add git@git.exozet.com:exozet-mobile/AndroidCore.git AndroidCore
-3) git commit -m 'Add AndroidCore'
-4) git push
+1. git clone git@git.exozet.com:exozet-mobile/AndroidCore.git
+2. git submodule add git@git.exozet.com:exozet-mobile/AndroidCore.git AndroidCore
+3. git commit -m 'Add AndroidCore'
+4. git push
 
 ## Configure
 
