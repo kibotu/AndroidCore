@@ -34,6 +34,6 @@ ext {
     developerEmail = "developer@exozet.com"
 }
 
-apply from: rootProject.file('jcenter/maven-install.gradle')
+// apply from: rootProject.file('jcenter/maven-install.gradle')
 
-apply from: rootProject.file('jcenter/bintray.gradle')
+// apply from: rootProject.file('jcenter/bintray.gradle')
