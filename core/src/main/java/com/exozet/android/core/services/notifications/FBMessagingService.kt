@@ -15,7 +15,7 @@ import net.kibotu.ContextHelper
 /**
  * Created by [Jan Rabe](https://about.me/janrabe).
  */
-class FBMessagingService : FirebaseMessagingService() {
+open class FBMessagingService : FirebaseMessagingService() {
 
     var remoteMessage: RemoteMessage? = null
 
@@ -87,13 +87,14 @@ class FBMessagingService : FirebaseMessagingService() {
     /**
      * Handle time allotted to BroadcastReceivers.
      */
-    private fun handleNow() {
+    open fun handleNow() {
         Log.d(TAG, "Short lived task is done.")
 
         if (isDebugMode()) {
             toast("Push: " + remoteMessage?.notification?.body)
         }
 
+        //show notification if app is not running
         if (!ContextHelper.isRunning.get()) {
             sendNotification(
                     messageBody = remoteMessage?.notification?.body ?: "",
