@@ -90,6 +90,7 @@ ext.libs = [
         playServicesAuth             : "com.google.android.gms:play-services-auth:$playServicesVer",
         firebaseCrash                : "com.google.firebase:firebase-crash:$firebaseVer",
         firebaseMessaging            : "com.google.firebase:firebase-messaging:$firebaseVer",
+        firebaseDatabase             : "com.google.firebase:firebase-database:$firebaseVer",
         constraintLayout             : 'com.android.support.constraint:constraint-layout:1.0.2',
         connectionBuddy              : 'com.zplesac:connectionbuddy:2.0.0-beta1',
         calligraphy                  : 'uk.co.chrisjenx:calligraphy:2.3.0',
