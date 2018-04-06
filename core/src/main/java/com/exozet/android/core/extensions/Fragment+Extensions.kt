@@ -16,7 +16,7 @@ import net.kibotu.logger.Logger
 @IdRes
 var fragmentContainerId: Int = R.id.fragment_container
 
-fun currentFragment(@IdRes container: Int = fragmentContainerId): Fragment {
+fun currentFragment(@IdRes container: Int = fragmentContainerId): Fragment? {
     return getAppCompatActivity()!!.supportFragmentManager.findFragmentById(container)
 }
 
