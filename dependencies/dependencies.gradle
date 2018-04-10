@@ -141,6 +141,7 @@ ext.libs = [
         wowoViewPager                : 'com.nightonke:wowoviewpager:1.0.2',
         numberPicker                 : 'com.shawnlin:number-picker:1.0.1',
         adjust                       : 'com.adjust.sdk:adjust-android:4.10.2',
+        facebookCore                 : 'com.facebook.android:facebook-core:4.31.0',
 
         htextviewBase                : "com.hanks:htextview-base:$htextview_version",
         htextviewFade                : "com.hanks:htextview-fade:$htextview_version",
