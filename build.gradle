@@ -1,7 +1,6 @@
 buildscript {
 
     apply from: "dependencies/dependencies.gradle"
-    apply from: "dependencies/utils.gradle"
 
     repositories {
         google()
@@ -34,6 +33,7 @@ buildscript {
 }
 
 allprojects {
+    apply from: "${project.rootDir}/dependencies/utils.gradle"
 
     repositories {
         google()
