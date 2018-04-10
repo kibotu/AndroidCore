@@ -14,10 +14,10 @@ Collection of re-usable android functions.
 ## How to install
 
     implementation 'com.exozet.android:core:latest'
-    
+
 ## Adding as submodule
 
-1. git clone git@git.exozet.com:exozet-mobile/AndroidCore.git
+1. git clone --recursive git@git.exozet.com:exozet-mobile/AndroidCore.git
 2. git submodule add git@git.exozet.com:exozet-mobile/AndroidCore.git AndroidCore
 3. git commit -m 'Add AndroidCore'
 4. git push
@@ -34,12 +34,64 @@ https://git.exozet.com/exozet-mobile/AndroidCore/settings/repository
 
     include ':app', 'core'
     project(':core').projectDir = new File('AndroidCore/core')
-    
-#### rootProject/AndroidCore/build.gradle -> rootProject/AndroidCore/build.gradle    
 
-#### rootProject/AndroidCore/app/build.gradle -> rootProject/app/build.gradle
+#### rootProject/build.gradle    
 
-#### rootProject/AndroidCore/gralde.properties -> rootProject/gradle.properties
+Copy and paste content from rootProject/AndroidCore/build.gradle
+
+And change line
+
+    apply from: "dependencies/dependencies.gradle"
+
+to
+
+    apply from: "AndroidCore/dependencies/dependencies.gradle"
+
+and line
+
+    apply from: "${project.rootDir}/dependencies/utils.gradle"
+
+to
+
+    apply from: "${project.rootDir}/dependencies/utils.gradle"
+
+#### rootProject/app/build.gradle
+
+Copy and paste content from rootProject/AndroidCore/app/build.gradle
+
+Comment out following line if you don't need vectorDrawables support:
+
+    vectorDrawables.useSupportLibrary = true
+
+Change paths to storeFiles (for testing purposes just need to change debug signingConfigs):
+
+    debug {
+      storeFile file("../AndroidCore/debug.jks")
+      ...
+    }
+
+Comment out following line if you don't use Google Services:
+
+    apply plugin: 'com.google.gms.google-services'
+
+or otherwise add a google-services.json to your rootProject/app.
+
+
+#### rootProject/gradle.properties
+
+Copy and paste content from rootProject/AndroidCore/gradle.properties
+
+#### rootProject/app/src/main/AndroidManifest.xml
+
+Remove following line from application (only for Debug purposes):
+
+    android:allowBackup="true"
+
+#### Last steps
+
+Add 'assets' directory to rootProject/app/src/main/
+
+Run command 'gradle :wrapper' in your Terminal (being located in rootProject)
 
 ## Working with submodules
 
