@@ -68,7 +68,7 @@ public abstract class PhoneCallReceiver extends BroadcastReceiver {
         int lastState = TelephonyManager.CALL_STATE_IDLE;
         Date callStartTime;
         boolean isIncoming;
-        String savedNumber;  // because the passed incoming is only valid in ringing
+        String savedNumber = "";  // because the passed incoming is only valid in ringing
 
         /**
          * The outgoing number is only sent via a separate intent, so we need to store it out of band
