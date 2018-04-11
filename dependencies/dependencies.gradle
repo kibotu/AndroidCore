@@ -14,11 +14,11 @@ ext {
     // apparently '27.1.0' has different behaviour for fragment lifecycle @see more https://www.reddit.com/r/androiddev/comments/80ork8/support_library_2710_has_been_released/
 
     // @see https://developers.google.com/android/guides/setup
-    playServicesVer = '11.8.0'
+    playServicesVer = '12.0.1'
 
     // @see https://firebase.google.com/docs/android/setup
     // and https://firebase.google.com/support/release-notes/android
-    firebaseVer = '11.8.0'
+    firebaseVer = '12.0.1'
 
     retrofitVersion = '2.4.0'
 
@@ -94,8 +94,8 @@ ext.libs = [
         constraintLayout             : 'com.android.support.constraint:constraint-layout:1.0.2',
         connectionBuddy              : 'com.zplesac:connectionbuddy:2.0.0-beta1',
         calligraphy                  : 'uk.co.chrisjenx:calligraphy:2.3.0',
-        permissionDispatcher         : 'com.github.hotchemi:permissionsdispatcher:3.0.1',
-        permissionDispatcherProcessor: 'com.github.hotchemi:permissionsdispatcher-processor:3.0.1',
+        permissionDispatcher         : 'com.github.hotchemi:permissionsdispatcher:3.1.0',
+        permissionDispatcherProcessor: 'com.github.hotchemi:permissionsdispatcher-processor:3.1.0',
         parceler                     : 'org.parceler:parceler-api:1.1.10',
         parcelerProcessor            : 'org.parceler:parceler:1.1.10',
         joda                         : 'net.danlew:android.joda:2.9.9.2',
@@ -167,6 +167,7 @@ ext.libs = [
 
         adapterDelegate              : 'com.hannesdorfmann:adapterdelegates3:3.0.1',
 
+        picasso                        : 'com.squareup.picasso:picasso:2.71828',
         glide                        : 'com.github.bumptech.glide:glide:4.5.0',
         glideAnnotationsProcessor    : 'com.github.bumptech.glide:compiler:4.5.0',
 
@@ -189,7 +190,7 @@ ext.libs = [
         mzip                         : 'com.github.ghost1372:Mzip-Android:0.4.0',
         numberprogressbar            : 'com.daimajia.numberprogressbar:library:1.4@aar',
         fragmentanimations           : 'com.labo.kaji:fragmentanimations:0.1.1',
-        firebaseCore                 : 'com.google.firebase:firebase-core:11.8.0',
+        firebaseCore                 : "com.google.firebase:firebase-core:$firebaseVer",
         firebaseJobdispatcher        : 'com.firebase:firebase-jobdispatcher:0.8.5',
         linq                         : 'br.com.zbra:android-linq:1.1.0',
         timberLogger                 : 'com.jakewharton.timber:timber:4.6.0',
@@ -243,7 +244,9 @@ ext.libs = [
         shortcutBadger               : 'me.leolin:ShortcutBadger:1.1.21@aar',
         fileDownloader               : 'com.liulishuo.filedownloader:library:1.7.1',
         expandableLayout             : 'com.github.chuross:expandable-layout:1.0.5',
-        expandableLayoutFork         : 'com.github.kibotu:expandable-layout:1.0.5.1'
+        expandableLayoutFork         : 'com.github.kibotu:expandable-layout:1.0.5.1',
+        greenrobotEventbus           : 'org.greenrobot:eventbus:3.1.1',
+        daimajiaEasing               : 'com.daimajia.easing:library:2.1@aar'
 ]
 
 ext.testLibs = [

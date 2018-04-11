@@ -89,6 +89,7 @@ fun Fragment.tag(): String {
     return javaClass.simpleName
 }
 
+@Suppress("DEPRECATION")
 fun enterPictureInPictureMode() {
     if (supportsPictureInPicture()) {
         getActivity()!!.enterPictureInPictureMode()
