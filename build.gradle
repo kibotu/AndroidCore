@@ -1,6 +1,10 @@
 buildscript {
 
-    apply from: "dependencies/dependencies.gradle"
+    try {
+        apply from: "${project.rootDir}/dependencies/dependencies.gradle"
+    } catch (ignored) {
+        apply from: "${project.rootDir}/AndroidCore/dependencies/dependencies.gradle"
+    }
 
     repositories {
         google()
@@ -33,7 +37,12 @@ buildscript {
 }
 
 allprojects {
-    apply from: "${project.rootDir}/dependencies/utils.gradle"
+
+    try {
+        apply from: "${project.rootDir}/dependencies/utils.gradle"
+    } catch (ignored) {
+        apply from: "${project.rootDir}/AndroidCore/dependencies/utils.gradle"
+    }
 
     repositories {
         google()
