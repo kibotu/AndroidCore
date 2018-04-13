@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.os.Build.VERSION.SDK_INT
+import android.os.Build.VERSION_CODES.JELLY_BEAN
 import android.support.annotation.ColorInt
 import android.support.annotation.ColorRes
 import android.support.v4.content.ContextCompat
@@ -117,7 +118,7 @@ fun View.setOnTouchActionUpListener(action: (v: View, event: MotionEvent) -> Boo
  * gradient(200f, 0x80C24641.toInt(), 0x80FFFFFF.toInt())
  */
 fun View.gradient(radius: Float, vararg colors: Int) {
-    if (SDK_INT >= 16)
+    if (SDK_INT >= JELLY_BEAN)
         background = GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors).apply { cornerRadius = radius }
     else
         throw UnsupportedOperationException("requires SDK >= 16 but was $SDK_INT")

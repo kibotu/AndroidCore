@@ -1,5 +1,6 @@
 package com.exozet.android.core.provider
 
+import com.exozet.android.core.time.TimestampConvert
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 
@@ -21,6 +22,15 @@ object GsonProvider {
         GsonBuilder()
                 .disableHtmlEscaping()
                 .setPrettyPrinting()
+                .create()
+    }
+
+    @JvmStatic
+    val gsonWithDate: Gson by lazy {
+        GsonBuilder()
+                .disableHtmlEscaping()
+                .setPrettyPrinting()
+                .setDateFormat(TimestampConvert.iso8601Format())
                 .create()
     }
 }

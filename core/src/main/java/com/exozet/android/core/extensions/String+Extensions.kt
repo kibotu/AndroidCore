@@ -2,8 +2,13 @@
 
 package com.exozet.android.core.extensions
 
+import android.content.Intent
 import android.text.TextUtils
 import com.exozet.android.core.provider.GsonProvider
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import net.kibotu.ContextHelper
+import net.kibotu.logger.Logger
 import okio.ByteString
 import java.io.UnsupportedEncodingException
 import java.math.BigInteger
@@ -19,6 +24,8 @@ import java.security.MessageDigest
 fun Any.toJson(): String = GsonProvider.gson.toJson(this)
 
 fun Any.toJsonPrettyPrinting(): String = GsonProvider.gsonPrettyPrinting.toJson(this)
+
+inline fun <reified T> Gson.fromJson(json: String): T = this.fromJson<T>(json, object : TypeToken<T>() {}.type)
 
 // endregion
 
@@ -117,4 +124,16 @@ fun String.asArabicNumbers(): String {
         }
     }
     return "" + builder.toString()
+}
+
+fun String.share() {
+    Logger.v("[share] $this")
+    ContextHelper.getActivity()?.startActivity(
+            Intent.createChooser(Intent()
+                    .apply {
+                        action = Intent.ACTION_SEND
+                        type = "text/plain"
+                        putExtra(Intent.EXTRA_SUBJECT, "")
+                        putExtra(Intent.EXTRA_TEXT, this)
+                    }, "Save Data with:"))
 }
