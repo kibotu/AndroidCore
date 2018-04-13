@@ -3,6 +3,7 @@
 package com.exozet.android.core.extensions
 
 import android.content.Intent
+import android.net.Uri
 import android.text.TextUtils
 import com.exozet.android.core.provider.GsonProvider
 import com.google.gson.Gson
@@ -136,4 +137,13 @@ fun String.share() {
                         putExtra(Intent.EXTRA_SUBJECT, "")
                         putExtra(Intent.EXTRA_TEXT, this)
                     }, "Save Data with:"))
+}
+
+/**
+ * Phone Number to be opened in dialpad.
+ */
+fun String.openDialPad() {
+    val callIntent = Intent(Intent.ACTION_VIEW)
+    callIntent.data = Uri.parse("tel:$this")
+    ContextHelper.getApplication()?.startActivity(callIntent)
 }
