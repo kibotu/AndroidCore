@@ -49,7 +49,6 @@ open class BaseApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
 
-        Device.with(this)
         Logger.with(this)
 
         initLogger()
@@ -118,7 +117,6 @@ open class BaseApplication : MultiDexApplication() {
     }
 
     override fun onTerminate() {
-        Device.onTerminate()
         Logger.onTerminate()
         super.onTerminate()
     }
