@@ -10,7 +10,9 @@ class MainActivity : BaseActivity() {
         setTheme(R.style.Theme_Core)
         super.onCreate(savedInstanceState)
 
-        replaceFragment(WidgetSampleFragment.newInstance())
+        if (savedInstanceState == null) {
+            replaceFragment(WidgetSampleFragment.newInstance())
+        }
 
     }
 
