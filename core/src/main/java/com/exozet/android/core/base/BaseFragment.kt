@@ -17,7 +17,6 @@ import com.exozet.android.core.extensions.currentFragment
 import com.exozet.android.core.interfaces.Backpress
 import com.exozet.android.core.interfaces.DispatchTouchEvent
 import com.exozet.android.core.misc.UIDGenerator
-import com.exozet.android.core.utils.ViewExtensions.changeStatusBarColorRes
 import com.exozet.android.core.utils.ViewExtensions.hideOnLostFocus
 import net.kibotu.logger.LogTag
 import net.kibotu.logger.Logger
@@ -92,7 +91,6 @@ abstract class BaseFragment : Fragment(), LogTag, DispatchTouchEvent, Backpress,
         super.onResume()
         Logger.v("${tag()} [onResume]")
         activity!!.supportFragmentManager.addOnBackStackChangedListener(this)
-        changeStatusBarColorRes(onEnterStatusBarColor())
     }
 
     override fun onPause() {
@@ -163,11 +161,6 @@ abstract class BaseFragment : Fragment(), LogTag, DispatchTouchEvent, Backpress,
      * Returned to this fragment after BackStack changes.
      */
     protected fun onActiveAfterBackStackChanged() {
-        colorizeStatusBar()
-    }
-
-    protected fun colorizeStatusBar() {
-        changeStatusBarColorRes(onEnterStatusBarColor())
     }
 
     protected val isCurrentFragment: Boolean
