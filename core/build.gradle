@@ -124,6 +124,9 @@ dependencies {
     implementation libs.lifecycleExtensions
     implementation libs.lifecycleCommonJava8
     implementation libs.lifecycleRactiveStreams
+
+    compileOnly libs.parceler
+    compileOnly libs.okhttp3
 }
 
 // region kapt

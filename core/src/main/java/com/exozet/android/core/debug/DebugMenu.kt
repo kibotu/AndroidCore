@@ -43,7 +43,7 @@ class DebugMenu {
         return arrayOf()
     }
 
-    private fun onDrawerItemClicked(view: View, position: Int, drawerItem: IDrawerItem<*, *>): Boolean {
+    private fun onDrawerItemClicked(@Suppress("UNUSED_PARAMETER") view: View, @Suppress("UNUSED_PARAMETER") position: Int, drawerItem: IDrawerItem<*, *>): Boolean {
 
         val identifier = drawerItem.identifier.toInt()
         when (identifier) {

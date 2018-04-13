@@ -15,6 +15,7 @@ import net.kibotu.logger.Logger
 /**
  * Created by [Jan Rabe](https://about.me/janrabe).
  */
+
 fun Context?.openMail(email: String? = null, subject: String? = null) {
 
     try {

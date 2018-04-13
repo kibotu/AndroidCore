@@ -5,10 +5,14 @@ package com.exozet.android.core.extensions
 import android.content.Context
 import android.content.res.Resources
 import android.os.Build
+import android.support.annotation.DrawableRes
+import android.support.annotation.StringRes
 import android.support.v4.content.ContextCompat
 import android.text.Html
 import android.text.Spanned
+import com.exozet.android.core.R
 import net.kibotu.ContextHelper
+import net.kibotu.logger.Logger
 
 
 /**
@@ -53,6 +57,11 @@ val Int.resInt: Int
         return ContextHelper.getApplication()!!.resources!!.getInteger(this)
     }
 
+val Int.resLong: Long
+    get() {
+        return ContextHelper.getApplication()!!.resources!!.getInteger(this).toLong()
+    }
+
 val Int.resDimension: Float
     get() {
         return ContextHelper.getApplication()!!.resources!!.getDimension(this)
@@ -79,3 +88,41 @@ val Int.html: Spanned
     }
 
 fun Int.asCsv(context: Context = ContextHelper.getContext()!!): List<String> = context.resources.getString(this).split(",").map(String::trim).toList()
+
+fun isRightToLeft(): Boolean = R.bool.rtl.resBoolean
+
+inline fun <reified T> Int.times(factory: () -> T) = arrayListOf<T>().apply { for (i in 0..this@times) add(factory()) }
+
+@StringRes
+fun String.fromStringResource(): Int {
+    try {
+        return ContextHelper.getApplication()!!.resources.getIdentifier(this, "string", ContextHelper.getApplication()!!.packageName)
+    } catch (e: Exception) {
+        Logger.e(e)
+    }
+    return 0
+}
+
+fun String.stringFromAssets(): String = try {
+    ContextHelper.getApplication()!!.assets.open(this).bufferedReader().use { it.readText() }
+} catch (e: Exception) {
+    Logger.e(e)
+    ""
+}
+
+@DrawableRes
+fun String.fromDrawableResource(): Int {
+    try {
+        return ContextHelper.getApplication()!!.resources.getIdentifier(this, "drawable", ContextHelper.getApplication()!!.packageName)
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+    return 0
+}
+
+fun String.bytesFromAssets(): ByteArray? = try {
+    ContextHelper.getApplication()!!.assets.open(this).use { ByteArray(it.available()).apply { it.read(this) } }
+} catch (e: Exception) {
+    Logger.e(e)
+    null
+}

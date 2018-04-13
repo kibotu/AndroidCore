@@ -34,7 +34,7 @@ class FBInstanceIDService : FirebaseInstanceIdService() {
      *
      * @param token The new token.
      */
-    fun sendRegistrationToServer(token: String?) {
+    fun sendRegistrationToServer(@Suppress("UNUSED_PARAMETER") token: String?) {
 
 
     }

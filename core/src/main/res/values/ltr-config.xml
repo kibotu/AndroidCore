@@ -1,0 +1,4 @@
+<resources>
+    <integer name="scale">1</integer>
+    <bool name="rtl">false</bool>
+</resources>

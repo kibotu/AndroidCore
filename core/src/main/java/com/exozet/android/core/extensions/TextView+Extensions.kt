@@ -2,8 +2,11 @@
 
 package com.exozet.android.core.extensions
 
+import android.graphics.Paint
+import android.graphics.Typeface
 import android.os.Build.VERSION.SDK_INT
 import android.os.Build.VERSION_CODES.N
+import android.support.annotation.ColorRes
 import android.support.v4.content.ContextCompat
 import android.text.Html
 import android.text.SpannableString
@@ -13,6 +16,7 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
 import android.widget.TextView
+import net.kibotu.ContextHelper
 
 /**
  * Created by [Jan Rabe](https://about.me/janrabe).
@@ -70,4 +74,26 @@ fun TextView.bindSpannableText(text: String, linkableWord: String, action: () ->
 
     movementMethod = LinkMovementMethod.getInstance()
     setText(spannable)
+}
+
+fun TextView.bold() = setTypeface(typeface, Typeface.DEFAULT_BOLD.style)
+
+fun TextView.setTextColorRes(@ColorRes color: Int) {
+    setTextColor(ContextCompat.getColor(ContextHelper.getApplication()!!, color))
+}
+
+fun TextView.getTrimmedText(): String = text.toString().trim { it <= ' ' }
+
+fun TextView.getTrimmedHint(): String = hint.toString().trim { it <= ' ' }
+
+fun TextView.underline() {
+    paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG
+}
+
+fun TextView.capitalize() {
+    text = text.toString().trim().toLowerCase().capitalize()
+}
+
+fun TextView.toArabicNumbers() {
+    text = text.toString().asArabicNumbers()
 }
