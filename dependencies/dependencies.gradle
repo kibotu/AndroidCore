@@ -41,7 +41,7 @@ ext.plugin = [
         kotlinAndroidExtensions: "org.jetbrains.kotlin:kotlin-android-extensions:$kotlinVersion",
         kotlinGradle           : "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion",
         fabric                 : 'io.fabric.tools:gradle:1.+',
-        gms                    : 'com.google.gms:google-services:3.1.2',
+        gms                    : 'com.google.gms:google-services:3.2.0',
         poeditor               : 'be.lukin.poeditor:gradle:0.3.3',
         realm                  : 'io.realm:realm-gradle-plugin:4.3.4', // 'io.realm:realm-gradle-plugin:5.0.0', can't seem to work properly with parcel atm
         ribbonizer             : 'com.github.gfx.ribbonizer:ribbonizer-plugin:2.1.0',
@@ -206,7 +206,7 @@ ext.libs = [
         exozetCore                   : 'com.exozet.android:core:0.1.79',
 
         commonUtils                  : 'com.github.kibotu:common.android.utils:0.7.2',
-        deviceInfo                   : 'com.github.kibotu:net.kibotu.android.deviceinfo:1.2.1',
+        deviceInfo                   : 'com.github.kibotu:net.kibotu.android.deviceinfo:1.3.1',
         recyclerViewPresenter        : 'com.github.kibotu:RecyclerViewPresenter:1.6.1',
         googlePlayForceUpdate        : 'com.github.kibotu:GooglePlayForceUpdate:1.0.8',
         timeBomb                     : 'com.github.kibotu:TimeBomb:1.1.0',
