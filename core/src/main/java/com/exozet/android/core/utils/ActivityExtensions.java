@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -134,5 +135,16 @@ final public class ActivityExtensions {
     public static boolean isInForeground() {
         Activity activity = getActivity();
         return activity != null && !activity.isFinishing() && activity.getWindow() != null;
+    }
+
+
+    public static boolean hasPermission(Context context, String... permissions) {
+
+        for (String permission : permissions) {
+            if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED)
+                return false;
+        }
+
+        return true;
     }
 }
