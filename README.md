@@ -25,20 +25,20 @@ Collection of re-usable android functions.
 ## Configuration
 
 
-### 1. Add AndroidCore module 
+#### 1. Add AndroidCore module
 
 by including it into your **${project.rootDir}/settings.gradle** file.
 
     include ':app', 'core'
     project(':core').projectDir = new File('AndroidCore/core')
 
-### 2. Update project build.gradle
+#### 2. Update project build.gradle
 
 Copy & paste content 
 
 from **${project.rootDir}/AndroidCore/build.gradle** to **${project.rootDir}/build.gradle**
 
-### 3. Update app/build.gradle
+#### 3. Update app/build.gradle
 
 Copy & paste content 
 
@@ -50,13 +50,13 @@ Note: Comment out following line if you don't use Google Services:
 
 or otherwise add your google-services.json to your **${project.rootDir}/app/**
 
-### 4. Update gradle.properties
+#### 4. Update gradle.properties
 
 Copy & paste content  
 
 from **${project.rootDir}/AndroidCore/gradle.properties** to **${project.rootDir}/gradle.properties**
 
-### 5. Update **${project.rootDir}/app/src/main/AndroidManifest.xml**
+#### 5. Update **${project.rootDir}/app/src/main/AndroidManifest.xml**
 
 Remove following line from application (don't use **allowBackup** unless intented):
 
