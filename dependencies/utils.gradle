@@ -143,6 +143,10 @@ def generateReleaseNotes() {
     final def env = System.getenv()
     env.each { final key, final value -> println "$key = $value" }
 
+    def assetFolder = new File("${project.rootDir}/app/src/main/assets/")
+    if (!assetFolder.exists())
+        assetFolder.mkdirs()
+
     final def output = new File(filePath)
 
     def notes = 'Internal Release.'
@@ -157,6 +161,10 @@ def generateEnvironmentLog() {
 
     description = "Generate environemnt log. [" + filePath + "]"
     println(description)
+
+    def assetFolder = new File("${project.rootDir}/app/src/main/assets/")
+    if (!assetFolder.exists())
+        assetFolder.mkdirs()
 
     final def output = new File(filePath)
 
@@ -185,6 +193,10 @@ def generateChangelog() {
         def message = commit.replaceFirst("\\[\\[$hash\\]\\]", "<a href=\"${VSC_PATH}commits/\">#$hash</a>")
         builder.append(message).append("\r\n").append("\r\n")
     }
+
+    def assetFolder = new File("${project.rootDir}/app/src/main/assets/")
+    if (!assetFolder.exists())
+        assetFolder.mkdirs()
 
     final def output = new File(filePath)
     output.write(builder.toString())

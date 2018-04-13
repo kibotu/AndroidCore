@@ -1,4 +1,4 @@
-# AndroidCore [ ![Download](https://api.bintray.com/packages/exozetag/maven/AndroidCore/images/download.svg) ](https://bintray.com/exozetag/maven/AndroidCore/_latestVersion) [![Build Status](https://www.bitrise.io/app/e1099372511a9a9d/status.svg?token=TucfQB9b6iAGlA8faY4F0w&branch=master)](https://www.bitrise.io/app/e1099372511a9a9d) [![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15) [![Gradle Version](https://img.shields.io/badge/gradle-4.5-green.svg)](https://docs.gradle.org/current/release-notes) [![Kotlin](https://img.shields.io/badge/kotlin-1.2.21-green.svg)](https://kotlinlang.org/)
+# AndroidCore [ ![Download](https://api.bintray.com/packages/exozetag/maven/AndroidCore/images/download.svg) ](https://bintray.com/exozetag/maven/AndroidCore/_latestVersion) [![Build Status](https://www.bitrise.io/app/e1099372511a9a9d/status.svg?token=TucfQB9b6iAGlA8faY4F0w&branch=master)](https://www.bitrise.io/app/e1099372511a9a9d) [![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15) [![Gradle Version](https://img.shields.io/badge/gradle-4.6-green.svg)](https://docs.gradle.org/current/release-notes) [![Kotlin](https://img.shields.io/badge/kotlin-1.2.31-green.svg)](https://kotlinlang.org/)
 ## Table of contents
 * [Introduction](#introduction)
 * [How to install](#how-to-install)
@@ -13,7 +13,7 @@ Collection of re-usable android functions.
 
 ## How to install
 
-    implementation 'com.exozet.android:core:latest'
+    implementation "com.exozet.android:core:$latest"
 
 ## Adding as submodule
 
@@ -22,81 +22,61 @@ Collection of re-usable android functions.
 3. git commit -m 'Add AndroidCore'
 4. git push
 
-## Configure
+## Configuration
 
-### CLI
+
+### 1. Add AndroidCore module 
+
+by including it into your **${project.rootDir}/settings.gradle** file.
+
+    include ':app', 'core'
+    project(':core').projectDir = new File('AndroidCore/core')
+
+### 2. Update project build.gradle
+
+Copy & paste content 
+
+from **${project.rootDir}/AndroidCore/build.gradle** to **${project.rootDir}/build.gradle**
+
+### 3. Update app/build.gradle
+
+Copy & paste content 
+
+from **${project.rootDir}/AndroidCore/app/build.gradle** to **${project.rootDir}/app/build.gradle**
+
+Note: Comment out following line if you don't use Google Services:
+
+    apply plugin: 'com.google.gms.google-services'
+
+or otherwise add your google-services.json to your **${project.rootDir}/app/**
+
+### 4. Update gradle.properties
+
+Copy & paste content  
+
+from **${project.rootDir}/AndroidCore/gradle.properties** to **${project.rootDir}/gradle.properties**
+
+### 5. Update **${project.rootDir}/app/src/main/AndroidManifest.xml**
+
+Remove following line from application (don't use **allowBackup** unless intented):
+
+    android:allowBackup="true"
+
+#### 6. Update gradle wrapper
+
+by running gradle task **gradle :wrapper**
+
+#### 7. Add CLI support
 
 Enable in AndroidCore the deploy key for your project.
 
 https://git.exozet.com/exozet-mobile/AndroidCore/settings/repository
 
-### rootProject/settings.gradle
-
-    include ':app', 'core'
-    project(':core').projectDir = new File('AndroidCore/core')
-
-#### rootProject/build.gradle    
-
-Copy and paste content from rootProject/AndroidCore/build.gradle
-
-And change line
-
-    apply from: "dependencies/dependencies.gradle"
-
-to
-
-    apply from: "AndroidCore/dependencies/dependencies.gradle"
-
-and line
-
-    apply from: "${project.rootDir}/dependencies/utils.gradle"
-
-to
-
-    apply from: "${project.rootDir}/dependencies/utils.gradle"
-
-#### rootProject/app/build.gradle
-
-Copy and paste content from rootProject/AndroidCore/app/build.gradle
-
-Comment out following line if you don't need vectorDrawables support:
-
-    vectorDrawables.useSupportLibrary = true
-
-Change paths to storeFiles (for testing purposes just need to change debug signingConfigs):
-
-    debug {
-      storeFile file("../AndroidCore/debug.jks")
-      ...
-    }
-
-Comment out following line if you don't use Google Services:
-
-    apply plugin: 'com.google.gms.google-services'
-
-or otherwise add a google-services.json to your rootProject/app.
-
-
-#### rootProject/gradle.properties
-
-Copy and paste content from rootProject/AndroidCore/gradle.properties
-
-#### rootProject/app/src/main/AndroidManifest.xml
-
-Remove following line from application (only for Debug purposes):
-
-    android:allowBackup="true"
-
-#### Last steps
-
-Add 'assets' directory to rootProject/app/src/main/
-
-Run command 'gradle :wrapper' in your Terminal (being located in rootProject)
 
 ## Working with submodules
 
-1) commit && push changes to submodule
-2) commit && push new commit reference to main project
+1. commit && push changes to submodule
+2. commit && push new commit reference to main project
 
 ### Gotchas
 
