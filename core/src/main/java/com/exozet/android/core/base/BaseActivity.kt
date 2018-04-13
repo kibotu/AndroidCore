@@ -1,6 +1,7 @@
 package com.exozet.android.core.base
 
 import android.os.Bundle
+import android.support.annotation.LayoutRes
 import android.support.v7.app.AppCompatActivity
 import com.exozet.android.core.R
 import com.exozet.android.core.debug.DebugMenu
@@ -17,10 +18,13 @@ abstract class BaseActivity : AppCompatActivity() {
 
     var debugMenu: DebugMenu? = null
 
+    @LayoutRes
+    var activityLayoutId = R.layout.activity_main;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_main)
+        setContentView(activityLayoutId)
 
         debugMenu = DebugMenu()
 
