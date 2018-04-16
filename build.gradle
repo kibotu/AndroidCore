@@ -9,7 +9,6 @@ buildscript {
     repositories {
         google()
         jcenter()
-        mavenCentral()
         maven { url 'https://jitpack.io' }
         maven { url "https://plugins.gradle.org/m2/" }
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
@@ -47,7 +46,6 @@ allprojects {
     repositories {
         google()
         jcenter()
-        mavenCentral()
         maven { url "https://jitpack.io" }
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
         maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
@@ -58,6 +56,10 @@ allprojects {
     // disable javadoc generation
     subprojects { tasks.withType(Javadoc).all { enabled = false } }
     tasks.withType(Javadoc).all { enabled = false }
+    tasks.withType(JavaCompile) {
+        options.incremental = true
+        options.fork = true
+    }
 }
 
 task clean(type: Delete) {
