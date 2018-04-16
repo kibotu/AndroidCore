@@ -148,5 +148,5 @@ fun String.openDialPad() {
                 data = Uri.parse("tel:$this")
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
-            .also { ContextHelper.getApplication()?.startActivity(it) }
+            .also { ContextHelper.getApplication()?.startActivity(Intent.createChooser(it, "")) }
 }
