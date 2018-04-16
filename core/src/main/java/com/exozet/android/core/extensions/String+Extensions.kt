@@ -158,7 +158,7 @@ fun String.openDialPad() {
             }
             .also { intent ->
                 intent.resolveActivity(ContextHelper.getApplication()?.packageManager)?.let {
-                    ContextHelper.getApplication()?.startActivity(Intent.createChooser(intent, this))
+                    ContextHelper.getActivity()?.startActivity(Intent.createChooser(intent, this))
                 }
             }
 }
