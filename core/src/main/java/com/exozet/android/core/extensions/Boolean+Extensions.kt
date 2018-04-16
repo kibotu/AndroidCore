@@ -1,3 +1,5 @@
+@file:JvmName("BooleanExtensions")
+
 package com.exozet.android.core.extensions
 
 /**

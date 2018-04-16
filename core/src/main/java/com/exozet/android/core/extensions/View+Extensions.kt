@@ -1,3 +1,5 @@
+@file:JvmName("ViewExtensions")
+
 package com.exozet.android.core.extensions
 
 import android.graphics.Color
