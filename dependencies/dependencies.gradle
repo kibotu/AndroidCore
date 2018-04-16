@@ -272,7 +272,7 @@ ext.testLibs = [
 
 ext.androidTestLibs = [
         espressoCore  : 'com.android.support.test.espresso:espresso-core:3.0.1',
-        espressoRunner: 'com.android.support.test:runner:1.0.1'
+        espressoRunner: 'com.android.support.test:runner:1.0.2-alpha1' // robolectric 3.8 requires latest runner; old version: 'com.android.support.test:runner:1.0.1'
 ]
 
 ext.configs = [
