@@ -143,7 +143,10 @@ fun String.share() {
  * Phone Number to be opened in dialpad.
  */
 fun String.openDialPad() {
-    val callIntent = Intent(Intent.ACTION_DIAL)
-    callIntent.data = Uri.parse("tel:$this")
-    ContextHelper.getApplication()?.startActivity(callIntent)
+    Intent(Intent.ACTION_DIAL)
+            .apply {
+                data = Uri.parse("tel:$this")
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+            .also { ContextHelper.getApplication()?.startActivity(it) }
 }
