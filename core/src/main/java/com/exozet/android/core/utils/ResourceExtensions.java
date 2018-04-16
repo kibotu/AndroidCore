@@ -33,7 +33,7 @@ final public class ResourceExtensions {
     }
 
     public static String getString(@StringRes final int id) {
-        return getContext().getString(id);
+        return getApplication().getString(id);
     }
 
     public static int dimension(@DimenRes final int resId) {
@@ -41,7 +41,7 @@ final public class ResourceExtensions {
     }
 
     public static int color(@ColorRes final int color) {
-        return ContextCompat.getColor(getContext(), color);
+        return ContextCompat.getColor(getApplication(), color);
     }
 
     @Nullable
@@ -53,7 +53,7 @@ final public class ResourceExtensions {
     }
 
     public static Resources getResources() {
-        return getContext().getResources();
+        return getApplication().getResources();
     }
 
     public static Configuration configuration() {
@@ -69,12 +69,12 @@ final public class ResourceExtensions {
      */
     @DrawableRes
     public static int getDrawableIdByName(@NonNull final String drawable) {
-        return getContext().getResources().getIdentifier(drawable, "drawable", getContext().getPackageName());
+        return getResources().getIdentifier(drawable, "drawable", getApplication().getPackageName());
     }
 
     @Nullable
     public static Drawable getDrawableByName(@NonNull final Context context, @NonNull final String drawable) {
-        return ContextCompat.getDrawable(context, context.getResources().getIdentifier(drawable, "drawable", context.getPackageName()));
+        return ContextCompat.getDrawable(context, getApplication().getResources().getIdentifier(drawable, "drawable", context.getPackageName()));
     }
 
     /**
