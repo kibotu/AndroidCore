@@ -29,6 +29,7 @@ ext {
     VSC_PATH = '0'
 
     isCi = rootProject.hasProperty("ci")
+    isRelease = rootProject.hasProperty("release")
 }
 
 ext.plugin = [
