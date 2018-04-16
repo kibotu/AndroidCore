@@ -4,6 +4,7 @@
     <!-- placeholder -->
 
     <string name="section">Section</string>
+    <string name="empty" />
 
     <!-- actions -->
 
