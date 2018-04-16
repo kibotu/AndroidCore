@@ -5,6 +5,7 @@ package com.exozet.android.core.extensions
 import android.content.Intent
 import android.net.Uri
 import android.text.TextUtils
+import com.crashlytics.android.Crashlytics
 import com.exozet.android.core.provider.GsonProvider
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -143,10 +144,21 @@ fun String.share() {
  * Phone Number to be opened in dialpad.
  */
 fun String.openDialPad() {
+    if (!android.util.Patterns.PHONE.matcher(this).matches()) {
+        Crashlytics.logException(Throwable("$this is no valid phone number."))
+    }
+
+    val uri = Uri.parse("tel:$this")
+    Logger.v("[openDialPad] $this -> $uri")
+
     Intent(Intent.ACTION_DIAL)
             .apply {
-                data = Uri.parse("tel:$this")
+                data = uri
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
-            .also { ContextHelper.getApplication()?.startActivity(Intent.createChooser(it, "")) }
+            .also { intent ->
+                intent.resolveActivity(ContextHelper.getApplication()?.packageManager)?.let {
+                    ContextHelper.getApplication()?.startActivity(Intent.createChooser(intent, this))
+                }
+            }
 }
