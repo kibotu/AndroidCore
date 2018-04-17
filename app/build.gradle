@@ -218,4 +218,8 @@ buildtimetracker {
 
 // endregion
 
+static def escape(Object value) {
+    return "\"$value\""
+}
+
 apply plugin: 'com.google.gms.google-services'
