@@ -30,12 +30,12 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
 
-        buildConfigField "String", "SIMPLE_VERSION_NAME", escape(isRelease ? simpleReleaseVersionName() : "")
-        buildConfigField "String", "CANONICAL_VERSION_NAME", escape(isRelease ? canonicalReleaseVersionName() : "")
-        buildConfigField "String", "COMMIT_HASH", escape(isRelease ? commitHash() : "")
-        buildConfigField "String", "BRANCH", escape(isRelease ? branchNameByGit() : "")
-        buildConfigField "String", "BUILD_DATE", escape(isRelease ? new Date().getTime() : 0)
-        buildConfigField "String", "VSC", escape(isRelease ? VSC_PATH : "")
+        buildConfigField "String", "SIMPLE_VERSION_NAME", escape(isCi ? simpleReleaseVersionName() : "")
+        buildConfigField "String", "CANONICAL_VERSION_NAME", escape(isCi ? canonicalReleaseVersionName() : "")
+        buildConfigField "String", "COMMIT_HASH", escape(isCi ? commitHash() : "")
+        buildConfigField "String", "BRANCH", escape(isCi ? branchNameByGit() : "")
+        buildConfigField "String", "BUILD_DATE", escape(isCi ? new Date().getTime() : 0)
+        buildConfigField "String", "VSC", escape(isCi ? VSC_PATH : "")
     }
 
     signingConfigs {
