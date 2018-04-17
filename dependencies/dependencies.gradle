@@ -28,7 +28,7 @@ ext {
 
     VSC_PATH = '0'
 
-    isCi = rootProject.hasProperty("CI") || rootProject.hasProperty("ci")
+    isCi = rootProject.hasProperty("CI") || rootProject.hasProperty("ci") || System.getenv().containsKey("CI")
 }
 
 ext.plugin = [
