@@ -22,6 +22,8 @@ import com.zplesac.connectionbuddy.ConnectionBuddyConfiguration
 import com.zplesac.connectionbuddy.models.ConnectivityEvent
 import com.zplesac.connectionbuddy.models.ConnectivityState
 import io.fabric.sdk.android.Fabric
+import io.realm.Realm
+import io.realm.RealmConfiguration
 import net.danlew.android.joda.JodaTimeAndroid
 import net.kibotu.android.deviceinfo.library.Device
 import net.kibotu.logger.LogcatLogger
@@ -55,8 +57,6 @@ open class BaseApplication : MultiDexApplication() {
         JodaTimeAndroid.init(this)
         logBuildConfig()
 
-        initRealm()
-
         initFabric()
 
         installServiceProviderIfNeeded(this)
@@ -79,9 +79,11 @@ open class BaseApplication : MultiDexApplication() {
         }
     }
 
-    private fun initRealm() {
-//        Realm.init(this)
-//        Realm.setDefaultConfiguration(LocalDataSource.realmConfiguration)
+    fun initRealm() {
+        Realm.init(this)
+        Realm.setDefaultConfiguration(RealmConfiguration.Builder()
+                .deleteRealmIfMigrationNeeded()
+                .build())
     }
 
     private fun initLogger() {

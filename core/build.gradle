@@ -127,6 +127,8 @@ dependencies {
 
     compileOnly libs.parceler
     compileOnly libs.okhttp3
+
+    implementation libs.realmExtensions
 }
 
 // region kapt
