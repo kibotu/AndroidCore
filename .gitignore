@@ -173,3 +173,5 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/android,jetbrains,linux,macos,windows
+
+reports
