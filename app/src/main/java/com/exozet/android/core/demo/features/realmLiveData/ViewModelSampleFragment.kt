@@ -35,6 +35,6 @@ class ViewModelSampleFragment : BaseFragment() {
             }
         })
 
-        viewModel.loadItems()
+        addButton.setOnClickListener { v ->  viewModel.addItem()}
     }
 }
