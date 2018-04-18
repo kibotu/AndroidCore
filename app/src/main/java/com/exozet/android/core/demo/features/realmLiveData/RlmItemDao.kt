@@ -1,4 +1,4 @@
-package com.exozet.myboilerplateapp
+package com.exozet.android.core.demo.features.realmLiveData
 
 import android.arch.lifecycle.LiveData
 import com.exozet.android.core.extensions.asLiveData

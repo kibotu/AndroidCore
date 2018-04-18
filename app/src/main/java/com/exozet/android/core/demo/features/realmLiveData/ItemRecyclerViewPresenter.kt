@@ -1,4 +1,4 @@
-package com.exozet.myboilerplateapp
+package com.exozet.android.core.demo.features.realmLiveData
 
 import android.view.ViewGroup
 import com.exozet.android.core.demo.R

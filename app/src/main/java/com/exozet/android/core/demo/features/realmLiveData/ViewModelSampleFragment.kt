@@ -1,12 +1,11 @@
-package com.exozet.android.core.demo
+package com.exozet.android.core.demo.features.realmLiveData
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.View
 import com.exozet.android.core.base.BaseFragment
-import com.exozet.myboilerplateapp.ItemRecyclerViewPresenter
-import com.exozet.myboilerplateapp.MainViewModel
+import com.exozet.android.core.demo.R
 import kotlinx.android.synthetic.main.fragment_viewmodel_sample.*
 import net.kibotu.android.recyclerviewpresenter.PresenterAdapter
 
