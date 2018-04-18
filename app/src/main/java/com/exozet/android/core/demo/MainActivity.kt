@@ -11,7 +11,8 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         if (savedInstanceState == null) {
-            replaceFragment(WidgetSampleFragment.newInstance())
+//            replaceFragment(WidgetSampleFragment.newInstance())
+            replaceFragment(ViewModelSampleFragment())
         }
 
     }
