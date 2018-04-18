@@ -123,10 +123,6 @@ open class BaseApplication : MultiDexApplication() {
         super.onTerminate()
     }
 
-    override fun attachBaseContext(base: Context) {
-        super.attachBaseContext(base)
-    }
-
     companion object {
 
         private val TAG = BaseApplication::class.java.simpleName

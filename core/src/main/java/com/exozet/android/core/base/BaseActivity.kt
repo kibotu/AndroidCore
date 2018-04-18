@@ -19,7 +19,7 @@ abstract class BaseActivity : AppCompatActivity() {
     var debugMenu: DebugMenu? = null
 
     @LayoutRes
-    var activityLayoutId = R.layout.activity_main;
+    var activityLayoutId = R.layout.activity_main
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
