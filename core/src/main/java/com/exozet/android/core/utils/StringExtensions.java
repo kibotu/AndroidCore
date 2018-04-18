@@ -22,7 +22,7 @@ final public class StringExtensions {
         if (isEmpty(s))
             return "";
 
-        return s.substring(0, (int) MathExtensions.clamp(s.length(), 0, maxLength));
+        return s.substring(0, MathExtensions.clamp(s.length(), 0, maxLength));
     }
 
     /**

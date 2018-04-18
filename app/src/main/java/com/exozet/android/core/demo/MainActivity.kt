@@ -2,6 +2,7 @@ package com.exozet.android.core.demo
 
 import android.os.Bundle
 import com.exozet.android.core.base.BaseActivity
+import com.exozet.android.core.demo.features.realmLiveData.ViewModelSampleFragment
 import com.exozet.android.core.extensions.replaceFragment
 
 class MainActivity : BaseActivity() {
@@ -11,7 +12,8 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         if (savedInstanceState == null) {
-            replaceFragment(WidgetSampleFragment.newInstance())
+//            replaceFragment(WidgetSampleFragment.newInstance())
+            replaceFragment(ViewModelSampleFragment())
         }
 
     }

@@ -71,14 +71,14 @@ public class RemoteControlListener implements KeyListener, View.OnKeyListener, D
         this.currentView = v;
         return event.getAction() == KeyEvent.ACTION_DOWN
                 ? onKeyDown(keyCode, event)
-                : event.getAction() == KeyEvent.ACTION_UP ? onKeyUp(keyCode, event) : false;
+                : event.getAction() == KeyEvent.ACTION_UP && onKeyUp(keyCode, event);
     }
 
     @Override
     public boolean onKey(final DialogInterface dialog, final int keyCode, @NonNull final KeyEvent event) {
         return event.getAction() == KeyEvent.ACTION_DOWN
                 ? onKeyDown(keyCode, event)
-                : event.getAction() == KeyEvent.ACTION_UP ? onKeyUp(keyCode, event) : false;
+                : event.getAction() == KeyEvent.ACTION_UP && onKeyUp(keyCode, event);
     }
 
     @Override

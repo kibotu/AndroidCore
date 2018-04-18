@@ -7,13 +7,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'realm-android'
 apply plugin: 'io.fabric'
 apply plugin: 'com.github.gfx.ribbonizer'
 apply plugin: 'build-time-tracker'
 apply plugin: 'img-optimizer'
 apply plugin: 'com.getkeepsafe.dexcount'
 //apply plugin: 'android-rocket-launcher'
+apply plugin: 'realm-android'
 
 android {
     compileSdkVersion compileSdkVer
@@ -86,6 +86,14 @@ android {
             zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    realm {
+        kotlinExtensionsEnabled = true
     }
 
     compileOptions {
@@ -173,6 +181,10 @@ dependencies {
     implementation project(':core')
     implementation libs.logger
     implementation libs.timberLogger
+
+    implementation libs.recyclerViewPresenter
+    implementation libs.lifecycleExtensions
+    implementation libs.realmExtensions
 }
 
 configurations.all {
