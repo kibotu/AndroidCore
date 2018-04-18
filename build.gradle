@@ -7,12 +7,11 @@ buildscript {
     }
 
     repositories {
-        google()
-        jcenter()
-        maven { url 'https://jitpack.io' }
         maven { url "https://plugins.gradle.org/m2/" }
-        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
-        maven { url 'https://dl.bintray.com/kotlin/kotlin-dev/' }
+        google()
+        maven { url 'https://jitpack.io' }
+        // maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+        // maven { url 'https://dl.bintray.com/kotlin/kotlin-dev/' }
         maven { url 'https://maven.fabric.io/public' }
     }
     dependencies {
@@ -44,12 +43,12 @@ allprojects {
     }
 
     repositories {
+        maven { url "https://plugins.gradle.org/m2/" }
         google()
-        jcenter()
         maven { url "https://jitpack.io" }
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+        // maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+        // maven { url 'https://dl.bintray.com/kotlin/kotlin-dev/' }
         maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
-        maven { url 'https://dl.bintray.com/kotlin/kotlin-dev/' }
         maven { url 'https://maven.fabric.io/public' }
     }
 
