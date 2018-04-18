@@ -7,4 +7,9 @@ import com.exozet.android.core.base.BaseApplication
  */
 
 class App : BaseApplication() {
+
+    override fun onCreate() {
+        super.onCreate()
+        initRealm()
+    }
 }
