@@ -47,11 +47,7 @@ final public class ClassExtensions {
 
     @NonNull
     public static <E extends Enum<E>> Comparator createNewAlphabeticalEnumComparator() {
-        return new Comparator<E>() {
-            public int compare(@NonNull final E e1, @NonNull final E e2) {
-                return e1.name().compareToIgnoreCase(e2.name());
-            }
-        };
+        return (Comparator<E>) (e1, e2) -> e1.name().compareToIgnoreCase(e2.name());
     }
 
     public static <E extends Enum<E>> E[] getSortedEnum(@NonNull final Class<E> type) {

@@ -433,16 +433,14 @@ public class Vector2 implements Serializable {
         if (getClass() != obj.getClass()) return false;
         Vector2 other = (Vector2) obj;
         if (Float.floatToIntBits(x) != Float.floatToIntBits(other.x)) return false;
-        if (Float.floatToIntBits(y) != Float.floatToIntBits(other.y)) return false;
-        return true;
+        return Float.floatToIntBits(y) == Float.floatToIntBits(other.y);
     }
 
 
     public boolean epsilonEquals(Vector2 other, float epsilon) {
         if (other == null) return false;
         if (Math.abs(other.x - x) > epsilon) return false;
-        if (Math.abs(other.y - y) > epsilon) return false;
-        return true;
+        return !(Math.abs(other.y - y) > epsilon);
     }
 
     /**
@@ -452,8 +450,7 @@ public class Vector2 implements Serializable {
      */
     public boolean epsilonEquals(float x, float y, float epsilon) {
         if (Math.abs(x - this.x) > epsilon) return false;
-        if (Math.abs(y - this.y) > epsilon) return false;
-        return true;
+        return !(Math.abs(y - this.y) > epsilon);
     }
 
 
