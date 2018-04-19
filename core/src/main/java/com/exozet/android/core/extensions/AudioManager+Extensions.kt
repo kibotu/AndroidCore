@@ -16,7 +16,7 @@ private var _isMuted: Boolean = false
 
 var AudioManager.isMuted: Boolean
     get() = _isMuted
-    set(value) {
+    private set(value) {
         _isMuted = value
     }
 
@@ -30,14 +30,13 @@ fun AudioManager.mute(mute: Boolean = true) {
         adjustStreamVolume(STREAM_MUSIC, flag, 0)
         adjustStreamVolume(STREAM_RING, flag, 0)
         adjustStreamVolume(STREAM_SYSTEM, flag, 0)
+    } else {
+        setStreamMute(STREAM_NOTIFICATION, mute)
+        setStreamMute(STREAM_ALARM, mute)
+        setStreamMute(STREAM_MUSIC, mute)
+        setStreamMute(STREAM_RING, mute)
+        setStreamMute(STREAM_SYSTEM, mute)
     }
-//    else {
-    setStreamMute(STREAM_NOTIFICATION, mute)
-    setStreamMute(STREAM_ALARM, mute)
-    setStreamMute(STREAM_MUSIC, mute)
-    setStreamMute(STREAM_RING, mute)
-    setStreamMute(STREAM_SYSTEM, mute)
-//    }
 }
 
 @Suppress("DEPRECATION")
