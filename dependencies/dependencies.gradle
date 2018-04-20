@@ -14,11 +14,11 @@ ext {
     // apparently '27.1.0' has different behaviour for fragment lifecycle @see more https://www.reddit.com/r/androiddev/comments/80ork8/support_library_2710_has_been_released/
 
     // @see https://developers.google.com/android/guides/setup
-    playServicesVer = '12.0.1'
+    playServicesVer = '15.0.0'
 
     // @see https://firebase.google.com/docs/android/setup
     // and https://firebase.google.com/support/release-notes/android
-    firebaseVer = '12.0.1'
+    firebaseVer = '15.0.0'
 
     retrofitVersion = '2.4.0'
 
@@ -94,6 +94,7 @@ ext.libs = [
         playServicesAds               : "com.google.android.gms:play-services-ads:$playServicesVer",
         playServicesFitness           : "com.google.android.gms:play-services-fitness:$playServicesVer",
         playServicesAuth              : "com.google.android.gms:play-services-auth:$playServicesVer",
+        playServicesTasks              : "com.google.android.gms:play-services-tasks:$playServicesVer",
         firebaseCrash                 : "com.google.firebase:firebase-crash:$firebaseVer",
         firebaseMessaging             : "com.google.firebase:firebase-messaging:$firebaseVer",
         firebaseDatabase              : "com.google.firebase:firebase-database:$firebaseVer",
