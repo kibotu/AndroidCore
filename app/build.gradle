@@ -169,7 +169,7 @@ dependencies {
     testImplementation testLibs.robolectric
     testImplementation testLibs.truth
 
-    implementation libs.kotlinJre8
+    implementation libs.kotlinJdk8
     implementation libs.appcompat
     implementation libs.constraintLayout
     implementation libs.design
@@ -188,6 +188,8 @@ dependencies {
 }
 
 configurations.all {
+    resolutionStrategy.force libs.kotlinJdk7
+    resolutionStrategy.force libs.kotlinJdk8
     resolutionStrategy.force libs.multidex
     resolutionStrategy.force libs.supportAnnotations
     resolutionStrategy.force libs.supportV4
