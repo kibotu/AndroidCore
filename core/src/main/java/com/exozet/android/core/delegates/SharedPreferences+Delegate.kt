@@ -46,7 +46,9 @@ abstract class PrefDelegate<T>(val prefName: String? = R.string.app_name.resStri
 }
 
 fun stringPreference(defaultValue: String? = null) = StringPrefDelegate(defaultValue = defaultValue)
+
 fun stringPreference(prefKey: String? = null, defaultValue: String? = null) = StringPrefDelegate(prefKey, defaultValue)
+
 class StringPrefDelegate(prefKey: String? = null, val defaultValue: String?) : PrefDelegate<String?>(prefKey = prefKey) {
     override fun getValue(thisRef: Any?, property: KProperty<*>) = prefs.getString(prefKey
             ?: property.defaultDelegateName(), defaultValue)
@@ -56,7 +58,9 @@ class StringPrefDelegate(prefKey: String? = null, val defaultValue: String?) : P
 }
 
 fun intPreference(defaultValue: Int = 0) = IntPrefDelegate(defaultValue = defaultValue)
+
 fun intPreference(prefKey: String? = null, defaultValue: Int = 0) = IntPrefDelegate(prefKey, defaultValue)
+
 class IntPrefDelegate(prefKey: String? = null, val defaultValue: Int = 0) : PrefDelegate<Int>(prefKey = prefKey) {
     override fun getValue(thisRef: Any?, property: KProperty<*>) = prefs.getInt(prefKey
             ?: property.defaultDelegateName(), defaultValue)
@@ -66,7 +70,9 @@ class IntPrefDelegate(prefKey: String? = null, val defaultValue: Int = 0) : Pref
 }
 
 fun floatPreference(defaultValue: Float = 0f) = FloatPrefDelegate(defaultValue = defaultValue)
+
 fun floatPreference(prefKey: String? = null, defaultValue: Float = 0f) = FloatPrefDelegate(prefKey, defaultValue)
+
 class FloatPrefDelegate(prefKey: String? = null, val defaultValue: Float = 0f) : PrefDelegate<Float>(prefKey = prefKey) {
     override fun getValue(thisRef: Any?, property: KProperty<*>) = prefs.getFloat(prefKey
             ?: property.defaultDelegateName(), defaultValue)
@@ -76,7 +82,9 @@ class FloatPrefDelegate(prefKey: String? = null, val defaultValue: Float = 0f) :
 }
 
 fun booleanPreference(defaultValue: Boolean = false) = BooleanPrefDelegate(defaultValue = defaultValue)
+
 fun booleanPreference(prefKey: String? = null, defaultValue: Boolean = false) = BooleanPrefDelegate(prefKey, defaultValue)
+
 class BooleanPrefDelegate(prefKey: String? = null, val defaultValue: Boolean = false) : PrefDelegate<Boolean>(prefKey = prefKey) {
     override fun getValue(thisRef: Any?, property: KProperty<*>) = prefs.getBoolean(prefKey
             ?: property.defaultDelegateName(), defaultValue)
@@ -86,7 +94,9 @@ class BooleanPrefDelegate(prefKey: String? = null, val defaultValue: Boolean = f
 }
 
 fun LongPreference(defaultValue: Long = 0) = LongPrefDelegate(defaultValue = defaultValue)
+
 fun LongPreference(prefKey: String? = null, defaultValue: Long = 0) = LongPrefDelegate(prefKey, defaultValue)
+
 class LongPrefDelegate(prefKey: String? = null, val defaultValue: Long = 0) : PrefDelegate<Long>(prefKey = prefKey) {
     override fun getValue(thisRef: Any?, property: KProperty<*>) = prefs.getLong(prefKey
             ?: property.defaultDelegateName(), defaultValue)
@@ -96,7 +106,9 @@ class LongPrefDelegate(prefKey: String? = null, val defaultValue: Long = 0) : Pr
 }
 
 fun StringSetPreference(defaultValue: Set<String>? = null) = StringSetPreferenceDelegate(defaultValue = defaultValue)
+
 fun StringSetPreference(prefKey: String? = null, defaultValue: Set<String>? = null) = StringSetPreferenceDelegate(prefKey, defaultValue)
+
 class StringSetPreferenceDelegate(prefKey: String? = null, val defaultValue: Set<String>?) : PrefDelegate<Set<String>?>(prefKey = prefKey) {
     override fun getValue(thisRef: Any?, property: KProperty<*>) = prefs.getStringSet(prefKey
             ?: property.defaultDelegateName(), defaultValue)
@@ -109,7 +121,9 @@ inline fun KProperty<*>.defaultDelegateName(customPrefix: String? = null, separa
         (customPrefix ?: ownerCanonicalName)?.let { it + separator + name } ?: name
 
 inline val KProperty<*>.ownerCanonicalName: String? get() = owner?.canonicalName
+
 inline val KProperty<*>.owner: KDeclarationContainer? get() = if (this is CallableReference) owner else null
+
 inline val KDeclarationContainer.canonicalName: String? get() = if (this is KClass<*>) this.java.canonicalName else null
 
 interface DelegateProvider<out T> {
