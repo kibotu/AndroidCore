@@ -6,11 +6,13 @@ import android.content.pm.PackageManager
 import android.os.Build.VERSION.SDK_INT
 import android.os.Build.VERSION_CODES.N
 import android.support.annotation.IdRes
+import android.support.annotation.Nullable
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import com.exozet.android.core.R
 import net.kibotu.ContextHelper.getActivity
 import net.kibotu.ContextHelper.getApplication
@@ -20,24 +22,30 @@ import net.kibotu.ContextHelper.getApplication
  * Created by armando.shkurti on 09/10/17.
  */
 
-fun AppCompatActivity.replaceFragment(fragment: Fragment) {
-    replaceFragment(fragment, R.id.fragment_container, fragment.tag())
+fun AppCompatActivity.replaceFragment(fragment: Fragment, transitionSharedElement: View? = null, transitionName: String? = null) {
+    replaceFragment(fragment, R.id.fragment_container, fragment.tag(), transitionSharedElement, transitionName)
 }
 
-fun AppCompatActivity.replaceWithStackFragment(fragment: Fragment) {
-    replaceWithStackFragment(fragment, R.id.fragment_container, fragment.tag())
+fun AppCompatActivity.replaceWithStackFragment(fragment: Fragment, transitionSharedElement: View? = null, transitionName: String? = null) {
+    replaceWithStackFragment(fragment, R.id.fragment_container, fragment.tag(), transitionSharedElement, transitionName)
 }
 
-fun AppCompatActivity.replaceFragment(fragment: Fragment, @IdRes frameId: Int, tag: String) {
+fun AppCompatActivity.replaceFragment(fragment: Fragment, @IdRes frameId: Int, tag: String, transitionSharedElement: View? = null, transitionName: String? = null) {
     supportFragmentManager.transact {
         replace(frameId, fragment, tag)
+        if(transitionSharedElement != null && transitionName != null) {
+            addSharedElement(transitionSharedElement, transitionName)
+        }
     }
 }
 
-fun AppCompatActivity.replaceWithStackFragment(fragment: Fragment, @IdRes frameId: Int, tag: String) {
+fun AppCompatActivity.replaceWithStackFragment(fragment: Fragment, @IdRes frameId: Int, tag: String, transitionSharedElement: View? = null, transitionName: String? = null) {
     supportFragmentManager.transact {
         replace(frameId, fragment, tag)
         addToBackStack(null)
+        if(transitionSharedElement != null && transitionName != null) {
+            addSharedElement(transitionSharedElement, transitionName)
+        }
     }
 }
 
