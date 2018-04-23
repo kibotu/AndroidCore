@@ -30,6 +30,12 @@ var TextView.html: String?
         }
     }
 
+var TextView.content: String
+    get() = text.trim().toString()
+    set(value) {
+        text = value.trim()
+    }
+
 fun TextView.bindSpannableText(text: String, start: Int, end: Int, action: () -> Unit) {
     val spannable = SpannableString(text)
 
