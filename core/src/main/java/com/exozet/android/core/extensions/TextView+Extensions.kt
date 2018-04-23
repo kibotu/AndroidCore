@@ -8,10 +8,7 @@ import android.os.Build.VERSION.SDK_INT
 import android.os.Build.VERSION_CODES.N
 import android.support.annotation.ColorRes
 import android.support.v4.content.ContextCompat
-import android.text.Html
-import android.text.SpannableString
-import android.text.Spanned
-import android.text.TextPaint
+import android.text.*
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
@@ -96,4 +93,18 @@ fun TextView.capitalize() {
 
 fun TextView.toArabicNumbers() {
     text = text.toString().asArabicNumbers()
+}
+
+fun TextView.addAfterTextChangedListener(block: (String) -> Unit) {
+    addTextChangedListener(object : TextWatcher {
+        override fun afterTextChanged(s: Editable?) {
+            block(s.toString())
+        }
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        }
+    })
 }
