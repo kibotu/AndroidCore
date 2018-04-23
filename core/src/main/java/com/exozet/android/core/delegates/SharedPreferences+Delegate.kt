@@ -9,6 +9,8 @@ package com.exozet.android.core.delegates
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
+import com.exozet.android.core.R
+import com.exozet.android.core.extensions.resString
 import net.kibotu.ContextHelper
 import java.util.*
 import kotlin.reflect.KProperty
@@ -23,7 +25,7 @@ import kotlin.reflect.KProperty
  *
  */
 
-abstract class PrefDelegate<T>(val prefName: String?, val prefKey: String) {
+abstract class PrefDelegate<T>(val prefName: String? = R.string.app_name.resString, val prefKey: String) {
 
     protected val prefs: SharedPreferences by lazy {
         if (ContextHelper.getApplication() != null)
