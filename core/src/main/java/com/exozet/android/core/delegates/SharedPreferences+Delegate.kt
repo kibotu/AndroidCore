@@ -26,7 +26,8 @@ import kotlin.reflect.KProperty
  * Usage:
  *
  * var accessToken by stringPreference("token")
- * var appLaunchCount by intPreference( 0)
+ * will be stored as
+ *   "my.package.myclass::accessToken": "token"
  *
  */
 
