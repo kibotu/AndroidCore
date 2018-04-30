@@ -226,7 +226,7 @@ ext.libs = [
         shareIntentBuilder            : 'com.github.kibotu:ShareIntentBuilder:v0.0.3',
         actionAnimations              : 'com.github.kibotu:AndroidAnimationsActions:1.0.7',
         androidPgp                    : 'com.github.kibotu:Android-PGP:1.2.1',
-        swipeDirectionViewPager       : 'com.github.kibotu:SwipeDirectionViewPager:1.1.6',
+        swipeDirectionViewPager       : 'com.github.kibotu:SwipeDirectionViewPager:1.1.7',
         logger                        : 'com.github.kibotu:StreamingAndroidLogger:2.1.5',
 
         materialDialogs               : 'com.afollestad.material-dialogs:core:0.9.6.0',
