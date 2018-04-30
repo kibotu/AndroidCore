@@ -7,7 +7,7 @@ ext {
     targetSdkVer = 27
 
     // @see https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib-jre7
-    kotlinVersion = '1.2.40'
+    kotlinVersion = '1.2.41'
 
     // @see https://developer.android.com/topic/libraries/support-library/revisions.html
     supportLibVer = '27.1.1'
