@@ -77,10 +77,10 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation libs.kotlinJdk8
 
-    implementation libs.multidex
-
-    implementation libs.appcompat
+    implementation libs.supportMultidex
+    implementation libs.supportAppCompat
     implementation libs.constraintLayout
+    implementation libs.supportCardView
 
     compileOnly libs.rx2java
     compileOnly libs.rx2Android
@@ -95,7 +95,7 @@ dependencies {
     kapt libs.permissionDispatcherProcessor
     implementation libs.timeBomb
 
-    implementation libs.recyclerview
+    implementation libs.supportRecyclerview
     implementation libs.recyclerViewPresenter
 
     implementation(libs.crashlytics) {
@@ -131,6 +131,82 @@ dependencies {
 
     implementation libs.realmExtensions
 }
+
+
+// region override support library version
+
+configurations.all {
+    resolutionStrategy.force libs.supportMultidex
+    resolutionStrategy.force libs.supportCompat
+    resolutionStrategy.force libs.supportCoreUtils
+    resolutionStrategy.force libs.supportCoreUi
+    resolutionStrategy.force libs.supportMediaCompat
+    resolutionStrategy.force libs.supportFragment
+    resolutionStrategy.force libs.supportAppCompat
+    resolutionStrategy.force libs.supportCardView
+    resolutionStrategy.force libs.supportGridLayout
+    resolutionStrategy.force libs.supportMediaRouter
+    resolutionStrategy.force libs.supportPalette
+    resolutionStrategy.force libs.supportRecyclerview
+    resolutionStrategy.force libs.supportPreferenceV7
+    resolutionStrategy.force libs.supportV13
+    resolutionStrategy.force libs.supportPreference
+    resolutionStrategy.force libs.supportPreferenceLeanback
+    resolutionStrategy.force libs.supportLeanback
+    resolutionStrategy.force libs.supportVectorDrawable
+    resolutionStrategy.force libs.supportAnimatedVectorDrawable
+    resolutionStrategy.force libs.supportAnnotations
+    resolutionStrategy.force libs.supportDesign
+    resolutionStrategy.force libs.supportCustomTabs
+    resolutionStrategy.force libs.supportPercent
+    resolutionStrategy.force libs.supportExifInterface
+    resolutionStrategy.force libs.supportRecommendation
+    resolutionStrategy.force libs.supportWear
+
+    resolutionStrategy.force libs.constraintLayout
+
+    resolutionStrategy.force libs.playServicesPlus
+    resolutionStrategy.force libs.playServicesAuth
+    resolutionStrategy.force libs.playServicesBase
+    resolutionStrategy.force libs.playServicesIdentity
+    resolutionStrategy.force libs.playServicesAnalytics
+    resolutionStrategy.force libs.playServicesAwareness
+    resolutionStrategy.force libs.playServicesCast
+    resolutionStrategy.force libs.playServicesGcm
+    resolutionStrategy.force libs.playServicesDrive
+    resolutionStrategy.force libs.playServicesFitness
+    resolutionStrategy.force libs.playServicesLocation
+    resolutionStrategy.force libs.playServicesMaps
+    resolutionStrategy.force libs.playServicesAds
+    resolutionStrategy.force libs.playServicesPlaces
+    resolutionStrategy.force libs.playServicesVision
+    resolutionStrategy.force libs.playServicesNearby
+    resolutionStrategy.force libs.playServicesPanorama
+    resolutionStrategy.force libs.playServicesGames
+    resolutionStrategy.force libs.playServicesSafetynet
+    resolutionStrategy.force libs.playServicesWallet
+    resolutionStrategy.force libs.playServicesWearable
+
+    resolutionStrategy.force libs.firebaseCore
+    resolutionStrategy.force libs.firebaseDatabase
+    resolutionStrategy.force libs.firebaseFirestore
+    resolutionStrategy.force libs.firebaseStorage
+    resolutionStrategy.force libs.firebaseCrash
+    resolutionStrategy.force libs.firebaseAuth
+    resolutionStrategy.force libs.firebaseMessaging
+    resolutionStrategy.force libs.firebaseConfig
+    resolutionStrategy.force libs.firebaseInvites
+    resolutionStrategy.force libs.firebaseAds
+    resolutionStrategy.force libs.firebaseAppindexing
+    resolutionStrategy.force libs.firebasePerf
+    resolutionStrategy.force libs.firebaseFunctions
+
+    resolutionStrategy.force libs.butterknife
+    resolutionStrategy.force libs.butterknifeCompiler
+    resolutionStrategy.force libs.guava
+}
+
+// endregion
 
 // region kapt
 
