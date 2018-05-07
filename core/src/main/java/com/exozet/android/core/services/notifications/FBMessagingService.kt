@@ -10,6 +10,7 @@ import com.google.firebase.messaging.RemoteMessage
 import com.google.gson.Gson
 import com.gothaer.schadentracker.services.PushNotificationPublisher.sendNotification
 import net.kibotu.ContextHelper
+import net.kibotu.logger.Logger.toast
 
 
 /**
@@ -52,7 +53,8 @@ open class FBMessagingService : FirebaseMessagingService() {
 //                scheduleJob()
 //            } else {
             // Handle message within 10 seconds
-            handleNow()
+
+            onReceiveRemoteMessage.invoke(remoteMessage)
 //            }
 
         }
@@ -61,7 +63,8 @@ open class FBMessagingService : FirebaseMessagingService() {
         if (remoteMessage.notification != null) {
             Log.d(TAG, "Message Notification Title: " + (remoteMessage.notification?.title
                     ?: "no title") + " Body: " + (remoteMessage.notification?.body ?: "no body"))
-            handleNow()
+
+            onReceiveRemoteMessage.invoke(remoteMessage)
         }
 
         // Also if you intend on generating your own notifications as a result of a received FCM
@@ -84,25 +87,24 @@ open class FBMessagingService : FirebaseMessagingService() {
         // [END dispatch_job]
     }
 
-    /**
-     * Handle time allotted to BroadcastReceivers.
-     */
-    open fun handleNow() {
-        Log.d(TAG, "Short lived task is done.")
-
-        if (isDebugMode()) {
-            toast("Push: " + remoteMessage?.notification?.body)
-        }
-
-        //show notification if app is not running
-        if (!ContextHelper.isRunning.get()) {
-            sendNotification(
-                    messageBody = remoteMessage?.notification?.body ?: "",
-                    title = remoteMessage?.notification?.title ?: "")
-        }
-    }
-
     companion object {
         val TAG: String = FBMessagingService::class.java.simpleName
+
+
+        var onReceiveRemoteMessage: ((RemoteMessage?) -> Unit) = {
+
+            Log.d(TAG, "Short lived task is done.")
+
+            if (isDebugMode()) {
+                toast("Push: " + it?.notification?.body)
+            }
+
+            //show notification if app is not running
+            if (!ContextHelper.isRunning.get()) {
+                sendNotification(
+                        messageBody = it?.notification?.body ?: "",
+                        title = it?.notification?.title ?: "")
+            }
+        }
     }
 }
