@@ -44,11 +44,11 @@
 
         <!-- push notifications -->
 
-        <service android:name=".services.notifications.FBMessagingService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
+        <!--<service android:name=".services.notifications.FBMessagingService">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="com.google.firebase.MESSAGING_EVENT" />-->
+            <!--</intent-filter>-->
+        <!--</service>-->
 
         <!-- A service that extends FirebaseInstanceIdService to handle the creation, rotation, and updating of registration tokens.
              This is required for sending to specific devices or for creating device groups. -->
