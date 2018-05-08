@@ -123,8 +123,13 @@ dependencies {
     compileOnly 'org.apache.commons:commons-io:1.3.2'
 
     implementation libs.lifecycleExtensions
-    implementation libs.lifecycleCommonJava8
-    implementation libs.lifecycleRactiveStreams
+    implementation libs.lifecycleViewmodel
+    implementation libs.lifecycleLivedata
+    implementation libs.lifecycleRactiveStream
+    kapt libs.lifecycleCompiler
+
+    api apis.kotlinxCoroutinesCore
+    api apis.kotlinxCoroutinesAndroid
 
     compileOnly libs.parceler
     compileOnly libs.okhttp3

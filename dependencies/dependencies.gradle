@@ -149,6 +149,27 @@ ext.libs = [
         firebasePerf                 : "com.google.firebase:firebase-perf:15.1.0", // Performance Monitoring
         firebaseFunctions            : "com.google.firebase:firebase-functions:15.0.0", // Cloud Functions for Firebase Client SDK
 
+        // architecture components
+        // https://developer.android.com/topic/libraries/architecture/adding-components
+
+        lifecycleExtensions          : "android.arch.lifecycle:extensions:1.1.1", // ViewModel and LiveData
+        lifecycleViewmodel           : "android.arch.lifecycle:viewmodel:1.1.1", // alternatively, just ViewModel
+        lifecycleLivedata            : "android.arch.lifecycle:livedata:1.1.1", // alternatively, just LiveData
+        lifecycleCompiler            : "android.arch.lifecycle:compiler:1.1.1",
+
+        lifecycleCommonJava8         : 'android.arch.lifecycle:common-java8:1.1.0', // Java8 support for Lifecycles
+        lifecycleRactiveStream       : "android.arch.lifecycle:reactivestreams:1.1.1", // ReactiveStreams support for LiveData
+
+        roomRuntime                  : "android.arch.persistence.room:runtime:1.0.0", // Room (use 1.1.0-rc1 for latest version)
+        roomCompiler                 : "android.arch.persistence.room:compiler:1.0.0",
+        roomGuava                    : "android.arch.persistence.room:guava:1.1.0-rc1", // Guava support for Room
+        pagingRuntime                : "android.arch.paging:runtime:1.0.0-rc1", // Paging
+        pagingRx                     : "android.arch.paging:rxjava2:1.0.0-alpha1",  // RxJava support for Paging
+        coreTesting                  : "android.arch.core:core-testing:1.1.1", // Test helpers for LiveData
+        roomTesting                  : "android.arch.persistence.room:testing:1.0.0", // Test helpers for Room
+
+        // tested libs
+
         connectionBuddy              : 'com.zplesac:connectionbuddy:2.0.0-beta1',
         calligraphy                  : 'uk.co.chrisjenx:calligraphy:2.3.0',
         permissionDispatcher         : 'com.github.hotchemi:permissionsdispatcher:3.2.0',
@@ -280,10 +301,6 @@ ext.libs = [
         logger                       : 'com.github.kibotu:StreamingAndroidLogger:2.1.5',
 
         materialDialogs              : 'com.afollestad.material-dialogs:core:0.9.6.0',
-
-        lifecycleExtensions          : 'android.arch.lifecycle:extensions:1.1.0',
-        lifecycleCommonJava8         : 'android.arch.lifecycle:common-java8:1.1.0',
-        lifecycleRactiveStreams      : 'android.arch.lifecycle:reactivestreams:1.1.0',
 
         orhanobutLogger              : 'com.orhanobut:logger:2.1.1',
 
