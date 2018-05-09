@@ -3,8 +3,10 @@ package com.exozet.android.core.demo.features.realmLiveData
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.exozet.android.core.base.BaseFragment
+import com.exozet.android.core.coroutine.whenClicking
 import com.exozet.android.core.demo.R
 import kotlinx.android.synthetic.main.fragment_viewmodel_sample.*
 import net.kibotu.android.recyclerviewpresenter.PresenterAdapter
@@ -28,12 +30,14 @@ class ViewModelSampleFragment : BaseFragment() {
         viewModel.getItems().observe(this, Observer {
             it?.let {
                 presenterAdapter.clear()
-                for(item in it){
+                for (item in it) {
                     presenterAdapter.add(ItemRecyclerViewPresenter.ItemViewModel(item.name), ItemRecyclerViewPresenter::class.java)
                 }
             }
         })
 
-        addButton.setOnClickListener { v ->  viewModel.addItem()}
+        // addButton.setOnClickListener { v -> viewModel.addItem() }
+
+        whenClicking(addButton) { viewModel.addItem() } then { Log.v(TAG, "done") }
     }
 }

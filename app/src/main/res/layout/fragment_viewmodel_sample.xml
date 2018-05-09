@@ -10,6 +10,11 @@
         android:id="@+id/itemRecyclerView"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"
         android:layout_width="match_parent"
+        app:fastScrollEnabled="true"
+        app:fastScrollHorizontalThumbDrawable="@drawable/thumb_drawable"
+        app:fastScrollHorizontalTrackDrawable="@drawable/line_drawable"
+        app:fastScrollVerticalThumbDrawable="@drawable/thumb_drawable"
+        app:fastScrollVerticalTrackDrawable="@drawable/line_drawable"
         android:layout_height="wrap_content" />
 
     <Button
