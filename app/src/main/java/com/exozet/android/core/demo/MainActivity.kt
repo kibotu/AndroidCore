@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.exozet.android.core.base.BaseActivity
 import com.exozet.android.core.demo.features.realmLiveData.ViewModelSampleFragment
 import com.exozet.android.core.extensions.replaceFragment
+import com.exozet.android.core.services.notifications.GcmSender
 
 class MainActivity : BaseActivity() {
 
@@ -16,6 +17,9 @@ class MainActivity : BaseActivity() {
             replaceFragment(ViewModelSampleFragment())
         }
 
+        GcmSender.API_KEY = "";
+
+        GcmSender.sendAsync("hello world")
     }
 
 }

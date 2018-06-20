@@ -2,6 +2,7 @@ package com.exozet.android.core.services.notifications
 
 
 import android.util.Log
+import com.exozet.android.core.extensions.toJson
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -47,6 +48,9 @@ object GcmSender {
             conn.setRequestProperty("Content-Type", "application/json")
             conn.requestMethod = "POST"
             conn.doOutput = true
+
+
+            Log.v("json", jGcmData.toJson())
 
             // Send GCM message content.
             val outputStream = conn.outputStream
