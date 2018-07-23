@@ -214,10 +214,6 @@ def runCommand(sh, cmd) {
     return sout.toString()
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.7'
-}
-
 ext {
     wrapper = this.&wrapper
     generateEnvironmentLog = this.&generateEnvironmentLog

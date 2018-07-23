@@ -1,13 +1,13 @@
 ext {
     // refresh gradle dependencies: ./gradlew build --refresh-dependencies
 
-    compileSdkVer = 27
-    buildToolsVer = '27.0.3'
+    compileSdkVer = 28
+    buildToolsVer = '28.0.1'
     minSdkVer = 15
-    targetSdkVer = 27
+    targetSdkVer = 28
 
     // @see https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib-jre7
-    kotlinVersion = '1.2.41'
+    kotlinVersion = '1.2.51'
 
     // @see https://developer.android.com/topic/libraries/support-library/revisions.html
     supportLibVer = '27.1.1'
