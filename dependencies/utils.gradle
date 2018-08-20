@@ -215,7 +215,6 @@ def runCommand(sh, cmd) {
 }
 
 ext {
-    wrapper = this.&wrapper
     generateEnvironmentLog = this.&generateEnvironmentLog
     printGitLog = this.&printGitLog
     commitHash = this.&commitHash

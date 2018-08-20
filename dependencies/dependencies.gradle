@@ -7,7 +7,7 @@ ext {
     targetSdkVer = 28
 
     // @see https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib-jre7
-    kotlinVersion = '1.2.51'
+    kotlinVersion = '1.2.60'
 
     // @see https://developer.android.com/topic/libraries/support-library/revisions.html
     supportLibVer = '27.1.1'
@@ -32,7 +32,7 @@ ext {
 }
 
 ext.plugin = [
-        gradleBuildTools       : 'com.android.tools.build:gradle:3.1.2',
+        gradleBuildTools       : 'com.android.tools.build:gradle:3.1.4',
         gradleRetroLambda      : 'me.tatarka:gradle-retrolambda:3.7.0', // deprecated: use build:gradle:3
         lombok                 : 'me.tatarka.retrolambda.projectlombok:lombok.ast:0.2.3.a2', // deprecated: use build:gradle:3
         androidApt             : 'com.neenbedankt.gradle.plugins:android-apt:1.8', // deprecated: use build:gradle:3
