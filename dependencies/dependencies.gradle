@@ -155,7 +155,9 @@ ext.libs = [
         lifecycleExtensions          : "android.arch.lifecycle:extensions:1.1.1", // ViewModel and LiveData
         lifecycleViewmodel           : "android.arch.lifecycle:viewmodel:1.1.1", // alternatively, just ViewModel
         lifecycleLivedata            : "android.arch.lifecycle:livedata:1.1.1", // alternatively, just LiveData
+        lifecycleLivedataCore        : "android.arch.lifecycle:livedata-core:1.1.1",
         lifecycleCompiler            : "android.arch.lifecycle:compiler:1.1.1",
+        lifecycleRuntime             : "android.arch.lifecycle:runtime:1.1.1",
 
         lifecycleCommonJava8         : 'android.arch.lifecycle:common-java8:1.1.0', // Java8 support for Lifecycles
         lifecycleRactiveStream       : "android.arch.lifecycle:reactivestreams:1.1.1", // ReactiveStreams support for LiveData
