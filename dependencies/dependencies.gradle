@@ -209,7 +209,6 @@ ext.libs = [
         currencyEditText             : 'com.github.blackcat27:library:1.4.4-SNAPSHOT',
         brainTree                    : 'com.braintreepayments.api:drop-in:3.+',
         facebook                     : 'com.facebook.android:facebook-android-sdk:4.+',
-        converterSimpleXml           : 'com.squareup.retrofit2:converter-simplexml:2.1.0',
         okhttp3                      : 'com.squareup.okhttp3:okhttp:3.7.0',
         okhttp3LoggingInterceptor    : 'com.squareup.okhttp3:logging-interceptor:3.7.0',
         javawriter                   : 'com.squareup:javawriter:2.5.1',
@@ -258,6 +257,8 @@ ext.libs = [
         retrofitAdapterRxJava2       : "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
         retrofitConverterGson        : "com.squareup.retrofit2:converter-gson:$retrofitVersion",
         retrofitMock                 : "com.squareup.retrofit2:retrofit-mock:$retrofitVersion",
+        converterScalars             : "com.squareup.retrofit2:converter-scalars:$retrofitVersion",
+        converterSimpleXml           : "com.squareup.retrofit2:converter-simplexml:$retrofitVersion",
 
         rx2java                      : "io.reactivex.rxjava2:rxjava:2.1.7",
         rx2Android                   : "io.reactivex.rxjava2:rxandroid:2.0.1",
