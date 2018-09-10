@@ -226,7 +226,7 @@ ext {
     branchNameByCI = this.&branchNameByCI
     branchNameByGit = this.&branchNameByGit
     gitLog = this.&gitLog
-    //generateReleaseNotes = this.&generateReleaseNotes
-    //generateChangelog = this.&generateChangelog
+    generateReleaseNotes = this.&generateReleaseNotes
+    generateChangelog = this.&generateChangelog
     runCommand = this.&runCommand
 }

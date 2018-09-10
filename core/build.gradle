@@ -284,10 +284,10 @@ task copyReadme(type: Copy) {
     into "${project.rootDir}/app/src/main/assets"
 }
 
-preBuild.dependsOn printEnvironmentTask
-preBuild.dependsOn generateChangelogTask
-preBuild.dependsOn generateReleaseNotesTask
-preBuild.dependsOn copyReadme
+//preBuild.dependsOn printEnvironmentTask
+//preBuild.dependsOn generateChangelogTask
+//preBuild.dependsOn generateReleaseNotesTask
+//preBuild.dependsOn copyReadme
 
 //apply from: rootProject.file('bintray-config.gradle')
 
