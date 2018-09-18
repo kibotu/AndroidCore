@@ -249,8 +249,8 @@ ext.libs = [
         adapterDelegate              : 'com.hannesdorfmann:adapterdelegates3:3.0.1',
 
         picasso                      : 'com.squareup.picasso:picasso:2.71828',
-        glide                        : 'com.github.bumptech.glide:glide:4.7.1',
-        glideAnnotationsProcessor    : 'com.github.bumptech.glide:compiler:4.7.1',
+        glide                        : 'com.github.bumptech.glide:glide:4.8.0',
+        glideAnnotationsProcessor    : 'com.github.bumptech.glide:compiler:4.8.0',
 
         mosbyMvi                     : 'com.hannesdorfmann.mosby3:mvi:3.1.0',
 
