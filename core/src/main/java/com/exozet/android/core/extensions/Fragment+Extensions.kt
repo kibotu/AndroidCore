@@ -2,8 +2,8 @@
 
 package com.exozet.android.core.extensions
 
-import android.support.annotation.IdRes
-import android.support.v4.app.Fragment
+import androidx.annotation.IdRes
+import androidx.fragment.app.Fragment
 import com.exozet.android.core.R
 import net.kibotu.ContextHelper.getAppCompatActivity
 import net.kibotu.logger.Logger

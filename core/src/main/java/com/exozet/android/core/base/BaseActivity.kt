@@ -1,8 +1,8 @@
 package com.exozet.android.core.base
 
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.support.v7.app.AppCompatActivity
+import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
 import com.exozet.android.core.R
 import com.exozet.android.core.debug.DebugMenu
 import com.exozet.android.core.extensions.currentFragment

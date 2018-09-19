@@ -1,9 +1,10 @@
 package com.exozet.android.core.utils;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import java.io.UnsupportedEncodingException;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import static android.text.TextUtils.isEmpty;
 import static com.exozet.android.core.utils.ByteExtensions.validUTF8;

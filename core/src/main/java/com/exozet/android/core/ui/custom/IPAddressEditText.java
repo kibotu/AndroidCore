@@ -2,8 +2,6 @@ package com.exozet.android.core.ui.custom;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -11,6 +9,9 @@ import android.text.TextWatcher;
 import android.util.AttributeSet;
 
 import com.exozet.android.core.R;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatEditText;
 
 
 /**

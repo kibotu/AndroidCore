@@ -1,9 +1,10 @@
 package com.exozet.android.core.utils;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 
 import net.kibotu.logger.Logger;
+
+import androidx.annotation.Nullable;
 
 
 /**

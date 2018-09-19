@@ -44,7 +44,7 @@ fun Context?.openCall(phoneNr: String) {
 }
 
 infix fun Context?.toast(message: String) {
-    Handler(Looper.getMainLooper()).post({
+    Handler(Looper.getMainLooper()).post {
         Toast.makeText(this ?: return@post, message, Toast.LENGTH_SHORT).show()
-    })
+    }
 }

@@ -8,7 +8,7 @@ import android.os.Build.VERSION.*
 import android.os.Build.VERSION_CODES.LOLLIPOP
 import android.os.Build.VERSION_CODES.N
 import android.provider.Settings
-import android.support.multidex.MultiDexApplication
+import androidx.multidex.MultiDexApplication
 import com.crashlytics.android.Crashlytics
 import com.exozet.android.core.R
 import com.exozet.android.core.extensions.resBoolean
@@ -25,7 +25,6 @@ import io.fabric.sdk.android.Fabric
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import net.danlew.android.joda.JodaTimeAndroid
-import net.kibotu.android.deviceinfo.library.Device
 import net.kibotu.logger.LogcatLogger
 import net.kibotu.logger.Logger
 import java.util.*
@@ -202,7 +201,7 @@ open class BaseApplication : MultiDexApplication() {
             info["Codename"] = CODENAME
             info["Incremental"] = INCREMENTAL
             info["User Agent"] = DefaultUserAgent.getDefaultUserAgent(context)
-            info["HTTP Agent"] = System.getProperty("http.agent")
+            info["HTTP Agent"] = System.getProperty("http.agent") ?: ""
 
             return info
         }

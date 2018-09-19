@@ -1,15 +1,14 @@
 package com.exozet.android.core.base
 
 import android.os.Bundle
-import android.support.annotation.CallSuper
-import android.support.annotation.ColorRes
-import android.support.design.widget.Snackbar
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.CallSuper
+import androidx.annotation.ColorRes
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import butterknife.ButterKnife
 import butterknife.Unbinder
 import com.exozet.android.core.R
@@ -18,6 +17,7 @@ import com.exozet.android.core.interfaces.Backpress
 import com.exozet.android.core.interfaces.DispatchTouchEvent
 import com.exozet.android.core.misc.UIDGenerator
 import com.exozet.android.core.utils.ViewExtensions.hideOnLostFocus
+import com.google.android.material.snackbar.Snackbar
 import net.kibotu.logger.LogTag
 import net.kibotu.logger.Logger
 

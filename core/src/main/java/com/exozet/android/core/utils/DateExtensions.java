@@ -1,7 +1,5 @@
 package com.exozet.android.core.utils;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -12,6 +10,9 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Created by Jan Rabe on 24/09/15.

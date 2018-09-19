@@ -3,7 +3,6 @@ package com.exozet.android.core.utils;
 import android.app.Service;
 import android.content.Context;
 import android.graphics.Point;
-import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.View;
@@ -11,6 +10,8 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
 import net.kibotu.android.deviceinfo.library.display.Dimension;
+
+import androidx.annotation.NonNull;
 
 import static android.os.Build.VERSION.SDK_INT;
 import static com.exozet.android.core.utils.ViewExtensions.getContentRoot;

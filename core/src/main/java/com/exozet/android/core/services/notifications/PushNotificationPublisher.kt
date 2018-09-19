@@ -1,4 +1,4 @@
-package com.gothaer.schadentracker.services
+package com.exozet.android.core.services.notifications
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -8,8 +8,8 @@ import android.content.Intent
 import android.media.RingtoneManager
 import android.os.Build.VERSION.SDK_INT
 import android.os.Build.VERSION_CODES.O
-import android.support.annotation.RequiresApi
-import android.support.v4.app.NotificationCompat
+import androidx.annotation.RequiresApi
+import androidx.core.app.NotificationCompat
 import com.exozet.android.core.R
 import com.exozet.android.core.base.BaseActivity
 import com.exozet.android.core.extensions.resString

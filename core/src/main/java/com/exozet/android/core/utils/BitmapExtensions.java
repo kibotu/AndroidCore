@@ -3,8 +3,9 @@ package com.exozet.android.core.utils;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
-import android.support.annotation.NonNull;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
 
 /**
  * Created by Jan Rabe on 24/09/15.

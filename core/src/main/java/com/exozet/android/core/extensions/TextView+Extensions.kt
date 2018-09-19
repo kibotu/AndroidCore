@@ -6,13 +6,13 @@ import android.graphics.Paint
 import android.graphics.Typeface
 import android.os.Build.VERSION.SDK_INT
 import android.os.Build.VERSION_CODES.N
-import android.support.annotation.ColorRes
-import android.support.v4.content.ContextCompat
 import android.text.*
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
 import android.widget.TextView
+import androidx.annotation.ColorRes
+import androidx.core.content.ContextCompat
 import net.kibotu.ContextHelper
 
 /**

@@ -2,7 +2,7 @@
 
 package com.exozet.android.core.extensions
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import net.kibotu.android.recyclerviewpresenter.PresenterAdapter
 
 /**

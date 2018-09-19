@@ -157,7 +157,8 @@ fun String.openDialPad() {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             .also { intent ->
-                intent.resolveActivity(ContextHelper.getApplication()?.packageManager)?.let {
+                intent.resolveActivity(ContextHelper.getApplication()?.packageManager
+                        ?: return)?.let {
                     ContextHelper.getActivity()?.startActivity(Intent.createChooser(intent, this))
                 }
             }

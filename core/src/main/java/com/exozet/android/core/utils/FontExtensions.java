@@ -1,12 +1,13 @@
 package com.exozet.android.core.utils;
 
 import android.graphics.Typeface;
-import android.support.annotation.ColorRes;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
 
 import java.util.Collection;
+
+import androidx.annotation.ColorRes;
+import androidx.annotation.NonNull;
 
 import static com.exozet.android.core.utils.ViewExtensions.setColor;
 

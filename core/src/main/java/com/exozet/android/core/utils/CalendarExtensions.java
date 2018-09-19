@@ -1,11 +1,12 @@
 package com.exozet.android.core.utils;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Created by Jan Rabe on 01/10/15.

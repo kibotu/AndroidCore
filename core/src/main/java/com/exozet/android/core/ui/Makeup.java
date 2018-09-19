@@ -1,8 +1,6 @@
 package com.exozet.android.core.ui;
 
 import android.graphics.Typeface;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.BackgroundColorSpan;
@@ -11,6 +9,9 @@ import android.text.style.RelativeSizeSpan;
 import android.text.style.StrikethroughSpan;
 import android.text.style.StyleSpan;
 import android.text.style.UnderlineSpan;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 
 /**
  * Credit: <a href="https://gist.github.com/Trikke/90efd4432fc09aaadf3e">https://gist.github.com/Trikke/90efd4432fc09aaadf3e</a>

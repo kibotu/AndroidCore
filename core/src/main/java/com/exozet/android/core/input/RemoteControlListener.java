@@ -1,12 +1,13 @@
 package com.exozet.android.core.input;
 
 import android.content.DialogInterface;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 import android.view.View;
 
 import net.kibotu.logger.LogTag;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Created by Jan Rabe on 14/08/15.

@@ -2,9 +2,10 @@ package com.exozet.android.core.ui.itemDecorator;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * 作者：请叫我百米冲刺 on 2016/12/6 上午11:39

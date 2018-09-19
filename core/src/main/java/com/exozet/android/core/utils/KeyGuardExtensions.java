@@ -1,9 +1,11 @@
 package com.exozet.android.core.utils;
 
+import android.annotation.SuppressLint;
 import android.app.KeyguardManager;
 import android.content.Context;
 import android.os.PowerManager;
-import android.support.annotation.RequiresPermission;
+
+import androidx.annotation.RequiresPermission;
 
 import static android.Manifest.permission.DISABLE_KEYGUARD;
 
@@ -16,9 +18,9 @@ public class KeyGuardExtensions {
         kl.disableKeyguard();
 
         PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-        PowerManager.WakeLock wakeLock = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK
+        @SuppressLint("InvalidWakeLockTag") PowerManager.WakeLock wakeLock = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK
                 | PowerManager.ACQUIRE_CAUSES_WAKEUP
                 | PowerManager.ON_AFTER_RELEASE, "MyWakeLock");
-        wakeLock.acquire();
+        wakeLock.acquire(10*60*1000L /*10 minutes*/);
     }
 }

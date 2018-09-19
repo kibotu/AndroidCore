@@ -1,7 +1,8 @@
 package com.exozet.android.core.interfaces;
 
-import android.support.annotation.NonNull;
 import android.view.MotionEvent;
+
+import androidx.annotation.NonNull;
 
 /**
  * Created by Jan Rabe on 28/09/15.

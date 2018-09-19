@@ -1,8 +1,8 @@
 package com.exozet.android.core.utils;
 
-import android.support.annotation.NonNull;
-
 import net.kibotu.logger.Logger;
+
+import androidx.annotation.NonNull;
 
 
 /**

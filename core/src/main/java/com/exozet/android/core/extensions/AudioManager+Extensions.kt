@@ -6,7 +6,7 @@ import android.media.AudioManager
 import android.media.AudioManager.*
 import android.os.Build.VERSION.SDK_INT
 import android.os.Build.VERSION_CODES.M
-import android.support.v4.math.MathUtils.clamp
+import androidx.core.math.MathUtils.clamp
 
 /**
  * Created by [Jan Rabe](https://about.me/janrabe).

@@ -1,6 +1,7 @@
 package com.exozet.android.core.interfaces;
 
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 /**
  * Created by Jan Rabe on 25/09/15.

@@ -4,9 +4,10 @@ import android.content.Context;
 import android.media.AudioAttributes;
 import android.os.Build;
 import android.os.Vibrator;
-import android.support.annotation.RequiresApi;
 
-import static android.support.v4.math.MathUtils.clamp;
+import androidx.annotation.RequiresApi;
+
+import static androidx.core.math.MathUtils.clamp;
 import static net.kibotu.ContextHelper.getContext;
 
 /**

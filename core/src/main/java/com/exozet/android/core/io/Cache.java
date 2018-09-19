@@ -1,10 +1,11 @@
 package com.exozet.android.core.io;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import java.io.File;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Created by Jan Rabe on 18/06/15.

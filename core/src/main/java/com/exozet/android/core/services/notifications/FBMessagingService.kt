@@ -2,13 +2,12 @@ package com.exozet.android.core.services.notifications
 
 import android.util.Log
 import com.exozet.android.core.base.BaseApplication.Companion.isDebugMode
-import com.exozet.android.core.extensions.toast
 import com.firebase.jobdispatcher.FirebaseJobDispatcher
 import com.firebase.jobdispatcher.GooglePlayDriver
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.google.gson.Gson
-import com.gothaer.schadentracker.services.PushNotificationPublisher.sendNotification
+import com.exozet.android.core.services.notifications.PushNotificationPublisher.sendNotification
 import net.kibotu.ContextHelper
 import net.kibotu.logger.Logger.toast
 

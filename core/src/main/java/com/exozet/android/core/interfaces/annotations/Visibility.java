@@ -1,9 +1,10 @@
 package com.exozet.android.core.interfaces.annotations;
 
-import android.support.annotation.IntDef;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+
+import androidx.annotation.IntDef;
 
 import static android.view.View.GONE;
 import static android.view.View.INVISIBLE;

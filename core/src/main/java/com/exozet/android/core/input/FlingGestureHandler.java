@@ -1,10 +1,11 @@
 package com.exozet.android.core.input;
 
 import android.app.Activity;
-import android.support.annotation.NonNull;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+
+import androidx.annotation.NonNull;
 
 /**
  * Created by Jan Rabe on 22/04/15.

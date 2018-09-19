@@ -5,11 +5,11 @@ package com.exozet.android.core.extensions
 import android.content.Context
 import android.content.res.Resources
 import android.os.Build
-import android.support.annotation.DrawableRes
-import android.support.annotation.StringRes
-import android.support.v4.content.ContextCompat
 import android.text.Html
 import android.text.Spanned
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
+import androidx.core.content.ContextCompat
 import com.exozet.android.core.R
 import net.kibotu.ContextHelper
 import net.kibotu.logger.Logger
