@@ -47,7 +47,7 @@ ext.plugin = [
         gms                    : 'com.google.gms:google-services:4.1.0',
         poeditor               : 'be.lukin.poeditor:gradle:0.3.3',
         realm                  : 'io.realm:realm-gradle-plugin:4.3.4', // 'io.realm:realm-gradle-plugin:5.0.0', can't seem to work properly with parcel atm
-        ribbonizer             : 'com.github.gfx.ribbonizer:ribbonizer-plugin:2.1.0',
+        ribbonizer             : 'com.github.maskarade:gradle-android-ribbonizer-plugin:v2.1.0',
         cipher                 : 'net.idik.lib.security:cipher.so:0.0.4',
         cipherGithub           : 'com.github.MEiDIK:Cipher.so:dev-SNAPSHOT', //  https://github.com/MEiDIK/Cipher.so/issues/9
         buildTimeTracker       : 'net.rdrei.android.buildtimetracker:gradle-plugin:0.11.0',
@@ -276,7 +276,7 @@ ext.libs = [
         sqliteassethelper            : 'com.readystatesoftware.sqliteasset:sqliteassethelper:2.0.1',
         gson                         : 'com.google.code.gson:gson:2.8.5',
         paper                        : 'io.paperdb:paperdb:2.5',
-        appIntro                     : 'com.github.apl-devs:appintro:v4.2.2',
+        appIntro                     : 'com.github.apl-devs:appintro:v4.2.3',
 
         adapterDelegate              : 'com.hannesdorfmann:adapterdelegates3:3.0.1',
 
@@ -308,7 +308,7 @@ ext.libs = [
         numberprogressbar            : 'com.daimajia.numberprogressbar:library:1.4@aar',
         fragmentanimations           : 'com.labo.kaji:fragmentanimations:0.1.1',
         firebaseJobdispatcher        : 'com.firebase:firebase-jobdispatcher:0.8.5',
-        linq                         : 'br.com.zbra:android-linq:1.1.0',
+        linq                         : 'br.com.zbra:android-linq:1.1.0', //  maven { url 'https://dl.bintray.com/brunovinicius/maven' }
         timberLogger                 : 'com.jakewharton.timber:timber:4.6.0',
         cameraView                   : 'com.wonderkiln:camerakit:0.13.2',
         cameraViewPhotoApparat       : 'io.fotoapparat.fotoapparat:library:2.2.0',
