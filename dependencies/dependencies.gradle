@@ -33,6 +33,7 @@ ext {
 
 ext.plugin = [
         gradleBuildTools       : 'com.android.tools.build:gradle:3.2.0-rc03',
+        gradleBuildToolsAlpha  : 'com.android.tools.build:gradle:3.3.0-alpha10',
         gradleRetroLambda      : 'me.tatarka:gradle-retrolambda:3.7.0', // deprecated: use build:gradle:3
         lombok                 : 'me.tatarka.retrolambda.projectlombok:lombok.ast:0.2.3.a2', // deprecated: use build:gradle:3
         androidApt             : 'com.neenbedankt.gradle.plugins:android-apt:1.8', // deprecated: use build:gradle:3
@@ -52,6 +53,7 @@ ext.plugin = [
         cipherGithub           : 'com.github.MEiDIK:Cipher.so:dev-SNAPSHOT', //  https://github.com/MEiDIK/Cipher.so/issues/9
         buildTimeTracker       : 'net.rdrei.android.buildtimetracker:gradle-plugin:0.11.0',
         imgOptimizer           : 'com.chenenyu:img-optimizer:1.1.1',
+        buildScanPlugin        : 'com.gradle:build-scan-plugin:1.16',
 ]
 
 //plugins needed when developing a library project
@@ -247,8 +249,8 @@ ext.libs = [
         kotterknife                  : 'com.jakewharton:kotterknife:0.1.0-SNAPSHOT',
         butterknife                  : 'com.jakewharton:butterknife:8.8.1',
         butterknifeCompiler          : 'com.jakewharton:butterknife-compiler:8.8.1',
-        butterknifeX                  : 'com.jakewharton:butterknife:9.0.0-SNAPSHOT',
-        butterknifeCompilerX          : 'com.jakewharton:butterknife-compiler:9.0.0-SNAPSHOT',
+        butterknifeX                 : 'com.jakewharton:butterknife:9.0.0-SNAPSHOT',
+        butterknifeCompilerX         : 'com.jakewharton:butterknife-compiler:9.0.0-SNAPSHOT',
         nineoldandroids              : 'com.nineoldandroids:library:2.4.0',
         pubnubGson                   : 'com.pubnub:pubnub-gson:4.5.0',
         wowoViewPager                : 'com.nightonke:wowoviewpager:1.0.2',
