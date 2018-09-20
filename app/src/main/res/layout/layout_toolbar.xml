@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Created by ${USER} on ${DATE} at ${TIME}
      email:shkurtiarmando@gmail.com -->
-<android.support.v7.widget.Toolbar
+<androidx.appcompat.widget.Toolbar
     android:id="@+id/toolbar"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
