@@ -196,9 +196,9 @@ ext.libs = [
         // tested libs
 
         connectionBuddy              : 'com.zplesac:connectionbuddy:2.0.0-beta1',
-        calligraphy                  : 'uk.co.chrisjenx:calligraphy:2.3.0',
-        calligraphy3                 : 'io.github.inflationx:calligraphy3:3.0.0',
-        viewpump                     : 'io.github.inflationx:viewpump:1.0.0',
+        calligraphy                  : 'uk.co.chrisjenx:calligraphy:2.3.0', // deprecated use calligraphy3 & viewpump
+        calligraphy3                 : 'com.github.kibotu:Calligraphy:v4.0.1',
+        viewPump                     : 'com.github.kibotu:ViewPump:v2.0.0',
         permissionDispatcher         : 'com.github.hotchemi:permissionsdispatcher:3.2.0',
         permissionDispatcherProcessor: 'com.github.hotchemi:permissionsdispatcher-processor:3.2.0',
         parceler                     : 'org.parceler:parceler-api:1.1.11',
