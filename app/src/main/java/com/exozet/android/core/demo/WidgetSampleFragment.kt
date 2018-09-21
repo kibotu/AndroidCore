@@ -1,8 +1,8 @@
 package com.exozet.android.core.demo
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.exozet.android.core.base.BaseFragment
 import com.exozet.android.core.extensions.indeterminateDrawableColor
 import com.exozet.android.core.extensions.onClick
@@ -29,11 +29,5 @@ class WidgetSampleFragment : BaseFragment() {
 
     private fun onCustomBack() = {
         showSnackBar("Back")
-    }
-
-    companion object {
-        fun newInstance(): WidgetSampleFragment {
-            return WidgetSampleFragment()
-        }
     }
 }

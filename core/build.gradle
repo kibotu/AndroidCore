@@ -7,10 +7,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'realm-android'
-//apply plugin: 'com.github.dcendents.android-maven'
-//apply plugin: "com.jfrog.artifactory"
-//apply plugin: 'maven-publish'
-//apply plugin: 'com.getkeepsafe.dexcount'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.getkeepsafe.dexcount'
 
 android {
     compileSdkVersion compileSdkVer
@@ -141,6 +139,7 @@ dependencies {
 // region override support library version
 
 configurations.all {
+
     resolutionStrategy.force libs.supportMultidex
     resolutionStrategy.force libs.supportCompat
     resolutionStrategy.force libs.supportCoreUtils
@@ -154,8 +153,9 @@ configurations.all {
     resolutionStrategy.force libs.supportPalette
     resolutionStrategy.force libs.supportRecyclerview
     resolutionStrategy.force libs.supportPreferenceV7
+    resolutionStrategy.force libs.supportPreferenceV14
     resolutionStrategy.force libs.supportV13
-    resolutionStrategy.force libs.supportPreference
+    resolutionStrategy.force libs.supportV4
     resolutionStrategy.force libs.supportPreferenceLeanback
     resolutionStrategy.force libs.supportLeanback
     resolutionStrategy.force libs.supportVectorDrawable
@@ -167,7 +167,7 @@ configurations.all {
     resolutionStrategy.force libs.supportExifInterface
     resolutionStrategy.force libs.supportRecommendation
     resolutionStrategy.force libs.supportWear
-
+    resolutionStrategy.force libs.constraintLayoutSolver
     resolutionStrategy.force libs.constraintLayout
 
     resolutionStrategy.force libs.playServicesPlus
@@ -192,6 +192,8 @@ configurations.all {
     resolutionStrategy.force libs.playServicesWallet
     resolutionStrategy.force libs.playServicesWearable
 
+    resolutionStrategy.force libs.firebaseIid
+    resolutionStrategy.force libs.firebaseCommon
     resolutionStrategy.force libs.firebaseCore
     resolutionStrategy.force libs.firebaseDatabase
     resolutionStrategy.force libs.firebaseFirestore
@@ -205,9 +207,11 @@ configurations.all {
     resolutionStrategy.force libs.firebaseAppindexing
     resolutionStrategy.force libs.firebasePerf
     resolutionStrategy.force libs.firebaseFunctions
+    resolutionStrategy.force libs.firebaseMlVision
+    resolutionStrategy.force libs.firebaseMlModelInterpreter
 
-    resolutionStrategy.force libs.butterknife
-    resolutionStrategy.force libs.butterknifeCompiler
+    resolutionStrategy.force libs.butterknifeX
+    resolutionStrategy.force libs.butterknifeCompilerX
     resolutionStrategy.force libs.guava
 }
 

@@ -1,10 +1,10 @@
 package com.exozet.android.core.demo.features.realmLiveData
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.exozet.android.core.base.BaseFragment
 import com.exozet.android.core.coroutine.whenClicking
 import com.exozet.android.core.demo.R

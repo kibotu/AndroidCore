@@ -1,23 +1,22 @@
 package com.exozet.android.core.demo.features.realmLiveData
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.ViewModel
-import com.vicpin.krealmextensions.query
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.vicpin.krealmextensions.queryAll
 import com.vicpin.krealmextensions.save
 import io.realm.Realm
 import io.realm.RealmResults
 
-class MainViewModel: ViewModel(){
+class MainViewModel : ViewModel() {
     val realm: Realm by lazy {
         Realm.getDefaultInstance()
     }
 
-    fun getItems(): LiveData<RealmResults<RlmItem>>{
+    fun getItems(): LiveData<RealmResults<RlmItem>> {
         return RlmItemDao(realm).getItems()
     }
 
-    fun addItem(){
+    fun addItem() {
         RlmItem("Number ${RlmItem().queryAll().size + 1}").save()
     }
 

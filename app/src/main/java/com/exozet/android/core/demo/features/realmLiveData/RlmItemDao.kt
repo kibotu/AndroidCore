@@ -1,6 +1,6 @@
 package com.exozet.android.core.demo.features.realmLiveData
 
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.LiveData
 import com.exozet.android.core.extensions.asLiveData
 import io.realm.Realm
 import io.realm.RealmResults

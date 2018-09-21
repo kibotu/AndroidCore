@@ -6,19 +6,8 @@ ext {
     minSdkVer = 15
     targetSdkVer = 28
 
-    // @see https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib-jre7
+    // @see https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib-jdk8
     kotlinVersion = '1.2.70'
-
-    // @see https://developer.android.com/topic/libraries/support-library/revisions.html
-    supportLibVer = '27.1.1'
-    // apparently '27.1.0' has different behaviour for fragment lifecycle @see more https://www.reddit.com/r/androiddev/comments/80ork8/support_library_2710_has_been_released/
-
-    // @see https://developers.google.com/android/guides/setup
-    playServicesVer = '15.0.0'
-
-    // @see https://firebase.google.com/docs/android/setup
-    // and https://firebase.google.com/support/release-notes/android
-    firebaseVer = '15.0.0'
 
     retrofitVersion = '2.4.0'
 
@@ -48,7 +37,7 @@ ext.plugin = [
         gms                    : 'com.google.gms:google-services:4.1.0',
         poeditor               : 'be.lukin.poeditor:gradle:0.3.3',
         realm                  : 'io.realm:realm-gradle-plugin:4.3.4', // 'io.realm:realm-gradle-plugin:5.0.0', can't seem to work properly with parcel atm
-        ribbonizer             : 'com.github.maskarade:gradle-android-ribbonizer-plugin:v2.1.0',
+        ribbonizer             : 'com.github.gfx.ribbonizer:ribbonizer-plugin:2.1.0',
         cipher                 : 'net.idik.lib.security:cipher.so:0.0.4',
         cipherGithub           : 'com.github.MEiDIK:Cipher.so:dev-SNAPSHOT', //  https://github.com/MEiDIK/Cipher.so/issues/9
         buildTimeTracker       : 'net.rdrei.android.buildtimetracker:gradle-plugin:0.11.0',
@@ -80,6 +69,7 @@ ext.libs = [
         kotlinJdk8                   : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
 
         // support libraries
+        // https://developer.android.com/topic/libraries/support-library/revisions.html
         // https://developer.android.com/topic/libraries/support-library/packages
         // https://developer.android.com/topic/libraries/support-library/refactor
 
@@ -96,11 +86,11 @@ ext.libs = [
         supportPalette               : "androidx.palette:palette:1.0.0-rc02",
         supportRecyclerview          : "androidx.recyclerview:recyclerview:1.0.0-rc02",
         supportPreferenceV7          : "androidx.preference:preference:1.0.0-rc02",
+        supportPreferenceV14         : "androidx.legacy:legacy-preference-v14:1.0.0-rc02",
         supportV13                   : "androidx.legacy:legacy-support-v13:1.0.0-rc02",
         supportV4                    : "androidx.legacy:legacy-support-v4:1.0.0-rc02",
-        supportPreference            : "androidx.legacy:legacy-preference-v14:1.0.0-rc02",
         supportPreferenceLeanback    : "androidx.leanback:leanback-preference:1.0.0-rc02",
-        supportLeanback              : "androidx.leanback:leanback-preference:1.0.0-rc02",
+        supportLeanback              : "androidx.leanback:leanback:1.0.0-rc02",
         supportVectorDrawable        : "androidx.vectordrawable:vectordrawable:1.0.0-rc02",
         supportAnimatedVectorDrawable: "androidx.vectordrawable:vectordrawable-animated:1.0.0-rc02",
         supportAnnotations           : "androidx.annotation:annotation:1.0.0-rc02",
@@ -140,6 +130,7 @@ ext.libs = [
 
         // firebase
         // https://firebase.google.com/docs/android/setup
+        // https://firebase.google.com/support/release-notes/android
 
         firebaseIid                  : "com.google.firebase:firebase-iid:17.0.2",
         firebaseCommon               : "com.google.firebase:firebase-common:16.0.2",
