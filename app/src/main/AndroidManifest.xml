@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".services.notifications.FBMessagingService">
+        <service android:name="com.exozet.android.core.services.notifications.FBMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
