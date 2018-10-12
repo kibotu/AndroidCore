@@ -26,7 +26,7 @@ ext.plugin = [
         gradleRetroLambda      : 'me.tatarka:gradle-retrolambda:3.7.0', // deprecated: use build:gradle:3
         lombok                 : 'me.tatarka.retrolambda.projectlombok:lombok.ast:0.2.3.a2', // deprecated: use build:gradle:3
         androidApt             : 'com.neenbedankt.gradle.plugins:android-apt:1.8', // deprecated: use build:gradle:3
-        kotlinApt              : "org.jetbrains.kotlin.kapt:org.jetbrains.kotlin.kapt.gradle.plugin:1.2.60",
+        kotlinApt              : "org.jetbrains.kotlin.kapt:org.jetbrains.kotlin.kapt.gradle.plugin:$kotlinVersion",
         hockeyApp              : 'de.felixschulze.gradle:gradle-hockeyapp-plugin:3.6',
         rocketLauncher         : 'com.cesarferreira:android-rocket-launcher:0.2.3',
         dexcountGradle         : 'com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.8.3',
@@ -238,8 +238,8 @@ ext.libs = [
         currencyEditText             : 'com.github.blackcat27:library:1.4.4-SNAPSHOT',
         brainTree                    : 'com.braintreepayments.api:drop-in:3.6.1',
         facebook                     : 'com.facebook.android:facebook-android-sdk:4.+',
-        okhttp3                      : 'com.squareup.okhttp3:okhttp:3.10.0',
-        okhttp3LoggingInterceptor    : 'com.squareup.okhttp3:logging-interceptor:3.7.0',
+        okhttp3                      : 'com.squareup.okhttp3:okhttp:3.11.0',
+        okhttp3LoggingInterceptor    : 'com.squareup.okhttp3:logging-interceptor:3.11.0',
         javawriter                   : 'com.squareup:javawriter:2.5.1',
         kotterknife                  : 'com.jakewharton:kotterknife:0.1.0-SNAPSHOT',
         butterknife                  : 'com.jakewharton:butterknife:8.8.1',
@@ -288,6 +288,7 @@ ext.libs = [
 
         retrofit                     : "com.squareup.retrofit2:retrofit:$retrofitVersion",
         retrofitAdapterRxJava2       : "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
+        retrofitCoroutineAdapter     : "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$retrofitVersion",
         retrofitConverterGson        : "com.squareup.retrofit2:converter-gson:$retrofitVersion",
         retrofitMock                 : "com.squareup.retrofit2:retrofit-mock:$retrofitVersion",
         converterScalars             : "com.squareup.retrofit2:converter-scalars:$retrofitVersion",
