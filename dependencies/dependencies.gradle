@@ -223,7 +223,7 @@ ext.libs = [
         stethoJsRhino                : 'com.facebook.stetho:stetho-js-rhino:1.4.2',
         crashlytics                  : 'com.crashlytics.sdk.android:crashlytics:2.9.5@aar',
         processPhoenix               : 'com.jakewharton:process-phoenix:1.1.0',
-        circleIndicator              : 'me.relex:circleindicator:1.2.2@aar',
+        circleIndicator              : 'me.relex:circleindicator:1.2.2@aar', // please use indefinitePagerIndicator instead, due being scalable
         indefinitePagerIndicator     : 'com.github.kibotu:Android-Indefinite-Pager-Indicator:2.0.4',
         smarttablayoutLib            : 'com.ogaclejapan.smarttablayout:library:1.6.1@aar',
         smartTablayoutUtils          : 'com.ogaclejapan.smarttablayout:utils-v4:1.6.1@aar',
