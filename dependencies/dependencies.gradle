@@ -301,7 +301,7 @@ ext.libs = [
         branchIoSdk                  : "io.branch.sdk.android:library:2.+",
         parallaxImageView            : "it.dex.dexmovingimageview:dexmovingimageviewlib:0.1.0",
 
-        exoplayer                    : 'com.google.android.exoplayer:exoplayer:2.6.0',
+        exoplayer                    : 'com.google.android.exoplayer:exoplayer:2.8.4',
         mzip                         : 'com.github.ghost1372:Mzip-Android:0.4.0',
         numberprogressbar            : 'com.daimajia.numberprogressbar:library:1.4@aar',
         fragmentanimations           : 'com.labo.kaji:fragmentanimations:0.1.1',
