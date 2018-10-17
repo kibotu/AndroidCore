@@ -4,7 +4,8 @@ package com.exozet.android.core.extensions
 
 import android.content.Context
 import android.content.res.Resources
-import android.os.Build
+import android.os.Build.VERSION.SDK_INT
+import android.os.Build.VERSION_CODES.N
 import android.text.Html
 import android.text.Spanned
 import androidx.annotation.DrawableRes
@@ -48,43 +49,32 @@ val Int.px: Int get() = (this * Resources.getSystem().displayMetrics.density).to
 val Int.dp: Int get() = (this / Resources.getSystem().displayMetrics.density).toInt()
 
 val Int.resBoolean: Boolean
-    get() {
-        return ContextHelper.getApplication()!!.resources!!.getBoolean(this)
-    }
+    get() = ContextHelper.getApplication()!!.resources!!.getBoolean(this)
 
 val Int.resInt: Int
-    get() {
-        return ContextHelper.getApplication()!!.resources!!.getInteger(this)
-    }
+    get() = ContextHelper.getApplication()!!.resources!!.getInteger(this)
 
 val Int.resLong: Long
-    get() {
-        return ContextHelper.getApplication()!!.resources!!.getInteger(this).toLong()
-    }
+    get() = ContextHelper.getApplication()!!.resources!!.getInteger(this).toLong()
 
 val Int.resDimension: Float
-    get() {
-        return ContextHelper.getApplication()!!.resources!!.getDimension(this)
-    }
+    get() = ContextHelper.getApplication()!!.resources!!.getDimension(this)
 
 val Int.resString: String
-    get() {
-        return ContextHelper.getApplication()!!.resources!!.getString(this)
-    }
+    get() = ContextHelper.getApplication()!!.resources!!.getString(this)
 
 val Int.resColor: Int
-    get() {
-        return ContextCompat.getColor(ContextHelper.getApplication()!!, this)
-    }
+    get() = ContextCompat.getColor(ContextHelper.getApplication()!!, this)
 
 val Int.html: Spanned
-    get() {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            Html.fromHtml(resString, Html.FROM_HTML_MODE_LEGACY)
-        } else {
-            @Suppress("DEPRECATION")
-            Html.fromHtml(resString)
-        }
+    get() = resString.html
+
+val String.html: Spanned
+    get() = if (SDK_INT >= N) {
+        Html.fromHtml(this, Html.FROM_HTML_MODE_LEGACY)
+    } else {
+        @Suppress("DEPRECATION")
+        Html.fromHtml(this)
     }
 
 fun Int.asCsv(context: Context = ContextHelper.getContext()!!): List<String> = context.resources.getString(this).split(",").map(String::trim).toList()
