@@ -8,6 +8,7 @@ import com.exozet.android.core.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 import static net.kibotu.ContextHelper.getApplication;
 
@@ -44,9 +45,11 @@ public enum KeyEventDelegate implements KeyListener {
     @Override
     public boolean onKeyUp(final int keyCode, final KeyEvent event) {
         boolean hasBeenHandled = false;
-        for (final KeyListener listener : keyListeners)
+        for (ListIterator<KeyListener> it = keyListeners.listIterator(); it.hasNext(); ) {
+            KeyListener listener = it.next();
             if (!hasBeenHandled)
                 hasBeenHandled = listener.onKeyUp(keyCode, event);
+        }
         return hasBeenHandled;
     }
 
@@ -55,9 +58,11 @@ public enum KeyEventDelegate implements KeyListener {
         if (LOGGING_ENABLED)
             Log.v(TAG, "[onKeyDown] " + keyCode + " event " + event);
         boolean hasBeenHandled = false;
-        for (final KeyListener listener : keyListeners)
+        for (ListIterator<KeyListener> it = keyListeners.listIterator(); it.hasNext(); ) {
+            KeyListener listener = it.next();
             if (!hasBeenHandled)
                 hasBeenHandled = listener.onKeyDown(keyCode, event);
+        }
         return hasBeenHandled;
     }
 }
