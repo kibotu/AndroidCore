@@ -229,21 +229,9 @@ kapt {
 
 // endregion
 
-// region coroutines
-
-kotlin {
-    experimental {
-        coroutines 'enable'
-    }
-}
-
-// endregion
-
 static def escape(Object value) {
     return "\"$value\""
 }
-
-// endregion
 
 // region javadoc
 
