@@ -21,7 +21,7 @@ ext {
 }
 
 ext.plugin = [
-        gradleBuildTools       : 'com.android.tools.build:gradle:3.2.0',
+        gradleBuildTools       : 'com.android.tools.build:gradle:3.2.1',
         gradleBuildToolsAlpha  : 'com.android.tools.build:gradle:3.3.0-alpha10',
         gradleRetroLambda      : 'me.tatarka:gradle-retrolambda:3.7.0', // deprecated: use build:gradle:3
         lombok                 : 'me.tatarka.retrolambda.projectlombok:lombok.ast:0.2.3.a2', // deprecated: use build:gradle:3
@@ -29,7 +29,7 @@ ext.plugin = [
         kotlinApt              : "org.jetbrains.kotlin.kapt:org.jetbrains.kotlin.kapt.gradle.plugin:$kotlinVersion",
         hockeyApp              : 'de.felixschulze.gradle:gradle-hockeyapp-plugin:3.6',
         rocketLauncher         : 'com.cesarferreira:android-rocket-launcher:0.2.3',
-        dexcountGradle         : 'com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.8.3',
+        dexcountGradle         : 'com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.8.4',
         kotlinAndroidExtensions: "org.jetbrains.kotlin:kotlin-android-extensions:$kotlinVersion",
         kotlinGradle           : "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion",
         fabric                 : 'io.fabric.tools:gradle:1.+',
