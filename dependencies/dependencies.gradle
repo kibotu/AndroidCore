@@ -241,11 +241,11 @@ ext.libs = [
         okhttp3                      : 'com.squareup.okhttp3:okhttp:3.11.0',
         okhttp3LoggingInterceptor    : 'com.squareup.okhttp3:logging-interceptor:3.11.0',
         javawriter                   : 'com.squareup:javawriter:2.5.1',
-        kotterknife                  : 'com.jakewharton:kotterknife:0.1.0-SNAPSHOT',
-        butterknife                  : 'com.jakewharton:butterknife:8.8.1',
-        butterknifeCompiler          : 'com.jakewharton:butterknife-compiler:8.8.1',
-        butterknifeX                 : 'com.jakewharton:butterknife:9.0.0-rc2',
-        butterknifeCompilerX         : 'com.jakewharton:butterknife-compiler:9.0.0-rc2',
+        kotterknife                  : 'com.jakewharton:kotterknife:0.1.0-SNAPSHOT', // deprecated, use kotlin synthetic imports instead
+        butterknife                  : 'com.jakewharton:butterknife:8.8.1', // deprecated, use kotlin synthetic imports instead
+        butterknifeCompiler          : 'com.jakewharton:butterknife-compiler:8.8.1', // deprecated, use kotlin synthetic imports instead
+        butterknifeX                 : 'com.jakewharton:butterknife:9.0.0-rc2', // deprecated, use kotlin synthetic imports instead
+        butterknifeCompilerX         : 'com.jakewharton:butterknife-compiler:9.0.0-rc2', // deprecated, use kotlin synthetic imports instead
         nineoldandroids              : 'com.nineoldandroids:library:2.4.0',
         pubnubGson                   : 'com.pubnub:pubnub-gson:4.5.0',
         wowoViewPager                : 'com.nightonke:wowoviewpager:1.0.2',
