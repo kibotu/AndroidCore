@@ -184,6 +184,7 @@ dependencies {
     implementation libs.recyclerViewPresenter
     implementation libs.lifecycleExtensions
     implementation libs.realmExtensions
+    implementation libs.gson
 }
 
 // region override support library version

@@ -87,15 +87,11 @@ dependencies {
     compileOnly libs.rx2java
     compileOnly libs.rx2Android
 
-    implementation libs.butterknifeX
-    annotationProcessor libs.butterknifeCompilerX
-
     implementation libs.deviceInfo
 
     implementation libs.connectionBuddy
     implementation libs.googlePlayForceUpdate
     implementation libs.permissionDispatcher
-    annotationProcessor libs.permissionDispatcherProcessor
     implementation libs.timeBomb
 
     implementation libs.supportRecyclerview
@@ -129,7 +125,7 @@ dependencies {
     implementation libs.lifecycleViewmodel
     implementation libs.lifecycleLivedata
     implementation libs.lifecycleRactiveStream
-    annotationProcessor libs.lifecycleCompiler
+    kapt libs.lifecycleCompiler
 
     api apis.kotlinxCoroutinesCore
     api apis.kotlinxCoroutinesAndroid

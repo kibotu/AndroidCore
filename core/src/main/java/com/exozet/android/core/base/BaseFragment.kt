@@ -9,8 +9,6 @@ import androidx.annotation.CallSuper
 import androidx.annotation.ColorRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import butterknife.ButterKnife
-import butterknife.Unbinder
 import com.exozet.android.core.R
 import com.exozet.android.core.extensions.currentFragment
 import com.exozet.android.core.interfaces.Backpress
@@ -29,7 +27,6 @@ import net.kibotu.logger.Logger
  */
 abstract class BaseFragment : Fragment(), LogTag, DispatchTouchEvent, Backpress, FragmentManager.OnBackStackChangedListener {
 
-    private var unbinder: Unbinder? = null
     /**
      * [Restoring instance state after fragment transactions.](http://stackoverflow.com/a/15314508)
      */
@@ -46,7 +43,6 @@ abstract class BaseFragment : Fragment(), LogTag, DispatchTouchEvent, Backpress,
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(layout, container, false)
-        unbinder = ButterKnife.bind(this, rootView)
 
         Logger.v("${tag()} [onCreateView] $savedInstanceState")
 
@@ -103,7 +99,6 @@ abstract class BaseFragment : Fragment(), LogTag, DispatchTouchEvent, Backpress,
         Logger.v("${tag()} [onDestroyView]")
         savedState = onSaveInstanceState()
         super.onDestroyView()
-        unbinder?.unbind()
     }
 
     /**
