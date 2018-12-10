@@ -1,10 +1,10 @@
 package com.exozet.android.core.interfaces.annotations;
 
 
+import androidx.annotation.IntDef;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-
-import androidx.annotation.IntDef;
 
 import static androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_CLOSE;
 import static androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_FADE;

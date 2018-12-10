@@ -8,7 +8,7 @@ import net.kibotu.android.recyclerviewpresenter.Presenter
 import net.kibotu.android.recyclerviewpresenter.PresenterAdapter
 import net.kibotu.logger.Logger
 
-class ItemRecyclerViewPresenter (presenterAdapter: PresenterAdapter<ItemViewModel>) :  Presenter<ItemRecyclerViewPresenter.ItemViewModel, BaseViewHolder>(presenterAdapter){
+class ItemRecyclerViewPresenter(presenterAdapter: PresenterAdapter<ItemViewModel>) : Presenter<ItemRecyclerViewPresenter.ItemViewModel, BaseViewHolder>(presenterAdapter) {
 
     override fun bindViewHolder(viewHolder: BaseViewHolder, item: ItemViewModel, position: Int) {
         Logger.d("bindViewHolder: ${item.label}")

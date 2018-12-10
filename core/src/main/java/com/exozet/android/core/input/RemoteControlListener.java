@@ -4,10 +4,10 @@ import android.content.DialogInterface;
 import android.view.KeyEvent;
 import android.view.View;
 
-import net.kibotu.logger.LogTag;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import net.kibotu.logger.LogTag;
 
 /**
  * Created by Jan Rabe on 14/08/15.

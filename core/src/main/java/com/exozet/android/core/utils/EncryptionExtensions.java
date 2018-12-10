@@ -1,11 +1,11 @@
 package com.exozet.android.core.utils;
 
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Created by Nyaruhodo on 07.05.2016.

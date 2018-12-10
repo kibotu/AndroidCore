@@ -36,7 +36,8 @@ fun String.sha256(charset: Charset = Charsets.UTF_8): String = "%064x".format(Bi
     digest()
 }))
 
-fun String.capitalize() = when { length < 2 -> toUpperCase()
+fun String.capitalize() = when {
+    length < 2 -> toUpperCase()
     else -> Character.toUpperCase(toCharArray()[0]) + substring(1).toLowerCase()
 }
 

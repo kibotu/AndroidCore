@@ -32,7 +32,7 @@ fun AppCompatActivity.replaceWithStackFragment(fragment: Fragment, transitionSha
 fun AppCompatActivity.replaceFragment(fragment: Fragment, @IdRes frameId: Int, tag: String, transitionSharedElement: View? = null, transitionName: String? = null) {
     supportFragmentManager.transact {
         replace(frameId, fragment, tag)
-        if(transitionSharedElement != null && transitionName != null) {
+        if (transitionSharedElement != null && transitionName != null) {
             addSharedElement(transitionSharedElement, transitionName)
         }
     }
@@ -42,7 +42,7 @@ fun AppCompatActivity.replaceWithStackFragment(fragment: Fragment, @IdRes frameI
     supportFragmentManager.transact {
         replace(frameId, fragment, tag)
         addToBackStack(null)
-        if(transitionSharedElement != null && transitionName != null) {
+        if (transitionSharedElement != null && transitionName != null) {
             addSharedElement(transitionSharedElement, transitionName)
         }
     }

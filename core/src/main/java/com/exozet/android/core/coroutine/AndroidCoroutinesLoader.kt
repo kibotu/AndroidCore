@@ -95,7 +95,7 @@ class OnClickLoader<out T> internal constructor(private val lifecycle: Lifecycle
             channel.map(loadingContext) { loadFunction() }
                     .consumeEach {
                         if (disableView) {
-                            view.isEnabled = true
+                            view.post(Runnable { view.isEnabled = true })
                         }
                         uiFunction(it)
                     }

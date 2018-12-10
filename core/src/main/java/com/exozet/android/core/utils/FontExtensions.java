@@ -4,10 +4,10 @@ import android.graphics.Typeface;
 import android.view.View;
 import android.widget.TextView;
 
-import java.util.Collection;
-
 import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
+
+import java.util.Collection;
 
 import static com.exozet.android.core.utils.ViewExtensions.setColor;
 

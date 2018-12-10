@@ -3,12 +3,12 @@ package com.exozet.android.core.input;
 import android.util.Log;
 import android.view.KeyEvent;
 
+import androidx.annotation.Nullable;
+
 import com.exozet.android.core.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.Nullable;
 
 import static net.kibotu.ContextHelper.getApplication;
 

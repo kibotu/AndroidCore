@@ -9,7 +9,7 @@ import io.realm.RealmResults
  * Created by Tim Wienrich
  */
 
-class RealmLiveData <T : RealmModel>(val realmResults: RealmResults<T>) : LiveData<RealmResults<T>>(){
+class RealmLiveData<T : RealmModel>(val realmResults: RealmResults<T>) : LiveData<RealmResults<T>>() {
 
     private val listener = RealmChangeListener<RealmResults<T>> { results -> value = results }
 
