@@ -1,27 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.exozet.android.core.demo">
+          package="com.exozet.android.core.demo">
+
+    <!-- wifi scanning requires location permission -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
-        android:name=".App"
-        android:allowBackup="false"
-        android:fullBackupContent="@xml/backup"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.Core.LaunchScreen">
+            android:name=".App"
+            android:allowBackup="false"
+            android:fullBackupContent="@xml/backup"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/Theme.Core.LaunchScreen">
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <meta-data
+                android:name="io.fabric.ApiKey"
+                android:value="9e54af655b5d3cf5b3edc584e69d4eb846a74e20" />
+
+        <!-- push notifications; obsolete please use: https://medium.com/android-school/firebaseinstanceidservice-is-deprecated-50651f17a148 -->
 
         <service android:name="com.exozet.android.core.services.notifications.FBMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <!-- A service that extends FirebaseInstanceIdService to handle the creation, rotation, and updating of registration tokens.
+             This is required for sending to specific devices or for creating device groups. -->
+
+        <service android:name="com.exozet.android.core.services.notifications.FBInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
+        <!-- => Lolipop long running background task -->
+        <service
+                android:name="com.exozet.android.core.services.notifications.FBNotificationJobService"
+                android:exported="false">
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
             </intent-filter>
         </service>
 
