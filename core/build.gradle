@@ -135,6 +135,7 @@ dependencies {
     implementation libs.okhttp3
 
     implementation libs.realmExtensions
+    implementation libs.gson
 }
 
 
