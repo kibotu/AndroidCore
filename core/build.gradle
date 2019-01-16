@@ -87,12 +87,15 @@ dependencies {
     compileOnly libs.rx2java
     compileOnly libs.rx2Android
 
+    compileOnly libs.retrofitAdapterRxJava2
+    compileOnly libs.retrofit
+
     implementation libs.deviceInfo
 
-    implementation libs.connectionBuddy
-    implementation libs.googlePlayForceUpdate
-    implementation libs.permissionDispatcher
-    implementation libs.timeBomb
+    compileOnly libs.connectionBuddy
+    compileOnly libs.googlePlayForceUpdate
+    compileOnly libs.permissionDispatcher
+    compileOnly libs.timeBomb
 
     implementation libs.supportRecyclerview
     implementation libs.recyclerViewPresenter
@@ -115,11 +118,11 @@ dependencies {
 
     implementation libs.logger
 
-    implementation libs.playServicesAuth
-    implementation libs.firebaseDatabase
-    implementation libs.firebaseMessaging
-    implementation libs.firebaseJobdispatcher
-    implementation libs.apacheCommonsIo
+    compileOnly libs.playServicesAuth
+    compileOnly libs.firebaseDatabase
+    compileOnly libs.firebaseMessaging
+    compileOnly libs.firebaseJobdispatcher
+    compileOnly libs.apacheCommonsIo
 
     implementation libs.lifecycleExtensions
     implementation libs.lifecycleViewmodel
@@ -133,7 +136,7 @@ dependencies {
     implementation libs.parceler
     implementation libs.okhttp3
 
-    implementation libs.realmExtensions
+    compileOnly libs.realmExtensions
     implementation libs.gson
 }
 
