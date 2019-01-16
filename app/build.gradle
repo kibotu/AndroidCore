@@ -174,8 +174,6 @@ dependencies {
     implementation libs.supportCardView
     implementation libs.constraintLayout
 
-    implementation libs.rx2java
-    implementation libs.rx2Android
 
     implementation project(':core')
     implementation libs.logger
@@ -183,8 +181,22 @@ dependencies {
 
     implementation libs.recyclerViewPresenter
     implementation libs.lifecycleExtensions
-    implementation libs.realmExtensions
     implementation libs.gson
+
+    implementation libs.rx2java
+    implementation libs.rx2Android
+    implementation libs.retrofitAdapterRxJava2
+    implementation libs.retrofit
+    implementation libs.connectionBuddy
+    implementation libs.googlePlayForceUpdate
+    implementation libs.permissionDispatcher
+    implementation libs.timeBomb
+    implementation libs.playServicesAuth
+    implementation libs.firebaseDatabase
+    implementation libs.firebaseMessaging
+    implementation libs.firebaseJobdispatcher
+    implementation libs.apacheCommonsIo
+    implementation libs.realmExtensions
 }
 
 // region override support library version
