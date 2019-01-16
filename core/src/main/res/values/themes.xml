@@ -19,7 +19,7 @@
     </style>
 
     <style name="Theme.Core.LaunchScreen">
-        <item name="android:windowBackground">@drawable/layer_launch_screen</item>
+        <item name="android:windowBackground">@drawable/ic_launcher</item>
     </style>
 
     <style name="Theme.Core.Toolbar" parent="Theme.Core">
