@@ -93,6 +93,7 @@ ext.libs = [
         supportRecyclerview          : "com.android.support:recyclerview-v7:$supportLibVer",
         supportPreferenceV7          : "com.android.support:preference-v7:$supportLibVer",
         supportV13                   : "com.android.support:support-v13:$supportLibVer",
+        supportV4                   : "com.android.support:support-v4:$supportLibVer",
         supportPreference            : "com.android.support:preference-v14:$supportLibVer",
         supportPreferenceLeanback    : "com.android.support:preference-leanback-v17:$supportLibVer",
         supportLeanback              : "com.android.support:leanback-v17:$supportLibVer",

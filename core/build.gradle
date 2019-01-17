@@ -81,6 +81,7 @@ dependencies {
     implementation libs.supportAppCompat
     implementation libs.constraintLayout
     implementation libs.supportCardView
+    implementation libs.gson
 
     compileOnly libs.rx2java
     compileOnly libs.rx2Android
