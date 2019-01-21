@@ -6,7 +6,6 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.exozet.android.core.base.BaseFragment
-import com.exozet.android.core.coroutine.whenClicking
 import com.exozet.android.core.demo.R
 import kotlinx.android.synthetic.main.fragment_viewmodel_sample.*
 import net.kibotu.android.recyclerviewpresenter.PresenterAdapter
@@ -37,7 +36,5 @@ class ViewModelSampleFragment : BaseFragment() {
         })
 
         // addButton.setOnClickListener { v -> viewModel.addItem() }
-
-        whenClicking(addButton) { viewModel.addItem() } then { Log.v(TAG, "done") }
     }
 }

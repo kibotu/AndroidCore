@@ -7,9 +7,10 @@ buildscript {
     }
 
     repositories {
+        google()
+        maven { url 'https://maven-central-eu.storage-download.googleapis.com/repos/central/data/' }
         maven { url "http://repo.spring.io/plugins-release/" }
         maven { url "https://plugins.gradle.org/m2/" }
-        google()
         maven { url 'https://jitpack.io' }
         // maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
         // maven { url 'https://dl.bintray.com/kotlin/kotlin-dev/' }
@@ -42,9 +43,10 @@ allprojects {
     }
 
     repositories {
+        google()
+        maven { url 'https://maven-central-eu.storage-download.googleapis.com/repos/central/data/' }
         maven { url "http://repo.spring.io/plugins-release/" }
         maven { url "https://plugins.gradle.org/m2/" }
-        google()
         maven { url "https://jitpack.io" }
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
 //        maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }

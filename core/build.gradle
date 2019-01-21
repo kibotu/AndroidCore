@@ -83,11 +83,11 @@ dependencies {
     implementation libs.constraintLayout
     implementation libs.supportCardView
 
-    compileOnly libs.rx2java
-    compileOnly libs.rx2Android
+    implementation libs.rx2java
+    implementation libs.rx2Android
 
-    compileOnly libs.retrofitAdapterRxJava2
-    compileOnly libs.retrofit
+    implementation libs.retrofitAdapterRxJava2
+    implementation libs.retrofit
 
     implementation libs.deviceInfo
 
@@ -128,9 +128,6 @@ dependencies {
     implementation libs.lifecycleLivedata
     implementation libs.lifecycleRactiveStream
     kapt libs.lifecycleCompiler
-
-    api apis.kotlinxCoroutinesCore
-    api apis.kotlinxCoroutinesAndroid
 
     implementation libs.parceler
     implementation libs.okhttp3
