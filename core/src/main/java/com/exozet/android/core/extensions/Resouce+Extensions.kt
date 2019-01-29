@@ -2,18 +2,29 @@
 
 package com.exozet.android.core.extensions
 
+import android.animation.Animator
+import android.animation.AnimatorInflater
 import android.content.Context
+import android.content.res.ColorStateList
 import android.content.res.Resources
+import android.net.Uri
 import android.os.Build.VERSION.SDK_INT
 import android.os.Build.VERSION_CODES.N
 import android.text.Html
 import android.text.Spanned
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.widget.TextView
+import androidx.annotation.*
 import androidx.core.content.ContextCompat
 import com.exozet.android.core.R
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.textfield.TextInputLayout
 import net.kibotu.ContextHelper
 import net.kibotu.logger.Logger
+import kotlin.random.Random
 
 
 /**
@@ -77,6 +88,13 @@ val String.html: Spanned
         Html.fromHtml(this)
     }
 
+val Int.resAnim: Animation
+    get() = AnimationUtils.loadAnimation(ContextHelper.getApplication(), this)
+
+val Int.resAnimator: Animator
+    get() = AnimatorInflater.loadAnimator(ContextHelper.getApplication(), this)
+
+
 fun Int.asCsv(context: Context = ContextHelper.getContext()!!): List<String> = context.resources.getString(this).split(",").map(String::trim).toList()
 
 fun isRightToLeft(): Boolean = R.bool.rtl.resBoolean
@@ -116,3 +134,45 @@ fun String.bytesFromAssets(): ByteArray? = try {
     Logger.e(e)
     null
 }
+
+val Uri.isTelephoneLink: Boolean
+    get() = toString().startsWith("tel:")
+
+val Uri.isMailToLink: Boolean
+    get() = toString().startsWith("mailto:")
+
+
+fun TabLayout.addTab(@StringRes title: Int, @DrawableRes icon: Int, @LayoutRes customView: Int) {
+    val tab = LayoutInflater.from(context).inflate(customView, this as ViewGroup, false) as TextView
+    tab.setText(title)
+    tab.setCompoundDrawablesWithIntrinsicBounds(icon, 0, 0, 0)
+    addTab(newTab().setCustomView(tab))
+}
+
+fun TabLayout.updateTabAt(position: Int, @StringRes title: Int, @DrawableRes icon: Int, @LayoutRes customView: Int) {
+    val tab = LayoutInflater.from(context).inflate(customView, this as ViewGroup, false) as TextView
+    tab.setText(title)
+    tab.setCompoundDrawablesWithIntrinsicBounds(icon, 0, 0, 0)
+    getTabAt(position)?.customView = tab
+}
+
+fun TabLayout.Tabs(): List<TabLayout.Tab> {
+
+    val tabs = mutableListOf<TabLayout.Tab>()
+
+    (0..tabCount).forEach { index: Int ->
+        getTabAt(index)?.let { tabs.add(it) }
+    }
+
+    return tabs
+}
+
+fun TextInputLayout.setTextInputLayoutUpperHintColor(@ColorInt color: Int) {
+    defaultHintTextColor = ColorStateList(arrayOf(intArrayOf()), intArrayOf(color))
+}
+
+fun TextInputLayout.toggleTextHintColorOnEmpty(@ColorRes active: Int, @ColorRes inactive: Int) = setTextInputLayoutUpperHintColor(
+    if (editText?.text?.isNotEmpty() == true)
+        active.resColor else
+        inactive.resColor
+)

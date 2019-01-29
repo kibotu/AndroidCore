@@ -11,3 +11,18 @@ inline fun <reified T> Boolean.whether(yes: () -> T, no: () -> T): T = if (this)
 inline fun <reified T> Boolean.either(t: T): Pair<Boolean, T> = Pair(this, t)
 
 inline infix fun <reified T> Pair<Boolean, T>.or(t: T): T = if (first) second else t
+
+fun Boolean.onTrue(function: () -> Unit) {
+    if (this) {
+        function()
+    } else {
+
+    }
+}
+
+fun Boolean.onFalse(function: () -> Unit) {
+    if (this) {
+    } else {
+        function()
+    }
+}

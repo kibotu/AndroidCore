@@ -9,14 +9,21 @@ import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.os.Build.VERSION.SDK_INT
 import android.os.Build.VERSION_CODES.JELLY_BEAN
-import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
-import android.view.ViewTreeObserver
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
+import android.view.*
+import android.view.inputmethod.EditorInfo
+import android.widget.EditText
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
+import androidx.core.math.MathUtils
+import androidx.viewpager.widget.ViewPager
 
 /**
  * Created by [Jan Rabe](https://about.me/janrabe).
@@ -40,6 +47,18 @@ fun View.setMargins(
 
     layoutParams = lp
 }
+
+fun View.setPadding(
+    left: Int? = null,
+    top: Int? = null,
+    right: Int? = null,
+    bottom: Int? = null
+) = setPadding(
+    left ?: paddingLeft,
+    top ?: paddingTop,
+    right ?: paddingRight,
+    bottom ?: paddingBottom
+)
 
 
 fun View.setDimension(
@@ -162,3 +181,68 @@ fun View.resize(width: Float? = null, height: Float? = null) {
     width?.let { layoutParams.width = it.toInt() }
     height?.let { layoutParams.height = it.toInt() }
 }
+
+fun EditText.onImeActionDone(block: () -> Unit) = setOnEditorActionListener { _, actionId, _ ->
+    when (actionId) {
+        EditorInfo.IME_ACTION_DONE -> {
+            block()
+            return@setOnEditorActionListener true
+        }
+        else -> return@setOnEditorActionListener false
+    }
+}
+
+
+class ClickSpan(val listener: View.OnClickListener?) : ClickableSpan() {
+
+    override fun onClick(widget: View) {
+        listener?.onClick(widget)
+    }
+}
+
+fun TextView.clickify(clickableText: String, listener: View.OnClickListener) {
+    val text = text
+    val string = text.toString()
+    val span = ClickSpan(listener)
+
+    val start = string.indexOf(clickableText)
+    val end = start + clickableText.length
+    if (start == -1) return
+
+    if (text is Spannable) {
+        text.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+    } else {
+        val s = SpannableString.valueOf(text)
+        s.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        setText(s)
+    }
+
+    val m = movementMethod
+    if (m == null || m !is LinkMovementMethod) {
+        movementMethod = LinkMovementMethod.getInstance()
+    }
+}
+
+
+
+fun View.onBackPressed(block: () -> Boolean) = setOnKeyListener { _, keyCode, _ ->
+    when (keyCode) {
+        KeyEvent.KEYCODE_BACK -> block()
+        else -> false
+    }
+}
+
+fun ViewPager.scroll(pages: Int) {
+    currentItem = MathUtils.clamp(currentItem + pages, 0, childCount)
+}
+
+fun EditText.selectEnd() {
+    if (!isFocused)
+        return
+
+    post {
+        setSelection(text.toString().length)
+    }
+}
+
+infix fun EditText.isEqualTrimmed(other: EditText): Boolean = text.toString().trim() == other.text.toString().trim()
