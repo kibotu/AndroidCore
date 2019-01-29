@@ -3,6 +3,7 @@ package com.exozet.android.core.utils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import com.exozet.android.core.extensions.MathExtensions;
 
 import java.io.UnsupportedEncodingException;
 

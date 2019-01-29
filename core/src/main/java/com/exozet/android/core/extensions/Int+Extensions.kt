@@ -1,4 +1,4 @@
-@file:JvmName("ResourceExtensions")
+@file:JvmName("IntExtensions")
 
 package com.exozet.android.core.extensions
 

@@ -135,7 +135,8 @@ abstract class BaseFragment : Fragment(), LogTag, DispatchTouchEvent, Backpress,
         return null
     }
 
-    override fun onBackPressed(): Boolean {
+    override fun consumeBackPress(): Boolean {
+
         // close menu
 //        if (navigationDrawerMenu?.isDrawerOpen != false) {
 //            navigationDrawerMenu?.closeDrawer()

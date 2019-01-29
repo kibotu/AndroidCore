@@ -44,7 +44,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
         // let fragments handle back press
         val fragment = currentFragment()
-        if (fragment is Backpress && fragment.onBackPressed())
+        if (fragment is Backpress && fragment.consumeBackPress())
             return
 
         // pop back stack
