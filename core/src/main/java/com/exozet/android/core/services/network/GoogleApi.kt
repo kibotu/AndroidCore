@@ -6,7 +6,7 @@ import retrofit2.http.Body
 import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.POST
-import tv.freenet.selfcare.models.gms.FcmMessage
+import com.exozet.android.core.services.network.fcm.FcmMessage
 
 interface GoogleApi {
 

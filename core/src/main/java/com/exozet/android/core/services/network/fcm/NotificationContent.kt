@@ -1,4 +1,4 @@
-package tv.freenet.selfcare.models.gms
+package com.exozet.android.core.services.network.fcm
 
 import org.parceler.Parcel
 
