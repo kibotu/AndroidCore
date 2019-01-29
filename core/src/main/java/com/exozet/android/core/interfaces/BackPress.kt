@@ -1,6 +1,6 @@
 package com.exozet.android.core.interfaces
 
-interface Backpress {
+interface BackPress {
 
     fun consumeBackPress(): Boolean
 }

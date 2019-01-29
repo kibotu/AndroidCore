@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.exozet.android.core.R
 import com.exozet.android.core.extensions.currentFragment
-import com.exozet.android.core.interfaces.Backpress
+import com.exozet.android.core.interfaces.BackPress
 import com.exozet.android.core.interfaces.DispatchTouchEvent
 import com.exozet.android.core.misc.UIDGenerator
 import com.exozet.android.core.utils.ViewExtensions.hideOnLostFocus
@@ -25,7 +25,7 @@ import net.kibotu.logger.Logger
  *
  *
  */
-abstract class BaseFragment : Fragment(), LogTag, DispatchTouchEvent, Backpress, FragmentManager.OnBackStackChangedListener {
+abstract class BaseFragment : Fragment(), LogTag, DispatchTouchEvent, BackPress, FragmentManager.OnBackStackChangedListener {
 
     /**
      * [Restoring instance state after fragment transactions.](http://stackoverflow.com/a/15314508)

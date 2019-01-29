@@ -7,7 +7,7 @@ import com.exozet.android.core.R
 import com.exozet.android.core.debug.DebugMenu
 import com.exozet.android.core.extensions.currentFragment
 import com.exozet.android.core.extensions.printBackStack
-import com.exozet.android.core.interfaces.Backpress
+import com.exozet.android.core.interfaces.BackPress
 import com.google.android.gms.common.ConnectionResult.*
 import com.google.android.gms.common.GoogleApiAvailability
 
@@ -44,7 +44,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
         // let fragments handle back press
         val fragment = currentFragment()
-        if (fragment is Backpress && fragment.consumeBackPress())
+        if (fragment is BackPress && fragment.consumeBackPress())
             return
 
         // pop back stack
