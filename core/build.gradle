@@ -10,7 +10,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.getkeepsafe.dexcount'
 
 android {
 
@@ -255,26 +254,6 @@ configurations.all {
     resolutionStrategy.force libs.butterknifeX
     resolutionStrategy.force libs.butterknifeCompilerX
     resolutionStrategy.force libs.guava
-}
-
-// endregion
-
-// region dexcount
-
-dexcount {
-    format = "list"
-    includeClasses = false
-    includeClassCount = false
-    includeFieldCount = true
-    includeTotalMethodCount = false
-    orderByMethodCount = false
-    verbose = false
-    maxTreeDepth = Integer.MAX_VALUE
-    teamCityIntegration = false
-    teamCitySlug = null
-    runOnEachPackage = true
-    maxMethodCount = 64000
-    enabled = true
 }
 
 // endregion
