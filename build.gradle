@@ -1,10 +1,6 @@
 buildscript {
 
-    try {
-        apply from: "${project.rootDir}/dependencies/dependencies.gradle"
-    } catch (ignored) {
-        apply from: "${project.rootDir}/AndroidCore/dependencies/dependencies.gradle"
-    }
+    apply from: "${project.rootDir}/Android-Dependencies/dependencies.gradle"
 
     repositories {
         google()
@@ -21,26 +17,21 @@ buildscript {
         classpath plugin.kotlinGradle
         classpath plugin.kotlinApt
         classpath plugin.realm
-        // classpath plugin.ribbonizer
-        classpath plugin.buildTimeTracker
         classpath plugin.fabric
         classpath plugin.imgOptimizer
-        classpath plugin.dexcountGradle
         classpath plugin.rocketLauncher
         classpath plugin.hockeyApp
         classpath plugin.gms
+        classpath plugin.dexcountGradle
 
         classpath pluginLibrary.mavenGradle
+        classpath pluginLibrary.gradleBintrayPlugin
     }
 }
 
 allprojects {
 
-    try {
-        apply from: "${project.rootDir}/dependencies/utils.gradle"
-    } catch (ignored) {
-        apply from: "${project.rootDir}/AndroidCore/dependencies/utils.gradle"
-    }
+    apply from: "${project.rootDir}/Android-Dependencies/utils.gradle"
 
     repositories {
         google()
@@ -52,18 +43,6 @@ allprojects {
 //        maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
         maven { url 'https://maven.fabric.io/public' }
     }
-
-    // disable javadoc generation
-    subprojects { tasks.withType(Javadoc).all { enabled = false } }
-    tasks.withType(Javadoc).all { enabled = false }
-    tasks.withType(JavaCompile) {
-        options.incremental = true
-        options.fork = true
-    }
-}
-
-subprojects {
-    tasks.withType(Javadoc).all { enabled = false }
 }
 
 task clean(type: Delete) {

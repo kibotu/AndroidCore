@@ -1,5 +1,8 @@
 ext {
-    versionName = '0.1'
+    versionName = VERSION_NAME
+    VERSION_CODE = 1
+    VSC = VSC_PATH
+    isCi = true
 }
 
 apply plugin: 'com.android.library'
@@ -7,33 +10,51 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.github.dcendents.android-maven'
-//apply plugin: 'com.getkeepsafe.dexcount'
+apply plugin: 'com.getkeepsafe.dexcount'
 
 android {
+
+
     compileSdkVersion compileSdkVer
     buildToolsVersion buildToolsVer
 
     defaultConfig {
         minSdkVersion minSdkVer
         targetSdkVersion targetSdkVer
-        versionCode commitCount()
-        versionName simpleReleaseVersionName()
+        versionCode isCi ? commitCount() : VERSION_CODE
+        versionName isCi ? simpleReleaseVersionName() : VERSION_NAME
+        vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArguments clearPackageData: 'true'
+
+        buildConfigField "String", "SIMPLE_VERSION_NAME", escape(simpleReleaseVersionName())
+        buildConfigField "String", "CANONICAL_VERSION_NAME", escape(canonicalReleaseVersionName())
+        buildConfigField "String", "COMMIT_HASH", escape(commitHash())
+        buildConfigField "String", "BRANCH", escape(branchNameByGit())
+        buildConfigField "String", "BUILD_DATE", escape(new Date().getTime())
+
+        // to avoid lib compile for release when app is compiled for debug: //http://stackoverflow.com/a/30134955/2736039
+        defaultPublishConfig 'release'
+        publishNonDefault true
     }
 
-    dexOptions {
-        javaMaxHeapSize "4g"
-        maxProcessCount 8
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
     }
+
+    // region compile options
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-//    realm {
-//        kotlinExtensionsEnabled = true
-//    }
+    // endregion
 
     // region lint options
 
@@ -44,6 +65,24 @@ android {
         checkReleaseBuilds false
         ignoreWarnings true       // false by default
         quiet true                // false by default
+        tasks.lint.enabled = false
+    }
+
+    // endregion
+
+    // region dex options
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+        maxProcessCount 8
+    }
+
+    // endregion
+
+    // region adb options
+
+    adbOptions {
+        timeOutInMs 10 * 60 * 1000 // 10 minutes
     }
 
     // endregion
@@ -59,7 +98,7 @@ android {
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
         exclude 'META-INF/ASL2.0'
-        exclude 'META-INF/services/javax.annotation.processing.Processor'  // butterknife
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
         exclude 'META-INF/NOTICE'
         exclude 'META-INF/notice.txt'
         exclude 'META-INF/license.txt'
@@ -67,7 +106,6 @@ android {
         exclude 'META-INF/LGPL2.1'
         exclude 'META-INF/rxjava.properties'
         exclude 'META-INF/app_debug.kotlin_module'
-
     }
 
     // endregion
@@ -141,6 +179,8 @@ dependencies {
 // region override support library version
 
 configurations.all {
+
+    resolutionStrategy.cacheDynamicVersionsFor 10, 'minutes'
 
     resolutionStrategy.force libs.supportMultidex
     resolutionStrategy.force libs.supportCompat
@@ -219,10 +259,22 @@ configurations.all {
 
 // endregion
 
-// region kapt
+// region dexcount
 
-kapt {
-    useBuildCache = true
+dexcount {
+    format = "list"
+    includeClasses = false
+    includeClassCount = false
+    includeFieldCount = true
+    includeTotalMethodCount = false
+    orderByMethodCount = false
+    verbose = false
+    maxTreeDepth = Integer.MAX_VALUE
+    teamCityIntegration = false
+    teamCitySlug = null
+    runOnEachPackage = true
+    maxMethodCount = 64000
+    enabled = true
 }
 
 // endregion
@@ -231,54 +283,5 @@ static def escape(Object value) {
     return "\"$value\""
 }
 
-// region javadoc
-
-task generateSourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier 'sources'
-}
-
-task generateJavadocs(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-}
-
-task generateJavadocsJar(type: Jar) {
-    from generateJavadocs.destinationDir
-    classifier 'javadoc'
-}
-
-generateJavadocsJar.dependsOn generateJavadocs
-
-artifacts {
-    archives generateJavadocsJar
-    archives generateSourcesJar
-}
-
-// endregion
-
-task('printEnvironmentTask') {
-    println(System.getenv())
-}
-
-task('generateEnvironmentLogTask') {
-    // generateEnvironmentLog() for debugging purposes
-}
-
-task('generateChangelogTask') {
-    generateChangelog()
-}
-
-task('generateReleaseNotesTask') {
-    generateReleaseNotes()
-}
-
-task copyReadme(type: Copy) {
-    from "${project.rootDir}/README.md"
-    into "${project.rootDir}/app/src/main/assets"
-}
-
-//preBuild.dependsOn printEnvironmentTask
-//preBuild.dependsOn generateChangelogTask
-//preBuild.dependsOn generateReleaseNotesTask
-//preBuild.dependsOn copyReadme
+apply from: "${project.rootDir}/Android-Dependencies/javadoc.gradle"
+apply from: "${project.rootDir}/Android-Dependencies/bintray.gradle"

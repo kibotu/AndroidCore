@@ -1,25 +1,27 @@
+import java.security.spec.InvalidKeySpecException
+
 ext {
-    versionName = CORE_VERSION_NAME
-    VSC = CORE_VSC_PATH
+    versionName = VERSION_NAME
+    VERSION_CODE = 1
+    VSC = VSC_PATH
+    isCi = true
 }
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'io.fabric'
-//apply plugin: 'com.github.gfx.ribbonizer'
-apply plugin: 'build-time-tracker'
-apply plugin: 'img-optimizer'
 apply plugin: 'com.getkeepsafe.dexcount'
+apply plugin: 'io.fabric'
 apply plugin: 'realm-android'
 
 android {
+
     compileSdkVersion compileSdkVer
     buildToolsVersion buildToolsVer
 
     defaultConfig {
-        applicationId CORE_APPLICATION_ID
+        applicationId APPLICATION_ID
         multiDexEnabled true
 
         minSdkVersion minSdkVer
@@ -36,59 +38,44 @@ android {
         buildConfigField "String", "BUILD_DATE", escape(isCi ? new Date().getTime() : 0)
         buildConfigField "String", "VSC", escape(isCi ? VSC_PATH : "")
     }
-
     signingConfigs {
         try {
             debug {
-                storeFile file(CORE_DEBUG_KEYSYORE_PATH)
-                storePassword CORE_DEBUG_STORE_PASSWORD
-                keyAlias CORE_DEBUG_KEYSTORE_ALLIAS
-                keyPassword CORE_DEBUG_KEY_PASSWORD
+                storeFile file(DEBUG_KEYSYORE_PATH)
+                storePassword DEBUG_STORE_PASSWORD
+                keyAlias DEBUG_KEYSTORE_ALLIAS
+                keyPassword DEBUG_KEY_PASSWORD
             }
         }
         catch (final ignored) {
-            throw new InvalidUserDataException('You should define DEBUG_KEYSTORE_ALLIAS, DEBUG_STORE_PASSWORD, DEBUG_KEY_PASSWORD in gradle.properties.')
+            throw new InvalidKeySpecException('You should define DEBUG_KEYSTORE_ALLIAS, DEBUG_STORE_PASSWORD, DEBUG_KEY_PASSWORD in gradle.properties.')
         }
         try {
             release {
-                storeFile file(CORE_RELEASE_KEYSYORE_PATH)
-                storePassword CORE_RELEASE_STORE_PASSWORD
-                keyAlias CORE_RELEASE_KEYSTORE_ALIAS
-                keyPassword CORE_RELEASE_KEY_PASSWORD
+                storeFile file(RELEASE_KEYSYORE_PATH)
+                storePassword RELEASE_STORE_PASSWORD
+                keyAlias RELEASE_KEYSTORE_ALIAS
+                keyPassword RELEASE_KEY_PASSWORD
             }
         } catch (final ignored) {
-            throw new InvalidUserDataException('You should define RELEASE_KEYSTORE_ALIAS, RELEASE_STORE_PASSWORD, RELEASE_KEY_PASSWORD in gradle.properties.')
+            throw new InvalidKeySpecException('You should define RELEASE_KEYSTORE_ALIAS, RELEASE_STORE_PASSWORD, RELEASE_KEY_PASSWORD in gradle.properties.')
         }
     }
 
     buildTypes {
-
         debug {
             signingConfig signingConfigs.debug
             pseudoLocalesEnabled false
-            debuggable true
-            minifyEnabled false
-            crunchPngs false
-            shrinkResources false
-            zipAlignEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled false
+            shrinkResources = false
         }
-
         release {
-            initWith(buildTypes.debug)
-            applicationIdSuffix ""
             signingConfig signingConfigs.release
-            debuggable false
-            minifyEnabled false
-            crunchPngs false
-            shrinkResources false
-            zipAlignEnabled true
+            minifyEnabled true
+            shrinkResources = true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-    }
-
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
     }
 
     realm {
@@ -116,6 +103,15 @@ android {
         unitTests.includeAndroidResources = true
     }
 
+    // region compile options
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    // endregion
+
     // region lint options
 
     lintOptions {
@@ -125,6 +121,24 @@ android {
         checkReleaseBuilds false
         ignoreWarnings true       // false by default
         quiet true                // false by default
+        tasks.lint.enabled = false
+    }
+
+    // endregion
+
+    // region dex options
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+        maxProcessCount 8
+    }
+
+    // endregion
+
+    // region adb options
+
+    adbOptions {
+        timeOutInMs 10 * 60 * 1000 // 10 minutes
     }
 
     // endregion
@@ -140,7 +154,7 @@ android {
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
         exclude 'META-INF/ASL2.0'
-        exclude 'META-INF/services/javax.annotation.processing.Processor'  // butterknife
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
         exclude 'META-INF/NOTICE'
         exclude 'META-INF/notice.txt'
         exclude 'META-INF/license.txt'
@@ -148,7 +162,6 @@ android {
         exclude 'META-INF/LGPL2.1'
         exclude 'META-INF/rxjava.properties'
         exclude 'META-INF/app_debug.kotlin_module'
-
     }
 
     // endregion
@@ -202,6 +215,8 @@ dependencies {
 // region override support library version
 
 configurations.all {
+
+    resolutionStrategy.cacheDynamicVersionsFor 10, 'minutes'
 
     resolutionStrategy.force libs.supportMultidex
     resolutionStrategy.force libs.supportCompat
@@ -280,32 +295,28 @@ configurations.all {
 
 // endregion
 
-// region build time tracker
-
-buildtimetracker {
-    reporters {
-        csv {
-            output "build/times.csv"
-            append true
-            header false
-        }
-
-        summary {
-            ordered false
-            threshold 50
-            barstyle "unicode"
-        }
-
-        csvSummary {
-            csv "build/times.csv"
-        }
-    }
-}
-
 // endregion
 
 static def escape(Object value) {
     return "\"$value\""
 }
+
+
+task copyReadme(type: Copy) {
+    from "${project.rootDir}/README.md"
+    into "${project.rootDir}/app/src/main/assets"
+}
+
+task('generateChangelogTask') {
+    generateChangelog()
+}
+
+task updateLocalization(type: Exec) {
+    commandLine 'bash', './updateLocalization.sh'
+}
+
+preBuild.dependsOn generateChangelogTask
+preBuild.dependsOn copyReadme
+//preBuild.dependsOn updateLocalization
 
 apply plugin: 'com.google.gms.google-services'
