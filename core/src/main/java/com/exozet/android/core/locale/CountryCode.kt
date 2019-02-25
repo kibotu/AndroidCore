@@ -1,4 +1,4 @@
-package com.exozet.android.core.locale;
+package com.exozet.android.core.locale
 
 /**
  * Created by jan.rabe on 14/04/15.
@@ -6,7 +6,7 @@ package com.exozet.android.core.locale;
 /// <summary>
 ///     @see http://countrycode.org/
 /// </summary>
-public enum CountryCode {
+enum class CountryCode {
     UNKNOWN,
     ALB,
     AND,
