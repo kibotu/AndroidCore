@@ -34,7 +34,7 @@ fun Double.clamp(min: Double, max: Double): Double {
  * @param max   - Max Range Value.
  * @return Percentage of a given value in a range. If within range, returned values are between [0f,1f]
  */
-fun Float.percentToValueOfRange(min: Float = 0f, max: Float) = (this - min) / (max - min)
+fun Float.valueToPercentOfRange(min: Float = 0f, max: Float) = (this - min) / (max - min)
 
 /**
  * Calculates a value in a given range by percentage.
@@ -44,4 +44,4 @@ fun Float.percentToValueOfRange(min: Float = 0f, max: Float) = (this - min) / (m
  * @param max     - Max Range Value.
  * @return Concrete value by a given percentage. If percentage value [0f, 1f] then the returned value will be in [min, max] range.
  */
-fun Float.valueToPercentOfRange(min: Float = 0f, max: Float) = min + this * (max - min)
+fun Float.percentToValueOfRange(min: Float = 0f, max: Float) = min + this * (max - min)
