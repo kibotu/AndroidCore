@@ -161,7 +161,9 @@ public class MathHelper {
      * @param min   - Min Range Value.
      * @param max   - Max Range Value.
      * @return Percentage of a given value in a range. If within range, returned values are between [0f,1f]
+     * @deprecated use Float.percentToValueOfRange(min,max)
      */
+    @Deprecated
     public static float getPercentInRange(float value, float min, float max) {
         return (value - min) / (max - min);
     }
@@ -173,7 +175,9 @@ public class MathHelper {
      * @param min     - Min Range Value.
      * @param max     - Max Range Value.
      * @return Concrete value by a given percentage. If percentage value [0f, 1f] then the returned value will be in [min, max] range.
+     * @deprecated use Float.valueToPercentOfRange(min,max)
      */
+    @Deprecated
     public static float getValueFromPercentInRange(float percent, float min, float max) {
         return min + percent * (max - min);
     }
