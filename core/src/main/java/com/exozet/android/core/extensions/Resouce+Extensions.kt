@@ -7,11 +7,13 @@ import android.animation.AnimatorInflater
 import android.content.Context
 import android.content.res.ColorStateList
 import android.content.res.Resources
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build.VERSION.SDK_INT
 import android.os.Build.VERSION_CODES.N
 import android.text.Html
 import android.text.Spanned
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.animation.Animation
@@ -52,12 +54,22 @@ fun Int.asColor(): Int = ContextCompat.getColor(ContextHelper.getApplication()!!
 /**
  * Converts dp to pixel.
  */
-val Int.px: Int get() = (this * Resources.getSystem().displayMetrics.density).toInt()
+val Float.px: Float get() = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, ContextHelper.getContext()!!.resources.displayMetrics)
 
 /**
  * Converts pixel to dp.
  */
-val Int.dp: Int get() = (this / Resources.getSystem().displayMetrics.density).toInt()
+val Float.dp: Float get() = this / Resources.getSystem().displayMetrics.density
+
+val Int.sp: Float
+    get() = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, this.toFloat(), ContextHelper.getContext()!!.resources.displayMetrics)
+
+val Float.sp: Float
+    get() = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, this, ContextHelper.getContext()!!.resources.displayMetrics)
+
+var TextView.sp: Float
+    set(value) = setTextSize(TypedValue.COMPLEX_UNIT_SP, value)
+    get() = textSize.sp
 
 val Int.resBoolean: Boolean
     get() = ContextHelper.getApplication()!!.resources!!.getBoolean(this)
@@ -94,6 +106,23 @@ val Int.resAnim: Animation
 val Int.resAnimator: Animator
     get() = AnimatorInflater.loadAnimator(ContextHelper.getApplication(), this)
 
+val Int.resName: String
+    get() = ContextHelper.getContext()!!.resources.getResourceEntryName(this)
+
+val String.resId: Int
+    get() = ContextHelper.getContext()!!.resources.getIdentifier(this, "id", ContextHelper.getContext()!!.packageName)
+
+val Int.resDrawable: Drawable
+    get() = ContextCompat.getDrawable(ContextHelper.getContext()!!, this)!!
+
+val Int.resStringArray: Array<String>
+    get() = ContextHelper.getApplication()!!.resources!!.getStringArray(this)
+
+val Int.resIntArray: IntArray
+    get() = ContextHelper.getApplication()!!.resources!!.getIntArray(this)
+
+val Int.resTextArray: Array<CharSequence>
+    get() = ContextHelper.getApplication()!!.resources!!.getTextArray(this)
 
 fun Int.asCsv(context: Context = ContextHelper.getContext()!!): List<String> = context.resources.getString(this).split(",").map(String::trim).toList()
 
@@ -142,37 +171,3 @@ val Uri.isMailToLink: Boolean
     get() = toString().startsWith("mailto:")
 
 
-fun TabLayout.addTab(@StringRes title: Int, @DrawableRes icon: Int, @LayoutRes customView: Int) {
-    val tab = LayoutInflater.from(context).inflate(customView, this as ViewGroup, false) as TextView
-    tab.setText(title)
-    tab.setCompoundDrawablesWithIntrinsicBounds(icon, 0, 0, 0)
-    addTab(newTab().setCustomView(tab))
-}
-
-fun TabLayout.updateTabAt(position: Int, @StringRes title: Int, @DrawableRes icon: Int, @LayoutRes customView: Int) {
-    val tab = LayoutInflater.from(context).inflate(customView, this as ViewGroup, false) as TextView
-    tab.setText(title)
-    tab.setCompoundDrawablesWithIntrinsicBounds(icon, 0, 0, 0)
-    getTabAt(position)?.customView = tab
-}
-
-fun TabLayout.Tabs(): List<TabLayout.Tab> {
-
-    val tabs = mutableListOf<TabLayout.Tab>()
-
-    (0..tabCount).forEach { index: Int ->
-        getTabAt(index)?.let { tabs.add(it) }
-    }
-
-    return tabs
-}
-
-fun TextInputLayout.setTextInputLayoutUpperHintColor(@ColorInt color: Int) {
-    defaultHintTextColor = ColorStateList(arrayOf(intArrayOf()), intArrayOf(color))
-}
-
-fun TextInputLayout.toggleTextHintColorOnEmpty(@ColorRes active: Int, @ColorRes inactive: Int) = setTextInputLayoutUpperHintColor(
-    if (editText?.text?.isNotEmpty() == true)
-        active.resColor else
-        inactive.resColor
-)

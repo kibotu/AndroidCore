@@ -114,3 +114,7 @@ fun TextView.addAfterTextChangedListener(block: (String) -> Unit) {
         }
     })
 }
+
+fun TextView.isNotEmpty() = text.toString().isNotEmpty()
+
+fun TextView.isEmpty() = text.toString().isEmpty()

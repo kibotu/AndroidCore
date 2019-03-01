@@ -19,8 +19,7 @@ import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.annotation.ColorInt
-import androidx.annotation.ColorRes
+import androidx.annotation.*
 import androidx.core.content.ContextCompat
 import androidx.core.math.MathUtils
 import androidx.viewpager.widget.ViewPager
@@ -246,3 +245,39 @@ fun EditText.selectEnd() {
 }
 
 infix fun EditText.isEqualTrimmed(other: EditText): Boolean = text.toString().trim() == other.text.toString().trim()
+
+
+fun TabLayout.addTab(@StringRes title: Int, @DrawableRes icon: Int, @LayoutRes customView: Int) {
+    val tab = LayoutInflater.from(context).inflate(customView, this as ViewGroup, false) as TextView
+    tab.setText(title)
+    tab.setCompoundDrawablesWithIntrinsicBounds(icon, 0, 0, 0)
+    addTab(newTab().setCustomView(tab))
+}
+
+fun TabLayout.updateTabAt(position: Int, @StringRes title: Int, @DrawableRes icon: Int, @LayoutRes customView: Int) {
+    val tab = LayoutInflater.from(context).inflate(customView, this as ViewGroup, false) as TextView
+    tab.setText(title)
+    tab.setCompoundDrawablesWithIntrinsicBounds(icon, 0, 0, 0)
+    getTabAt(position)?.customView = tab
+}
+
+fun TabLayout.Tabs(): List<TabLayout.Tab> {
+
+    val tabs = mutableListOf<TabLayout.Tab>()
+
+    (0..tabCount).forEach { index: Int ->
+        getTabAt(index)?.let { tabs.add(it) }
+    }
+
+    return tabs
+}
+
+fun TextInputLayout.setTextInputLayoutUpperHintColor(@ColorInt color: Int) {
+    defaultHintTextColor = ColorStateList(arrayOf(intArrayOf()), intArrayOf(color))
+}
+
+fun TextInputLayout.toggleTextHintColorOnEmpty(@ColorRes active: Int, @ColorRes inactive: Int) = setTextInputLayoutUpperHintColor(
+    if (editText?.text?.isNotEmpty() == true)
+        active.resColor else
+        inactive.resColor
+)

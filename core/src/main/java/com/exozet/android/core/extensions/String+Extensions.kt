@@ -130,7 +130,6 @@ fun String.asArabicNumbers(): String {
 }
 
 fun String.share() {
-    Logger.v("[share] $this")
     ContextHelper.getActivity()?.startActivity(
             Intent.createChooser(Intent()
                     .apply {
