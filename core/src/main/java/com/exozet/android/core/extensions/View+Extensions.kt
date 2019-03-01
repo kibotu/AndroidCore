@@ -2,6 +2,7 @@
 
 package com.exozet.android.core.extensions
 
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
@@ -23,25 +24,27 @@ import androidx.annotation.*
 import androidx.core.content.ContextCompat
 import androidx.core.math.MathUtils
 import androidx.viewpager.widget.ViewPager
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.textfield.TextInputLayout
 
 /**
  * Created by [Jan Rabe](https://about.me/janrabe).
  */
 
 fun View.setMargins(
-        left: Int? = null,
-        top: Int? = null,
-        right: Int? = null,
-        bottom: Int? = null
+    left: Int? = null,
+    top: Int? = null,
+    right: Int? = null,
+    bottom: Int? = null
 ) {
     val lp = layoutParams as? ViewGroup.MarginLayoutParams
-            ?: return
+        ?: return
 
     lp.setMargins(
-            left ?: lp.leftMargin,
-            top ?: lp.topMargin,
-            right ?: lp.rightMargin,
-            bottom ?: lp.bottomMargin
+        left ?: lp.leftMargin,
+        top ?: lp.topMargin,
+        right ?: lp.rightMargin,
+        bottom ?: lp.bottomMargin
     )
 
     layoutParams = lp
@@ -61,8 +64,8 @@ fun View.setPadding(
 
 
 fun View.setDimension(
-        width: Int? = null,
-        height: Int? = null
+    width: Int? = null,
+    height: Int? = null
 ) {
     val params = layoutParams
     params.width = width ?: params.width
@@ -96,15 +99,16 @@ infix fun View.onClick(function: () -> Unit) {
 
 fun ProgressBar.indeterminateDrawableColor(@ColorRes color: Int) {
     indeterminateDrawable.setColorFilter(
-            ContextCompat.getColor(context, color), android.graphics.PorterDuff.Mode.SRC_IN)
+        ContextCompat.getColor(context, color), android.graphics.PorterDuff.Mode.SRC_IN
+    )
 }
 
 fun View.aspect(ratio: Float = 3 / 4f) =
-        post {
-            val params = layoutParams
-            params.height = (width / ratio).toInt()
-            layoutParams = params
-        }
+    post {
+        val params = layoutParams
+        params.height = (width / ratio).toInt()
+        layoutParams = params
+    }
 
 
 fun View.waitForLayout(onGlobalLayoutListener: ViewTreeObserver.OnGlobalLayoutListener) {
@@ -174,7 +178,7 @@ fun View.locationOnScreen(): Rect {
 
 @ColorInt
 fun View.getCurrentColor(@ColorInt default: Int = Color.TRANSPARENT): Int = (background as? ColorDrawable)?.color
-        ?: default
+    ?: default
 
 fun View.resize(width: Float? = null, height: Float? = null) {
     width?.let { layoutParams.width = it.toInt() }
@@ -221,7 +225,6 @@ fun TextView.clickify(clickableText: String, listener: View.OnClickListener) {
         movementMethod = LinkMovementMethod.getInstance()
     }
 }
-
 
 
 fun View.onBackPressed(block: () -> Boolean) = setOnKeyListener { _, keyCode, _ ->

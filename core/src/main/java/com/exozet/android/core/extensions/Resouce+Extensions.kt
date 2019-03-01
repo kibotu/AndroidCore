@@ -5,7 +5,6 @@ package com.exozet.android.core.extensions
 import android.animation.Animator
 import android.animation.AnimatorInflater
 import android.content.Context
-import android.content.res.ColorStateList
 import android.content.res.Resources
 import android.graphics.drawable.Drawable
 import android.net.Uri
@@ -14,19 +13,15 @@ import android.os.Build.VERSION_CODES.N
 import android.text.Html
 import android.text.Spanned
 import android.util.TypedValue
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.TextView
-import androidx.annotation.*
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import com.exozet.android.core.R
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.textfield.TextInputLayout
 import net.kibotu.ContextHelper
 import net.kibotu.logger.Logger
-import kotlin.random.Random
 
 
 /**
@@ -35,7 +30,7 @@ import kotlin.random.Random
 
 @Deprecated("use Int#resBoolean", ReplaceWith("resBoolean"))
 fun Int.asBoolean(default: Boolean = false): Boolean = ContextHelper.getApplication()!!.resources?.getBoolean(this)
-        ?: default
+    ?: default
 
 @Deprecated("use Int#resInt", ReplaceWith("resInt"))
 fun Int.asInteger(): Int = ContextHelper.getApplication()!!.resources.getInteger(this)

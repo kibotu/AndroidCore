@@ -9,6 +9,7 @@ import com.crashlytics.android.Crashlytics
 import com.exozet.android.core.provider.GsonProvider
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import io.fabric.sdk.android.services.network.HttpRequest
 import net.kibotu.ContextHelper
 import net.kibotu.logger.Logger
 import okio.ByteString
@@ -35,6 +36,11 @@ fun String.sha256(charset: Charset = Charsets.UTF_8): String = "%064x".format(Bi
     update(toByteArray(charset))
     digest()
 }))
+
+fun String.sha256_HMAC(): String = with(MessageDigest.getInstance("SHA-256")) {
+    update(this@sha256_HMAC.toByteArray())
+    HttpRequest.Base64.encodeBytes(digest())
+}
 
 fun String.capitalize() = when {
     length < 2 -> toUpperCase()
@@ -131,13 +137,16 @@ fun String.asArabicNumbers(): String {
 
 fun String.share() {
     ContextHelper.getActivity()?.startActivity(
-            Intent.createChooser(Intent()
-                    .apply {
-                        action = Intent.ACTION_SEND
-                        type = "text/plain"
-                        putExtra(Intent.EXTRA_SUBJECT, "")
-                        putExtra(Intent.EXTRA_TEXT, this)
-                    }, "Save Data with:"))
+        Intent.createChooser(
+            Intent()
+                .apply {
+                    action = Intent.ACTION_SEND
+                    type = "text/plain"
+                    putExtra(Intent.EXTRA_SUBJECT, "")
+                    putExtra(Intent.EXTRA_TEXT, this)
+                }, "Save Data with:"
+        )
+    )
 }
 
 /**
@@ -152,14 +161,16 @@ fun String.openDialPad() {
     Logger.v("[openDialPad] $this -> $uri")
 
     Intent(Intent.ACTION_DIAL)
-            .apply {
-                data = uri
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        .apply {
+            data = uri
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        .also { intent ->
+            intent.resolveActivity(
+                ContextHelper.getApplication()?.packageManager
+                    ?: return
+            )?.let {
+                ContextHelper.getActivity()?.startActivity(Intent.createChooser(intent, this))
             }
-            .also { intent ->
-                intent.resolveActivity(ContextHelper.getApplication()?.packageManager
-                        ?: return)?.let {
-                    ContextHelper.getActivity()?.startActivity(Intent.createChooser(intent, this))
-                }
-            }
+        }
 }

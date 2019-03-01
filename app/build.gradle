@@ -28,8 +28,10 @@ android {
         targetSdkVersion targetSdkVer
         versionCode commitCount()
         versionName simpleReleaseVersionName()
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArguments clearPackageData: 'true'
 
         buildConfigField "String", "SIMPLE_VERSION_NAME", escape(isCi ? simpleReleaseVersionName() : "")
         buildConfigField "String", "CANONICAL_VERSION_NAME", escape(isCi ? canonicalReleaseVersionName() : "")
@@ -172,14 +174,36 @@ dependencies {
 
     implementation libs.supportMultidex
 
+    // Core library
+    androidTestImplementation androidTestLibs.testCore
+
+    // AndroidJUnitRunner and JUnit Rules
     androidTestImplementation androidTestLibs.espressoRunner
+    androidTestImplementation androidTestLibs.espressoRules
+    androidTestUtil androidTestUtilLibs.orchestrator
+
+    // Assertions
+    androidTestImplementation androidTestLibs.testJUnit
+    androidTestImplementation androidTestLibs.textTruth
+    androidTestImplementation androidTestLibs.truth
+
+    // Espresso dependencies
     androidTestImplementation androidTestLibs.espressoCore
+    androidTestImplementation androidTestLibs.espressoContrib
+    androidTestImplementation androidTestLibs.espressoIntents
+    androidTestImplementation androidTestLibs.espressoAccessibility
+    androidTestImplementation androidTestLibs.espressoWeb
+    androidTestImplementation androidTestLibs.idlingConcurrent
+    androidTestImplementation androidTestLibs.espressoIdlingResource
+
+    androidTestImplementation androidTestLibs.fragmentTesting
 
     testImplementation testLibs.junit
     testImplementation testLibs.jsonUnit
     testImplementation testLibs.jsonUnitFluent
     testImplementation testLibs.robolectric
     testImplementation testLibs.truth
+    testImplementation androidTestLibs.testCore
 
     implementation libs.kotlinJdk8
     implementation libs.supportAppCompat

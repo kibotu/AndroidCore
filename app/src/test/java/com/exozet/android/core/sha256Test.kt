@@ -1,6 +1,7 @@
 package com.exozet.android.core
 
 import com.exozet.android.core.base.BaseTest
+import com.exozet.android.core.extensions.sha256_HMAC
 import com.google.common.truth.Truth
 import org.junit.Test
 
