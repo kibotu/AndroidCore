@@ -8,6 +8,7 @@ import androidx.core.app.BundleCompat
 import androidx.fragment.app.Fragment
 import org.parceler.ParcelWrapper
 import org.parceler.Parcels
+import java.util.*
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
@@ -49,29 +50,51 @@ class FragmentArgumentDelegate<T : Any?> : ReadWriteProperty<Fragment, T?> {
 
         val key = property.name
 
-        when (value) {
-            is String -> args.putString(key, value)
-            is Int -> args.putInt(key, value)
-            is Short -> args.putShort(key, value)
-            is Long -> args.putLong(key, value)
-            is Byte -> args.putByte(key, value)
-            is ByteArray -> args.putByteArray(key, value)
-            is Char -> args.putChar(key, value)
-            is CharArray -> args.putCharArray(key, value)
-            is CharSequence -> args.putCharSequence(key, value)
-            is Float -> args.putFloat(key, value)
-            is Bundle -> args.putBundle(key, value)
-            is Binder -> BundleCompat.putBinder(args, key, value)
-            is android.os.Parcelable -> {
-                try {
-                    args.putParcelable(key, Parcels.wrap(value))
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                    args.putParcelable(key, value)
+        with(args) {
+
+            when (value) {
+                is Boolean -> putBoolean(key, value)
+                is Byte -> putByte(key, value)
+                is Char -> putChar(key, value)
+                is Short -> putShort(key, value)
+                is Int -> putInt(key, value)
+                is Long -> putLong(key, value)
+                is Float -> putFloat(key, value)
+                is Double -> putDouble(key, value)
+                is String -> putString(key, value)
+                is CharSequence -> putCharSequence(key, value)
+                // is ArrayList<Int> -> putIntegerArrayList(key, value)
+                // is ArrayList<String> -> putStringArrayList(key, value)
+                // is ArrayList<CharSequence> -> putCharSequenceArrayList(key, value)
+                is java.io.Serializable -> putSerializable(key, value)
+                is BooleanArray -> putBooleanArray(key, value)
+                is ByteArray -> putByteArray(key, value)
+                is ShortArray -> putShortArray(key, value)
+                is CharArray -> putCharArray(key, value)
+                is IntArray -> putIntArray(key, value)
+                is LongArray -> putLongArray(key, value)
+                is FloatArray -> putFloatArray(key, value)
+                is DoubleArray -> putDoubleArray(key, value)
+                (value as? Array<*>)?.isArrayOf<String>() -> {
+                    @Suppress("UNCHECKED_CAST")
+                    putStringArray(key, (value as Array<String>))
                 }
+                (value as? Array<*>)?.isArrayOf<CharSequence>() -> {
+                    @Suppress("UNCHECKED_CAST")
+                    putCharSequenceArray(key, (value as Array<CharSequence>))
+                }
+                is Bundle -> putBundle(key, value)
+                is Binder -> BundleCompat.putBinder(args, key, value)
+                is android.os.Parcelable -> {
+                    try {
+                        putParcelable(key, Parcels.wrap(value))
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        putParcelable(key, value)
+                    }
+                }
+                else -> throw IllegalStateException("Type ${value/*.javaClass.canonicalName*/} of property ${property.name} is not supported")
             }
-            is java.io.Serializable -> args.putSerializable(key, value)
-            else -> throw IllegalStateException("Type ${value/*.javaClass.canonicalName*/} of property ${property.name} is not supported")
         }
     }
 }
