@@ -49,7 +49,7 @@ fun Int.asColor(): Int = ContextCompat.getColor(ContextHelper.getApplication()!!
 /**
  * Converts dp to pixel.
  */
-val Float.px: Float get() = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, ContextHelper.getContext()!!.resources.displayMetrics)
+val Float.px: Float get() = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this, ContextHelper.getContext()!!.resources.displayMetrics)
 
 /**
  * Converts pixel to dp.
