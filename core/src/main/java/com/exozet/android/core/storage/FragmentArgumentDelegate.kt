@@ -8,7 +8,6 @@ import androidx.core.app.BundleCompat
 import androidx.fragment.app.Fragment
 import org.parceler.ParcelWrapper
 import org.parceler.Parcels
-import java.util.*
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 

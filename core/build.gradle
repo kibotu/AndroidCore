@@ -120,6 +120,10 @@ dependencies {
     implementation libs.constraintLayout
     implementation libs.supportCardView
 
+    implementation libs.androidKtx
+    implementation libs.androidKtxFragment
+    implementation libs.androidKtxCollection
+
     implementation libs.rx2java
     implementation libs.rx2Android
 
