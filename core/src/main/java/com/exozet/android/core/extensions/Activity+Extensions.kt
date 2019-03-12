@@ -2,11 +2,10 @@
 
 package com.exozet.android.core.extensions
 
+import android.app.Activity
 import android.view.View
-import net.kibotu.ContextHelper.getActivity
 
-val contentRootView: View
-    get() = getActivity()!!
-        .window
+val Activity.contentRootView: View
+    get() = window
         .decorView
         .findViewById(android.R.id.content)
