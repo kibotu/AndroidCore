@@ -56,6 +56,10 @@ val Float.px: Float get() = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DI
  */
 val Float.dp: Float get() = this / Resources.getSystem().displayMetrics.density
 
+val Int.px: Int get() = toFloat().px.toInt()
+
+val Int.dp: Int get() = toFloat().dp.toInt()
+
 val Int.sp: Float
     get() = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, this.toFloat(), ContextHelper.getContext()!!.resources.displayMetrics)
 
@@ -80,6 +84,8 @@ val Int.resDimension: Float
 
 val Int.resString: String
     get() = ContextHelper.getApplication()!!.resources!!.getString(this)
+
+fun Int.resString(formatArg: String): String = ContextHelper.getApplication()!!.resources!!.getString(this, formatArg)
 
 val Int.resColor: Int
     get() = ContextCompat.getColor(ContextHelper.getApplication()!!, this)

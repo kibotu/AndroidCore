@@ -284,3 +284,5 @@ fun TextInputLayout.toggleTextHintColorOnEmpty(@ColorRes active: Int, @ColorRes 
         active.resColor else
         inactive.resColor
 )
+
+fun ViewGroup.inflate(layoutRes: Int): View = LayoutInflater.from(context).inflate(layoutRes, this, false)
