@@ -16,3 +16,5 @@ fun Any.logi(message: String) = Logger.i(TAG, message)
 fun Any.logw(message: String) = Logger.w(TAG, message)
 
 fun Any.loge(message: String) = Logger.e(TAG, message)
+
+inline infix fun Any.paul(message: String?) = logv("PAUL $message")
