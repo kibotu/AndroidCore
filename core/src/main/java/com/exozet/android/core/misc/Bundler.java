@@ -13,6 +13,10 @@ import androidx.fragment.app.Fragment;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * @deprecated use #bundleOf() from androidktx
+ */
+@Deprecated()
 public class Bundler {
 
     private final Bundle bundle;

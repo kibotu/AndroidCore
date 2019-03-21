@@ -13,13 +13,13 @@ open class SimpleOnItemSelectedListener : AdapterView.OnItemSelectedListener {
     }
 }
 
-inline fun <T> AdapterView<T>.onItemSelected(crossinline block: (AdapterView<*>?, View?, Int, Long) -> Unit) where T : Adapter {
+inline fun <reified T> AdapterView<T>.onItemSelected(crossinline block: (parent: AdapterView<*>?, view: View?, position: Int, id: Long) -> Unit) where T : Adapter {
     onItemSelectedListener = object : SimpleOnItemSelectedListener() {
         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) = block(parent, view, position, id)
     }
 }
 
-inline fun <T> AdapterView<T>.onNothingSelected(crossinline block: (AdapterView<*>?) -> Unit) where T : Adapter {
+inline fun <reified T> AdapterView<T>.onNothingSelected(crossinline block: (parent: AdapterView<*>?) -> Unit) where T : Adapter {
 
     onItemSelectedListener = object : SimpleOnItemSelectedListener() {
         override fun onNothingSelected(parent: AdapterView<*>?) = block(parent)

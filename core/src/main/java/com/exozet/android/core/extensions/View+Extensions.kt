@@ -2,6 +2,8 @@
 
 package com.exozet.android.core.extensions
 
+import android.animation.Animator
+import android.annotation.TargetApi
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.Rect
@@ -23,7 +25,11 @@ import android.widget.TextView
 import androidx.annotation.*
 import androidx.core.content.ContextCompat
 import androidx.core.math.MathUtils
+import androidx.fragment.app.DialogFragment
 import androidx.viewpager.widget.ViewPager
+import com.dtx12.android_animations_actions.actions.Actions.*
+import com.dtx12.android_animations_actions.actions.Interpolations
+import com.exozet.android.core.utils.MathExtensions
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.textfield.TextInputLayout
 
@@ -286,3 +292,52 @@ fun TextInputLayout.toggleTextHintColorOnEmpty(@ColorRes active: Int, @ColorRes 
 )
 
 fun ViewGroup.inflate(layoutRes: Int): View = LayoutInflater.from(context).inflate(layoutRes, this, false)
+
+
+fun View.onLayoutChange(block: (() -> Unit)?) {
+    addOnLayoutChangeListener(object : View.OnLayoutChangeListener {
+        @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+        override fun onLayoutChange(v: View, left: Int, top: Int, right: Int, bottom: Int, oldLeft: Int, oldTop: Int, oldRight: Int, oldBottom: Int) {
+            v.removeOnLayoutChangeListener(this)
+            block?.invoke()
+        }
+    })
+}
+
+fun View.playWobble(influence: Float = 0.01f): Animator = forever(
+    sequence(
+        scaleTo(1f + influence, 1f - +influence, MathExtensions.randomRange(1f, 1.3f), Interpolations.SineEaseInOut),
+        scaleTo(1f - +influence, 1f + influence, MathExtensions.randomRange(1f, 1.3f), Interpolations.SineEaseInOut)
+    )
+).apply {
+    play(this, this@playWobble)
+}
+
+fun View.waitForLayout(block: (() -> Unit)?) {
+    viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+        override fun onGlobalLayout() {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+                viewTreeObserver.removeOnGlobalLayoutListener(this)
+            else {
+                @Suppress("DEPRECATION")
+                viewTreeObserver.removeGlobalOnLayoutListener(this)
+            }
+
+            block?.invoke()
+        }
+    })
+}
+
+val DialogFragment?.isShowing
+    get() = this != null && dialog != null && dialog?.isShowing == true && !isRemoving
+
+fun View.enable() {
+    isEnabled = true
+}
+
+fun View.disable() {
+    isEnabled = false
+}
+
+val TextView.textTrimmed
+    get() = text.toString().trimMargin()

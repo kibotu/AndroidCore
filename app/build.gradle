@@ -205,16 +205,22 @@ dependencies {
     testImplementation testLibs.truth
     testImplementation androidTestLibs.testCore
 
-    implementation libs.kotlinJdk8
+    implementation libs.supportMultidex
     implementation libs.supportAppCompat
-    implementation libs.supportDesign
-    implementation libs.supportCardView
+    implementation libs.appCompatResources
     implementation libs.constraintLayout
+    implementation libs.supportCardView
+    implementation libs.supportRecyclerview
 
+    implementation libs.androidKtx
+    implementation libs.androidKtxFragment
+    implementation libs.androidKtxCollection
 
     implementation project(':core')
     implementation libs.logger
     implementation libs.timberLogger
+    implementation libs.parceler
+    kapt libs.parcelerProcessor
 
     implementation libs.recyclerViewPresenter
     implementation libs.lifecycleExtensions
@@ -242,11 +248,13 @@ configurations.all {
 
     resolutionStrategy.cacheDynamicVersionsFor 10, 'minutes'
 
-    resolutionStrategy.force libs.supportMultidex
-    resolutionStrategy.force libs.supportCompat
     resolutionStrategy.force libs.supportMediaCompat
     resolutionStrategy.force libs.supportFragment
+    resolutionStrategy.force libs.fragmentKtx
+    resolutionStrategy.force libs.supportActivity
+    resolutionStrategy.force libs.activityKtx
     resolutionStrategy.force libs.supportAppCompat
+    resolutionStrategy.force libs.appCompatResources
     resolutionStrategy.force libs.supportCardView
     resolutionStrategy.force libs.supportGridLayout
     resolutionStrategy.force libs.supportMediaRouter
@@ -267,8 +275,6 @@ configurations.all {
     resolutionStrategy.force libs.supportExifInterface
     resolutionStrategy.force libs.supportRecommendation
     resolutionStrategy.force libs.supportWear
-    resolutionStrategy.force libs.constraintLayoutSolver
-    resolutionStrategy.force libs.constraintLayout
 
     resolutionStrategy.force libs.lifecycleRuntime
 
@@ -308,7 +314,7 @@ configurations.all {
     resolutionStrategy.force libs.firebaseAds
     resolutionStrategy.force libs.firebaseAppindexing
     resolutionStrategy.force libs.firebasePerf
-//    resolutionStrategy.force libs.firebaseFunctions
+    resolutionStrategy.force libs.firebaseFunctions
     resolutionStrategy.force libs.firebaseMlVision
     resolutionStrategy.force libs.firebaseMlModelInterpreter
 
@@ -316,8 +322,6 @@ configurations.all {
     resolutionStrategy.force libs.butterknifeCompilerX
     resolutionStrategy.force libs.guava
 }
-
-// endregion
 
 // endregion
 

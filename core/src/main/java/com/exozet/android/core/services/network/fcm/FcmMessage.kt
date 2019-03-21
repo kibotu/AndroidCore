@@ -18,10 +18,10 @@ import org.parceler.Parcel
  * }
  * </code>
  */
-@Parcel
+@Parcel(Parcel.Serialization.BEAN)
 data class FcmMessage(
-    val to: String,
-    val notification: NotificationContent,
+    val to: String? = null,
+    val notification: NotificationContent? = null,
     val data: Map<String, String>? = null
 ) {
     constructor(recipient: String, title: String, text: String, data: Map<String, String>? = null)

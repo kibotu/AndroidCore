@@ -2,6 +2,8 @@
 
 package com.exozet.android.core.extensions
 
+import android.os.Build
+import android.os.StrictMode
 import net.kibotu.logger.Logger
 
 val Any.TAG: String
@@ -18,3 +20,4 @@ fun Any.logw(message: String) = Logger.w(TAG, message)
 fun Any.loge(message: String) = Logger.e(TAG, message)
 
 inline infix fun Any.paul(message: String?) = logv("PAUL $message")
+

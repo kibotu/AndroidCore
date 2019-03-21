@@ -1,5 +1,7 @@
 package com.exozet.android.core.debug
 
+import android.os.Build
+import android.os.StrictMode
 import android.view.View
 import com.exozet.android.core.R
 import com.exozet.android.core.extensions.resBoolean
@@ -32,11 +34,11 @@ class DebugMenu {
     private fun setupDebugMenu() {
 
         drawer = DrawerBuilder()
-                .withTranslucentStatusBar(true)
-                .withActivity(getActivity() ?: return)
-                .addDrawerItems(*createDebugMenuItems())
-                .withOnDrawerItemClickListener { view, position, iDrawerItem -> this.onDrawerItemClicked(view, position, iDrawerItem) }
-                .build()
+            .withTranslucentStatusBar(true)
+            .withActivity(getActivity() ?: return)
+            .addDrawerItems(*createDebugMenuItems())
+            .withOnDrawerItemClickListener { view, position, iDrawerItem -> this.onDrawerItemClicked(view, position, iDrawerItem) }
+            .build()
     }
 
     private fun createDebugMenuItems(): Array<IDrawerItem<*, *>> {
