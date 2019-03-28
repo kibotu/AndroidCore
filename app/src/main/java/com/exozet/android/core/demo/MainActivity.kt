@@ -17,7 +17,7 @@ class MainActivity : BaseActivity() {
             replaceFragment(ViewModelSampleFragment())
         }
 
-        GcmSender.API_KEY = "";
+        GcmSender.API_KEY = ""
 
         GcmSender.sendAsync("hello world")
     }

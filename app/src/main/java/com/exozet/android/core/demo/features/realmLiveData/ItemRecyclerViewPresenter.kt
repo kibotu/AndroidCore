@@ -1,25 +1,18 @@
 package com.exozet.android.core.demo.features.realmLiveData
 
-import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.exozet.android.core.demo.R
+import com.exozet.android.core.extensions.logv
 import kotlinx.android.synthetic.main.recycler_view_item.view.*
-import net.kibotu.android.recyclerviewpresenter.BaseViewHolder
 import net.kibotu.android.recyclerviewpresenter.Presenter
-import net.kibotu.android.recyclerviewpresenter.PresenterAdapter
-import net.kibotu.logger.Logger
+import net.kibotu.android.recyclerviewpresenter.RecyclerViewModel
 
-class ItemRecyclerViewPresenter(presenterAdapter: PresenterAdapter<ItemViewModel>) : Presenter<ItemRecyclerViewPresenter.ItemViewModel, BaseViewHolder>(presenterAdapter) {
+class ItemRecyclerViewPresenter : Presenter<RecyclerViewModel<String>>() {
 
-    override fun bindViewHolder(viewHolder: BaseViewHolder, item: ItemViewModel, position: Int) {
-        Logger.d("bindViewHolder: ${item.label}")
-        viewHolder.itemView.itemTextView.text = item.label
+    override val layout: Int = R.layout.recycler_view_item
+
+    override fun bindViewHolder(viewHolder: RecyclerView.ViewHolder, item: RecyclerViewModel<String>, position: Int) {
+        logv("bindViewHolder: ${item.model}")
+        viewHolder.itemView.itemTextView.text = item.model
     }
-
-    override fun getLayout(): Int = R.layout.recycler_view_item
-
-    override fun createViewHolder(layout: Int, parent: ViewGroup): BaseViewHolder = BaseViewHolder(layout, parent)
-
-    data class ItemViewModel(
-            var label: String? = null
-    )
 }

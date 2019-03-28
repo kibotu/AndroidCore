@@ -7,7 +7,7 @@ import io.realm.RealmResults
 
 class RlmItemDao(val realm: Realm) {
 
-    fun getItems(): LiveData<RealmResults<RlmItem>> {
-        return realm.where(RlmItem::class.java).findAllAsync().asLiveData()
-    }
+    fun getItems(): LiveData<RealmResults<RlmItem>> = realm.where(RlmItem::class.java)
+        .findAllAsync()
+        .asLiveData()
 }
