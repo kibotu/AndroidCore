@@ -5,7 +5,7 @@ import java.util.concurrent.atomic.AtomicInteger
 /**
  * Created by [Jan Rabe](https://about.me/janrabe).
  */
-internal object UIDGenerator {
+object UIDGenerator {
 
     private const val START_UID = 0
 
