@@ -183,6 +183,9 @@ dependencies {
 
     compileOnly libs.okhttp3ResponseEcho
     compileOnly libs.androidAnimationsActions
+
+    compileOnly libs.koinAndroidxScope
+    compileOnly libs.koinAndroidxViewmodel
 }
 
 // region override support library version
