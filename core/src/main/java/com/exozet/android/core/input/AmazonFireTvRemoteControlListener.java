@@ -7,10 +7,8 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import net.kibotu.logger.LogTag;
 
 /**
- * Created by paul.sprotte on 19.05.16.
  * <p>
  * <a href="https://developer.amazon.com/appsandservices/solutions/devices/fire-tv/docs/amazon-fire-tv-remote-input">https://developer.amazon.com/appsandservices/solutions/devices/fire-tv/docs/amazon-fire-tv-remote-input</a>
  * <p>
@@ -51,7 +49,7 @@ import net.kibotu.logger.LogTag;
  *  Fast Forward	                            KEYCODE_MEDIA_FAST_FORWARD	Fast Forward or skip ahead in media playback contexts.
  * </pre>
  */
-public class AmazonFireTvRemoteControlListener implements KeyListener, View.OnKeyListener, DialogInterface.OnKeyListener, LogTag {
+public class AmazonFireTvRemoteControlListener implements KeyListener, View.OnKeyListener, DialogInterface.OnKeyListener{
 
     private View currentView;
 
@@ -212,7 +210,6 @@ public class AmazonFireTvRemoteControlListener implements KeyListener, View.OnKe
     }
 
     @NonNull
-    @Override
     public String tag() {
         return AmazonFireTvRemoteControlListener.class.getSimpleName();
     }

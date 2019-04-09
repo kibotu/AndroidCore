@@ -1,7 +1,7 @@
 package com.exozet.android.core.services.notifications
 
 import android.util.Log
-import com.exozet.android.core.base.BaseApplication.Companion.isDebugMode
+import com.exozet.android.core.BuildConfig
 import com.exozet.android.core.services.notifications.PushNotificationPublisher.sendNotification
 import com.firebase.jobdispatcher.FirebaseJobDispatcher
 import com.firebase.jobdispatcher.GooglePlayDriver
@@ -94,7 +94,7 @@ open class FBMessagingService : FirebaseMessagingService() {
 
             Log.d(TAG, "Short lived task is done.")
 
-            if (isDebugMode()) {
+            if (BuildConfig.DEBUG) {
                 toast("Push: " + it?.notification?.body)
             }
 

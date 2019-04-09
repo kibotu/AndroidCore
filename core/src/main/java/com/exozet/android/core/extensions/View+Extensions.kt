@@ -4,6 +4,8 @@ package com.exozet.android.core.extensions
 
 import android.animation.Animator
 import android.annotation.TargetApi
+import android.app.Activity
+import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.Rect
@@ -19,6 +21,7 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.*
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -32,6 +35,7 @@ import com.dtx12.android_animations_actions.actions.Interpolations
 import com.exozet.android.core.utils.MathExtensions
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.textfield.TextInputLayout
+import net.kibotu.ContextHelper
 
 /**
  * Created by [Jan Rabe](https://about.me/janrabe).
@@ -341,3 +345,35 @@ fun View.disable() {
 
 val TextView.textTrimmed
     get() = text.toString().trimMargin()
+
+
+fun Array<View?>?.hideOnLostFocus(event: MotionEvent) {
+    if (this == null)
+        return
+
+    var hit = false
+
+    for (view in this)
+        hit = hit or (view?.screenLocation?.contains(event.x.toInt(), event.y.toInt()) ?: false)
+
+    if (event.action == MotionEvent.ACTION_DOWN && !hit)
+        hideKeyboard()
+}
+
+val View.screenLocation: Rect
+    get() {
+        val location = IntArray(2)
+        getLocationOnScreen(location)
+        return Rect().apply {
+            left = location[0]
+            top = location[1]
+            right = location[0] + width
+            bottom = location[1] + height
+        }
+    }
+
+fun View.hideKeyboard() = (context?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager)?.hideSoftInputFromWindow(windowToken, 0)
+
+fun Activity.hideKeyboard() = contentRootView.hideKeyboard()
+
+fun hideKeyboard() = ContextHelper.getAppCompatActivity()?.hideKeyboard()

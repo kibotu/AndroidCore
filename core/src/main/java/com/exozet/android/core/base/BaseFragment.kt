@@ -11,13 +11,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.exozet.android.core.R
 import com.exozet.android.core.extensions.currentFragment
+import com.exozet.android.core.extensions.hideOnLostFocus
 import com.exozet.android.core.interfaces.BackPress
-import com.exozet.android.core.interfaces.DispatchTouchEvent
+import com.exozet.android.core.interfaces.DispatchTouchEventHandler
 import com.exozet.android.core.misc.UIDGenerator
 import com.exozet.android.core.utils.ViewExtensions.hideOnLostFocus
 import com.google.android.material.snackbar.Snackbar
-import net.kibotu.logger.LogTag
 import net.kibotu.logger.Logger
+import net.kibotu.logger.Logger.loge
+import net.kibotu.logger.Logger.logv
+import net.kibotu.logger.TAG
 
 /**
  * Created by jan.rabe on 19/07/16.
@@ -25,26 +28,27 @@ import net.kibotu.logger.Logger
  *
  *
  */
-abstract class BaseFragment : Fragment(), LogTag, DispatchTouchEvent, BackPress, FragmentManager.OnBackStackChangedListener {
+@Deprecated("just demo, don't use")
+abstract class BaseFragment : Fragment(), DispatchTouchEventHandler, BackPress, FragmentManager.OnBackStackChangedListener {
 
     /**
      * [Restoring instance state after fragment transactions.](http://stackoverflow.com/a/15314508)
      */
     private var savedState: Bundle? = null
 
-    protected val uid = UIDGenerator.newUID()
+    protected val uuid = UIDGenerator.newUID()
 
     protected abstract val layout: Int
 
     @ColorRes
-    open fun onEnterStatusBarColor(): Int {
-        return R.color.primary
-    }
+    open fun onEnterStatusBarColor() = R.color.primary
+
+    override val viewsHideKeyboardOnFocusLoss: Array<View?>? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(layout, container, false)
 
-        Logger.v("${tag()} [onCreateView] $savedInstanceState")
+        logv("[onCreateView] $savedInstanceState")
 
         /**
          * If the Fragment was destroyed in between (screen rotation), we need to recover the savedState first.
@@ -66,7 +70,7 @@ abstract class BaseFragment : Fragment(), LogTag, DispatchTouchEvent, BackPress,
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Logger.v("${tag()} [onViewCreated] $savedInstanceState")
+        logv("[onViewCreated] $savedInstanceState")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -75,28 +79,30 @@ abstract class BaseFragment : Fragment(), LogTag, DispatchTouchEvent, BackPress,
          * If onSaveInstanceState() is called first, we don't have onSaveInstanceState, so we need to call onSaveInstanceState()
          * => (?:) operator inevitable!
          */
-        outState.putBundle(javaClass.simpleName, if (savedState != null)
-            savedState
-        else
-            onSaveInstanceState())
+        outState.putBundle(
+            javaClass.simpleName, if (savedState != null)
+                savedState
+            else
+                onSaveInstanceState()
+        )
 
         super.onSaveInstanceState(outState)
     }
 
     override fun onResume() {
         super.onResume()
-        Logger.v("${tag()} [onResume]")
+        logv("[onResume]")
         activity!!.supportFragmentManager.addOnBackStackChangedListener(this)
     }
 
     override fun onPause() {
         super.onPause()
-        Logger.v("${tag()} [onPause]")
+        logv("[onPause]")
         activity!!.supportFragmentManager.removeOnBackStackChangedListener(this)
     }
 
     override fun onDestroyView() {
-        Logger.v("${tag()} [onDestroyView]")
+        logv("[onDestroyView]")
         savedState = onSaveInstanceState()
         super.onDestroyView()
     }
@@ -107,7 +113,7 @@ abstract class BaseFragment : Fragment(), LogTag, DispatchTouchEvent, BackPress,
     @CallSuper
     protected open fun onSaveInstanceState(): Bundle {
 
-        Logger.v("${tag()} [onSaveInstanceState]")
+        logv("[onSaveInstanceState]")
 
         // save state
 
@@ -121,18 +127,15 @@ abstract class BaseFragment : Fragment(), LogTag, DispatchTouchEvent, BackPress,
      */
     protected open fun onRestoreSavedState(savedInstanceState: Bundle) {
         // restore saved state
-        Logger.v("${tag()} [onRestoreSavedState] $savedInstanceState")
+        logv("[onRestoreSavedState] $savedInstanceState")
     }
-
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
-        val views = viewsThatHideKeyboardWhenLostFocus()
-        if (views != null)
-            hideOnLostFocus(event, *views)
+        try {
+            viewsHideKeyboardOnFocusLoss.hideOnLostFocus(event)
+        } catch (e: Exception) {
+            loge("[$uuid-dispatchTouchEvent] ${e.message}")
+        }
         return false
-    }
-
-    protected fun viewsThatHideKeyboardWhenLostFocus(): Array<View>? {
-        return null
     }
 
     override fun consumeBackPress(): Boolean {
@@ -145,8 +148,6 @@ abstract class BaseFragment : Fragment(), LogTag, DispatchTouchEvent, BackPress,
 
         return false
     }
-
-    override fun tag() = javaClass.simpleName + "[" + uid + "]"
 
     fun setArgument(bundle: Bundle): BaseFragment {
         arguments = bundle
@@ -162,7 +163,7 @@ abstract class BaseFragment : Fragment(), LogTag, DispatchTouchEvent, BackPress,
     protected val isCurrentFragment: Boolean
         get() {
             val fragment = currentFragment()
-            return fragment is BaseFragment && fragment.tag() == tag()
+            return fragment is BaseFragment && fragment.TAG == TAG
         }
 
     override fun onBackStackChanged() {

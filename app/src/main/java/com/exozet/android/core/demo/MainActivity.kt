@@ -5,6 +5,7 @@ import com.exozet.android.core.base.BaseActivity
 import com.exozet.android.core.demo.features.realmLiveData.ViewModelSampleFragment
 import com.exozet.android.core.extensions.replaceFragment
 import com.exozet.android.core.services.notifications.GcmSender
+import net.kibotu.logger.Logger.logv
 
 class MainActivity : BaseActivity() {
 
@@ -16,6 +17,8 @@ class MainActivity : BaseActivity() {
 //            replaceFragment(WidgetSampleFragment.newInstance())
             replaceFragment(ViewModelSampleFragment())
         }
+
+        logv("test")
 
         GcmSender.API_KEY = ""
 

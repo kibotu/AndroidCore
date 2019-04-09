@@ -25,6 +25,7 @@ import io.fabric.sdk.android.Fabric
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import net.danlew.android.joda.JodaTimeAndroid
+import net.kibotu.logger.Level
 import net.kibotu.logger.LogcatLogger
 import net.kibotu.logger.Logger
 import java.util.*
@@ -32,7 +33,7 @@ import java.util.*
 /**
  * Created by [Jan Rabe](https://about.me/janrabe).
  */
-
+@Deprecated("just demo, don't use")
 open class BaseApplication : MultiDexApplication() {
 
     private val connectivityListener: (ConnectivityEvent) -> Unit
@@ -49,8 +50,6 @@ open class BaseApplication : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
-
-        Logger.with(this)
 
         initLogger()
         JodaTimeAndroid.init(this)
@@ -80,17 +79,21 @@ open class BaseApplication : MultiDexApplication() {
 
     fun initRealm() {
         Realm.init(this)
-        Realm.setDefaultConfiguration(RealmConfiguration.Builder()
+        Realm.setDefaultConfiguration(
+            RealmConfiguration.Builder()
                 .deleteRealmIfMigrationNeeded()
-                .build())
+                .build()
+        )
     }
 
     private fun initLogger() {
 
-        Logger.addLogger(LogcatLogger(), if (R.bool.enable_logging.resBoolean)
-            Logger.Level.VERBOSE
-        else
-            Logger.Level.SILENT)
+        Logger.addLogger(
+            LogcatLogger(), if (R.bool.enable_logging.resBoolean)
+                Level.VERBOSE
+            else
+                Level.SILENT
+        )
     }
 
     private fun initConnectivityChangeListener(context: Context) {

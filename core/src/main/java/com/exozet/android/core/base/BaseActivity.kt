@@ -14,6 +14,7 @@ import com.google.android.gms.common.GoogleApiAvailability
 /**
  * Created by armando.shkurti on 14/12/17.
  */
+@Deprecated("just demo, don't use")
 abstract class BaseActivity : AppCompatActivity() {
 
     var debugMenu: DebugMenu? = null

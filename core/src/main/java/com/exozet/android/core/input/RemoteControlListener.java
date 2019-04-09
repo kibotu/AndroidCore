@@ -7,7 +7,6 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import net.kibotu.logger.LogTag;
 
 /**
  * Created by Jan Rabe on 14/08/15.
@@ -51,13 +50,12 @@ import net.kibotu.logger.LogTag;
  *  ----------------------------------------------------------------------------------------------------
  *  </pre>
  */
-public class RemoteControlListener implements KeyListener, View.OnKeyListener, DialogInterface.OnKeyListener, LogTag {
+public class RemoteControlListener implements KeyListener, View.OnKeyListener, DialogInterface.OnKeyListener{
 
     @Nullable
     private View currentView;
 
     @NonNull
-    @Override
     final public String tag() {
         return RemoteControlListener.class.getSimpleName();
     }

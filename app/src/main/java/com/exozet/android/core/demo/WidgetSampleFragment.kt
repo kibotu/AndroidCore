@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.layout_toolbar.*
  */
 class WidgetSampleFragment : BaseFragment() {
 
-    override val layout: Int = R.layout.fragment_widget_sample
+    override val layout = R.layout.fragment_widget_sample
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

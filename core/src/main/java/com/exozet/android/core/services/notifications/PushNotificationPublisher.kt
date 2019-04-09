@@ -1,5 +1,6 @@
 package com.exozet.android.core.services.notifications
 
+import android.app.Activity
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -11,7 +12,6 @@ import android.os.Build.VERSION_CODES.O
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.exozet.android.core.R
-import com.exozet.android.core.base.BaseActivity
 import com.exozet.android.core.extensions.resString
 import net.kibotu.ContextHelper
 
@@ -26,20 +26,22 @@ object PushNotificationPublisher {
      * @param messageBody FCM message body received.
      */
     fun sendNotification(context: Context = ContextHelper.getApplication()!!, title: String, messageBody: String) {
-        val intent = Intent(context, BaseActivity::class.java)
+        val intent = Intent(context, Activity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        val pendingIntent = PendingIntent.getActivity(context, NOTIFICATION_REQUEST_CODE /* Request code */, intent,
-                PendingIntent.FLAG_ONE_SHOT)
+        val pendingIntent = PendingIntent.getActivity(
+            context, NOTIFICATION_REQUEST_CODE /* Request code */, intent,
+            PendingIntent.FLAG_ONE_SHOT
+        )
 
         val channelId = R.string.default_notification_channel_id.resString
         val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder = NotificationCompat.Builder(context, channelId)
-                .setSmallIcon(R.drawable.ic_launcher)
-                .setContentTitle(title)
-                .setContentText(messageBody)
-                .setAutoCancel(true)
-                .setSound(defaultSoundUri)
-                .setContentIntent(pendingIntent)
+            .setSmallIcon(R.drawable.ic_launcher)
+            .setContentTitle(title)
+            .setContentText(messageBody)
+            .setAutoCancel(true)
+            .setSound(defaultSoundUri)
+            .setContentIntent(pendingIntent)
 
         val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 

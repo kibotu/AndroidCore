@@ -5,14 +5,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.Rect;
-import android.graphics.Shader;
-import android.graphics.Typeface;
+import android.graphics.*;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -25,28 +18,10 @@ import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.*;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.annotation.ColorInt;
-import androidx.annotation.ColorRes;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RawRes;
+import android.widget.*;
+import androidx.annotation.*;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -76,6 +51,7 @@ final public class ViewExtensions {
         throw new IllegalAccessException();
     }
 
+    @Deprecated
     public static void setOneTimeGlobalLayoutListener(@NonNull final View v, @NonNull final ViewTreeObserver.OnGlobalLayoutListener onGlobalLayoutListener) {
         v.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -101,6 +77,7 @@ final public class ViewExtensions {
         v.setLayoutParams(params);
     }
 
+    @Deprecated
     public static void getLocationOnScreen(@Nullable final View view, @Nullable final Rect src, @Nullable Rect dst) {
         if (view == null || src == null)
             return;
@@ -136,6 +113,7 @@ final public class ViewExtensions {
     }
 
     @NonNull
+    @Deprecated
     public static int[] getScreenLocation(@NonNull final View view) {
         final int[] locations = new int[2];
         view.getLocationOnScreen(locations);
@@ -187,6 +165,7 @@ final public class ViewExtensions {
         return drawable;
     }
 
+    @Deprecated
     public static View getContentRoot() {
         return getActivity()
                 .getWindow()
@@ -212,6 +191,7 @@ final public class ViewExtensions {
     }
 
     @NonNull
+    @Deprecated
     public static Rect getLocationOnScreen(@NonNull final View textView) {
         final Rect rect = new Rect();
         final int[] location = new int[2];
@@ -226,6 +206,7 @@ final public class ViewExtensions {
         return rect;
     }
 
+    @Deprecated
     public static void hideOnLostFocus(@NonNull final MotionEvent event, @Nullable final View... views) {
 
         if (views == null)
@@ -240,6 +221,7 @@ final public class ViewExtensions {
             hideKeyboard(views[0]);
     }
 
+    @Deprecated
     public static void sendEmail(final String address, final String subject, final Spanned body, final int requestCode, final String popupTitle) {
         final Intent i = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", address, null));
         i.putExtra(Intent.EXTRA_SUBJECT, subject);
@@ -258,6 +240,7 @@ final public class ViewExtensions {
         getContext().startActivity(intent);
     }
 
+    @Deprecated
     public static void setViewBackgroundWithoutResettingPadding(@NonNull final View v, @DrawableRes final int backgroundResId) {
         final int paddingBottom = v.getPaddingBottom(), paddingLeft = v.getPaddingLeft();
         final int paddingRight = v.getPaddingRight(), paddingTop = v.getPaddingTop();
@@ -265,13 +248,13 @@ final public class ViewExtensions {
         v.setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
     }
 
+    @Deprecated
     public static void setViewBackgroundColorWithoutResettingPadding(@NonNull final View v, @ColorRes final int color) {
         final int paddingBottom = v.getPaddingBottom(), paddingLeft = v.getPaddingLeft();
         final int paddingRight = v.getPaddingRight(), paddingTop = v.getPaddingTop();
         v.setBackgroundColor(v.getResources().getColor(color));
         v.setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
     }
-
 
     public static void addFadeOutToText(@Nullable final TextView textView, final int galleryHeight, @ColorRes final int fromColor, @ColorRes final int toColor) {
         if (textView == null) {
@@ -318,6 +301,7 @@ final public class ViewExtensions {
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
 
+    @Deprecated
     public static View getContentRoot(@NonNull final Activity context) {
         return context
                 .getWindow()

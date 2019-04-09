@@ -2,7 +2,6 @@ package com.exozet.android.core.utils;
 
 import android.os.Bundle;
 import android.util.Log;
-
 import androidx.annotation.AnimRes;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
@@ -10,14 +9,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
 import com.exozet.android.core.BuildConfig;
 import com.exozet.android.core.R;
 import com.exozet.android.core.interfaces.ChainableCommand;
 import com.exozet.android.core.interfaces.annotations.Transit;
-
 import net.kibotu.ContextHelper;
-import net.kibotu.logger.LogTag;
 import net.kibotu.logger.Logger;
 
 import static net.kibotu.ContextHelper.getAppCompatActivity;
@@ -103,32 +99,32 @@ final public class FragmentExtensions {
     // region transaction type
 
     @NonNull
-    public static <T extends Fragment & LogTag> ChainableCommand<FragmentTransaction> add(@NonNull final T fragment, @NonNull final ChainableCommand<FragmentTransaction> command) {
+    public static <T extends Fragment> ChainableCommand<FragmentTransaction> add(@NonNull final T fragment, @NonNull final ChainableCommand<FragmentTransaction> command) {
         if (LOGGING_ENABLED) {
             final Fragment currentFragment = currentFragment();
             final String tag = currentFragment != null ? currentFragment.getClass().getSimpleName() : "[empty]";
-            Logger.v(TAG, "[add] " + tag + " with " + fragment.tag());
+            Logger.v(TAG, "[add] " + tag + " with " + fragment.getClass().getCanonicalName());
         }
-        return t -> command.execute(t).add(getFragmentContainerId(), fragment, fragment.tag());
+        return t -> command.execute(t).add(getFragmentContainerId(), fragment, fragment.getClass().getCanonicalName());
     }
 
 
     @NonNull
-    public static <T extends Fragment & LogTag> ChainableCommand<FragmentTransaction> replace(@NonNull final T fragment, @NonNull final ChainableCommand<FragmentTransaction> command) {
+    public static <T extends Fragment> ChainableCommand<FragmentTransaction> replace(@NonNull final T fragment, @NonNull final ChainableCommand<FragmentTransaction> command) {
         if (LOGGING_ENABLED) {
             final Fragment currentFragment = currentFragment();
             final String tag = currentFragment != null ? currentFragment.getClass().getSimpleName() : "[empty]";
-            Logger.v(TAG, "[replace] " + tag + " with " + fragment.tag());
+            Logger.v(TAG, "[replace] " + tag + " with " + fragment.getClass().getCanonicalName());
         }
-        return t -> command.execute(t).replace(getFragmentContainerId(), fragment, fragment.tag());
+        return t -> command.execute(t).replace(getFragmentContainerId(), fragment, fragment.getClass().getCanonicalName());
     }
 
     @NonNull
-    public static <T extends Fragment & LogTag> ChainableCommand<FragmentTransaction> remove(@NonNull final T fragment, @NonNull final ChainableCommand<FragmentTransaction> command) {
+    public static <T extends Fragment> ChainableCommand<FragmentTransaction> remove(@NonNull final T fragment, @NonNull final ChainableCommand<FragmentTransaction> command) {
         if (LOGGING_ENABLED) {
             final Fragment currentFragment = currentFragment();
             final String tag = currentFragment != null ? currentFragment.getClass().getSimpleName() : "[empty]";
-            Logger.v(TAG, "[remove] " + tag + " with " + fragment.tag());
+            Logger.v(TAG, "[remove] " + tag + " with " + fragment.getClass().getCanonicalName());
         }
         return t -> command.execute(t).remove(fragment);
     }
@@ -282,48 +278,48 @@ final public class FragmentExtensions {
 
     // region convenient methods for add
 
-    public static <T extends Fragment & LogTag> void addByFading(@NonNull final T fragment) {
+    public static <T extends Fragment> void addByFading(@NonNull final T fragment) {
         commit(add(fragment, fade(beginTransaction())));
     }
 
-    public static <T extends Fragment & LogTag> void add(@NonNull final T fragment) {
+    public static <T extends Fragment> void add(@NonNull final T fragment) {
         commit(add(fragment, beginTransaction()));
     }
 
-    public static <T extends Fragment & LogTag> void addToBackStackByFading(@NonNull final T fragment) {
-        commit(addToBackStack(fragment.tag(), add(fragment, fade(beginTransaction()))));
+    public static <T extends Fragment> void addToBackStackByFading(@NonNull final T fragment) {
+        commit(addToBackStack(fragment.getClass().getCanonicalName(), add(fragment, fade(beginTransaction()))));
     }
 
     // endregion
 
     // region convenient methods for replace
 
-    public static <T extends Fragment & LogTag> void replace(@NonNull final T fragment) {
+    public static <T extends Fragment> void replace(@NonNull final T fragment) {
         commit(replace(fragment, beginTransaction()));
     }
 
-    public static <T extends Fragment & LogTag> void replaceByFading(@NonNull final T fragment) {
+    public static <T extends Fragment> void replaceByFading(@NonNull final T fragment) {
         commit(replace(fragment, fade(beginTransaction())));
     }
 
-    public static <T extends Fragment & LogTag> void replaceToBackStackByFading(@NonNull final T fragment) {
-        commit(addToBackStack(fragment.tag(), replace(fragment, fade(beginTransaction()))));
+    public static <T extends Fragment> void replaceToBackStackByFading(@NonNull final T fragment) {
+        commit(addToBackStack(fragment.getClass().getCanonicalName(), replace(fragment, fade(beginTransaction()))));
     }
 
     // endregion
 
     // region convenient methods for remove
 
-    public static <T extends Fragment & LogTag> void remove(@NonNull final T fragment) {
+    public static <T extends Fragment> void remove(@NonNull final T fragment) {
         commit(remove(fragment, beginTransaction()));
     }
 
-    public static <T extends Fragment & LogTag> void removeByFading(@NonNull final T fragment) {
+    public static <T extends Fragment> void removeByFading(@NonNull final T fragment) {
         commit(remove(fragment, fade(beginTransaction())));
     }
 
-    public static <T extends Fragment & LogTag> void removeToBackStackByFading(@NonNull final T fragment) {
-        commit(addToBackStack(fragment.tag(), remove(fragment, fade(beginTransaction()))));
+    public static <T extends Fragment> void removeToBackStackByFading(@NonNull final T fragment) {
+        commit(addToBackStack(fragment.getClass().getCanonicalName(), remove(fragment, fade(beginTransaction()))));
     }
 
     // endregion

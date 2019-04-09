@@ -2,7 +2,7 @@ package com.exozet.android.core.services.network
 
 import android.annotation.SuppressLint
 import android.content.Context
-import com.exozet.android.core.extensions.logv
+import net.kibotu.logger.Logger.logv
 import java.security.KeyManagementException
 import java.security.KeyStore
 import java.security.NoSuchAlgorithmException
