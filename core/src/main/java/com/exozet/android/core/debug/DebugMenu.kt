@@ -1,7 +1,5 @@
 package com.exozet.android.core.debug
 
-import android.os.Build
-import android.os.StrictMode
 import android.view.View
 import com.exozet.android.core.R
 import com.exozet.android.core.extensions.resBoolean

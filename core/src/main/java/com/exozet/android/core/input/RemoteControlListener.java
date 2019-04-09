@@ -3,7 +3,6 @@ package com.exozet.android.core.input;
 import android.content.DialogInterface;
 import android.view.KeyEvent;
 import android.view.View;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -50,7 +49,7 @@ import androidx.annotation.Nullable;
  *  ----------------------------------------------------------------------------------------------------
  *  </pre>
  */
-public class RemoteControlListener implements KeyListener, View.OnKeyListener, DialogInterface.OnKeyListener{
+public class RemoteControlListener implements KeyListener, View.OnKeyListener, DialogInterface.OnKeyListener {
 
     @Nullable
     private View currentView;

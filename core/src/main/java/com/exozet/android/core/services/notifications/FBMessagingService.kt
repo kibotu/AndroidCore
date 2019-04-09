@@ -60,8 +60,10 @@ open class FBMessagingService : FirebaseMessagingService() {
 
         // Check if message contains a notification payload.
         if (remoteMessage.notification != null) {
-            Log.d(TAG, "Message Notification Title: " + (remoteMessage.notification?.title
-                    ?: "no title") + " Body: " + (remoteMessage.notification?.body ?: "no body"))
+            Log.d(
+                TAG, "Message Notification Title: " + (remoteMessage.notification?.title
+                    ?: "no title") + " Body: " + (remoteMessage.notification?.body ?: "no body")
+            )
 
             onReceiveRemoteMessage.invoke(remoteMessage)
         }
@@ -79,9 +81,9 @@ open class FBMessagingService : FirebaseMessagingService() {
         // [START dispatch_job]
         val dispatcher = FirebaseJobDispatcher(GooglePlayDriver(this))
         val myJob = dispatcher.newJobBuilder()
-                .setService(FBNotificationJobService::class.java)
-                .setTag("my-job-tag")
-                .build()
+            .setService(FBNotificationJobService::class.java)
+            .setTag("my-job-tag")
+            .build()
         dispatcher.schedule(myJob)
         // [END dispatch_job]
     }
@@ -101,8 +103,9 @@ open class FBMessagingService : FirebaseMessagingService() {
             //show notification if app is not running
             if (!ContextHelper.isRunning.get()) {
                 sendNotification(
-                        messageBody = it?.notification?.body ?: "",
-                        title = it?.notification?.title ?: "")
+                    messageBody = it?.notification?.body ?: "",
+                    title = it?.notification?.title ?: ""
+                )
             }
         }
     }

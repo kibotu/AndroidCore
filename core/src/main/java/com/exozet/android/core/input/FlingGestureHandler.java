@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-
 import androidx.annotation.NonNull;
 
 /**

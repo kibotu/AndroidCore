@@ -10,7 +10,6 @@ import android.provider.Settings;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -19,9 +18,7 @@ import androidx.core.content.ContextCompat;
 
 import static android.os.Build.VERSION.SDK_INT;
 import static android.os.Build.VERSION_CODES.KITKAT;
-import static net.kibotu.ContextHelper.getActivity;
-import static net.kibotu.ContextHelper.getApplication;
-import static net.kibotu.ContextHelper.getFragmentActivity;
+import static net.kibotu.ContextHelper.*;
 
 /**
  * Created by Jan Rabe on 24/09/15.

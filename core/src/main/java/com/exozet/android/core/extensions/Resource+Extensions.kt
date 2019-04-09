@@ -5,10 +5,12 @@ package com.exozet.android.core.extensions
 import android.animation.Animator
 import android.animation.AnimatorInflater
 import android.content.Context
+import android.content.res.Configuration
 import android.content.res.Resources
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build.VERSION.SDK_INT
+import android.os.Build.VERSION_CODES.JELLY_BEAN_MR1
 import android.os.Build.VERSION_CODES.N
 import android.text.Html
 import android.text.Spanned
@@ -17,11 +19,14 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.annotation.DrawableRes
+import androidx.annotation.RequiresApi
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import com.exozet.android.core.R
 import net.kibotu.ContextHelper
+import net.kibotu.ContextHelper.getApplication
 import net.kibotu.logger.Logger
+import java.util.*
 
 
 /**
@@ -172,3 +177,40 @@ val Uri.isMailToLink: Boolean
     get() = toString().startsWith("mailto:")
 
 
+/**
+ * https://stackoverflow.com/a/9475663/1006741
+ *
+ * @param id     string resource id
+ * @param locale locale
+ * @return localized string
+ */
+fun getLocalizedString(@StringRes id: Int, locale: Locale): String {
+
+    if (SDK_INT > JELLY_BEAN_MR1) {
+        return getLocalizedResources(getApplication()!!, locale).getString(id)
+    }
+
+    val res = getApplication()!!.resources
+    val conf = res.configuration
+    val savedLocale = conf.locale
+    conf.locale = locale // whatever you want here
+    res.updateConfiguration(conf, null) // second arg null means don't change
+
+    // retrieve resources from desired locale
+    val text = res.getString(id)
+
+    // restore original locale
+    conf.locale = savedLocale
+    res.updateConfiguration(conf, null)
+
+    return text
+}
+
+@RequiresApi(api = JELLY_BEAN_MR1)
+fun getLocalizedResources(context: Context, desiredLocale: Locale): Resources {
+    var conf = context.resources.configuration
+    conf = Configuration(conf)
+    conf.setLocale(desiredLocale)
+    val localizedContext = context.createConfigurationContext(conf)
+    return localizedContext.resources
+}

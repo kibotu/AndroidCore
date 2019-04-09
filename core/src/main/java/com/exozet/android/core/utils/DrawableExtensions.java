@@ -3,7 +3,6 @@ package com.exozet.android.core.utils;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-
 import androidx.annotation.Nullable;
 
 import static net.kibotu.ContextHelper.getApplication;
@@ -16,7 +15,7 @@ public class DrawableExtensions {
     @Nullable
     public static Drawable scaleImage(@Nullable Drawable image, float scaleFactor) {
 
-        if ((image == null) || !(image instanceof BitmapDrawable)) {
+        if (!(image instanceof BitmapDrawable)) {
             return image;
         }
 

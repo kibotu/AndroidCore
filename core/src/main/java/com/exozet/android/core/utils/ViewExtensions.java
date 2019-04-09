@@ -34,10 +34,10 @@ import java.util.HashMap;
 import java.util.List;
 
 import static android.os.Build.VERSION.SDK_INT;
+import static com.exozet.android.core.extensions.ResourceExtensions.getResColor;
 import static com.exozet.android.core.utils.BitmapExtensions.getBitmap;
 import static com.exozet.android.core.utils.DeviceExtensions.hideKeyboard;
 import static com.exozet.android.core.utils.MathExtensions.dpToPx;
-import static com.exozet.android.core.utils.ResourceExtensions.color;
 import static kotlin.math.MathKt.roundToInt;
 import static net.kibotu.ContextHelper.getActivity;
 import static net.kibotu.ContextHelper.getContext;
@@ -329,7 +329,7 @@ final public class ViewExtensions {
     }
 
     public static void colorize(@NonNull final TextView text, @ColorRes final int color) {
-        text.setTextColor(color(color));
+        text.setTextColor(getResColor(color));
     }
 
     @Nullable
@@ -363,8 +363,8 @@ final public class ViewExtensions {
     }
 
     public static void colorizeProgressBar(@NonNull final ProgressBar progressBar, @ColorRes final int progressDrawable, @ColorRes final int indeterminateDrawable) {
-        progressBar.getProgressDrawable().setColorFilter(color(progressDrawable), PorterDuff.Mode.SRC_IN);
-        progressBar.getIndeterminateDrawable().setColorFilter(color(indeterminateDrawable), PorterDuff.Mode.SRC_IN);
+        progressBar.getProgressDrawable().setColorFilter(getResColor(progressDrawable), PorterDuff.Mode.SRC_IN);
+        progressBar.getIndeterminateDrawable().setColorFilter(getResColor(indeterminateDrawable), PorterDuff.Mode.SRC_IN);
     }
 
     public static void setSize(@NonNull final View searchIcon, final int widthInDp, final int heightInDp) {
@@ -377,7 +377,7 @@ final public class ViewExtensions {
     public static long getDuration(String videoUrl) {
         MediaMetadataRetriever mmr = new MediaMetadataRetriever();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            mmr.setDataSource(videoUrl, new HashMap<String, String>());
+            mmr.setDataSource(videoUrl, new HashMap<>());
         } else {
             mmr.setDataSource(videoUrl);
         }
@@ -385,7 +385,7 @@ final public class ViewExtensions {
     }
 
     public static void changeStatusBarColorRes(@ColorRes final int color) {
-        changeStatusBarColor(color(color));
+        changeStatusBarColor(getResColor(color));
     }
 
     public static void changeStatusBarColor(@ColorInt final int color) {
@@ -401,7 +401,7 @@ final public class ViewExtensions {
         if (view != null && view.getBackground() instanceof ColorDrawable)
             return ((ColorDrawable) view.getBackground()).getColor();
 
-        return color(android.R.color.transparent);
+        return getResColor(android.R.color.transparent);
     }
 
     public static void forceRipple(View view) {
@@ -442,6 +442,6 @@ final public class ViewExtensions {
     }
 
     public static void setEditTextUnderlineColor(EditText editText, @ColorRes int colorId) {
-        editText.getBackground().setColorFilter(color(colorId), PorterDuff.Mode.SRC_IN);
+        editText.getBackground().setColorFilter(getResColor(colorId), PorterDuff.Mode.SRC_IN);
     }
 }

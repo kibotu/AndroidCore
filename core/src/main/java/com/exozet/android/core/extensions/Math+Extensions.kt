@@ -26,6 +26,7 @@ fun Double.clamp(min: Double, max: Double): Double {
     if (this < min) return min
     return if (this > max) max else this
 }
+
 /**
  * Calculates the percentage of a value in a given range.
  *

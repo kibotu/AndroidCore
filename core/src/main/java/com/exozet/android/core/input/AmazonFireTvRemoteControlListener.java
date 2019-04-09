@@ -3,7 +3,6 @@ package com.exozet.android.core.input;
 import android.content.DialogInterface;
 import android.view.KeyEvent;
 import android.view.View;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -49,7 +48,7 @@ import androidx.annotation.Nullable;
  *  Fast Forward	                            KEYCODE_MEDIA_FAST_FORWARD	Fast Forward or skip ahead in media playback contexts.
  * </pre>
  */
-public class AmazonFireTvRemoteControlListener implements KeyListener, View.OnKeyListener, DialogInterface.OnKeyListener{
+public class AmazonFireTvRemoteControlListener implements KeyListener, View.OnKeyListener, DialogInterface.OnKeyListener {
 
     private View currentView;
 

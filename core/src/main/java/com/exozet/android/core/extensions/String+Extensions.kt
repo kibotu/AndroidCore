@@ -5,8 +5,10 @@ package com.exozet.android.core.extensions
 import android.content.Intent
 import android.net.Uri
 import android.text.TextUtils
+import android.text.TextUtils.isEmpty
 import com.crashlytics.android.Crashlytics
 import com.exozet.android.core.provider.GsonProvider
+import com.exozet.android.core.utils.ByteExtensions.validUTF8
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import io.fabric.sdk.android.services.network.HttpRequest
@@ -174,3 +176,32 @@ fun String.openDialPad() {
             }
         }
 }
+
+fun clamp(s: String?, maxLength: Int): String {
+    return if (isEmpty(s)) "" else s!!.substring(0, s.length.clamp(0, maxLength))
+}
+
+/**
+ * http://stackoverflow.com/a/1447720
+ */
+fun fixEncoding(latin1: String): String {
+    try {
+        val bytes = latin1.toByteArray(charset("ISO-8859-1"))
+        return if (!validUTF8(bytes)) latin1 else String(bytes, Charsets.UTF_8)
+    } catch (e: UnsupportedEncodingException) {
+        // Impossible, throw unchecked
+        throw IllegalStateException("No Latin1 or UTF-8: " + e.message)
+    }
+
+}
+
+fun surroundWithQuotes(msg: String) = String.format("\"%s\"", "" + msg)
+
+private fun escape(s: String): String {
+    return if (isEmpty(s))
+        ""
+    else
+        s.replace("\n", "\\n").replace("\r", "\\r")
+}
+
+fun length(string: String?) = if (isEmpty(string)) 0 else string!!.length

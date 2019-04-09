@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.KeyguardManager;
 import android.content.Context;
 import android.os.PowerManager;
-
 import androidx.annotation.RequiresPermission;
 
 import static android.Manifest.permission.DISABLE_KEYGUARD;

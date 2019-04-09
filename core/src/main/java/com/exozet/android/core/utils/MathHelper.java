@@ -6,7 +6,6 @@ import android.graphics.Point;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
-
 import net.kibotu.logger.Logger;
 
 import java.security.MessageDigest;

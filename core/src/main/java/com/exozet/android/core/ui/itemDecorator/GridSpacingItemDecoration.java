@@ -2,7 +2,6 @@ package com.exozet.android.core.ui.itemDecorator;
 
 import android.graphics.Rect;
 import android.view.View;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 

@@ -13,24 +13,24 @@ object GsonProvider {
     @JvmStatic
     val gson: Gson by lazy {
         GsonBuilder()
-                .disableHtmlEscaping()
-                .create()
+            .disableHtmlEscaping()
+            .create()
     }
 
     @JvmStatic
     val gsonPrettyPrinting: Gson by lazy {
         GsonBuilder()
-                .disableHtmlEscaping()
-                .setPrettyPrinting()
-                .create()
+            .disableHtmlEscaping()
+            .setPrettyPrinting()
+            .create()
     }
 
     @JvmStatic
     val gsonWithDate: Gson by lazy {
         GsonBuilder()
-                .disableHtmlEscaping()
-                .setPrettyPrinting()
-                .setDateFormat(TimestampConvert.iso8601Format())
-                .create()
+            .disableHtmlEscaping()
+            .setPrettyPrinting()
+            .setDateFormat(TimestampConvert.iso8601Format())
+            .create()
     }
 }

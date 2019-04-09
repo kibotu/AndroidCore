@@ -3,7 +3,6 @@ package com.exozet.android.core.utils;
 import android.graphics.Typeface;
 import android.view.View;
 import android.widget.TextView;
-
 import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 

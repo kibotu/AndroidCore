@@ -1,7 +1,6 @@
 package com.exozet.android.core.extensions
 
 import com.exozet.android.core.base.BaseTest
-import com.exozet.android.core.demo.R
 import com.google.common.truth.Truth
 import junit.framework.Assert
 import org.bouncycastle.pqc.math.linearalgebra.ByteUtils.fromHexString
@@ -100,8 +99,9 @@ class StringExtensionsTest : BaseTest() {
         val expected = "Dalek"
 
         Assert.assertEquals(
-                "For your device to get connected to $expected it needs to have the WIFI password.",
-                placeholderText.replace("\\\"%@\\\"", expected))
+            "For your device to get connected to $expected it needs to have the WIFI password.",
+            placeholderText.replace("\\\"%@\\\"", expected)
+        )
     }
 
     @Test
@@ -109,7 +109,8 @@ class StringExtensionsTest : BaseTest() {
 
         val hexString = "00112233445566778899AABBCCDDEEFF" //getString(R.string.pubnub_cipher_key);
 
-        val expected = byteArrayOf(0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88.toByte(), 0x99.toByte(), 0xaa.toByte(), 0xbb.toByte(), 0xcc.toByte(), 0xdd.toByte(), 0xee.toByte(), 0xff.toByte())
+        val expected =
+            byteArrayOf(0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88.toByte(), 0x99.toByte(), 0xaa.toByte(), 0xbb.toByte(), 0xcc.toByte(), 0xdd.toByte(), 0xee.toByte(), 0xff.toByte())
 
         Assert.assertEquals(Arrays.toString(expected), Arrays.toString(fromHexString(hexString)))
     }
@@ -117,6 +118,6 @@ class StringExtensionsTest : BaseTest() {
     @Test
     fun sha256() {
         Truth.assertThat("04-73-2F-02-93-C0".sha256())
-                .isEqualTo("0413e0cecd75d7bc0a463ed5593962257cfb4117b68c5fb3618ba4085721495e")
+            .isEqualTo("0413e0cecd75d7bc0a463ed5593962257cfb4117b68c5fb3618ba4085721495e")
     }
 }

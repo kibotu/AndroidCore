@@ -15,7 +15,6 @@ import com.exozet.android.core.extensions.hideOnLostFocus
 import com.exozet.android.core.interfaces.BackPress
 import com.exozet.android.core.interfaces.DispatchTouchEventHandler
 import com.exozet.android.core.misc.UIDGenerator
-import com.exozet.android.core.utils.ViewExtensions.hideOnLostFocus
 import com.google.android.material.snackbar.Snackbar
 import net.kibotu.logger.Logger
 import net.kibotu.logger.Logger.loge
@@ -129,6 +128,7 @@ abstract class BaseFragment : Fragment(), DispatchTouchEventHandler, BackPress, 
         // restore saved state
         logv("[onRestoreSavedState] $savedInstanceState")
     }
+
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
         try {
             viewsHideKeyboardOnFocusLoss.hideOnLostFocus(event)
