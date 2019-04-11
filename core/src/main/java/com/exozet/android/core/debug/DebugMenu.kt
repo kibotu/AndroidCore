@@ -2,6 +2,7 @@ package com.exozet.android.core.debug
 
 import android.view.View
 import com.exozet.android.core.R
+import com.exozet.android.core.extensions.onTrue
 import com.exozet.android.core.extensions.resBoolean
 import com.mikepenz.materialdrawer.Drawer
 import com.mikepenz.materialdrawer.DrawerBuilder
@@ -17,33 +18,26 @@ class DebugMenu {
 
     private var drawer: Drawer? = null
 
-    init {
-        if (R.bool.enable_debug_menu.resBoolean)
-            setupDebugMenu()
-    }
-
-    val isDrawerOpen: Boolean
+    val isDrawerOpen
         get() = drawer?.isDrawerOpen == true
 
-    fun closeDrawer() {
-        drawer?.closeDrawer()
-    }
+    fun closeDrawer() = drawer?.closeDrawer()
 
-    private fun setupDebugMenu() {
-
+    fun build() = R.bool.enable_debug_menu.resBoolean.onTrue {
         drawer = DrawerBuilder()
-            .withTranslucentStatusBar(true)
-            .withActivity(getActivity() ?: return)
+            .withTranslucentStatusBar(false)
+            .withActivity(getActivity()!!)
             .addDrawerItems(*createDebugMenuItems())
-            .withOnDrawerItemClickListener { view, position, iDrawerItem -> this.onDrawerItemClicked(view, position, iDrawerItem) }
+            .withOnDrawerItemClickListener(object : Drawer.OnDrawerItemClickListener {
+                override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean = onDrawerItemClicked(view, position, drawerItem)
+            })
             .build()
     }
 
-    private fun createDebugMenuItems(): Array<IDrawerItem<*, *>> {
-        return arrayOf()
-    }
+    private fun createDebugMenuItems(): Array<out IDrawerItem<*>> = arrayOf(
+    )
 
-    private fun onDrawerItemClicked(@Suppress("UNUSED_PARAMETER") view: View, @Suppress("UNUSED_PARAMETER") position: Int, drawerItem: IDrawerItem<*, *>): Boolean {
+    private fun onDrawerItemClicked(@Suppress("UNUSED_PARAMETER") view: View?, @Suppress("UNUSED_PARAMETER") position: Int, @Suppress("UNUSED_PARAMETER") drawerItem: IDrawerItem<*>): Boolean {
 
         val identifier = drawerItem.identifier.toInt()
         when (identifier) {
@@ -57,10 +51,5 @@ class DebugMenu {
             drawer?.closeDrawer()
 
         return false
-    }
-
-    companion object {
-
-        private val TAG = DebugMenu::class.java.simpleName
     }
 }

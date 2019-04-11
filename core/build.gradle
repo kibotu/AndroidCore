@@ -105,6 +105,7 @@ android {
         exclude 'META-INF/LGPL2.1'
         exclude 'META-INF/rxjava.properties'
         exclude 'META-INF/app_debug.kotlin_module'
+        exclude 'META-INF/library-core_release.kotlin_module'
     }
 
     // endregion
@@ -151,13 +152,13 @@ dependencies {
         transitive = true
     }
 
-    implementation libs.joda
+    compileOnly libs.joda
 
     implementation libs.markdownview
 
     implementation libs.rxmarkdown
 
-    implementation libs.processPhoenix
+    compileOnly libs.processPhoenix
 
     implementation libs.logger
 
