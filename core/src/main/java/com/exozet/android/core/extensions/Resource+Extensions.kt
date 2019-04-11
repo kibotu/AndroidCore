@@ -90,7 +90,7 @@ val Int.resDimension: Float
 val Int.resString: String
     get() = ContextHelper.getApplication()!!.resources!!.getString(this)
 
-fun Int.resString(formatArg: String): String = ContextHelper.getApplication()!!.resources!!.getString(this, formatArg)
+inline fun <reified T> Int.resString(formatArg: T): String = ContextHelper.getApplication()!!.resources!!.getString(this, formatArg)
 
 val Int.resColor: Int
     get() = ContextCompat.getColor(ContextHelper.getApplication()!!, this)
