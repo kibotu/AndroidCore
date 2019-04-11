@@ -10,6 +10,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
+import android.preference.PreferenceManager
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextUtils.isEmpty
@@ -116,3 +117,9 @@ fun sendEmail(address: String, subject: String = "", body: Spanned = SpannableSt
 } catch (ex: ActivityNotFoundException) {
     Logger.snackbar("There are no email clients installed.")
 }
+
+val Context.defaultSharedPreferencesName: String
+    get() = when {
+        Build.VERSION.SDK_INT >= Build.VERSION_CODES.N -> PreferenceManager.getDefaultSharedPreferencesName(this)
+        else -> "${this.packageName}_preferences"
+    }
