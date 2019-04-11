@@ -2,10 +2,16 @@
 
 package com.exozet.android.core.extensions
 
+import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Application
+import android.app.KeyguardManager
+import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.os.PowerManager
 import android.os.StrictMode
+import androidx.annotation.RequiresPermission
 import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException
 import com.google.android.gms.common.GooglePlayServicesRepairableException
@@ -59,4 +65,20 @@ fun Application.initStrictMode() {
             .penaltyDeath()
             .build()
     )
+}
+
+@RequiresPermission(Manifest.permission.DISABLE_KEYGUARD)
+fun Application.unlockScreen() {
+    val km = getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
+    @Suppress("DEPRECATION") val kl = km.newKeyguardLock("MyKeyguardLock")
+    kl.disableKeyguard()
+
+    val pm = getSystemService(Context.POWER_SERVICE) as PowerManager
+    @Suppress("DEPRECATION")
+    @SuppressLint("InvalidWakeLockTag") val wakeLock = pm.newWakeLock(
+        PowerManager.FULL_WAKE_LOCK
+                or PowerManager.ACQUIRE_CAUSES_WAKEUP
+                or PowerManager.ON_AFTER_RELEASE, "MyWakeLock"
+    )
+    wakeLock.acquire(10 * 60 * 1000L /*10 minutes*/)
 }
