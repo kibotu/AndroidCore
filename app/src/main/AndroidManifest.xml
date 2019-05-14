@@ -41,12 +41,6 @@
         <!-- A service that extends FirebaseInstanceIdService to handle the creation, rotation, and updating of registration tokens.
              This is required for sending to specific devices or for creating device groups. -->
 
-        <service android:name="com.exozet.android.core.services.notifications.FBInstanceIDService">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-            </intent-filter>
-        </service>
-
         <!-- => Lolipop long running background task -->
         <service
             android:name="com.exozet.android.core.services.notifications.FBNotificationJobService"
