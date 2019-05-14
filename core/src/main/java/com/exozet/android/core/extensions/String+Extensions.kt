@@ -19,6 +19,8 @@ import java.io.UnsupportedEncodingException
 import java.math.BigInteger
 import java.nio.charset.Charset
 import java.security.MessageDigest
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.contract
 
 /**
  * Created by [Jan Rabe](https://about.me/janrabe).
@@ -197,7 +199,7 @@ fun fixEncoding(latin1: String): String {
 
 fun surroundWithQuotes(msg: String) = String.format("\"%s\"", "" + msg)
 
-private fun escape(s: String): String {
+fun escape(s: String): String {
     return if (isEmpty(s))
         ""
     else
@@ -205,3 +207,15 @@ private fun escape(s: String): String {
 }
 
 fun length(string: String?) = if (isEmpty(string)) 0 else string!!.length
+
+/**
+ * Returns `true` if this not null or empty.
+ */
+@UseExperimental(ExperimentalContracts::class)
+inline fun CharSequence?.isNotNullOrEmpty(): Boolean {
+    contract {
+        returns(true) implies (this@isNotNullOrEmpty != null)
+    }
+
+    return this != null && this.isNotEmpty()
+}
