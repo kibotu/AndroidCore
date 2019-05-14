@@ -264,10 +264,6 @@ configurations.all {
     resolutionStrategy.force libs.firebaseFunctions
     resolutionStrategy.force libs.firebaseMlVision
     resolutionStrategy.force libs.firebaseMlModelInterpreter
-
-    resolutionStrategy.force libs.butterknifeX
-    resolutionStrategy.force libs.butterknifeCompilerX
-    resolutionStrategy.force libs.guava
 }
 
 // endregion
