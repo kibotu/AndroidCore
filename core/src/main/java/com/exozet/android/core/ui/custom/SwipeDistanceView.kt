@@ -18,6 +18,8 @@ open class SwipeDistanceView @JvmOverloads constructor(
 
     protected var onIsScrollingChanged: ((isScrolling: Boolean) -> Unit)? = null
 
+    var requestDisallowInterceptTouchEvent = false
+
     var isScrolling = false
 
     init {
@@ -45,7 +47,7 @@ open class SwipeDistanceView @JvmOverloads constructor(
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        parent.requestDisallowInterceptTouchEvent(true)
+        parent.requestDisallowInterceptTouchEvent(requestDisallowInterceptTouchEvent)
         return when {
             event?.actionMasked == MotionEvent.ACTION_DOWN && event.pointerCount <= 1 -> {
                 gestureDetector.onTouchEvent(event)
