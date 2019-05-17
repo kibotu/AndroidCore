@@ -4,8 +4,9 @@ import android.view.GestureDetector
 import android.view.MotionEvent
 import com.exozet.android.core.extensions.px
 
-open class ScrollListener(val width: () -> Int, val height: () -> Int, val onScroll: (percentX: Float, percentY: Float) -> Unit) : GestureDetector.SimpleOnGestureListener() {
+open class ScrollListener(val width: () -> Int, val height: () -> Int) : GestureDetector.SimpleOnGestureListener() {
 
+    var onScroll: ((percentX: Float, percentY: Float) -> Unit)? = null
     /**
      * Min Swipe X-Distance
      */
@@ -33,7 +34,6 @@ open class ScrollListener(val width: () -> Int, val height: () -> Int, val onScr
     }
 
     override fun onScroll(e1: MotionEvent?, e2: MotionEvent?, distanceX: Float, distanceY: Float): Boolean {
-
         val dX = startX - (e2?.x ?: 0f)
         val dY = startY - (e2?.y ?: 0f)
 
@@ -44,7 +44,7 @@ open class ScrollListener(val width: () -> Int, val height: () -> Int, val onScr
                 val percentX = (dX) / width()
                 val percentY = (dY) / height()
 
-                onScroll(percentX, percentY)
+                onScroll?.invoke(percentX, percentY)
 
                 true
             }
