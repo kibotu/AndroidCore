@@ -96,14 +96,6 @@ fun String.openExternally() {
             })
 }
 
-fun Activity.addSecureFlag() {
-    window?.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
-}
-
-fun Activity.clearSecureFlag() {
-    window?.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
-}
-
 fun sendEmail(address: String, subject: String = "", body: Spanned = SpannableString(""), requestCode: Int = 5001, popupTitle: String = "") = try {
     ContextHelper.getActivity()?.startActivityForResult(
         Intent.createChooser(

@@ -3,11 +3,13 @@
 package com.exozet.android.core.extensions
 
 import android.animation.Animator
+import android.animation.ArgbEvaluator
 import android.annotation.TargetApi
 import android.app.Activity
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.graphics.PorterDuff
 import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.GradientDrawable
@@ -23,6 +25,7 @@ import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.annotation.*
@@ -33,8 +36,11 @@ import androidx.viewpager.widget.ViewPager
 import com.dtx12.android_animations_actions.actions.Actions.*
 import com.dtx12.android_animations_actions.actions.Interpolations
 import com.exozet.android.core.utils.MathExtensions
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.textfield.TextInputLayout
+import io.reactivex.Observable
+import io.reactivex.subjects.BehaviorSubject
 import net.kibotu.ContextHelper
 
 /**
@@ -377,3 +383,53 @@ fun View.hideKeyboard() = (context?.getSystemService(Context.INPUT_METHOD_SERVIC
 fun Activity.hideKeyboard() = contentRootView.hideKeyboard()
 
 fun hideKeyboard() = ContextHelper.getAppCompatActivity()?.hideKeyboard()
+
+val argbEvaluator by lazy { ArgbEvaluator() }
+
+fun ImageView.setColorFilterWithOffset(@FloatRange(from = 0.0, to = 1.0) percent: Float, @ColorInt from: Int, @ColorInt to: Int) {
+    setColorFilter(argbEvaluator.evaluate(percent, from, to) as Int, PorterDuff.Mode.SRC_ATOP)
+}
+
+
+fun AppBarLayout.onCollapseStateChanged(@FloatRange(from = 0.0, to = 1.0) max: Float = 0.75f): Observable<Boolean> {
+
+    var listener: AppBarLayout.OnOffsetChangedListener? = null
+
+    return BehaviorSubject.create<Boolean> { emitter ->
+
+        if (emitter.isDisposed)
+            return@create
+
+        listener = AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+            val isCollapsed = Math.abs(verticalOffset) - appBarLayout.totalScrollRange == 0
+            val percentage = Math.abs(verticalOffset) / appBarLayout.totalScrollRange.toFloat()
+            // logv("percentage=$percentage isCollapsed=$isCollapsed")
+            emitter.onNext(percentage >= max)
+        }
+
+        addOnOffsetChangedListener(listener)
+
+    }.doOnDispose {
+        removeOnOffsetChangedListener(listener)
+    }.distinctUntilChanged()
+}
+
+fun AppBarLayout.onOffsetChanged(): Observable<Float> {
+
+    var listener: AppBarLayout.OnOffsetChangedListener? = null
+
+    return BehaviorSubject.create<Float> { emitter ->
+
+        if (emitter.isDisposed)
+            return@create
+
+        listener = AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+            emitter.onNext(Math.abs(verticalOffset) / appBarLayout.totalScrollRange.toFloat())
+        }
+
+        addOnOffsetChangedListener(listener)
+
+    }.doOnDispose {
+        removeOnOffsetChangedListener(listener)
+    }.distinctUntilChanged()
+}
