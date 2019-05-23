@@ -67,16 +67,27 @@ fun Activity.setKeepOnScreenFlag() {
 
 fun Activity.setTransparentStatusBarFlags() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-        window += WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
+        setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, true)
     }
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-        window += View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-        window += View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        window.decorView.systemUiVisibility =
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
     }
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-        window -= WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
+        setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
         window.statusBarColor = Color.TRANSPARENT
     }
+}
+
+
+fun Activity.setWindowFlag(bits: Int, on: Boolean) {
+    val winParams = window.attributes
+    if (on) {
+        winParams.flags = winParams.flags or bits
+    } else {
+        winParams.flags = winParams.flags and bits.inv()
+    }
+    window.attributes = winParams
 }
 
 fun Activity.showSystemUI() {
