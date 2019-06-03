@@ -31,7 +31,7 @@ import androidx.annotation.Nullable;
  *  ----------------------------------------------------------------------------------------------------
  *
  *  </pre>
- * <img src="documentation/AmazonFireTvRemoteControlListener.jpg" />
+ * <img src="https://github.com/exozet/AndroidCore/raw/master/documentation/AmazonFireTvRemoteControlListener.jpg" />
  * <pre>
  *  Button	                                    KeyEvent	                Default Behavior
  *  Home	                                    none	                    Return the user to the Home screen. This is a system event and cannot be intercepted.
