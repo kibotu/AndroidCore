@@ -53,7 +53,7 @@ import androidx.annotation.Nullable;
  */
 public class AmazonFireTvRemoteControlListener implements KeyListener, View.OnKeyListener, DialogInterface.OnKeyListener {
 
-    private View currentView;
+    protected View currentView;
 
     @Nullable
     public final View getCurrentView() {
@@ -147,11 +147,11 @@ public class AmazonFireTvRemoteControlListener implements KeyListener, View.OnKe
         return false;
     }
 
-    private boolean onKeyUpMediaPlay() {
+    protected boolean onKeyUpMediaPlay() {
         return false;
     }
 
-    private boolean onKeyUpMediaPause() {
+    protected boolean onKeyUpMediaPause() {
         return false;
     }
 
@@ -227,11 +227,11 @@ public class AmazonFireTvRemoteControlListener implements KeyListener, View.OnKe
         return false;
     }
 
-    private boolean onKeyDownMediaPlay() {
+    protected boolean onKeyDownMediaPlay() {
         return false;
     }
 
-    private boolean onKeyDownMediaPause() {
+    protected boolean onKeyDownMediaPause() {
         return false;
     }
 
