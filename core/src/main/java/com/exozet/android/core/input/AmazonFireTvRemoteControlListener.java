@@ -46,6 +46,9 @@ import androidx.annotation.Nullable;
  *  Play/Pause	                                KEYCODE_MEDIA_PLAY_PAUSE	Control media playback. Play/Pause is a toggle.
  *  Rewind	                                    KEYCODE_MEDIA_REWIND	    Rewind or skip backwards in media playback contexts.
  *  Fast Forward	                            KEYCODE_MEDIA_FAST_FORWARD	Fast Forward or skip ahead in media playback contexts.
+ *
+ *  Play	                                    KEYCODE_KEYCODE_MEDIA_PLAY	Play media key - android tv
+ *  Pause   	                                KEYCODE_KEYCODE_MEDIA_PAUSE	Pause media key - android tv
  * </pre>
  */
 public class AmazonFireTvRemoteControlListener implements KeyListener, View.OnKeyListener, DialogInterface.OnKeyListener {
@@ -95,6 +98,10 @@ public class AmazonFireTvRemoteControlListener implements KeyListener, View.OnKe
                 return onKeyUpBack();
             case KeyEvent.KEYCODE_MENU:
                 return onKeyUpMenu();
+            case KeyEvent.KEYCODE_MEDIA_PLAY: // android tv
+                return onKeyUpMediaPlay();
+            case KeyEvent.KEYCODE_MEDIA_PAUSE: // android tv
+                return onKeyUpMediaPause();
             default:
                 return false;
         }
@@ -140,6 +147,14 @@ public class AmazonFireTvRemoteControlListener implements KeyListener, View.OnKe
         return false;
     }
 
+    private boolean onKeyUpMediaPlay() {
+        return false;
+    }
+
+    private boolean onKeyUpMediaPause() {
+        return false;
+    }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent keyEvent) {
         switch (keyCode) {
@@ -163,6 +178,10 @@ public class AmazonFireTvRemoteControlListener implements KeyListener, View.OnKe
                 return onKeyDownBack();
             case KeyEvent.KEYCODE_MENU:
                 return onKeyDownMenu();
+            case KeyEvent.KEYCODE_MEDIA_PLAY: // android tv
+                return onKeyDownMediaPlay();
+            case KeyEvent.KEYCODE_MEDIA_PAUSE: // android tv
+                return onKeyDownMediaPause();
             default:
                 return false;
         }
@@ -205,6 +224,14 @@ public class AmazonFireTvRemoteControlListener implements KeyListener, View.OnKe
     }
 
     protected boolean onKeyDownMenu() {
+        return false;
+    }
+
+    private boolean onKeyDownMediaPlay() {
+        return false;
+    }
+
+    private boolean onKeyDownMediaPause() {
         return false;
     }
 
