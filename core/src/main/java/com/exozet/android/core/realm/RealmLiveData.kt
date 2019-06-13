@@ -5,15 +5,14 @@ import io.realm.RealmChangeListener
 import io.realm.RealmModel
 import io.realm.RealmResults
 
-class RealmLiveData<T : RealmModel>(val realmResults: RealmResults<T>) : LiveData<RealmResults<T>>() {
+open class RealmLiveData<T : RealmModel>(val results: RealmResults<T>) : LiveData<RealmResults<T>>() {
 
-    private val listener = RealmChangeListener<RealmResults<T>> { results -> value = results }
+    protected val listener = RealmChangeListener<RealmResults<T>> { value = it }
 
     override fun onActive() {
-        realmResults.addChangeListener(listener)
+        results.addChangeListener(listener)
+        value = results
     }
 
-    override fun onInactive() {
-        realmResults.removeChangeListener(listener)
-    }
+    override fun onInactive() = results.removeChangeListener(listener)
 }
