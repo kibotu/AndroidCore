@@ -89,21 +89,6 @@ android {
     // region exclude duplicated meta inf files
 
     packagingOptions {
-        exclude 'META-INF/maven/com.google.guava/guava/pom.properties'
-        exclude 'META-INF/maven/com.google.guava/guava/pom.xml'
-        exclude 'META-INF/DEPENDENCIES'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/NOTICE.txt'
-        exclude 'META-INF/ASL2.0'
-        exclude 'META-INF/services/javax.annotation.processing.Processor'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/notice.txt'
-        exclude 'META-INF/license.txt'
-        exclude 'META-INF/dependencies.txt'
-        exclude 'META-INF/LGPL2.1'
-        exclude 'META-INF/rxjava.properties'
         exclude 'META-INF/app_debug.kotlin_module'
         exclude 'META-INF/library-core_release.kotlin_module'
     }
@@ -122,8 +107,8 @@ dependencies {
     implementation libs.constraintLayout
     implementation libs.supportCardView
 
-    implementation libs.androidKtx
-    implementation libs.androidKtxFragment
+    implementation libs.androidKtxCore
+    implementation libs.fragmentKtx
     implementation libs.androidKtxCollection
 
     implementation libs.rx2java
@@ -194,76 +179,6 @@ dependencies {
 configurations.all {
 
     resolutionStrategy.cacheDynamicVersionsFor 10, 'minutes'
-
-    resolutionStrategy.force libs.supportMediaCompat
-    resolutionStrategy.force libs.supportFragment
-    resolutionStrategy.force libs.fragmentKtx
-    resolutionStrategy.force libs.supportActivity
-    resolutionStrategy.force libs.activityKtx
-    resolutionStrategy.force libs.supportAppCompat
-    resolutionStrategy.force libs.appCompatResources
-    resolutionStrategy.force libs.supportCardView
-    resolutionStrategy.force libs.supportGridLayout
-    resolutionStrategy.force libs.supportMediaRouter
-    resolutionStrategy.force libs.supportPalette
-    resolutionStrategy.force libs.supportRecyclerview
-    resolutionStrategy.force libs.supportPreferenceV7
-    resolutionStrategy.force libs.supportPreferenceV14
-    resolutionStrategy.force libs.supportV13
-    resolutionStrategy.force libs.supportV4
-    resolutionStrategy.force libs.supportPreferenceLeanback
-    resolutionStrategy.force libs.supportLeanback
-    resolutionStrategy.force libs.supportVectorDrawable
-    resolutionStrategy.force libs.supportAnimatedVectorDrawable
-    resolutionStrategy.force libs.supportAnnotations
-    resolutionStrategy.force libs.supportDesign
-    resolutionStrategy.force libs.supportCustomTabs
-    resolutionStrategy.force libs.supportPercent
-    resolutionStrategy.force libs.supportExifInterface
-    resolutionStrategy.force libs.supportRecommendation
-    resolutionStrategy.force libs.supportWear
-
-    resolutionStrategy.force libs.lifecycleRuntime
-
-    resolutionStrategy.force libs.playServicesPlus
-    resolutionStrategy.force libs.playServicesAuth
-    resolutionStrategy.force libs.playServicesBase
-    resolutionStrategy.force libs.playServicesIdentity
-    resolutionStrategy.force libs.playServicesAnalytics
-    resolutionStrategy.force libs.playServicesAwareness
-    resolutionStrategy.force libs.playServicesCast
-    resolutionStrategy.force libs.playServicesGcm
-    resolutionStrategy.force libs.playServicesDrive
-    resolutionStrategy.force libs.playServicesFitness
-    resolutionStrategy.force libs.playServicesLocation
-    resolutionStrategy.force libs.playServicesMaps
-    resolutionStrategy.force libs.playServicesAds
-    resolutionStrategy.force libs.playServicesPlaces
-    resolutionStrategy.force libs.playServicesVision
-    resolutionStrategy.force libs.playServicesNearby
-    resolutionStrategy.force libs.playServicesPanorama
-    resolutionStrategy.force libs.playServicesGames
-    resolutionStrategy.force libs.playServicesSafetynet
-    resolutionStrategy.force libs.playServicesWallet
-    resolutionStrategy.force libs.playServicesWearable
-
-    resolutionStrategy.force libs.firebaseIid
-    resolutionStrategy.force libs.firebaseCommon
-    resolutionStrategy.force libs.firebaseCore
-    resolutionStrategy.force libs.firebaseDatabase
-    resolutionStrategy.force libs.firebaseFirestore
-    resolutionStrategy.force libs.firebaseStorage
-    resolutionStrategy.force libs.firebaseCrash
-    resolutionStrategy.force libs.firebaseAuth
-    resolutionStrategy.force libs.firebaseMessaging
-    resolutionStrategy.force libs.firebaseConfig
-    resolutionStrategy.force libs.firebaseInvites
-    resolutionStrategy.force libs.firebaseAds
-    resolutionStrategy.force libs.firebaseAppindexing
-    resolutionStrategy.force libs.firebasePerf
-    resolutionStrategy.force libs.firebaseFunctions
-    resolutionStrategy.force libs.firebaseMlVision
-    resolutionStrategy.force libs.firebaseMlModelInterpreter
 }
 
 // endregion
