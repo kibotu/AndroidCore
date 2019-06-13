@@ -1,4 +1,4 @@
-package tv.freenet.selfcare.services.network
+package com.exozet.android.core.services.network
 
 import io.reactivex.Completable
 import io.reactivex.Observable
@@ -9,6 +9,7 @@ import retrofit2.CallAdapter
 import retrofit2.HttpException
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import tv.freenet.selfcare.services.network.RetrofitException
 import java.io.IOException
 import java.lang.reflect.Type
 
@@ -49,7 +50,7 @@ class RxErrorHandlingCallAdapterFactory private constructor() : CallAdapter.Fact
 
             // We had non-200 http error
             is HttpException -> {
-                val response = response()
+                val response = response()!!
                 RetrofitException.httpError(response.raw().request().url().toString(), response, retrofit)
             }
 
