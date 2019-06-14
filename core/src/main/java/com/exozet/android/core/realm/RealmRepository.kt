@@ -57,7 +57,7 @@ abstract class RealmRepository<Dao : RealmDao, T : RealmModel> {
      */
     suspend inline fun <reified R : List<T>> loadAndUpdateList() {
         val result = withContext(Dispatchers.IO) {
-            load()
+            loadList()
         } ?: return
 
         db.realm.executeTransactionAsync { it.insertOrUpdate(result) }
