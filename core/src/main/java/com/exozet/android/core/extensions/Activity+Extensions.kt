@@ -123,9 +123,9 @@ fun Activity.toggleHideyBar() {
     // BEGIN_INCLUDE (toggle_ui_flags)
     val isImmersiveModeEnabled = uiOptions or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY == uiOptions
     if (isImmersiveModeEnabled) {
-        logv("Turning immersive mode mode off. ")
+        logv { message }
     } else {
-        logv("Turning immersive mode mode on.")
+        logv { message }
     }
 
     // Navigation bar hiding:  Backwards compatible to ICS.

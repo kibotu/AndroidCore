@@ -11,7 +11,7 @@ import net.kibotu.logger.TAG
 fun Bundle.printBundle() {
     for (key in keySet()) {
         val value = get(key)
-        logv("${value?.TAG} $key: $value")
+        logv { message }
     }
 }
 

@@ -31,10 +31,14 @@ import android.widget.TextView
 import androidx.annotation.*
 import androidx.core.content.ContextCompat
 import androidx.core.math.MathUtils
+import androidx.core.view.ViewCompat
+import androidx.core.view.isGone
 import androidx.fragment.app.DialogFragment
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.dtx12.android_animations_actions.actions.Actions.*
 import com.dtx12.android_animations_actions.actions.Interpolations
+import com.exozet.android.core.R
 import com.exozet.android.core.utils.MathExtensions
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
@@ -42,6 +46,7 @@ import com.google.android.material.textfield.TextInputLayout
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 import net.kibotu.ContextHelper
+import kotlin.math.roundToInt
 
 /**
  * Created by [Jan Rabe](https://about.me/janrabe).
@@ -109,8 +114,23 @@ fun Array<View>.gone(isGone: Boolean = true) {
     forEach { it.gone(isGone) }
 }
 
-infix fun View.onClick(function: () -> Unit) {
-    setOnClickListener { function() }
+fun View.onClick(function: () -> Unit) {
+    setOnClickListener {
+        it.isHapticFeedbackEnabled = true
+        performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING)
+        function()
+    }
+}
+
+fun View.onPointClicked(block: (x: Float, y: Float) -> Unit) {
+    setOnTouchListener { view, motionEvent ->
+        if (motionEvent.action == MotionEvent.ACTION_DOWN) {
+            view.isHapticFeedbackEnabled = true
+            performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING)
+            block(motionEvent.x, motionEvent.y)
+        }
+        false
+    }
 }
 
 fun ProgressBar.indeterminateDrawableColor(@ColorRes color: Int) {
@@ -433,3 +453,54 @@ fun AppBarLayout.onOffsetChanged(): Observable<Float> {
         removeOnOffsetChangedListener(listener)
     }.distinctUntilChanged()
 }
+
+var ImageView.imageResource: Int
+    get() {
+        throw NotImplementedError()
+    }
+    set(value) {
+        setImageResource(value)
+    }
+
+var ImageView.imageResourceOrGone: Int
+    get() {
+        throw NotImplementedError()
+    }
+    set(value) {
+        if (value == -1)
+            isGone = true
+        else
+            setImageResource(value)
+    }
+
+var TextView.textOrGone
+    get() = text
+    set(value) {
+        text = value
+        if (value.isNullOrEmpty())
+            gone()
+    }
+
+fun TextView.setTextWithViewsOrGone(value: String?, vararg views: TextView?, block: (String) -> String) = if (value.isNotNullOrEmpty()) {
+    text = block(value)
+} else {
+    isGone = true
+    views.forEach { it?.isGone = true }
+}
+
+inline fun <reified T : Number> TextView.setTextWithViewsOrGone(value: T?, vararg views: TextView?, block: (T) -> String) = if (value.isNotNullOrZero()) {
+    text = block(value)
+} else {
+    isGone = true
+    views.forEach { it?.isGone = true }
+}
+
+fun RecyclerView.isFirstChild(view: View): Boolean = getChildAdapterPosition(view) == 0
+
+fun RecyclerView.isLastChild(view: View): Boolean = getChildAdapterPosition(view) == childCount - 1
+
+val View.sharedElement
+    get() = Pair(this, ViewCompat.getTransitionName(this) ?: "no-transition-name-set")
+
+fun View.setDimensionsByScreenRatioWithPadding(ratio: Float = 1f, padding: Float = R.dimen.activity_horizontal_margin.resDimension, offset: Float = 0f) =
+    setDimension(width = ((context.resources.displayMetrics.widthPixels - (padding * 2f + offset)) * ratio).roundToInt())

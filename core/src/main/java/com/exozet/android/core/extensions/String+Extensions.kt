@@ -7,10 +7,8 @@ import android.net.Uri
 import android.text.TextUtils
 import android.text.TextUtils.isEmpty
 import com.crashlytics.android.Crashlytics
-import com.exozet.android.core.provider.GsonProvider
+import com.exozet.android.core.gson.GsonProvider
 import com.exozet.android.core.utils.ByteExtensions.validUTF8
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import io.fabric.sdk.android.services.network.HttpRequest
 import net.kibotu.ContextHelper
 import net.kibotu.logger.Logger
@@ -25,16 +23,6 @@ import kotlin.contracts.contract
 /**
  * Created by [Jan Rabe](https://about.me/janrabe).
  */
-
-// region json
-
-fun Any.toJson(): String = GsonProvider.gson.toJson(this)
-
-fun Any.toJsonPrettyPrinting(): String = GsonProvider.gsonPrettyPrinting.toJson(this)
-
-inline fun <reified T> Gson.fromJson(json: String): T = this.fromJson<T>(json, object : TypeToken<T>() {}.type)
-
-// endregion
 
 fun String.sha256(charset: Charset = Charsets.UTF_8): String = "%064x".format(BigInteger(1, with(MessageDigest.getInstance("SHA-256")) {
     update(toByteArray(charset))

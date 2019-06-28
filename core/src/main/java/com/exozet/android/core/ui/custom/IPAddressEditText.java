@@ -7,8 +7,10 @@ import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatEditText;
+
 import com.exozet.android.core.R;
 
 

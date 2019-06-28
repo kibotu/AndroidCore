@@ -6,6 +6,7 @@ import android.graphics.Point;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
+
 import net.kibotu.logger.Logger;
 
 import java.security.MessageDigest;
@@ -23,7 +24,7 @@ public class MathHelper {
             // Create MD5 Hash
             MessageDigest digest = MessageDigest.getInstance("SHA-256");  //TODO test if working
             digest.update(s.getBytes());
-            byte messageDigest[] = digest.digest();
+            byte[] messageDigest = digest.digest();
 
             // Create Hex String
             StringBuffer hexString = new StringBuffer();

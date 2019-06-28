@@ -15,7 +15,7 @@ public class JUnitExtensions {
 
     public static boolean isJUnitTest() {
         StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
-        List<StackTraceElement> list = Arrays.asList(stackTrace);
+        StackTraceElement[] list = stackTrace;
         for (StackTraceElement element : list) {
             if (element.getClassName().startsWith("org.junit.")) {
                 return true;

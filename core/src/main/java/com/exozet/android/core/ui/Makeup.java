@@ -3,7 +3,13 @@ package com.exozet.android.core.ui;
 import android.graphics.Typeface;
 import android.text.Spannable;
 import android.text.SpannableString;
-import android.text.style.*;
+import android.text.style.BackgroundColorSpan;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.StrikethroughSpan;
+import android.text.style.StyleSpan;
+import android.text.style.UnderlineSpan;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 

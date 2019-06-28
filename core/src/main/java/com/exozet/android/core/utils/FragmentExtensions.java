@@ -2,6 +2,7 @@ package com.exozet.android.core.utils;
 
 import android.os.Bundle;
 import android.util.Log;
+
 import androidx.annotation.AnimRes;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
@@ -9,10 +10,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
 import com.exozet.android.core.BuildConfig;
 import com.exozet.android.core.R;
 import com.exozet.android.core.interfaces.ChainableCommand;
 import com.exozet.android.core.interfaces.annotations.Transit;
+
 import net.kibotu.ContextHelper;
 import net.kibotu.logger.Logger;
 

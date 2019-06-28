@@ -8,6 +8,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.preference.PreferenceManager;
 import android.util.Log;
+
 import net.kibotu.logger.Logger;
 
 import java.util.Locale;

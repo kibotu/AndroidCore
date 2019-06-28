@@ -19,6 +19,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.annotation.DrawableRes
+import androidx.annotation.IntRange
 import androidx.annotation.RequiresApi
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
@@ -131,6 +132,16 @@ val Int.resTextArray: Array<CharSequence>
     get() = ContextHelper.getApplication()!!.resources!!.getTextArray(this)
 
 fun Int.asCsv(context: Context = ContextHelper.getContext()!!): List<String> = context.resources.getString(this).split(",").map(String::trim).toList()
+
+/**
+ * Returns -1 if not found
+ */
+fun Int.resDrawableArray(@IntRange(from = 0) index: Int): Int {
+    val array = ContextHelper.getApplication()!!.resources.obtainTypedArray(this)
+    val resourceId = array.getResourceId(index, -1)
+    array.recycle()
+    return resourceId
+}
 
 fun isRightToLeft(): Boolean = R.bool.rtl.resBoolean
 

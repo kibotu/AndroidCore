@@ -194,7 +194,7 @@ dependencies {
     implementation libs.supportMultidex
     implementation libs.supportAppCompat
     implementation libs.appCompatResources
-    implementation libs.constraintLayout
+    implementation libs.constraintLayout2
     implementation libs.supportCardView
     implementation libs.supportRecyclerview
 

@@ -39,7 +39,8 @@ object SslUtils {
             val ca: Certificate
             try {
                 ca = cf.generateCertificate(caInput)
-                logv("ca=" + (ca as X509Certificate).subjectDN)
+                "ca=" + (ca as X509Certificate).subjectDN
+                logv { message }
             } finally {
                 caInput.close()
             }

@@ -1,6 +1,7 @@
 package com.exozet.android.core.utils;
 
 import android.content.res.Resources;
+
 import com.exozet.android.core.math.RandomXS128;
 
 import java.util.Random;

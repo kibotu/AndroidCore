@@ -2,7 +2,6 @@
 
 package com.exozet.android.core.extensions
 
-import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
@@ -14,7 +13,6 @@ import android.preference.PreferenceManager
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextUtils.isEmpty
-import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import net.kibotu.ContextHelper

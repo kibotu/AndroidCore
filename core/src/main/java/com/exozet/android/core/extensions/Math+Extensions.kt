@@ -2,6 +2,10 @@
 
 package com.exozet.android.core.extensions
 
+import com.exozet.android.core.utils.MathExtensions
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.contract
+
 fun Short.clamp(min: Short, max: Short): Short {
     if (this < min) return min
     return if (this > max) max else this
@@ -46,3 +50,19 @@ fun Float.valueToPercentOfRange(min: Float = 0f, max: Float) = (this - min) / (m
  * @return Concrete value by a given percentage. If percentage value [0f, 1f] then the returned value will be in [min, max] range.
  */
 fun Float.percentToValueOfRange(min: Float = 0f, max: Float) = min + this * (max - min)
+
+/**
+ * Returns `true` if this not null or zero.
+ */
+@UseExperimental(ExperimentalContracts::class)
+inline fun Number?.isNotNullOrZero(): Boolean {
+    contract {
+        returns(true) implies (this@isNotNullOrZero != null)
+    }
+
+    return this != null && this.isNotZero()
+}
+
+inline fun <reified T : Number> T.isNotZero(): Boolean = !isZero()
+
+inline fun <reified T : Number> T.isZero(): Boolean = MathExtensions.isZero(this.toFloat())

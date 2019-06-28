@@ -24,7 +24,7 @@ class WidgetSampleFragment : BaseFragment() {
 
         progressBar.indeterminateDrawableColor(R.color.white)
 
-        customToolbarBack onClick onCustomBack()
+        customToolbarBack.onClick{ onCustomBack() }
     }
 
     private fun onCustomBack() = {

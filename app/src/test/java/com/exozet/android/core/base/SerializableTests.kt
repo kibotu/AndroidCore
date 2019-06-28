@@ -1,7 +1,7 @@
 package com.exozet.android.core.base
 
 import com.exozet.android.core.extensions.toJsonPrettyPrinting
-import com.exozet.android.core.provider.GsonProvider.gson
+import com.exozet.android.core.gson.GsonProvider.gson
 import net.javacrumbs.jsonunit.JsonAssert.assertJsonEquals
 import org.junit.Assert
 import org.junit.Test

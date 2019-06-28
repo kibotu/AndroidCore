@@ -8,7 +8,9 @@ import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+
 import androidx.annotation.NonNull;
+
 import net.kibotu.android.deviceinfo.library.display.Dimension;
 
 import static android.os.Build.VERSION.SDK_INT;

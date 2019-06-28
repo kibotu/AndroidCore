@@ -47,7 +47,7 @@ abstract class BaseFragment : Fragment(), DispatchTouchEventHandler, BackPress, 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(layout, container, false)
 
-        logv("[onCreateView] $savedInstanceState")
+        logv { message }
 
         /**
          * If the Fragment was destroyed in between (screen rotation), we need to recover the savedState first.
@@ -69,7 +69,7 @@ abstract class BaseFragment : Fragment(), DispatchTouchEventHandler, BackPress, 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        logv("[onViewCreated] $savedInstanceState")
+        logv { message }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -90,18 +90,18 @@ abstract class BaseFragment : Fragment(), DispatchTouchEventHandler, BackPress, 
 
     override fun onResume() {
         super.onResume()
-        logv("[onResume]")
+        logv { message }
         activity!!.supportFragmentManager.addOnBackStackChangedListener(this)
     }
 
     override fun onPause() {
         super.onPause()
-        logv("[onPause]")
+        logv { message }
         activity!!.supportFragmentManager.removeOnBackStackChangedListener(this)
     }
 
     override fun onDestroyView() {
-        logv("[onDestroyView]")
+        logv { message }
         savedState = onSaveInstanceState()
         super.onDestroyView()
     }
@@ -112,7 +112,7 @@ abstract class BaseFragment : Fragment(), DispatchTouchEventHandler, BackPress, 
     @CallSuper
     protected open fun onSaveInstanceState(): Bundle {
 
-        logv("[onSaveInstanceState]")
+        logv { message }
 
         // save state
 
@@ -126,14 +126,14 @@ abstract class BaseFragment : Fragment(), DispatchTouchEventHandler, BackPress, 
      */
     protected open fun onRestoreSavedState(savedInstanceState: Bundle) {
         // restore saved state
-        logv("[onRestoreSavedState] $savedInstanceState")
+        logv { message }
     }
 
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
         try {
             viewsHideKeyboardOnFocusLoss.hideOnLostFocus(event)
         } catch (e: Exception) {
-            loge("[$uuid-dispatchTouchEvent] ${e.message}")
+            loge { message }
         }
         return false
     }

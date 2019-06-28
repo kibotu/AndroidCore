@@ -1,12 +1,12 @@
 package com.exozet.android.core.services.network;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Type;
+
 import io.reactivex.annotations.Nullable;
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
-
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Type;
 
 public class NullableConverterFactory extends Converter.Factory {
     @Nullable

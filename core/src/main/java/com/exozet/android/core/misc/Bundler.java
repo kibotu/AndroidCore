@@ -7,6 +7,7 @@ import android.os.Parcelable;
 import android.util.Size;
 import android.util.SizeF;
 import android.util.SparseArray;
+
 import androidx.fragment.app.Fragment;
 
 import java.io.Serializable;
