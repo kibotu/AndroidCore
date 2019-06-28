@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<transitionSet
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:interpolator/accelerate_decelerate"
+    android:transitionOrdering="together">
+    <!--    <changeBounds />-->
+    <!--    <changeTransform />-->
+    <!--    <changeClipBounds />-->
+    <!--    <changeImageTransform />-->
+    <autoTransition />
+</transitionSet>
