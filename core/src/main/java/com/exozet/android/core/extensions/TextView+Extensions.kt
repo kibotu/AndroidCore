@@ -2,6 +2,7 @@
 
 package com.exozet.android.core.extensions
 
+import android.content.res.ColorStateList
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.os.Build.VERSION.SDK_INT
@@ -10,10 +11,14 @@ import android.text.*
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.widget.EditText
 import android.widget.TextView
+import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.core.view.isGone
+import com.google.android.material.textfield.TextInputLayout
 import net.kibotu.ContextHelper
 
 /**
@@ -147,3 +152,68 @@ inline fun <reified T : Number> TextView.setTextWithViewsOrGone(value: T?, varar
     isGone = true
     views.forEach { it?.isGone = true }
 }
+
+fun EditText.onImeActionDone(block: () -> Unit) = setOnEditorActionListener { _, actionId, _ ->
+    when (actionId) {
+        EditorInfo.IME_ACTION_DONE -> {
+            block()
+            return@setOnEditorActionListener true
+        }
+        else -> return@setOnEditorActionListener false
+    }
+}
+
+class ClickSpan(val listener: View.OnClickListener?) : ClickableSpan() {
+
+    override fun onClick(widget: View) {
+        listener?.onClick(widget)
+    }
+}
+
+fun TextView.clickify(clickableText: String, listener: View.OnClickListener) {
+    val text = text
+    val string = text.toString()
+    val span = ClickSpan(listener)
+
+    val start = string.indexOf(clickableText)
+    val end = start + clickableText.length
+    if (start == -1) return
+
+    if (text is Spannable) {
+        text.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+    } else {
+        val s = SpannableString.valueOf(text)
+        s.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        setText(s)
+    }
+
+    val m = movementMethod
+    if (m == null || m !is LinkMovementMethod) {
+        movementMethod = LinkMovementMethod.getInstance()
+    }
+}
+
+infix fun EditText.isEqualTrimmed(other: EditText): Boolean = text.toString().trim() == other.text.toString().trim()
+
+fun EditText.selectEnd() {
+    if (!isFocused)
+        return
+
+    post {
+        setSelection(text.toString().length)
+    }
+}
+
+
+fun TextInputLayout.setTextInputLayoutUpperHintColor(@ColorInt color: Int) {
+    defaultHintTextColor = ColorStateList(arrayOf(intArrayOf()), intArrayOf(color))
+}
+
+fun TextInputLayout.toggleTextHintColorOnEmpty(@ColorRes active: Int, @ColorRes inactive: Int) = setTextInputLayoutUpperHintColor(
+    if (editText?.text?.isNotEmpty() == true)
+        active.resColor else
+        inactive.resColor
+)
+
+val TextView.textTrimmed
+    get() = text.toString().trimMargin()
