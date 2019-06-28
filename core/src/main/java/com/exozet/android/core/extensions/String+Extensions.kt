@@ -7,7 +7,6 @@ import android.net.Uri
 import android.text.TextUtils
 import android.text.TextUtils.isEmpty
 import com.crashlytics.android.Crashlytics
-import com.exozet.android.core.gson.GsonProvider
 import com.exozet.android.core.utils.ByteExtensions.validUTF8
 import io.fabric.sdk.android.services.network.HttpRequest
 import net.kibotu.ContextHelper

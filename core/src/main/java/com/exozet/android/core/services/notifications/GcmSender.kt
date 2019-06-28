@@ -2,9 +2,10 @@ package com.exozet.android.core.services.notifications
 
 
 import android.util.Log
-import com.exozet.android.core.extensions.toJson
+import com.exozet.android.core.gson.toJson
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import org.apache.commons.io.IOUtils
 import org.json.JSONException
@@ -22,8 +23,8 @@ object GcmSender {
 
     var API_KEY = "API_KEY"
 
-    fun sendAsync(message: String, recipient: String? = null) {
-        Observable.fromCallable { send(message, recipient) }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe({}, Throwable::printStackTrace)
+    fun sendAsync(message: String, recipient: String? = null): Disposable? {
+        return Observable.fromCallable { send(message, recipient) }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe({}, Throwable::printStackTrace)
     }
 
     fun send(message: String, recipient: String? = null) {

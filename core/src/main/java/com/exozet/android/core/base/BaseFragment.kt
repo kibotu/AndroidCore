@@ -1,179 +1,211 @@
 package com.exozet.android.core.base
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Process.killProcess
+import android.os.Process.myPid
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.CallSuper
-import androidx.annotation.ColorRes
+import androidx.annotation.LayoutRes
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Observer
+import androidx.transition.TransitionInflater
+import com.crashlytics.android.Crashlytics
 import com.exozet.android.core.R
-import com.exozet.android.core.extensions.currentFragment
-import com.exozet.android.core.extensions.hideOnLostFocus
+import com.exozet.android.core.extensions.*
 import com.exozet.android.core.interfaces.BackPress
 import com.exozet.android.core.interfaces.DispatchTouchEventHandler
+import com.exozet.android.core.interfaces.annotations.ScreenOrientation
 import com.exozet.android.core.misc.UIDGenerator
-import com.google.android.material.snackbar.Snackbar
-import net.kibotu.logger.Logger
+import com.exozet.android.core.services.notifications.PushNotificationPublisher
+import io.reactivex.disposables.CompositeDisposable
 import net.kibotu.logger.Logger.loge
 import net.kibotu.logger.Logger.logv
-import net.kibotu.logger.TAG
 
-/**
- * Created by jan.rabe on 19/07/16.
- *
- *
- *
- */
-@Deprecated("just demo, don't use")
-abstract class BaseFragment : Fragment(), DispatchTouchEventHandler, BackPress, FragmentManager.OnBackStackChangedListener {
+abstract class BaseFragment : Fragment(), BackPress, DispatchTouchEventHandler,
+    FragmentManager.OnBackStackChangedListener {
 
-    /**
-     * [Restoring instance state after fragment transactions.](http://stackoverflow.com/a/15314508)
-     */
-    private var savedState: Bundle? = null
-
-    protected val uuid = UIDGenerator.newUID()
-
+    @get:LayoutRes
     protected abstract val layout: Int
 
-    @ColorRes
-    open fun onEnterStatusBarColor() = R.color.primary
+    val uuid = UIDGenerator.newUID()
 
-    override val viewsHideKeyboardOnFocusLoss: Array<View?>? = null
+    @ScreenOrientation
+    protected open val screenOrientation: Int? = null
+
+    protected open val isSecure = false
+
+    open val isFullScreen = false
+
+    open val hasLightStatusBar = true
+
+    protected var subscription = CompositeDisposable()
+
+    val onConnectionUpdate: Observer<in Boolean> = Observer {
+        onConnectivityUpdate(it)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        handleTransition()
+        logv { "[$uuid-Lifecycle-onCreate]" }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(layout, container, false)
+        logv { "[$uuid-Lifecycle-onCreateView]" }
+        try {
+            return inflater.inflate(layout, container, false)
+        } catch (e: Exception) {
 
-        logv { message }
+            // on api 21, webview updates and hence it is not accessible during app usage, in this case we send the user to the play market and give him a hint in as push notification
+            if (e.message?.contains("WebView") == true) {
+                PushNotificationPublisher.sendNotification(
+                    context!!,
+                    "Outdated WebView",
+                    "Please complete updating your WebView before continuing using ${R.string.app_name.resString}"
+                )
 
-        /**
-         * If the Fragment was destroyed in between (screen rotation), we need to recover the savedState first.
-         * However, if it was not, it stays in the instance from the last onDestroyView() and we don't want to overwrite it.
-         */
-        if (savedInstanceState != null && savedState == null) {
-            savedState = savedInstanceState.getBundle(javaClass.simpleName)
+                // tracking how often this actually happens
+                Crashlytics.logException(e)
+
+                startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        "http://play.google.com/store/apps/details?id=com.google.android.webview".toUri()
+                    )
+                )
+
+                activity?.finish()
+                killProcess(myPid())
+
+            } else
+                e.printStackTrace()
         }
-        if (savedState != null) {
-            onRestoreSavedState(savedState!!)
+
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
+
+    protected fun handleTransition() {
+        sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(R.transition.move).apply {
+            duration = android.R.integer.config_shortAnimTime.resLong
+            startDelay = 0
         }
-        savedState = null
+        sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.move).apply {
+            duration = android.R.integer.config_shortAnimTime.resLong
+            startDelay = 0
+        }
+        // postponeEnterTransition()
+    }
 
-        // navigationDrawerMenu = NavigationDrawerMenu()
+    protected open fun updateMainLayout() {
+        screenOrientation?.let { activity?.requestedOrientation }
 
-        return rootView
+        activity?.isLightStatusBar = hasLightStatusBar
+
+        if (isFullScreen)
+            activity?.hideSystemUI()
+        else
+            activity?.showSystemUI()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        logv { "[$uuid-Lifecycle-onViewCreated]" }
 
-        logv { message }
+        updateMainLayout()
+
+        subscription = CompositeDisposable()
+        subscribeUi()
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        /**
-         * If onDestroyView() is called first, we can use the previously onSaveInstanceState but we can't call onSaveInstanceState() anymore
-         * If onSaveInstanceState() is called first, we don't have onSaveInstanceState, so we need to call onSaveInstanceState()
-         * => (?:) operator inevitable!
-         */
-        outState.putBundle(
-            javaClass.simpleName, if (savedState != null)
-                savedState
-            else
-                onSaveInstanceState()
-        )
+    @CallSuper
+    open fun subscribeUi() {
+        logv { "[$uuid-Lifecycle-subscribeUi]" }
+    }
 
-        super.onSaveInstanceState(outState)
+    @CallSuper
+    open fun unsubscribeUi() {
+        logv { "[$uuid-Lifecycle-unsubscribeUi]" }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        logv { "[$uuid-Lifecycle-onStart]" }
     }
 
     override fun onResume() {
         super.onResume()
-        logv { message }
-        activity!!.supportFragmentManager.addOnBackStackChangedListener(this)
+        logv { "[$uuid-Lifecycle-onResume]" }
+
+        if (isSecure)
+            activity?.addSecureFlag()
+
+        hideKeyboard()
     }
 
     override fun onPause() {
         super.onPause()
-        logv { message }
-        activity!!.supportFragmentManager.removeOnBackStackChangedListener(this)
+        logv { "[$uuid-Lifecycle-onPause]" }
+
+        if (isSecure)
+            activity?.clearSecureFlag()
+
+        hideKeyboard()
     }
 
     override fun onDestroyView() {
-        logv { message }
-        savedState = onSaveInstanceState()
+        unsubscribeUi()
         super.onDestroyView()
+        logv { "[$uuid-Lifecycle-onDestroyView]" }
     }
 
-    /**
-     * Called either from [.onDestroyView] or [.onSaveInstanceState]
-     */
-    @CallSuper
-    protected open fun onSaveInstanceState(): Bundle {
+    override fun onDestroy() {
 
-        logv { message }
+        if (!subscription.isDisposed)
+            subscription.dispose()
 
-        // save state
-
-        return Bundle()
+        super.onDestroy()
+        logv { "[$uuid-Lifecycle-onDestroy]" }
     }
 
-    /**
-     * Called from [.onCreateView]
+    override fun consumeBackPress(): Boolean = false
 
-     * @param savedInstanceState
-     */
-    protected open fun onRestoreSavedState(savedInstanceState: Bundle) {
-        // restore saved state
-        logv { message }
+    open fun onBackPressed() {
+        activity?.onBackPressed()
     }
+
+    open fun onConnectivityUpdate(isConnected: Boolean) {
+        logv { "[$uuid-onConnectivityUpdate] isConnected=$isConnected" }
+    }
+
+    open fun onError(exception: Throwable) {
+        logv { "[$uuid-onError] ${exception::class.java.simpleName} ${exception.message}" }
+    }
+
+    override val viewsHideKeyboardOnFocusLoss: Array<View?>? = null
 
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
         try {
+//            logv {"[dispatchTouchEvent] $uuid views=${viewsHideKeyboardOnFocusLoss?.map { it.toString() }}")
             viewsHideKeyboardOnFocusLoss.hideOnLostFocus(event)
         } catch (e: Exception) {
-            loge { message }
+            loge { "[$uuid-dispatchTouchEvent] ${e.message}" }
         }
         return false
     }
 
-    override fun consumeBackPress(): Boolean {
+    // region FragmentManager.OnBackStackChangedListener
 
-        // close menu
-//        if (navigationDrawerMenu?.isDrawerOpen != false) {
-//            navigationDrawerMenu?.closeDrawer()
-//            return true
-//        }
-
-        return false
-    }
-
-    fun setArgument(bundle: Bundle): BaseFragment {
-        arguments = bundle
-        return this
-    }
-
-    /**
-     * Returned to this fragment after BackStack changes.
-     */
-    protected fun onActiveAfterBackStackChanged() {
-    }
-
-    protected val isCurrentFragment: Boolean
-        get() {
-            val fragment = currentFragment()
-            return fragment is BaseFragment && fragment.TAG == TAG
-        }
-
+    @CallSuper
     override fun onBackStackChanged() {
-        if (isCurrentFragment)
-            onActiveAfterBackStackChanged()
+        logv { "[$uuid-Lifecycle-onBackStackChanged]" }
+        updateMainLayout()
     }
 
-    fun showSnackBar(message: String) {
-        Logger.d(message)
-        view?.let { Snackbar.make(it, message, Snackbar.LENGTH_SHORT).show() }
-    }
-
+    // endregion
 }

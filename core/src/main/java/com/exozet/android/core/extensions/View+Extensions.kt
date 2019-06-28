@@ -473,28 +473,6 @@ var ImageView.imageResourceOrGone: Int
             setImageResource(value)
     }
 
-var TextView.textOrGone
-    get() = text
-    set(value) {
-        text = value
-        if (value.isNullOrEmpty())
-            gone()
-    }
-
-fun TextView.setTextWithViewsOrGone(value: String?, vararg views: TextView?, block: (String) -> String) = if (value.isNotNullOrEmpty()) {
-    text = block(value)
-} else {
-    isGone = true
-    views.forEach { it?.isGone = true }
-}
-
-inline fun <reified T : Number> TextView.setTextWithViewsOrGone(value: T?, vararg views: TextView?, block: (T) -> String) = if (value.isNotNullOrZero()) {
-    text = block(value)
-} else {
-    isGone = true
-    views.forEach { it?.isGone = true }
-}
-
 fun RecyclerView.isFirstChild(view: View): Boolean = getChildAdapterPosition(view) == 0
 
 fun RecyclerView.isLastChild(view: View): Boolean = getChildAdapterPosition(view) == childCount - 1

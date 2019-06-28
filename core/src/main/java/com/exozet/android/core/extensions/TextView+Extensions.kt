@@ -13,6 +13,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
+import androidx.core.view.isGone
 import net.kibotu.ContextHelper
 
 /**
@@ -37,12 +38,15 @@ var TextView.content: String
     }
 
 fun TextView.bindSpannableText(text: String, start: Int, end: Int, action: () -> Unit) {
+
     val spannable = SpannableString(text)
 
     val clickableSpan = object : ClickableSpan() {
-        override fun updateDrawState(ds: TextPaint?) {
-            ds?.color = ContextCompat.getColor(context, android.R.color.holo_blue_light)
-            ds?.isUnderlineText = false
+
+        override fun updateDrawState(ds: TextPaint) {
+
+            ds.color = ContextCompat.getColor(context, android.R.color.holo_blue_light)
+            ds.isUnderlineText = false
         }
 
         override fun onClick(view: View) {
@@ -57,12 +61,15 @@ fun TextView.bindSpannableText(text: String, start: Int, end: Int, action: () ->
 }
 
 fun TextView.bindSpannableText(text: String, linkableWord: String, action: () -> Unit) {
+
     val spannable = SpannableString(text)
 
     val clickableSpan = object : ClickableSpan() {
-        override fun updateDrawState(ds: TextPaint?) {
-            ds?.color = ContextCompat.getColor(context, android.R.color.holo_blue_light)
-            ds?.isUnderlineText = false
+
+        override fun updateDrawState(ds: TextPaint) {
+
+            ds.color = ContextCompat.getColor(context, android.R.color.holo_blue_light)
+            ds.isUnderlineText = false
         }
 
         override fun onClick(view: View) {
@@ -115,6 +122,28 @@ fun TextView.addAfterTextChangedListener(block: (String) -> Unit) {
     })
 }
 
-fun TextView.isNotEmpty() = text.toString().isNotEmpty()
+val TextView.isNotEmpty get() = textTrimmed.isNotEmpty()
 
-fun TextView.isEmpty() = text.toString().isEmpty()
+val TextView.isEmpty get() = textTrimmed.isEmpty()
+
+var TextView.textOrGone
+    get() = text
+    set(value) {
+        text = value
+        if (value.isNullOrEmpty())
+            gone()
+    }
+
+fun TextView.setTextWithViewsOrGone(value: String?, vararg views: TextView?, block: (String) -> String) = if (value.isNotNullOrEmpty()) {
+    text = block(value)
+} else {
+    isGone = true
+    views.forEach { it?.isGone = true }
+}
+
+inline fun <reified T : Number> TextView.setTextWithViewsOrGone(value: T?, vararg views: TextView?, block: (T) -> String) = if (value.isNotNullOrZero()) {
+    text = block(value)
+} else {
+    isGone = true
+    views.forEach { it?.isGone = true }
+}

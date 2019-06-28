@@ -17,7 +17,7 @@ object SslUtils {
 
     fun getSslContextForCertificateFile(context: Context, fileName: String): SSLContext {
         try {
-            val keyStore = SslUtils.getKeyStore(context, fileName)
+            val keyStore = getKeyStore(context, fileName)
             val sslContext = SSLContext.getInstance("SSL")
             val trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm())
             trustManagerFactory.init(keyStore)
@@ -40,7 +40,7 @@ object SslUtils {
             try {
                 ca = cf.generateCertificate(caInput)
                 "ca=" + (ca as X509Certificate).subjectDN
-                logv { message }
+                logv { "ca=" + ca.subjectDN }
             } finally {
                 caInput.close()
             }
@@ -76,7 +76,7 @@ object SslUtils {
 
         // Install the all-trusting trust manager
         val sslContext = SSLContext.getInstance("SSL")
-        sslContext.init(null, trustAllCerts, java.security.SecureRandom())
+        sslContext.init(null, trustAllCerts, SecureRandom())
         // Create an ssl socket factory with our all-trusting manager
 
         sslContext.socketFactory
