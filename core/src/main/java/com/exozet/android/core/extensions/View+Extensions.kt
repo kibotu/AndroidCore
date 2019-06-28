@@ -7,7 +7,6 @@ import android.animation.ArgbEvaluator
 import android.annotation.TargetApi
 import android.app.Activity
 import android.content.Context
-import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.Rect
@@ -16,15 +15,8 @@ import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.os.Build.VERSION.SDK_INT
 import android.os.Build.VERSION_CODES.JELLY_BEAN
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.Spanned
-import android.text.method.LinkMovementMethod
-import android.text.style.ClickableSpan
 import android.view.*
-import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -39,10 +31,10 @@ import androidx.viewpager.widget.ViewPager
 import com.dtx12.android_animations_actions.actions.Actions.*
 import com.dtx12.android_animations_actions.actions.Interpolations
 import com.exozet.android.core.R
+import com.exozet.android.core.interfaces.annotations.HapticFeedback
 import com.exozet.android.core.utils.MathExtensions
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.textfield.TextInputLayout
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 import net.kibotu.ContextHelper
@@ -122,14 +114,31 @@ fun View.onClick(function: () -> Unit) {
     }
 }
 
-fun View.onPointClicked(block: (x: Float, y: Float) -> Unit) {
+/**
+ * Touch event that delegates clicked relative view position and also takes [ViewConfiguration.getTapTimeout] into consideration.
+ * So that it won't be fired if the user gesture is not a tap, e.g. scrolling.
+ *
+ * Also adds a
+ */
+fun View.onPointClicked(@HapticFeedback hapticFeedback: Int = HapticFeedbackConstants.VIRTUAL_KEY, block: (x: Float, y: Float) -> Unit) {
+
+    var startClickTime = 0L
+
     setOnTouchListener { view, motionEvent ->
-        if (motionEvent.action == MotionEvent.ACTION_DOWN) {
-            view.isHapticFeedbackEnabled = true
-            performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING)
-            block(motionEvent.x, motionEvent.y)
+        when {
+            motionEvent.action == MotionEvent.ACTION_DOWN -> {
+                startClickTime = System.currentTimeMillis()
+                true
+            }
+            motionEvent.action == MotionEvent.ACTION_UP && System.currentTimeMillis() - startClickTime < ViewConfiguration.getTapTimeout() -> {
+                view.isHapticFeedbackEnabled = true
+                performHapticFeedback(hapticFeedback, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING)
+                block(motionEvent.x, motionEvent.y)
+                true
+
+            }
+            else -> false
         }
-        false
     }
 }
 
@@ -304,7 +313,6 @@ fun View.enable() {
 fun View.disable() {
     isEnabled = false
 }
-
 
 
 fun Array<View?>?.hideOnLostFocus(event: MotionEvent) {

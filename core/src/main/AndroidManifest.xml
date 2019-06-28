@@ -28,6 +28,15 @@
         android:name="android.hardware.touchscreen.multitouch.distinct"
         android:required="false" />
 
+<!--    <uses-feature-->
+<!--        android:glEsVersion="0x00020000"-->
+<!--        android:required="true" />-->
+
+<!--    <uses-feature-->
+<!--        android:glEsVersion="0x00030000"-->
+<!--        android:required="false" />-->
+
+
     <application android:allowBackup="false">
 
         <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
