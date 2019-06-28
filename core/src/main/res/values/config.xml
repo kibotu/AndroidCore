@@ -12,4 +12,9 @@
     <string name="default_notification_channel_id">exozet</string>
     <string name="channel_human_readable_title">exozet</string>
 
+    <!-- animation durations -->
+
+    <integer name="slide_animation_duration">250</integer>
+    <integer name="flip_animation_duration">750</integer>
+
 </resources>

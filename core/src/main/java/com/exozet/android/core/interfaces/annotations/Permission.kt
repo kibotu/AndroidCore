@@ -2,12 +2,16 @@ package com.exozet.android.core.interfaces.annotations
 
 import android.Manifest
 import android.Manifest.permission.*
+import android.annotation.TargetApi
 import android.content.pm.PackageManager
+import android.os.Build
 import androidx.annotation.StringDef
 import androidx.core.app.ActivityCompat
 import net.kibotu.ContextHelper
 
 
+@Suppress("DEPRECATION")
+@TargetApi(Build.VERSION_CODES.P)
 @StringDef(
     value = [ACCEPT_HANDOVER,
         ACCESS_BACKGROUND_LOCATION,

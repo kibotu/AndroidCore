@@ -8,6 +8,7 @@ import com.exozet.android.core.extensions.indeterminateDrawableColor
 import com.exozet.android.core.extensions.onClick
 import kotlinx.android.synthetic.main.fragment_widget_sample.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
+import net.kibotu.logger.snack
 
 /**
  * Created by armando.shkurti on 04.04.18.
@@ -24,10 +25,8 @@ class WidgetSampleFragment : BaseFragment() {
 
         progressBar.indeterminateDrawableColor(R.color.white)
 
-        customToolbarBack.onClick{ onCustomBack() }
-    }
-
-    private fun onCustomBack() = {
-        showSnackBar("Back")
+        customToolbarBack.onClick {
+            snack("Back")
+        }
     }
 }
