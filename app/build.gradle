@@ -218,7 +218,6 @@ dependencies {
     implementation libs.retrofit
     implementation libs.connectionBuddy
     implementation libs.googlePlayForceUpdate
-    implementation libs.permissionDispatcher
     implementation libs.timeBomb
     implementation libs.playServicesAuth
     implementation libs.firebaseDatabase
@@ -226,6 +225,7 @@ dependencies {
     implementation libs.firebaseJobdispatcher
     implementation libs.apacheCommonsIo
     implementation libs.realmExtensions
+    implementation libs.joda
 }
 
 // region override support library version

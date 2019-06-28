@@ -3,17 +3,17 @@ buildscript {
     apply from: "${project.rootDir}/Android-Dependencies/dependencies.gradle"
 
     repositories {
-        google()
+        // https://storage-download.googleapis.com/maven-central/index.html
         maven { url 'https://maven-central-eu.storage-download.googleapis.com/repos/central/data/' }
-        maven { url "http://repo.spring.io/plugins-release/" }
-        maven { url "https://plugins.gradle.org/m2/" }
+        google()
         maven { url 'https://jitpack.io' }
-        // maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
-        // maven { url 'https://dl.bintray.com/kotlin/kotlin-dev/' }
+        maven { url 'https://plugins.gradle.org/m2/' }
         maven { url 'https://maven.fabric.io/public' }
     }
+
     dependencies {
         classpath plugin.gradleBuildToolsCanary
+        classpath plugin.navigationSafeArgs
         classpath plugin.kotlinGradle
         classpath plugin.kotlinApt
         classpath plugin.realm
@@ -22,6 +22,8 @@ buildscript {
         classpath plugin.rocketLauncher
         classpath plugin.hockeyApp
         classpath plugin.gms
+        classpath plugin.fabric
+        classpath pluginLibrary.mavenGradle
         classpath plugin.dexcountGradle
 
         classpath pluginLibrary.mavenGradle
@@ -34,15 +36,13 @@ allprojects {
     apply from: "${project.rootDir}/Android-Dependencies/utils.gradle"
 
     repositories {
-        google()
+        // https://storage-download.googleapis.com/maven-central/index.html
         maven { url 'https://maven-central-eu.storage-download.googleapis.com/repos/central/data/' }
-        maven { url "http://repo.spring.io/plugins-release/" }
-        maven { url "https://plugins.gradle.org/m2/" }
-        maven { url "https://jitpack.io" }
+        google()
+        maven { url 'https://jitpack.io' }
+        maven { url 'https://plugins.gradle.org/m2/' }
+        maven { url 'https://dl.bintray.com/exozetag/maven' }
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
-//        maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
-        maven { url 'https://maven.fabric.io/public' }
-        maven { url 'http://dl.bintray.com/kotlin/kotlin-eap' }
     }
 }
 

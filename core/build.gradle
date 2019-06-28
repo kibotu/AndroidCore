@@ -123,7 +123,6 @@ dependencies {
 
     compileOnly libs.connectionBuddy
     compileOnly libs.googlePlayForceUpdate
-    compileOnly libs.permissionDispatcher
     compileOnly libs.timeBomb
 
     implementation libs.supportRecyclerview
