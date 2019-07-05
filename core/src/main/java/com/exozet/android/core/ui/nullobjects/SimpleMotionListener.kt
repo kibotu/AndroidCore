@@ -9,21 +9,20 @@ import io.reactivex.Observable
  */
 open class SimpleMotionListener : MotionLayout.TransitionListener {
 
-    override fun onTransitionTrigger(motionLayout: MotionLayout?, trigger: Int, positive: Boolean, progress: Float) {
+    override fun onTransitionTrigger(motionLayout: MotionLayout, trigger: Int, positive: Boolean, progress: Float) {
     }
 
-    override fun allowsTransition(transition: MotionScene.Transition?): Boolean {
+    override fun allowsTransition(transition: MotionScene.Transition): Boolean {
         return true
     }
 
-    override fun onTransitionStarted(motionLayout: MotionLayout?, startId: Int, endId: Int) {
+    override fun onTransitionStarted(motionLayout: MotionLayout, startId: Int, endId: Int) {
     }
 
-    override fun onTransitionChange(motionLayout: MotionLayout?, startId: Int, endId: Int, progress: Float) {
-
+    override fun onTransitionChange(motionLayout: MotionLayout, startId: Int, endId: Int, progress: Float) {
     }
 
-    override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
+    override fun onTransitionCompleted(motionLayout: MotionLayout, currentId: Int) {
     }
 }
 
@@ -37,7 +36,7 @@ fun MotionLayout.onCollapseStateChanged(): Observable<Float> {
             return@create
 
         listener = object : SimpleMotionListener() {
-            override fun onTransitionChange(motionLayout: MotionLayout?, startId: Int, endId: Int, progress: Float) {
+            override fun onTransitionChange(motionLayout: MotionLayout, startId: Int, endId: Int, progress: Float) {
                 emitter.onNext(progress)
             }
         }
