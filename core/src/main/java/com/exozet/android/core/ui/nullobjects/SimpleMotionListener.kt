@@ -12,10 +12,6 @@ open class SimpleMotionListener : MotionLayout.TransitionListener {
     override fun onTransitionTrigger(motionLayout: MotionLayout, trigger: Int, positive: Boolean, progress: Float) {
     }
 
-    override fun allowsTransition(transition: MotionScene.Transition): Boolean {
-        return true
-    }
-
     override fun onTransitionStarted(motionLayout: MotionLayout, startId: Int, endId: Int) {
     }
 
