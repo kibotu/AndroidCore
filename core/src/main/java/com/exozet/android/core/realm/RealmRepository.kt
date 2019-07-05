@@ -6,7 +6,7 @@ import io.realm.RealmResults
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-abstract class RealmRepository<Dao : RealmDao, T : RealmModel> {
+abstract class RealmRepository<Dao : RealmDao<T>, T : RealmModel> {
 
     abstract val db: Dao
 
@@ -18,17 +18,17 @@ abstract class RealmRepository<Dao : RealmDao, T : RealmModel> {
     /**
      * Updates and inserts [T].
      */
-    inline fun <reified T : RealmModel> insertOrUpdate(item: T) = db.insertOrUpdate(item)
+    fun insertOrUpdate(item: T) = db.insertOrUpdate(item)
 
     /**
      * Updates and inserts list of [T].
      */
-    inline fun <reified T : RealmModel> insertOrUpdate(items: List<T>) = db.insertOrUpdate(items)
+    fun insertOrUpdate(items: List<T>) = db.insertOrUpdate(items)
 
     /**
      * Deletes [T].
      */
-    inline fun <reified T : RealmModel> delete(item: T) = db.delete(item)
+    fun delete(item: T) = db.delete(item)
 
     /**
      * Deletes all [T].
@@ -43,7 +43,7 @@ abstract class RealmRepository<Dao : RealmDao, T : RealmModel> {
             load()
         } ?: return
 
-        db.realm.executeTransactionAsync { it.insertOrUpdate(result) }
+        db.insertOrUpdate(result)
     }
 
     /**
@@ -60,7 +60,7 @@ abstract class RealmRepository<Dao : RealmDao, T : RealmModel> {
             loadList()
         } ?: return
 
-        db.realm.executeTransactionAsync { it.insertOrUpdate(result) }
+        db.insertOrUpdate(result)
     }
 
     /**
