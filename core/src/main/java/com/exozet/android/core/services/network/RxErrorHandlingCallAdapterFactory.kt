@@ -51,7 +51,7 @@ class RxErrorHandlingCallAdapterFactory private constructor() : CallAdapter.Fact
             // We had non-200 http error
             is HttpException -> {
                 val response = response()!!
-                RetrofitException.httpError(response.raw().request().url().toString(), response, retrofit)
+                RetrofitException.httpError(response.raw().request.url.toString(), response, retrofit)
             }
 
             // A network error happened

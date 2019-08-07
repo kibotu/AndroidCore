@@ -12,6 +12,8 @@ import io.fabric.sdk.android.services.network.HttpRequest
 import net.kibotu.ContextHelper
 import net.kibotu.logger.Logger
 import okio.ByteString
+import okio.ByteString.Companion.decodeBase64
+import okio.ByteString.Companion.encodeUtf8
 import java.io.UnsupportedEncodingException
 import java.math.BigInteger
 import java.nio.charset.Charset
@@ -51,7 +53,7 @@ fun String.decodeBase64(): String {
     return if (TextUtils.isEmpty(this)) {
         ""
     } else {
-        val byteString = ByteString.decodeBase64(this)
+        val byteString = decodeBase64()
         if (byteString == null) {
             "INVALID_UTF-8"
         } else {
@@ -104,7 +106,7 @@ fun String.encodeBase64(): String {
     return if (TextUtils.isEmpty(this)) {
         ""
     } else {
-        val utf8 = ByteString.encodeUtf8(this).base64()
+        val utf8 = encodeUtf8().base64()
         if (TextUtils.isEmpty(utf8)) "INVALID_UTF-8" else utf8
     }
 }

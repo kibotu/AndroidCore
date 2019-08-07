@@ -10,7 +10,7 @@ class LoadingInterceptor(private val onLoading: (LoadingInfo) -> Unit) : Interce
 
         val request = chain.request()
 
-        val loadingInfo = LoadingInfo(name = request.url().encodedPath())
+        val loadingInfo = LoadingInfo(name = request.url.encodedPath)
         onLoading(loadingInfo)
 
         try {

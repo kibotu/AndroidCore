@@ -101,22 +101,24 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation libs.kotlinJdk8
 
-    implementation libs.supportMultidex
+
     implementation libs.supportAppCompat
     implementation libs.appCompatResources
-    implementation libs.constraintLayout2
-    implementation libs.supportCardView
-
+    implementation libs.supportMedia
     implementation libs.androidKtxCore
+    implementation libs.activityKtx
     implementation libs.fragmentKtx
-    implementation libs.androidKtxCollection
+    implementation libs.supportDesign
+    implementation libs.swipeRefreshLayout
+    implementation libs.constraintLayout2
+    implementation libs.supportRecyclerview
 
     implementation libs.rx2java
     implementation libs.rx2Android
 
     implementation libs.retrofitAdapterRxJava2
     implementation libs.retrofit
-    implementation libs.okhttp3
+    implementation libs.okhttp4
     compileOnly libs.okhttp3LoggingInterceptor
 
     implementation libs.deviceInfo
@@ -125,16 +127,11 @@ dependencies {
     compileOnly libs.googlePlayForceUpdate
     compileOnly libs.timeBomb
 
-    implementation libs.supportRecyclerview
-    implementation libs.recyclerViewPresenter
-
     implementation(libs.crashlytics) {
         transitive = true
     }
 
-    implementation(libs.materialdrawer) {
-        transitive = true
-    }
+    implementation libs.materialdrawer
 
     compileOnly libs.joda
 

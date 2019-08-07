@@ -188,7 +188,7 @@ dependencies {
     testImplementation testLibs.jsonUnit
     testImplementation testLibs.jsonUnitFluent
     testImplementation testLibs.robolectric
-    testImplementation testLibs.truth
+    testImplementation androidTestLibs.truth
     testImplementation androidTestLibs.testCore
 
     implementation libs.supportMultidex

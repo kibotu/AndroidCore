@@ -12,23 +12,23 @@ class UrlDecodedInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val original = chain.request()
 
-        val postBody = bodyToString(original.body())
-        val body = original.body()
+        val postBody = bodyToString(original.body)
+        val body = original.body
         var requestBody: RequestBody? = null
 
         if (body != null) {
-            requestBody = RequestBody.create(original.body()!!.contentType(), postBody)
+            requestBody = RequestBody.create(original.body!!.contentType(), postBody)
         }
 
         val request = when {
-            original.method() == "post" -> original.newBuilder()
-                .method(original.method(), original.body())
+            original.method == "post" -> original.newBuilder()
+                .method(original.method, original.body)
                 .post(requestBody!!)
-            original.method() == "put" -> original.newBuilder()
-                .method(original.method(), original.body())
+            original.method == "put" -> original.newBuilder()
+                .method(original.method, original.body)
                 .put(requestBody!!)
             else -> original.newBuilder()
-                .method(original.method(), original.body())
+                .method(original.method, original.body)
         }
 
         return chain.proceed(request.build())
