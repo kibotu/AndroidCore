@@ -152,8 +152,7 @@ dependencies {
     implementation libs.lifecycleExtensions
     implementation libs.lifecycleViewmodel
     implementation libs.lifecycleLivedata
-    implementation libs.lifecycleRactiveStream
-    kapt libs.lifecycleCompiler
+    implementation libs.lifecycleCommonJava8
 
     implementation libs.parceler
     kapt libs.parcelerProcessor

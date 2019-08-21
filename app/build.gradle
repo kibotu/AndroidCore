@@ -170,7 +170,6 @@ dependencies {
 
     // Assertions
     androidTestImplementation androidTestLibs.testJUnit
-    androidTestImplementation androidTestLibs.textTruth
     androidTestImplementation androidTestLibs.truth
 
     // Espresso dependencies
@@ -181,7 +180,6 @@ dependencies {
     androidTestImplementation androidTestLibs.espressoWeb
     androidTestImplementation androidTestLibs.idlingConcurrent
     androidTestImplementation androidTestLibs.espressoIdlingResource
-
     androidTestImplementation androidTestLibs.fragmentTesting
 
     testImplementation testLibs.junit
