@@ -4,6 +4,7 @@ package com.exozet.android.core.extensions
 
 import android.animation.Animator
 import android.animation.AnimatorInflater
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources
@@ -18,15 +19,16 @@ import android.util.TypedValue
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.TextView
-import androidx.annotation.DrawableRes
+import androidx.annotation.*
 import androidx.annotation.IntRange
-import androidx.annotation.RequiresApi
-import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.use
 import com.exozet.android.core.R
+import com.github.florent37.application.provider.application
 import net.kibotu.ContextHelper
 import net.kibotu.ContextHelper.getApplication
 import net.kibotu.logger.Logger
+import java.io.ByteArrayOutputStream
 import java.util.*
 
 
@@ -122,6 +124,9 @@ val String.resId: Int
 val Int.resDrawable: Drawable
     get() = ContextCompat.getDrawable(ContextHelper.getContext()!!, this)!!
 
+val String.resDrawableId: Int
+    get() = ContextHelper.getContext()!!.resources.getIdentifier(this, "drawable", ContextHelper.getContext()!!.packageName)
+
 val Int.resStringArray: Array<String>
     get() = ContextHelper.getApplication()!!.resources!!.getStringArray(this)
 
@@ -136,12 +141,53 @@ fun Int.asCsv(context: Context = ContextHelper.getContext()!!): List<String> = c
 /**
  * Returns -1 if not found
  */
+@ColorRes
+fun @receiver:ColorRes Int.resColorArray(@IntRange(from = 0) index: Int): Int {
+    val array = ContextHelper.getApplication()!!.resources.obtainTypedArray(this)
+    val resourceId = array.getResourceId(index, -1)
+    array.recycle()
+    return resourceId
+}
+
+/**
+ * Returns -1 if not found
+ */
+val @receiver:DrawableRes Int.resDrawableArray: List<Int>
+    @SuppressLint("Recycle")
+    get() = ContextHelper.getApplication()!!.resources.obtainTypedArray(this).use { array ->
+        (0 until array.length()).map { array.getResourceId(it, -1) }
+    }
+
+/**
+ * Returns -1 if not found
+ */
+val @receiver:ColorRes Int.resColorArray: List<Int>
+    @SuppressLint("Recycle")
+    get() = ContextHelper.getApplication()!!.resources.obtainTypedArray(this).use { array ->
+        (0 until array.length()).map { array.getResourceId(it, -1) }
+    }
+
+/**
+ * Returns -1 if not found
+ */
 fun Int.resDrawableArray(@IntRange(from = 0) index: Int): Int {
     val array = ContextHelper.getApplication()!!.resources.obtainTypedArray(this)
     val resourceId = array.getResourceId(index, -1)
     array.recycle()
     return resourceId
 }
+
+val screenWidthtDp
+    get() = Resources.getSystem().configuration.screenWidthDp
+
+val screenHeightDp
+    get() = Resources.getSystem().configuration.screenHeightDp
+
+val screenWidthPixels
+    get() = Resources.getSystem().displayMetrics.widthPixels
+
+val screenHeightPixels
+    get() = Resources.getSystem().displayMetrics.heightPixels
 
 fun isRightToLeft(): Boolean = R.bool.rtl.resBoolean
 
@@ -174,8 +220,38 @@ fun String.fromDrawableResource(): Int {
     return 0
 }
 
-fun String.bytesFromAssets(): ByteArray? = try {
-    ContextHelper.getApplication()!!.assets.open(this).use { ByteArray(it.available()).apply { it.read(this) } }
+private val BUFFER_SIZE by lazy { 16 * 1024 }
+
+private val copyBuffer by lazy { ThreadLocal<ByteArray>() }
+
+/**
+ * Thread-Safe
+ */
+fun String.bytesFromAssets(context: Context? = application): ByteArray? = try {
+
+    context?.assets?.open(this)?.use { inputStream ->
+
+        ByteArrayOutputStream().use { buffer ->
+
+            var byteBuffer = copyBuffer.get()
+            if (byteBuffer == null) {
+                byteBuffer = ByteArray(BUFFER_SIZE)
+                copyBuffer.set(byteBuffer)
+            }
+
+            var readBytes: Int
+            do {
+                readBytes = inputStream.read(byteBuffer, 0, byteBuffer.size)
+                if (readBytes != -1)
+                    buffer.write(byteBuffer, 0, readBytes)
+            } while (readBytes != -1)
+
+            buffer.flush()
+
+            buffer.toByteArray()
+        }
+    }
+
 } catch (e: Exception) {
     Logger.e(e)
     null
@@ -186,7 +262,6 @@ val Uri.isTelephoneLink: Boolean
 
 val Uri.isMailToLink: Boolean
     get() = toString().startsWith("mailto:")
-
 
 /**
  * https://stackoverflow.com/a/9475663/1006741

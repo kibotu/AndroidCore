@@ -25,7 +25,7 @@ open class FBMessagingService : FirebaseMessagingService() {
      * @param remoteMessage Object representing the message received from Firebase Cloud Messaging.
      */
     // [START receive_message]
-    override fun onMessageReceived(remoteMessage: RemoteMessage?) {
+    override fun onMessageReceived(remoteMessage: RemoteMessage) {
         this.remoteMessage = remoteMessage
         // [START_EXCLUDE]
         // There are two types of messages data messages and notification messages. Data messages are handled

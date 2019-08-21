@@ -39,30 +39,59 @@ fun Application.installServiceProviderIfNeeded() = try {
     Logger.e(e)
 }
 
+/**
+ * https://developer.android.com/reference/android/os/StrictMode
+ */
 fun Application.initStrictMode() {
 
     StrictMode.setThreadPolicy(
         StrictMode.ThreadPolicy.Builder()
             .detectCustomSlowCalls()
             .detectNetwork()
+            .penaltyDeathOnNetwork()
+            .apply {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    detectResourceMismatches()
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    detectUnbufferedIo()
+                }
+            }
+            //.detectDiskReads() // realm native libs
+            //.detectDiskWrites() // realm native libs
             .penaltyLog()
-            .penaltyDeath()
+//            .penaltyDeath()
             .build()
     )
 
     StrictMode.setVmPolicy(
         StrictMode.VmPolicy.Builder()
-            .apply {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
-                    detectLeakedRegistrationObjects()
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-                    detectCleartextNetwork()
-            }
             .detectActivityLeaks()
             .detectLeakedClosableObjects()
             .detectLeakedSqlLiteObjects()
+            .apply {
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                    detectFileUriExposure()
+                }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    detectCleartextNetwork()
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    detectContentUriWithoutPermission()
+                    // detectUntaggedSockets() // exoplayer
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    // detectNonSdkApiUsage() // exoplayer
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    detectCredentialProtectedWhileLocked()
+                    detectImplicitDirectBoot()
+                }
+            }
             .penaltyLog()
-            .penaltyDeath()
+//            .penaltyDeath()
             .build()
     )
 }

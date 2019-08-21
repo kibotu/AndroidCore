@@ -201,7 +201,7 @@ fun length(string: String?) = if (isEmpty(string)) 0 else string!!.length
  * Returns `true` if this not null or empty.
  */
 @UseExperimental(ExperimentalContracts::class)
-inline fun CharSequence?.isNotNullOrEmpty(): Boolean {
+inline fun <reified T: CharSequence> T?.isNotNullOrEmpty(): Boolean {
     contract {
         returns(true) implies (this@isNotNullOrEmpty != null)
     }

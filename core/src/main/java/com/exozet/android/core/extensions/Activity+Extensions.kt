@@ -24,22 +24,6 @@ val Activity.contentRootView: ViewGroup
 val Activity.isImmersiveModeEnabled
     get() = window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY == window.decorView.systemUiVisibility
 
-/**
- * true for dark tinted icons
- */
-var Activity.isLightStatusBar
-    get() = window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR == window.decorView.systemUiVisibility
-    set(enabled) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M)
-            return
-
-        if (enabled) {
-            window.decorView.systemUiVisibility = window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        } else {
-            window.decorView.systemUiVisibility = window.decorView.systemUiVisibility and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
-        }
-    }
-
 operator fun Window.plusAssign(flags: Int) {
     addFlags(flags)
 }
@@ -63,31 +47,6 @@ fun Activity.setKeepOnScreenFlag() {
     window += WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
     // Close dialogs and window shade
     sendBroadcast(Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS))
-}
-
-fun Activity.setTransparentStatusBarFlags() {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-        setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, true)
-    }
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-        window.decorView.systemUiVisibility =
-            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-    }
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-        setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
-        window.statusBarColor = Color.TRANSPARENT
-    }
-}
-
-
-fun Activity.setWindowFlag(bits: Int, on: Boolean) {
-    val winParams = window.attributes
-    if (on) {
-        winParams.flags = winParams.flags or bits
-    } else {
-        winParams.flags = winParams.flags and bits.inv()
-    }
-    window.attributes = winParams
 }
 
 fun Activity.showSystemUI() {
@@ -172,3 +131,60 @@ fun Activity.checkGooglePlayServices(): Boolean {
     }
     return resultCode == ConnectionResult.SUCCESS
 }
+
+
+fun Activity.setTransparentStatusBarFlags() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+        setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, true)
+    }
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+        window.decorView.systemUiVisibility =
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+    }
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
+        window.statusBarColor = Color.TRANSPARENT
+    }
+}
+
+fun Activity.setWindowFlag(bits: Int, on: Boolean) {
+    val winParams = window.attributes
+    if (on) {
+        winParams.flags = winParams.flags or bits
+    } else {
+        winParams.flags = winParams.flags and bits.inv()
+    }
+    window.attributes = winParams
+}
+
+/**
+ * true for dark tinted icons
+ */
+var Activity.isLightStatusBar
+    get() = window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR == window.decorView.systemUiVisibility
+    set(enabled) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M)
+            return
+
+        if (enabled) {
+            window.decorView.systemUiVisibility = window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        } else {
+            window.decorView.systemUiVisibility = window.decorView.systemUiVisibility and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
+        }
+    }
+
+/**
+ * true for dark tinted icons
+ */
+var Activity.isLightNavigationBar
+    get() = window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR == window.decorView.systemUiVisibility
+    set(enabled) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M)
+            return
+
+        if (enabled) {
+            window.decorView.systemUiVisibility = window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+        } else {
+            window.decorView.systemUiVisibility = window.decorView.systemUiVisibility and View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR.inv()
+        }
+    }

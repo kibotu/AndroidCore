@@ -27,8 +27,9 @@ import io.reactivex.disposables.CompositeDisposable
 import net.kibotu.logger.Logger.loge
 import net.kibotu.logger.Logger.logv
 
+@Deprecated("demo base fragment")
 abstract class BaseFragment : Fragment(), BackPress, DispatchTouchEventHandler,
-    FragmentManager.OnBackStackChangedListener {
+    FragmentManager.OnBackStackChangedListener, CompositeDisposableHolder {
 
     @get:LayoutRes
     protected abstract val layout: Int
@@ -44,7 +45,7 @@ abstract class BaseFragment : Fragment(), BackPress, DispatchTouchEventHandler,
 
     open val hasLightStatusBar = true
 
-    protected var subscription = CompositeDisposable()
+    override var subscription = CompositeDisposable()
 
     val onConnectionUpdate: Observer<in Boolean> = Observer {
         onConnectivityUpdate(it)
@@ -166,8 +167,7 @@ abstract class BaseFragment : Fragment(), BackPress, DispatchTouchEventHandler,
 
     override fun onDestroy() {
 
-        if (!subscription.isDisposed)
-            subscription.dispose()
+        disposeCompositeDisposable()
 
         super.onDestroy()
         logv { "[$uuid-Lifecycle-onDestroy]" }
@@ -205,6 +205,15 @@ abstract class BaseFragment : Fragment(), BackPress, DispatchTouchEventHandler,
     override fun onBackStackChanged() {
         logv { "[$uuid-Lifecycle-onBackStackChanged]" }
         updateMainLayout()
+    }
+
+    // endregion
+
+    // region CompositeDisposableHolder
+
+    override fun disposeCompositeDisposable() {
+        if (!subscription.isDisposed)
+            subscription.dispose()
     }
 
     // endregion

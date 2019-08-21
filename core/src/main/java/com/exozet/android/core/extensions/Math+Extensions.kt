@@ -55,7 +55,7 @@ fun Float.percentToValueOfRange(min: Float = 0f, max: Float) = min + this * (max
  * Returns `true` if this not null or zero.
  */
 @UseExperimental(ExperimentalContracts::class)
-inline fun Number?.isNotNullOrZero(): Boolean {
+inline fun <reified T: Number> T?.isNotNullOrZero(): Boolean {
     contract {
         returns(true) implies (this@isNotNullOrZero != null)
     }

@@ -25,5 +25,5 @@ fun Long.formatBytes(): String {
         String.format("%.2f GB", this / BYTES_TO_GB.toFloat())
     else if (this / BYTES_TO_MB > 0)
         String.format("%.2f MB", this / BYTES_TO_MB.toFloat())
-    else if (this / BYTES_TO_KB > 0) String.format("%.2f KB", this / BYTES_TO_KB.toFloat()) else this.toString() + " bytes"
+    else if (this / BYTES_TO_KB > 0) String.format("%.2f KB", this / BYTES_TO_KB.toFloat()) else "$this bytes"
 }

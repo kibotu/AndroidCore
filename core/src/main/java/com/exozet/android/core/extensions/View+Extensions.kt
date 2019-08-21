@@ -7,6 +7,7 @@ import android.animation.ArgbEvaluator
 import android.annotation.TargetApi
 import android.app.Activity
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.Rect
@@ -25,6 +26,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.math.MathUtils
 import androidx.core.view.ViewCompat
 import androidx.core.view.isGone
+import androidx.core.widget.ImageViewCompat
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
@@ -424,3 +426,20 @@ val View.sharedElement
 
 fun View.setDimensionsByScreenRatioWithPadding(ratio: Float = 1f, padding: Float = R.dimen.activity_horizontal_margin.resDimension, offset: Float = 0f) =
     setDimension(width = ((context.resources.displayMetrics.widthPixels - (padding * 2f + offset)) * ratio).roundToInt())
+
+@set:TargetApi(Build.VERSION_CODES.LOLLIPOP)
+var View.backgroundTint: Int
+    get() {
+        throw NotImplementedError()
+    }
+    set(@ColorInt value) {
+        backgroundTintList = ColorStateList.valueOf(value)
+    }
+
+fun @receiver:LayoutRes Int.inflateWith(parent: ViewParent?, attachToRoot: Boolean = false): View = LayoutInflater.from((parent as ViewGroup).context).inflate(this, parent, attachToRoot)
+
+var ImageView.tint: Int
+    get() {
+        throw NotImplementedError()
+    }
+    set(@ColorRes value) = ImageViewCompat.setImageTintList(this, ColorStateList.valueOf(value.resColor))
