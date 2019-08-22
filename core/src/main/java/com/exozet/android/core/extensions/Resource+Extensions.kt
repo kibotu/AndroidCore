@@ -194,11 +194,11 @@ fun isRightToLeft(): Boolean = R.bool.rtl.resBoolean
 inline fun <reified T> Int.times(factory: () -> T) = arrayListOf<T>().apply { for (i in 0..this@times) add(factory()) }
 
 @StringRes
-fun String.fromStringResource(): Int {
+fun String.fromStringResource(onError: ((Exception) -> Unit)? = null): Int {
     try {
         return ContextHelper.getApplication()!!.resources.getIdentifier(this, "string", ContextHelper.getApplication()!!.packageName)
     } catch (e: Exception) {
-        Logger.e(e)
+        onError?.invoke(e)
     }
     return 0
 }
@@ -211,11 +211,11 @@ fun String.stringFromAssets(): String = try {
 }
 
 @DrawableRes
-fun String.fromDrawableResource(): Int {
+fun String.fromDrawableResource(onError: ((Exception) -> Unit)? = null): Int {
     try {
         return ContextHelper.getApplication()!!.resources.getIdentifier(this, "drawable", ContextHelper.getApplication()!!.packageName)
     } catch (e: Exception) {
-        e.printStackTrace()
+        onError?.invoke(e)
     }
     return 0
 }
@@ -227,7 +227,7 @@ private val copyBuffer by lazy { ThreadLocal<ByteArray>() }
 /**
  * Thread-Safe
  */
-fun String.bytesFromAssets(context: Context? = application): ByteArray? = try {
+fun String.bytesFromAssets(context: Context? = application, onError: ((Exception) -> Unit)? = null): ByteArray? = try {
 
     context?.assets?.open(this)?.use { inputStream ->
 
@@ -253,7 +253,7 @@ fun String.bytesFromAssets(context: Context? = application): ByteArray? = try {
     }
 
 } catch (e: Exception) {
-    Logger.e(e)
+    onError?.invoke(e)
     null
 }
 
