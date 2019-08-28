@@ -26,6 +26,11 @@ open class RealmDao<T : RealmModel>(val realm: Realm) {
     open fun insertOrUpdate(items: List<T>) = realm.executeTransactionAsync { it.insertOrUpdate(items) }
 
     /**
+     * Runs realm transaction so we can update managed objects directly.
+     */
+    open fun update(item: T, block: (item: T) -> Unit) { realm.executeTransaction { block(item) } }
+
+    /**
      * Deletes [T].
      */
     open fun delete(item: T) = item.deleteFromRealm()
