@@ -11,7 +11,6 @@ import android.provider.Settings
 import androidx.multidex.MultiDexApplication
 import com.crashlytics.android.Crashlytics
 import com.exozet.android.core.R
-import com.exozet.android.core.extensions.resBoolean
 import com.exozet.android.core.extensions.resString
 import com.exozet.android.core.misc.DefaultUserAgent
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException
@@ -28,6 +27,7 @@ import net.danlew.android.joda.JodaTimeAndroid
 import net.kibotu.logger.Level
 import net.kibotu.logger.LogcatLogger
 import net.kibotu.logger.Logger
+import net.kibotu.resourceextension.resBoolean
 import java.util.*
 
 /**

@@ -114,6 +114,14 @@ android {
 
     // endregion
 
+    // region compile options
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    // endregion
+
     // region lint options
 
     lintOptions {

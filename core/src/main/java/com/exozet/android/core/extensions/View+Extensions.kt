@@ -40,6 +40,8 @@ import com.google.android.material.tabs.TabLayout
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 import net.kibotu.ContextHelper
+import net.kibotu.resourceextension.resColor
+import net.kibotu.resourceextension.resDimension
 import kotlin.math.roundToInt
 
 /**
@@ -435,8 +437,6 @@ var View.backgroundTint: Int
     set(@ColorInt value) {
         backgroundTintList = ColorStateList.valueOf(value)
     }
-
-fun @receiver:LayoutRes Int.inflateWith(parent: ViewParent?, attachToRoot: Boolean = false): View = LayoutInflater.from((parent as ViewGroup).context).inflate(this, parent, attachToRoot)
 
 var ImageView.tint: Int
     get() {

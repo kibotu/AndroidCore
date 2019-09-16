@@ -55,6 +55,14 @@ android {
 
     // endregion
 
+    // region compile options
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    // endregion
+
     // region lint options
 
     lintOptions {
@@ -167,6 +175,8 @@ dependencies {
 
     compileOnly libs.koinAndroidxScope
     compileOnly libs.koinAndroidxViewmodel
+
+    api libs.resourceExtensions
 }
 
 // region override support library version

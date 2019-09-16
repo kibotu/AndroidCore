@@ -3,11 +3,11 @@ package com.exozet.android.core.debug
 import android.view.View
 import com.exozet.android.core.R
 import com.exozet.android.core.extensions.onTrue
-import com.exozet.android.core.extensions.resBoolean
 import com.mikepenz.materialdrawer.Drawer
 import com.mikepenz.materialdrawer.DrawerBuilder
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
 import net.kibotu.ContextHelper.getActivity
+import net.kibotu.resourceextension.resBoolean
 
 
 /**

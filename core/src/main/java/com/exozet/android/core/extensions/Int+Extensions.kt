@@ -18,3 +18,5 @@ fun Int.randomStrings(): String {
     }
     return randomStringBuilder.toString()
 }
+
+inline fun <reified T> Int.repeat(factory: (index: Int) -> T) = arrayListOf<T>().apply { for (i in 0..this@repeat) add(factory(i)) }

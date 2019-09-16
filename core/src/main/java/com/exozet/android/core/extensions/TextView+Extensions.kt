@@ -20,6 +20,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isGone
 import com.google.android.material.textfield.TextInputLayout
 import net.kibotu.ContextHelper
+import net.kibotu.resourceextension.resColor
 
 /**
  * Created by [Jan Rabe](https://about.me/janrabe).

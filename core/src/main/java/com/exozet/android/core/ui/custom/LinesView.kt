@@ -7,10 +7,10 @@ import android.graphics.Paint
 import android.os.Build
 import android.util.AttributeSet
 import android.view.View
-import com.exozet.android.core.extensions.resColor
 import com.exozet.android.core.math.Line
 import com.exozet.android.core.math.Vector2
 import com.exozet.android.core.utils.MathExtensions.dpToPx
+import net.kibotu.resourceextension.resColor
 import java.util.*
 
 /**

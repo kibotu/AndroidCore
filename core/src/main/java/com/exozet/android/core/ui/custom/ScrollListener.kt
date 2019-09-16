@@ -3,6 +3,7 @@ package com.exozet.android.core.ui.custom
 import android.view.GestureDetector
 import android.view.MotionEvent
 import com.exozet.android.core.extensions.px
+import net.kibotu.resourceextension.dp
 
 open class ScrollListener(val width: () -> Int, val height: () -> Int) : GestureDetector.SimpleOnGestureListener() {
 
@@ -10,12 +11,12 @@ open class ScrollListener(val width: () -> Int, val height: () -> Int) : Gesture
     /**
      * Min Swipe X-Distance
      */
-    var thresholdX = 3.px
+    var thresholdX = 3.dp
 
     /**
      * Min Swipe Y-Distance
      */
-    var thresholdY = 3.px
+    var thresholdY = 3.dp
 
     /**
      * Starting X-Position
