@@ -14,6 +14,7 @@ import com.exozet.android.core.demo.features.realmLiveData.ViewModelSampleFragme
 import com.exozet.android.core.extensions.replaceFragment
 import com.exozet.android.core.services.notifications.GcmSender
 import net.kibotu.resourceextension.*
+import com.exozet.android.core.extensions.stringFromAssets
 
 class MainActivity : BaseActivity() {
 
