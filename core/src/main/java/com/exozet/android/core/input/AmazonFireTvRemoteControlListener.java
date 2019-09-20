@@ -168,13 +168,13 @@ public class AmazonFireTvRemoteControlListener implements KeyListener, View.OnKe
             case KeyEvent.KEYCODE_DPAD_RIGHT:
                 return onKeyDownDpadRight();
             case KeyEvent.KEYCODE_DPAD_CENTER:
-                return onKeyDownDpadCenter();
+                return onKeyDownDpadCenter(keyEvent);
             case KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE:
                 return onKeyDownMediaPlayPause();
             case KeyEvent.KEYCODE_MEDIA_REWIND:
-                return onKeyDownMediaRewind();
+                return onKeyDownMediaRewind(keyEvent);
             case KeyEvent.KEYCODE_MEDIA_FAST_FORWARD:
-                return onKeyDownMediaFastForward();
+                return onKeyDownMediaFastForward(keyEvent);
             case KeyEvent.KEYCODE_BACK:
                 return onKeyDownBack();
             case KeyEvent.KEYCODE_MENU:
@@ -204,7 +204,7 @@ public class AmazonFireTvRemoteControlListener implements KeyListener, View.OnKe
         return false;
     }
 
-    protected boolean onKeyDownDpadCenter() {
+    protected boolean onKeyDownDpadCenter(KeyEvent keyEvent) {
         return false;
     }
 
@@ -212,11 +212,11 @@ public class AmazonFireTvRemoteControlListener implements KeyListener, View.OnKe
         return false;
     }
 
-    protected boolean onKeyDownMediaRewind() {
+    protected boolean onKeyDownMediaRewind(KeyEvent keyEvent) {
         return false;
     }
 
-    protected boolean onKeyDownMediaFastForward() {
+    protected boolean onKeyDownMediaFastForward(KeyEvent keyEvent) {
         return false;
     }
 
