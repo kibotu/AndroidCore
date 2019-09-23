@@ -83,29 +83,29 @@ open class AmazonFireTvRemoteControlListener : KeyListener, OnKeyListener, Dialo
         }
     }
 
-    protected fun onKeyUpDpadUp(keyEvent: KeyEvent): Boolean = false
+    protected open fun onKeyUpDpadUp(keyEvent: KeyEvent): Boolean = false
 
-    protected fun onKeyUpDpadDown(keyEvent: KeyEvent): Boolean = false
+    protected open fun onKeyUpDpadDown(keyEvent: KeyEvent): Boolean = false
 
-    protected fun onKeyUpDpadLeft(keyEvent: KeyEvent): Boolean = false
+    protected open fun onKeyUpDpadLeft(keyEvent: KeyEvent): Boolean = false
 
-    protected fun onKeyUpDpadRight(keyEvent: KeyEvent): Boolean = false
+    protected open fun onKeyUpDpadRight(keyEvent: KeyEvent): Boolean = false
 
-    protected fun onKeyUpDpadCenter(keyEvent: KeyEvent): Boolean = false
+    protected open fun onKeyUpDpadCenter(keyEvent: KeyEvent): Boolean = false
 
-    protected fun onKeyUpMediaPlayPause(keyEvent: KeyEvent): Boolean = false
+    protected open fun onKeyUpMediaPlayPause(keyEvent: KeyEvent): Boolean = false
 
-    protected fun onKeyUpMediaRewind(keyEvent: KeyEvent): Boolean = false
+    protected open fun onKeyUpMediaRewind(keyEvent: KeyEvent): Boolean = false
 
-    protected fun onKeyUpMediaFastForward(keyEvent: KeyEvent): Boolean = false
+    protected open fun onKeyUpMediaFastForward(keyEvent: KeyEvent): Boolean = false
 
-    protected fun onKeyUpBack(keyEvent: KeyEvent): Boolean = false
+    protected open fun onKeyUpBack(keyEvent: KeyEvent): Boolean = false
 
-    protected fun onKeyUpMenu(keyEvent: KeyEvent): Boolean = false
+    protected open fun onKeyUpMenu(keyEvent: KeyEvent): Boolean = false
 
-    protected fun onKeyUpMediaPlay(keyEvent: KeyEvent): Boolean = false
+    protected open fun onKeyUpMediaPlay(keyEvent: KeyEvent): Boolean = false
 
-    protected fun onKeyUpMediaPause(keyEvent: KeyEvent): Boolean = false
+    protected open fun onKeyUpMediaPause(keyEvent: KeyEvent): Boolean = false
 
     override fun onKeyDown(keyCode: Int, keyEvent: KeyEvent): Boolean {
         return when (keyCode) {
@@ -125,29 +125,29 @@ open class AmazonFireTvRemoteControlListener : KeyListener, OnKeyListener, Dialo
         }
     }
 
-    protected fun onKeyDownDpadUp(keyEvent: KeyEvent): Boolean = false
+    protected open fun onKeyDownDpadUp(keyEvent: KeyEvent): Boolean = false
 
-    protected fun onKeyDownDpadDown(keyEvent: KeyEvent): Boolean = false
+    protected open fun onKeyDownDpadDown(keyEvent: KeyEvent): Boolean = false
 
-    protected fun onKeyDownDpadLeft(keyEvent: KeyEvent): Boolean = false
+    protected open fun onKeyDownDpadLeft(keyEvent: KeyEvent): Boolean = false
 
-    protected fun onKeyDownDpadRight(keyEvent: KeyEvent): Boolean = false
+    protected open fun onKeyDownDpadRight(keyEvent: KeyEvent): Boolean = false
 
-    protected fun onKeyDownDpadCenter(keyEvent: KeyEvent): Boolean = false
+    protected open fun onKeyDownDpadCenter(keyEvent: KeyEvent): Boolean = false
 
-    protected fun onKeyDownMediaPlayPause(keyEvent: KeyEvent): Boolean = false
+    protected open fun onKeyDownMediaPlayPause(keyEvent: KeyEvent): Boolean = false
 
-    protected fun onKeyDownMediaRewind(keyEvent: KeyEvent): Boolean = false
+    protected open fun onKeyDownMediaRewind(keyEvent: KeyEvent): Boolean = false
 
-    protected fun onKeyDownMediaFastForward(keyEvent: KeyEvent): Boolean = false
+    protected open fun onKeyDownMediaFastForward(keyEvent: KeyEvent): Boolean = false
 
-    protected fun onKeyDownBack(keyEvent: KeyEvent): Boolean = false
+    protected open fun onKeyDownBack(keyEvent: KeyEvent): Boolean = false
 
-    protected fun onKeyDownMenu(keyEvent: KeyEvent): Boolean = false
+    protected open fun onKeyDownMenu(keyEvent: KeyEvent): Boolean = false
 
-    protected fun onKeyDownMediaPlay(keyEvent: KeyEvent): Boolean = false
+    protected open fun onKeyDownMediaPlay(keyEvent: KeyEvent): Boolean = false
 
-    protected fun onKeyDownMediaPause(keyEvent: KeyEvent): Boolean = false
+    protected open fun onKeyDownMediaPause(keyEvent: KeyEvent): Boolean = false
 
     override fun toString(): String = "AmazonFireTvRemoteControlListener{currentView=$currentView}"
 
