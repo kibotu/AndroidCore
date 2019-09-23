@@ -52,7 +52,7 @@ import com.exozet.android.core.misc.weak
  * Pause   	                                KEYCODE_KEYCODE_MEDIA_PAUSE	Pause media key - android tv
 </pre> *
  */
-class AmazonFireTvRemoteControlListener : KeyListener, OnKeyListener, DialogInterface.OnKeyListener {
+open class AmazonFireTvRemoteControlListener : KeyListener, OnKeyListener, DialogInterface.OnKeyListener {
 
     var currentView by weak<View?>()
         protected set
