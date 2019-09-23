@@ -19,7 +19,6 @@ buildscript {
         classpath plugin.realm
         classpath plugin.fabric
         classpath plugin.imgOptimizer
-        classpath plugin.rocketLauncher
         classpath plugin.hockeyApp
         classpath plugin.gms
         classpath plugin.fabric
