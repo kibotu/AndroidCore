@@ -80,79 +80,79 @@ public class AmazonFireTvRemoteControlListener implements KeyListener, View.OnKe
     public boolean onKeyUp(int keyCode, KeyEvent keyEvent) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_UP:
-                return onKeyUpDpadUp();
+                return onKeyUpDpadUp(keyEvent);
             case KeyEvent.KEYCODE_DPAD_DOWN:
-                return onKeyUpDpadDown();
+                return onKeyUpDpadDown(keyEvent);
             case KeyEvent.KEYCODE_DPAD_LEFT:
-                return onKeyUpDpadLeft();
+                return onKeyUpDpadLeft(keyEvent);
             case KeyEvent.KEYCODE_DPAD_RIGHT:
-                return onKeyUpDpadRight();
+                return onKeyUpDpadRight(keyEvent);
             case KeyEvent.KEYCODE_DPAD_CENTER:
-                return onKeyUpDpadCenter();
+                return onKeyUpDpadCenter(keyEvent);
             case KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE:
-                return onKeyUpMediaPlayPause();
+                return onKeyUpMediaPlayPause(keyEvent);
             case KeyEvent.KEYCODE_MEDIA_REWIND:
-                return onKeyUpMediaRewind();
+                return onKeyUpMediaRewind(keyEvent);
             case KeyEvent.KEYCODE_MEDIA_FAST_FORWARD:
-                return onKeyUpMediaFastForward();
+                return onKeyUpMediaFastForward(keyEvent);
             case KeyEvent.KEYCODE_BACK:
-                return onKeyUpBack();
+                return onKeyUpBack(keyEvent);
             case KeyEvent.KEYCODE_MENU:
-                return onKeyUpMenu();
+                return onKeyUpMenu(keyEvent);
             case KeyEvent.KEYCODE_MEDIA_PLAY: // android tv
-                return onKeyUpMediaPlay();
+                return onKeyUpMediaPlay(keyEvent);
             case KeyEvent.KEYCODE_MEDIA_PAUSE: // android tv
-                return onKeyUpMediaPause();
+                return onKeyUpMediaPause(keyEvent);
             default:
                 return false;
         }
     }
 
-    protected boolean onKeyUpDpadUp() {
+    protected boolean onKeyUpDpadUp(KeyEvent keyEvent) {
         return false;
     }
 
-    protected boolean onKeyUpDpadDown() {
+    protected boolean onKeyUpDpadDown(KeyEvent keyEvent) {
         return false;
     }
 
-    protected boolean onKeyUpDpadLeft() {
+    protected boolean onKeyUpDpadLeft(KeyEvent keyEvent) {
         return false;
     }
 
-    protected boolean onKeyUpDpadRight() {
+    protected boolean onKeyUpDpadRight(KeyEvent keyEvent) {
         return false;
     }
 
-    protected boolean onKeyUpDpadCenter() {
+    protected boolean onKeyUpDpadCenter(KeyEvent keyEvent) {
         return false;
     }
 
-    protected boolean onKeyUpMediaPlayPause() {
+    protected boolean onKeyUpMediaPlayPause(KeyEvent keyEvent) {
         return false;
     }
 
-    protected boolean onKeyUpMediaRewind() {
+    protected boolean onKeyUpMediaRewind(KeyEvent keyEvent) {
         return false;
     }
 
-    protected boolean onKeyUpMediaFastForward() {
+    protected boolean onKeyUpMediaFastForward(KeyEvent keyEvent) {
         return false;
     }
 
-    protected boolean onKeyUpBack() {
+    protected boolean onKeyUpBack(KeyEvent keyEvent) {
         return false;
     }
 
-    protected boolean onKeyUpMenu() {
+    protected boolean onKeyUpMenu(KeyEvent keyEvent) {
         return false;
     }
 
-    protected boolean onKeyUpMediaPlay() {
+    protected boolean onKeyUpMediaPlay(KeyEvent keyEvent) {
         return false;
     }
 
-    protected boolean onKeyUpMediaPause() {
+    protected boolean onKeyUpMediaPause(KeyEvent keyEvent) {
         return false;
     }
 
@@ -160,47 +160,47 @@ public class AmazonFireTvRemoteControlListener implements KeyListener, View.OnKe
     public boolean onKeyDown(int keyCode, KeyEvent keyEvent) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_UP:
-                return onKeyDownDpadUp();
+                return onKeyDownDpadUp(keyEvent);
             case KeyEvent.KEYCODE_DPAD_DOWN:
-                return onKeyDownDpadDown();
+                return onKeyDownDpadDown(keyEvent);
             case KeyEvent.KEYCODE_DPAD_LEFT:
-                return onKeyDownDpadLeft();
+                return onKeyDownDpadLeft(keyEvent);
             case KeyEvent.KEYCODE_DPAD_RIGHT:
-                return onKeyDownDpadRight();
+                return onKeyDownDpadRight(keyEvent);
             case KeyEvent.KEYCODE_DPAD_CENTER:
                 return onKeyDownDpadCenter(keyEvent);
             case KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE:
-                return onKeyDownMediaPlayPause();
+                return onKeyDownMediaPlayPause(keyEvent);
             case KeyEvent.KEYCODE_MEDIA_REWIND:
                 return onKeyDownMediaRewind(keyEvent);
             case KeyEvent.KEYCODE_MEDIA_FAST_FORWARD:
                 return onKeyDownMediaFastForward(keyEvent);
             case KeyEvent.KEYCODE_BACK:
-                return onKeyDownBack();
+                return onKeyDownBack(keyEvent);
             case KeyEvent.KEYCODE_MENU:
-                return onKeyDownMenu();
+                return onKeyDownMenu(keyEvent);
             case KeyEvent.KEYCODE_MEDIA_PLAY: // android tv
-                return onKeyDownMediaPlay();
+                return onKeyDownMediaPlay(keyEvent);
             case KeyEvent.KEYCODE_MEDIA_PAUSE: // android tv
-                return onKeyDownMediaPause();
+                return onKeyDownMediaPause(keyEvent);
             default:
                 return false;
         }
     }
 
-    protected boolean onKeyDownDpadUp() {
+    protected boolean onKeyDownDpadUp(KeyEvent keyEvent) {
         return false;
     }
 
-    protected boolean onKeyDownDpadDown() {
+    protected boolean onKeyDownDpadDown(KeyEvent keyEvent) {
         return false;
     }
 
-    protected boolean onKeyDownDpadLeft() {
+    protected boolean onKeyDownDpadLeft(KeyEvent keyEvent) {
         return false;
     }
 
-    protected boolean onKeyDownDpadRight() {
+    protected boolean onKeyDownDpadRight(KeyEvent keyEvent) {
         return false;
     }
 
@@ -208,7 +208,7 @@ public class AmazonFireTvRemoteControlListener implements KeyListener, View.OnKe
         return false;
     }
 
-    protected boolean onKeyDownMediaPlayPause() {
+    protected boolean onKeyDownMediaPlayPause(KeyEvent keyEvent) {
         return false;
     }
 
@@ -220,19 +220,19 @@ public class AmazonFireTvRemoteControlListener implements KeyListener, View.OnKe
         return false;
     }
 
-    protected boolean onKeyDownBack() {
+    protected boolean onKeyDownBack(KeyEvent keyEvent) {
         return false;
     }
 
-    protected boolean onKeyDownMenu() {
+    protected boolean onKeyDownMenu(KeyEvent keyEvent) {
         return false;
     }
 
-    protected boolean onKeyDownMediaPlay() {
+    protected boolean onKeyDownMediaPlay(KeyEvent keyEvent) {
         return false;
     }
 
-    protected boolean onKeyDownMediaPause() {
+    protected boolean onKeyDownMediaPause(KeyEvent keyEvent) {
         return false;
     }
 
