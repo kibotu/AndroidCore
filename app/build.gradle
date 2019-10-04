@@ -214,7 +214,7 @@ dependencies {
     implementation libs.parceler
     kapt libs.parcelerProcessor
 
-    implementation libs.recyclerViewPresenter
+    implementation libs.recyclerViewPresenter4
     implementation libs.lifecycleExtensions
     implementation libs.gson
 
@@ -232,6 +232,8 @@ dependencies {
     implementation libs.apacheCommonsIo
     implementation libs.realmExtensions
     implementation libs.joda
+
+    implementation libs.material
 }
 
 // region override support library version

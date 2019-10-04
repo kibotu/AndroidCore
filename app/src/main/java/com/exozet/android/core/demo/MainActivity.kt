@@ -10,7 +10,7 @@ import android.view.animation.Animation
 import androidx.annotation.DrawableRes
 import androidx.annotation.IdRes
 import com.exozet.android.core.base.BaseActivity
-import com.exozet.android.core.demo.features.realmLiveData.ViewModelSampleFragment
+import com.exozet.android.core.demo.features.realmLiveData.ViewModelRealmSampleFragment
 import com.exozet.android.core.extensions.replaceFragment
 import com.exozet.android.core.services.notifications.GcmSender
 import net.kibotu.resourceextension.*
@@ -24,7 +24,7 @@ class MainActivity : BaseActivity() {
 
         if (savedInstanceState == null) {
 //            replaceFragment(WidgetSampleFragment.newInstance())
-            replaceFragment(ViewModelSampleFragment())
+            replaceFragment(ViewModelRealmSampleFragment())
         }
 
 //        test()
