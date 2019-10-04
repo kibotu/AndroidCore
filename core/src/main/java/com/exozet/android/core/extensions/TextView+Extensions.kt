@@ -136,12 +136,12 @@ var TextView.textOrGone
     get() = text
     set(value) {
         text = value
-        if (value.isNullOrEmpty())
-            gone()
+        isGone = value.isNullOrEmpty()
     }
 
 fun TextView.setTextWithViewsOrGone(value: String?, vararg views: TextView?, block: (String) -> String) = if (value.isNotNullOrEmpty()) {
     text = block(value)
+    isGone = false
 } else {
     isGone = true
     views.forEach { it?.isGone = true }
@@ -149,6 +149,7 @@ fun TextView.setTextWithViewsOrGone(value: String?, vararg views: TextView?, blo
 
 inline fun <reified T : Number> TextView.setTextWithViewsOrGone(value: T?, vararg views: TextView?, block: (T) -> String) = if (value.isNotNullOrZero()) {
     text = block(value)
+    isGone = false
 } else {
     isGone = true
     views.forEach { it?.isGone = true }
@@ -164,7 +165,7 @@ fun EditText.onImeActionDone(block: () -> Unit) = setOnEditorActionListener { _,
     }
 }
 
-class ClickSpan(val listener: View.OnClickListener?) : ClickableSpan() {
+class ClickSpan(private val listener: View.OnClickListener?) : ClickableSpan() {
 
     override fun onClick(widget: View) {
         listener?.onClick(widget)

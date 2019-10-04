@@ -415,8 +415,10 @@ var ImageView.imageResourceOrGone: Int
     set(value) {
         if (value == -1)
             isGone = true
-        else
+        else {
             setImageResource(value)
+            isGone = false
+        }
     }
 
 fun RecyclerView.isFirstChild(view: View): Boolean = getChildAdapterPosition(view) == 0
