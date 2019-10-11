@@ -17,6 +17,11 @@ apply plugin: 'realm-android'
 
 android {
 
+    // parcilze
+    androidExtensions {
+        experimental = true
+    }
+
     compileSdkVersion compileSdkVer
     buildToolsVersion buildToolsVer
 

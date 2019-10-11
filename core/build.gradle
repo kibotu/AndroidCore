@@ -13,6 +13,10 @@ apply plugin: 'com.github.dcendents.android-maven'
 
 android {
 
+    // parcilze
+    androidExtensions {
+        experimental = true
+    }
 
     compileSdkVersion compileSdkVer
     buildToolsVersion buildToolsVer
