@@ -43,10 +43,10 @@ val gsonPrettyPrinting by lazy {
     }
 }
 
-inline fun <reified T> String.fromJson(): T = gson.fromJson<T>(this, T::class.java)
+inline fun <reified T> T.toJson(): String = gson.toJson(this)
 
-fun Any.toJson(): String = gson.toJson(this)
+inline fun <reified T> T.toJsonPrettyPrinting(): String = gsonPrettyPrinting.toJson(this)
 
-fun Any.toJsonPrettyPrinting(): String = gsonPrettyPrinting.toJson(this)
+inline fun <reified T> String.fromJson(): T = gson.fromJson(this)
 
 inline fun <reified T> Gson.fromJson(json: String): T = this.fromJson<T>(json, object : TypeToken<T>() {}.type)
