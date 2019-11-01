@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import com.exozet.android.core.R
-import com.exozet.android.core.debug.DebugMenu
 import com.exozet.android.core.extensions.currentFragment
 import com.exozet.android.core.extensions.printBackStack
 import com.exozet.android.core.interfaces.BackPress
@@ -17,8 +16,6 @@ import com.google.android.gms.common.GoogleApiAvailability
 @Deprecated("just demo, don't use")
 abstract class BaseActivity : AppCompatActivity() {
 
-    var debugMenu: DebugMenu? = null
-
     @LayoutRes
     var activityLayoutId = R.layout.activity_main
 
@@ -27,8 +24,6 @@ abstract class BaseActivity : AppCompatActivity() {
 
         setContentView(activityLayoutId)
 
-        debugMenu = DebugMenu()
-
         checkGooglePlayServices()
     }
 
@@ -36,12 +31,6 @@ abstract class BaseActivity : AppCompatActivity() {
 
         // hide keyboard
         // DeviceExtensions.hideKeyboard()
-
-        // close menu
-        if (debugMenu?.isDrawerOpen == true) {
-            debugMenu?.closeDrawer()
-            return
-        }
 
         // let fragments handle back press
         val fragment = currentFragment()

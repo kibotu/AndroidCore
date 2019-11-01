@@ -113,17 +113,19 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation libs.kotlinJdk8
 
-
+    implementation libs.androidKtxCore
     implementation libs.supportAppCompat
     implementation libs.appCompatResources
-    implementation libs.supportMedia
-    implementation libs.androidKtxCore
-    implementation libs.activityKtx
     implementation libs.fragmentKtx
+    implementation libs.activityKtx
     implementation libs.supportDesign
     implementation libs.swipeRefreshLayout
     implementation libs.constraintLayout2
     implementation libs.supportRecyclerview
+    implementation libs.supportAnnotations
+    implementation libs.supportVectorDrawable
+    implementation libs.androidKtxPalette
+    implementation libs.supportMedia
 
     implementation libs.rx2java
     implementation libs.rx2Android
@@ -142,8 +144,6 @@ dependencies {
     implementation(libs.crashlytics) {
         transitive = true
     }
-
-    implementation libs.materialdrawer
 
     compileOnly libs.joda
 
@@ -188,6 +188,24 @@ dependencies {
 configurations.all {
 
     resolutionStrategy.cacheDynamicVersionsFor 10, 'minutes'
+
+    resolutionStrategy.force libs.kotlinJdk8
+    resolutionStrategy.force libs.androidKtxCore
+    resolutionStrategy.force libs.supportAppCompat
+    resolutionStrategy.force libs.appCompatResources
+    resolutionStrategy.force libs.fragmentKtx
+    resolutionStrategy.force libs.activityKtx
+    resolutionStrategy.force libs.supportDesign
+    resolutionStrategy.force libs.swipeRefreshLayout
+    resolutionStrategy.force libs.constraintLayout2
+    resolutionStrategy.force libs.supportRecyclerview
+    resolutionStrategy.force libs.supportAnnotations
+    resolutionStrategy.force libs.supportVectorDrawable
+    resolutionStrategy.force libs.androidKtxPalette
+    resolutionStrategy.force libs.supportMedia
+    resolutionStrategy.force libs.lifecycleExtensions
+    resolutionStrategy.force libs.lifecycleCommonJava8
+    resolutionStrategy.force libs.lifecycleLivedataKtx
 }
 
 // endregion
