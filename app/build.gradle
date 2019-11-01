@@ -202,16 +202,19 @@ dependencies {
     testImplementation androidTestLibs.truth
     testImplementation androidTestLibs.testCore
 
-    implementation libs.supportMultidex
+    implementation libs.androidKtxCore
     implementation libs.supportAppCompat
     implementation libs.appCompatResources
-    implementation libs.constraintLayout2
-    implementation libs.supportCardView
-    implementation libs.supportRecyclerview
-
-    implementation libs.androidKtxCore
     implementation libs.fragmentKtx
-    implementation libs.androidKtxCollection
+    implementation libs.activityKtx
+    implementation libs.supportDesign
+    implementation libs.swipeRefreshLayout
+    implementation libs.constraintLayout2
+    implementation libs.supportRecyclerview
+    implementation libs.supportAnnotations
+    implementation libs.supportVectorDrawable
+    implementation libs.androidKtxPalette
+    implementation libs.supportMedia
 
     implementation project(':core')
     implementation libs.logger
@@ -246,6 +249,24 @@ dependencies {
 configurations.all {
 
     resolutionStrategy.cacheDynamicVersionsFor 10, 'minutes'
+
+    resolutionStrategy.force libs.kotlinJdk8
+    resolutionStrategy.force libs.androidKtxCore
+    resolutionStrategy.force libs.supportAppCompat
+    resolutionStrategy.force libs.appCompatResources
+    resolutionStrategy.force libs.fragmentKtx
+    resolutionStrategy.force libs.activityKtx
+    resolutionStrategy.force libs.supportDesign
+    resolutionStrategy.force libs.swipeRefreshLayout
+    resolutionStrategy.force libs.constraintLayout2
+    resolutionStrategy.force libs.supportRecyclerview
+    resolutionStrategy.force libs.supportAnnotations
+    resolutionStrategy.force libs.supportVectorDrawable
+    resolutionStrategy.force libs.androidKtxPalette
+    resolutionStrategy.force libs.supportMedia
+    resolutionStrategy.force libs.lifecycleExtensions
+    resolutionStrategy.force libs.lifecycleCommonJava8
+    resolutionStrategy.force libs.lifecycleLivedataKtx
 }
 
 // endregion
