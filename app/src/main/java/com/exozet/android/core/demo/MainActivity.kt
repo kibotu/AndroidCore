@@ -12,15 +12,23 @@ import androidx.annotation.IdRes
 import com.exozet.android.core.base.BaseActivity
 import com.exozet.android.core.demo.features.realmLiveData.ViewModelRealmSampleFragment
 import com.exozet.android.core.extensions.replaceFragment
-import com.exozet.android.core.services.notifications.GcmSender
-import net.kibotu.resourceextension.*
 import com.exozet.android.core.extensions.stringFromAssets
+import com.exozet.android.core.services.notifications.GcmSender
+import com.exozet.android.core.storage.secureStorage
+import net.kibotu.resourceextension.*
 
 class MainActivity : BaseActivity() {
+
+    private var password by secureStorage("password", "")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_Core)
         super.onCreate(savedInstanceState)
+
+
+        val pw = password
+
+        password = "lorem"
 
         if (savedInstanceState == null) {
 //            replaceFragment(WidgetSampleFragment.newInstance())
@@ -100,7 +108,9 @@ class MainActivity : BaseActivity() {
         val my_bytes_from_assets: ByteArray? = "my_text.json".bytesFromAssets()
         val my_string_from_assets: String? = "my_text.json".stringFromAssets()
         val my_device_is_rtl: Boolean = isRightToLeft
-        val my_string_is_a_telephone_link: Boolean = Uri.parse("""<a href="tel:491771789232">Google</a>""").isTelephoneLink
-        val my_string_is_a_mailto_link: Boolean = Uri.parse("""<a href="mailto:cloudgazer3d@gmail.com">Google</a>""").isMailToLink
+        val my_string_is_a_telephone_link: Boolean =
+            Uri.parse("""<a href="tel:491771789232">Google</a>""").isTelephoneLink
+        val my_string_is_a_mailto_link: Boolean =
+            Uri.parse("""<a href="mailto:cloudgazer3d@gmail.com">Google</a>""").isMailToLink
     }
 }
