@@ -172,7 +172,7 @@ dependencies {
     compileOnly libs.realmExtensions
     compileOnly libs.gson
 
-    implementation libs.secureStorage
+    compileOnly libs.secureStorage
 
     compileOnly libs.okhttp3ResponseEcho
     compileOnly libs.androidAnimationsActions

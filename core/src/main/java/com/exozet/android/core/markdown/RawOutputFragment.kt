@@ -7,10 +7,10 @@ import android.view.View
 import com.exozet.android.core.R
 import com.exozet.android.core.base.BaseFragment
 import com.exozet.android.core.extensions.onClick
-import com.exozet.android.core.extensions.resString
 import com.exozet.android.core.storage.bundle
 import kotlinx.android.synthetic.main.fragment_raw_output.*
 import net.kibotu.logger.Logger.logv
+import net.kibotu.resourceextension.resString
 
 
 class RawOutputFragment : BaseFragment() {

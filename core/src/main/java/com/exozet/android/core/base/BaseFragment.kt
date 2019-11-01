@@ -26,6 +26,7 @@ import com.exozet.android.core.services.notifications.PushNotificationPublisher
 import io.reactivex.disposables.CompositeDisposable
 import net.kibotu.logger.Logger.loge
 import net.kibotu.logger.Logger.logv
+import net.kibotu.resourceextension.resString
 
 @Deprecated("demo base fragment")
 abstract class BaseFragment : Fragment(), BackPress, DispatchTouchEventHandler,

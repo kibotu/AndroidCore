@@ -242,6 +242,7 @@ dependencies {
     implementation libs.joda
 
     implementation libs.material
+    implementation libs.secureStorage
 }
 
 // region override support library version

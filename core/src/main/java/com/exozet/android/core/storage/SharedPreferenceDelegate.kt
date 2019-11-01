@@ -39,15 +39,17 @@ private class SharedPreferenceDelegate<T>(
             .apply()
 }
 
+fun <T> sharedPreference(key: String, defaultValue: T): ReadWriteProperty<Any, T> = sharedPreference(application!!, key, defaultValue)
+
 @Suppress("UNCHECKED_CAST")
-fun <T> sharedPreference(key: String, defaultValue: T): ReadWriteProperty<Any, T> =
+fun <T> sharedPreference(context: Context = application!!, key: String, defaultValue: T): ReadWriteProperty<Any, T> =
     when (defaultValue) {
-        is Parcelable -> SharedPreferenceDelegate(application!!, defaultValue, SharedPreferences::getParcelable, Editor::putParcelable, key)
-        is Boolean -> SharedPreferenceDelegate(application!!, defaultValue, SharedPreferences::getBoolean, Editor::putBoolean, key)
-        is Int -> SharedPreferenceDelegate(application!!, defaultValue, SharedPreferences::getInt, Editor::putInt, key)
-        is Long -> SharedPreferenceDelegate(application!!, defaultValue, SharedPreferences::getLong, Editor::putLong, key)
-        is Float -> SharedPreferenceDelegate(application!!, defaultValue, SharedPreferences::getFloat, Editor::putFloat, key)
-        is String -> SharedPreferenceDelegate(application!!, defaultValue, SharedPreferences::getString, Editor::putString, key)
+        is Parcelable -> SharedPreferenceDelegate(context, defaultValue, SharedPreferences::getParcelable, Editor::putParcelable, key)
+        is Boolean -> SharedPreferenceDelegate(context, defaultValue, SharedPreferences::getBoolean, Editor::putBoolean, key)
+        is Int -> SharedPreferenceDelegate(context, defaultValue, SharedPreferences::getInt, Editor::putInt, key)
+        is Long -> SharedPreferenceDelegate(context, defaultValue, SharedPreferences::getLong, Editor::putLong, key)
+        is Float -> SharedPreferenceDelegate(context, defaultValue, SharedPreferences::getFloat, Editor::putFloat, key)
+        is String -> SharedPreferenceDelegate(context, defaultValue, SharedPreferences::getString, Editor::putString, key)
         else -> throw IllegalArgumentException()
     } as ReadWriteProperty<Any, T>
 

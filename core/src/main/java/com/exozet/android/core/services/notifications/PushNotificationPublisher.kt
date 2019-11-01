@@ -12,8 +12,8 @@ import android.os.Build.VERSION_CODES.O
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.exozet.android.core.R
-import com.exozet.android.core.extensions.resString
 import net.kibotu.ContextHelper
+import net.kibotu.resourceextension.resString
 
 /**
  * Created by [Jan Rabe](https://about.me/janrabe).
