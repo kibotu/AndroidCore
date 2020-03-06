@@ -6,7 +6,7 @@ import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.android.material.appbar.AppBarLayout
 
-class DisableableAppBarLayoutBehavior(context: Context? = null, attrs: AttributeSet? = null) : AppBarLayout.Behavior(context, attrs) {
+open class DisableableAppBarLayoutBehavior(context: Context? = null, attrs: AttributeSet? = null) : AppBarLayout.Behavior(context, attrs) {
 
     var isEnabled = true
 

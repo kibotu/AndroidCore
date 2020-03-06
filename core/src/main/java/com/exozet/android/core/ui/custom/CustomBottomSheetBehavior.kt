@@ -11,7 +11,7 @@ import net.kibotu.logger.Logger.i
 /**
  * Custom behavior to inflate layout with [STATE_HALF_EXPANDED] state.
  */
-class CustomBottomSheetBehavior<V : View> : BottomSheetBehavior<V> {
+open class CustomBottomSheetBehavior<V : View> : BottomSheetBehavior<V> {
 
     constructor() : super()
 

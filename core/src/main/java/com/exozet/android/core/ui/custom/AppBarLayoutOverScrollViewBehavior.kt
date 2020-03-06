@@ -14,7 +14,7 @@ import kotlin.math.min
  * Created by zhuleiyue on 2017/3/7.
  */
 
-class AppBarLayoutOverScrollViewBehavior(context: Context?, attrs: AttributeSet?) : AppBarLayout.Behavior(context, attrs) {
+open class AppBarLayoutOverScrollViewBehavior(context: Context?, attrs: AttributeSet?) : AppBarLayout.Behavior(context, attrs) {
 
     private var targetHeight = 500f
 
