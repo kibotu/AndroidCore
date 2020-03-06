@@ -2,6 +2,10 @@ package com.exozet.android.core.extensions
 
 import android.net.Uri
 import android.os.Environment
+import androidx.browser.customtabs.CustomTabsIntent
+import com.github.florent37.application.provider.ActivityProvider
+import com.github.florent37.application.provider.application
+import de.cketti.shareintentbuilder.ShareIntentBuilder
 import net.kibotu.ContextHelper
 import java.io.File
 
@@ -19,3 +23,11 @@ fun String.parseFile(): Uri = Uri.fromFile(File(this))
 
 val Uri.fileExists: Boolean
     get() = File(toString()).exists()
+
+fun Uri.share() = ShareIntentBuilder.from(application!!)
+    .text(this.toString())
+    .share()
+
+fun Uri.openChromeTab() = CustomTabsIntent.Builder()
+    .build()
+    .launchUrl(ActivityProvider.currentActivity!!, this)

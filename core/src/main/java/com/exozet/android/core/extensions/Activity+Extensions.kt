@@ -4,14 +4,18 @@ package com.exozet.android.core.extensions
 
 import android.app.Activity
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.net.wifi.WifiManager
 import android.os.Build
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.view.WindowManager
+import com.europapark.services.connectivity.ConnectivityAndInternetAccess
+import com.github.florent37.application.provider.ActivityProvider
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import net.kibotu.logger.Logger.logv
@@ -188,3 +192,36 @@ var Activity.isLightNavigationBar
             window.decorView.systemUiVisibility = window.decorView.systemUiVisibility and View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR.inv()
         }
     }
+
+
+/**
+ * Open another app.
+ *
+ * source: https://stackoverflow.com/a/7596063/1006741
+ *
+ * @param packageName the full package name of the app to open
+ */
+fun Activity.openMainLauncherApp(packageName: String?) =
+    with(packageManager.getLaunchIntentForPackage(packageName!!)!!) {
+        addCategory(Intent.CATEGORY_LAUNCHER)
+        startActivity(this)
+    }
+
+fun String.openMainLauncherApp() = ActivityProvider.currentActivity?.openMainLauncherApp(this)
+
+fun String.openMarket() = ActivityProvider.currentActivity?.openMarket(this)
+
+fun Activity.openMarket(packageName: String) = try {
+    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$packageName")))
+} catch (e: Exception) {
+    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=${packageName}")))
+}
+
+fun String.openAppOrMarket() = try {
+    openMainLauncherApp()
+} catch (e: Exception) {
+    openMarket()
+}
+
+val Context.isConnected
+    get() = ConnectivityAndInternetAccess.isConnected(this)

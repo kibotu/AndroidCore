@@ -20,3 +20,5 @@ fun Int.randomStrings(): String {
 }
 
 inline fun <reified T> Int.repeat(factory: (index: Int) -> T) = arrayListOf<T>().apply { for (i in 0..this@repeat) add(factory(i)) }
+
+inline fun <reified T> Int.clampToListSize(list: List<T>): Int = clamp(0, list.lastIndex)

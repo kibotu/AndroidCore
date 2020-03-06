@@ -15,7 +15,6 @@ import android.os.Build.VERSION_CODES.JELLY_BEAN_MR1
 import android.os.Build.VERSION_CODES.N
 import android.text.Html
 import android.text.Spanned
-import android.util.TypedValue
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.TextView
@@ -28,7 +27,6 @@ import com.github.florent37.application.provider.application
 import net.kibotu.ContextHelper
 import net.kibotu.ContextHelper.getApplication
 import net.kibotu.logger.Logger
-import net.kibotu.resourceextension.*
 import net.kibotu.resourceextension.dp
 import net.kibotu.resourceextension.px
 import net.kibotu.resourceextension.resBoolean
@@ -73,7 +71,9 @@ val Float.sp: Float
 
 @Deprecated("use TextView#sp", ReplaceWith("sp", "net.kibotu.resourceextension.sp"))
 var TextView.sp: Float
-    set(value) { this.sp = value }
+    set(value) {
+        this.sp = value
+    }
     get() = this.sp
 
 @Deprecated("use Int#resBoolean", ReplaceWith("resBoolean", "net.kibotu.resourceextension.resBoolean"))
@@ -246,6 +246,7 @@ fun String.fromDrawableResource(onError: ((Exception) -> Unit)? = null): Int {
     }
     return 0
 }
+
 @Deprecated("use BUFFER_SIZE", ReplaceWith("BUFFER_SIZE", "net.kibotu.resourceextension.BUFFER_SIZE"))
 
 private val BUFFER_SIZE by lazy { 16 * 1024 }

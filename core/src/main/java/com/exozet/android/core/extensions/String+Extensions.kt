@@ -6,14 +6,16 @@ import android.content.Intent
 import android.net.Uri
 import android.text.TextUtils
 import android.text.TextUtils.isEmpty
+import androidx.core.net.toFile
+import androidx.core.net.toUri
 import com.crashlytics.android.Crashlytics
 import com.exozet.android.core.utils.ByteExtensions.validUTF8
 import io.fabric.sdk.android.services.network.HttpRequest
 import net.kibotu.ContextHelper
 import net.kibotu.logger.Logger
-import okio.ByteString
 import okio.ByteString.Companion.decodeBase64
 import okio.ByteString.Companion.encodeUtf8
+import java.io.File
 import java.io.UnsupportedEncodingException
 import java.math.BigInteger
 import java.nio.charset.Charset
@@ -201,10 +203,29 @@ fun length(string: String?) = if (isEmpty(string)) 0 else string!!.length
  * Returns `true` if this not null or empty.
  */
 @UseExperimental(ExperimentalContracts::class)
-inline fun <reified T: CharSequence> T?.isNotNullOrEmpty(): Boolean {
+inline fun <reified T : CharSequence> T?.isNotNullOrEmpty(): Boolean {
     contract {
         returns(true) implies (this@isNotNullOrEmpty != null)
     }
 
     return this != null && this.isNotEmpty()
 }
+
+
+/**
+ * Returns true if string path points to an existing file.
+ */
+@UseExperimental(ExperimentalContracts::class)
+fun String?.fileExists(): Boolean {
+    contract {
+        returns(true) implies (this@fileExists != null)
+    }
+
+    if (this == null)
+        return false
+
+    return File(this).exists()
+}
+
+val String.nameWithoutExtension
+    get() = tryCatch { "file://$this".toUri().toFile().nameWithoutExtension }

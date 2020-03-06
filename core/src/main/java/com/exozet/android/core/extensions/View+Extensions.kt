@@ -35,6 +35,7 @@ import com.dtx12.android_animations_actions.actions.Interpolations
 import com.exozet.android.core.R
 import com.exozet.android.core.interfaces.annotations.HapticFeedback
 import com.exozet.android.core.utils.MathExtensions
+import com.github.florent37.application.provider.ActivityProvider
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
 import io.reactivex.Observable
@@ -79,7 +80,6 @@ fun View.setPadding(
     bottom ?: paddingBottom
 )
 
-
 fun View.setDimension(
     width: Int? = null,
     height: Int? = null
@@ -88,6 +88,15 @@ fun View.setDimension(
     params.width = width ?: params.width
     params.height = height ?: params.height
     layoutParams = params
+}
+
+fun View.toggleVisibility() {
+    visibility = when (visibility) {
+        View.VISIBLE -> View.INVISIBLE
+        View.INVISIBLE -> View.VISIBLE
+        View.GONE -> View.VISIBLE
+        else -> visibility
+    }
 }
 
 fun View?.show(isShowing: Boolean = true) {
@@ -445,3 +454,51 @@ var ImageView.tint: Int
         throw NotImplementedError()
     }
     set(@ColorRes value) = ImageViewCompat.setImageTintList(this, ColorStateList.valueOf(value.resColor))
+
+
+/**
+ * https://chris.banes.dev/2019/04/12/insets-listeners-to-layout/
+ */
+@RequiresApi(Build.VERSION_CODES.KITKAT_WATCH)
+fun View.requestApplyInsetsWhenAttached() {
+    if (isAttachedToWindow) {
+        // We're already attached, just request as normal
+        requestApplyInsets()
+        ActivityProvider.currentActivity
+    } else {
+        // We're not attached to the hierarchy, add a listener to
+        // request when we are
+        addOnAttachStateChangeListener(object : View.OnAttachStateChangeListener {
+            override fun onViewAttachedToWindow(v: View) {
+                v.removeOnAttachStateChangeListener(this)
+                v.requestApplyInsets()
+            }
+
+            override fun onViewDetachedFromWindow(v: View) = Unit
+        })
+    }
+}
+
+@RequiresApi(Build.VERSION_CODES.KITKAT_WATCH)
+fun View.doOnApplyWindowInsets(f: (View, WindowInsets, InitialPadding) -> Unit) {
+    // Create a snapshot of the view's padding state
+    val initialPadding = recordInitialPaddingForView()
+    // Set an actual OnApplyWindowInsetsListener which proxies to the given
+    // lambda, also passing in the original padding state
+    setOnApplyWindowInsetsListener { v, insets ->
+        f(v, insets, initialPadding)
+        // Always return the insets, so that children can also use them
+        insets
+    }
+    // request some insets
+    requestApplyInsetsWhenAttached()
+}
+
+data class InitialPadding(
+    val left: Int,
+    val top: Int,
+    val right: Int,
+    val bottom: Int
+)
+
+private fun View.recordInitialPaddingForView() = InitialPadding(paddingLeft, paddingTop, paddingRight, paddingBottom)

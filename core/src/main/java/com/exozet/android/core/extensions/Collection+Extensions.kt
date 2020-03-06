@@ -3,6 +3,7 @@
 package com.exozet.android.core.extensions
 
 import java.util.*
+import kotlin.random.Random
 
 /**
  * Created by [Jan Rabe](https://about.me/janrabe).
@@ -41,3 +42,15 @@ fun <T> Collection<T>.intersect(other: MutableCollection<out T>): Collection<T> 
 }
 
 fun Collection<*>?.isEmpty() = this == null || this.isEmpty()
+
+/**
+ * Returns a random element from this collection using the specified source of randomness.
+ *
+ * @throws NoSuchElementException if this collection is empty.
+ */
+@SinceKotlin("1.3")
+fun <T> Collection<T>.random(random: Int): List<T> {
+    if (isEmpty())
+        throw NoSuchElementException("Collection is empty.")
+    return (0 until random).map { elementAt(Random.nextInt(size)) }
+}

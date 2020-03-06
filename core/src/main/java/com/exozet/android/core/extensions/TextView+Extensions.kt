@@ -18,6 +18,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.core.view.isGone
+import androidx.core.view.isInvisible
 import com.google.android.material.textfield.TextInputLayout
 import net.kibotu.ContextHelper
 import net.kibotu.resourceextension.resColor
@@ -219,3 +220,15 @@ fun TextInputLayout.toggleTextHintColorOnEmpty(@ColorRes active: Int, @ColorRes 
 
 val TextView.textTrimmed
     get() = text.toString().trimMargin()
+
+var TextView.textOrInvisible
+    get() = text
+    set(value) {
+        text = value
+        isInvisible = value.isNullOrEmpty()
+    }
+
+@get:ColorRes
+var TextView.textColor: Int
+    get() = throw NotImplementedError()
+    set(value) = setTextColor(value.resColor)

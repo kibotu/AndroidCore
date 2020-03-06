@@ -21,5 +21,7 @@ class PrimaryKeyGenerator {
         return nextUID.incrementAndGet()
     }
 
+    fun nextUID() = newUID().toString()
+
     private fun isValid(uid: Int): Boolean = uid >= START_UID
 }

@@ -9,13 +9,20 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'realm-android'
 apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'org.jetbrains.dokka-android'
 
 android {
 
-    // parcilze
+    // parcelize
     androidExtensions {
         experimental = true
+    }
+
+    dokka {
+        outputFormat = 'html'
+        outputDirectory = "$buildDir/javadoc"
     }
 
     compileSdkVersion compileSdkVer
@@ -111,8 +118,41 @@ android {
 dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation libs.kotlinJdk8
 
+    implementation libs.deviceInfo
+    implementation libs.timeBomb
+    implementation libs.googlePlayForceUpdate
+    implementation libs.logger
+    api libs.resourceExtensions
+
+    implementation libs.androidAnimationsActions
+    implementation libs.shareIntentBuilder
+    implementation libs.markdownview
+    implementation libs.rxmarkdown
+
+    compileOnly libs.apacheCommonsIo
+    implementation libs.realmExtensions
+    implementation libs.connectionBuddy
+    implementation libs.processPhoenix
+    implementation libs.secureStorage
+
+    compileOnly libs.joda
+
+    implementation libs.okhttp3ResponseEcho
+    implementation libs.retrofitAdapterRxJava2
+    implementation libs.retrofit
+    implementation libs.okhttp4
+    implementation libs.okhttp3LoggingInterceptor
+
+    implementation libs.gson
+
+    implementation libs.rx2java
+    implementation libs.rx2Android
+
+    implementation libs.parceler
+    kapt libs.parcelerProcessor
+
+    implementation libs.kotlinJdk8
     implementation libs.androidKtxCore
     implementation libs.supportAppCompat
     implementation libs.appCompatResources
@@ -126,61 +166,23 @@ dependencies {
     implementation libs.supportVectorDrawable
     implementation libs.androidKtxPalette
     implementation libs.supportMedia
-
-    implementation libs.rx2java
-    implementation libs.rx2Android
-
-    implementation libs.retrofitAdapterRxJava2
-    implementation libs.retrofit
-    implementation libs.okhttp4
-    implementation libs.okhttp3LoggingInterceptor
-
-    implementation libs.deviceInfo
-
-    implementation libs.connectionBuddy
-    implementation libs.googlePlayForceUpdate
-    implementation libs.timeBomb
+    implementation libs.supportCustomTabs
 
     implementation(libs.crashlytics) {
         transitive = true
     }
-
-    compileOnly libs.joda
-
-    implementation libs.markdownview
-
-    implementation libs.rxmarkdown
-
-    implementation libs.processPhoenix
-
-    implementation libs.logger
-
     implementation libs.playServicesAuth
     implementation libs.firebaseDatabase
     implementation libs.firebaseMessaging
     implementation libs.firebaseJobdispatcher
-    compileOnly libs.apacheCommonsIo
 
     implementation libs.lifecycleExtensions
     implementation libs.lifecycleViewmodel
     implementation libs.lifecycleLivedata
     implementation libs.lifecycleCommonJava8
 
-    implementation libs.parceler
-    kapt libs.parcelerProcessor
-
-    implementation libs.realmExtensions
-    implementation libs.gson
-
-    implementation libs.secureStorage
-
-    implementation libs.okhttp3ResponseEcho
-    implementation libs.androidAnimationsActions
-
     implementation libs.koinAndroidxScope
     implementation libs.koinAndroidxViewmodel
-
-    api libs.resourceExtensions
 }
 
 // region override support library version
@@ -214,5 +216,4 @@ static def escape(Object value) {
     return "\"$value\""
 }
 
-apply from: "${project.rootDir}/Android-Dependencies/javadoc.gradle"
 apply from: "${project.rootDir}/Android-Dependencies/bintray.gradle"

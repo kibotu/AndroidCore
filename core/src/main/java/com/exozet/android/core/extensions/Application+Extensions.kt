@@ -8,6 +8,7 @@ import android.app.Application
 import android.app.KeyguardManager
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Build
 import android.os.PowerManager
 import android.os.StrictMode
@@ -16,7 +17,10 @@ import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException
 import com.google.android.gms.common.GooglePlayServicesRepairableException
 import com.google.android.gms.security.ProviderInstaller
+import com.google.firebase.messaging.FirebaseMessaging
+import com.jakewharton.processphoenix.ProcessPhoenix
 import net.kibotu.logger.Logger
+import java.util.*
 
 fun Application.installServiceProviderIfNeeded() = try {
     ProviderInstaller.installIfNeededAsync(this, object : ProviderInstaller.ProviderInstallListener {
@@ -103,6 +107,7 @@ fun Application.unlockScreen() {
     kl.disableKeyguard()
 
     val pm = getSystemService(Context.POWER_SERVICE) as PowerManager
+
     @Suppress("DEPRECATION")
     @SuppressLint("InvalidWakeLockTag") val wakeLock = pm.newWakeLock(
         PowerManager.FULL_WAKE_LOCK
@@ -111,3 +116,28 @@ fun Application.unlockScreen() {
     )
     wakeLock.acquire(10 * 60 * 1000L /*10 minutes*/)
 }
+
+fun Application.switchPushNotificationTopic(from: Locale, to: Locale) {
+    val fromTopic = "${packageName}.${from.language}"
+    val toTopic = "${packageName}.${to.language}"
+    with(FirebaseMessaging.getInstance()) {
+        Logger.i("unsubscribe topic from=$fromTopic")
+        unsubscribeFromTopic(fromTopic)
+        unsubscribeFromTopic(from.language)
+        Logger.i("subscribing topic to=$toTopic")
+        subscribeToTopic(toTopic)
+        subscribeToTopic(to.language)
+    }
+}
+
+enum class VSC(val commitUrl: String, val filesUrl: String) {
+    Github("/commits", "/src"),
+    Gitlab("/commits", "/tree")
+}
+
+/**
+ * [determine-if-the-device-is-a-smartphone-or-tablet](http://stackoverflow.com/a/18387977)
+ */
+val Application.isTablet: Boolean get() = resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK >= Configuration.SCREENLAYOUT_SIZE_LARGE
+
+fun Application.restart() = ProcessPhoenix.triggerRebirth(this)
