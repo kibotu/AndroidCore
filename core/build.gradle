@@ -129,6 +129,8 @@ dependencies {
     implementation libs.shareIntentBuilder
     implementation libs.markdownview
     implementation libs.rxmarkdown
+    implementation libs.zoomage
+    implementation libs.polet
 
     compileOnly libs.apacheCommonsIo
     implementation libs.realmExtensions
@@ -136,7 +138,7 @@ dependencies {
     implementation libs.processPhoenix
     implementation libs.secureStorage
 
-    compileOnly libs.joda
+    implementation libs.joda
 
     implementation libs.okhttp3ResponseEcho
     implementation libs.retrofitAdapterRxJava2
