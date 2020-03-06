@@ -207,7 +207,7 @@ dependencies {
     implementation libs.appCompatResources
     implementation libs.fragmentKtx
     implementation libs.activityKtx
-    implementation libs.supportDesign
+    implementation libs.material
     implementation libs.swipeRefreshLayout
     implementation libs.constraintLayout2
     implementation libs.supportRecyclerview
@@ -241,7 +241,6 @@ dependencies {
     implementation libs.realmExtensions
     implementation libs.joda
 
-    implementation libs.material
     implementation libs.secureStorage
 }
 
@@ -257,7 +256,7 @@ configurations.all {
     resolutionStrategy.force libs.appCompatResources
     resolutionStrategy.force libs.fragmentKtx
     resolutionStrategy.force libs.activityKtx
-    resolutionStrategy.force libs.supportDesign
+    resolutionStrategy.force libs.material
     resolutionStrategy.force libs.swipeRefreshLayout
     resolutionStrategy.force libs.constraintLayout2
     resolutionStrategy.force libs.supportRecyclerview
@@ -268,6 +267,8 @@ configurations.all {
     resolutionStrategy.force libs.lifecycleExtensions
     resolutionStrategy.force libs.lifecycleCommonJava8
     resolutionStrategy.force libs.lifecycleLivedataKtx
+
+    resolutionStrategy.force libs.gson
 }
 
 // endregion

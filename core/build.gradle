@@ -118,7 +118,7 @@ dependencies {
     implementation libs.appCompatResources
     implementation libs.fragmentKtx
     implementation libs.activityKtx
-    implementation libs.supportDesign
+    implementation libs.material
     implementation libs.swipeRefreshLayout
     implementation libs.constraintLayout2
     implementation libs.supportRecyclerview
@@ -133,13 +133,13 @@ dependencies {
     implementation libs.retrofitAdapterRxJava2
     implementation libs.retrofit
     implementation libs.okhttp4
-    compileOnly libs.okhttp3LoggingInterceptor
+    implementation libs.okhttp3LoggingInterceptor
 
     implementation libs.deviceInfo
 
-    compileOnly libs.connectionBuddy
-    compileOnly libs.googlePlayForceUpdate
-    compileOnly libs.timeBomb
+    implementation libs.connectionBuddy
+    implementation libs.googlePlayForceUpdate
+    implementation libs.timeBomb
 
     implementation(libs.crashlytics) {
         transitive = true
@@ -151,14 +151,14 @@ dependencies {
 
     implementation libs.rxmarkdown
 
-    compileOnly libs.processPhoenix
+    implementation libs.processPhoenix
 
     implementation libs.logger
 
-    compileOnly libs.playServicesAuth
-    compileOnly libs.firebaseDatabase
-    compileOnly libs.firebaseMessaging
-    compileOnly libs.firebaseJobdispatcher
+    implementation libs.playServicesAuth
+    implementation libs.firebaseDatabase
+    implementation libs.firebaseMessaging
+    implementation libs.firebaseJobdispatcher
     compileOnly libs.apacheCommonsIo
 
     implementation libs.lifecycleExtensions
@@ -169,16 +169,16 @@ dependencies {
     implementation libs.parceler
     kapt libs.parcelerProcessor
 
-    compileOnly libs.realmExtensions
-    compileOnly libs.gson
+    implementation libs.realmExtensions
+    implementation libs.gson
 
-    compileOnly libs.secureStorage
+    implementation libs.secureStorage
 
-    compileOnly libs.okhttp3ResponseEcho
-    compileOnly libs.androidAnimationsActions
+    implementation libs.okhttp3ResponseEcho
+    implementation libs.androidAnimationsActions
 
-    compileOnly libs.koinAndroidxScope
-    compileOnly libs.koinAndroidxViewmodel
+    implementation libs.koinAndroidxScope
+    implementation libs.koinAndroidxViewmodel
 
     api libs.resourceExtensions
 }
@@ -195,7 +195,7 @@ configurations.all {
     resolutionStrategy.force libs.appCompatResources
     resolutionStrategy.force libs.fragmentKtx
     resolutionStrategy.force libs.activityKtx
-    resolutionStrategy.force libs.supportDesign
+    resolutionStrategy.force libs.material
     resolutionStrategy.force libs.swipeRefreshLayout
     resolutionStrategy.force libs.constraintLayout2
     resolutionStrategy.force libs.supportRecyclerview
