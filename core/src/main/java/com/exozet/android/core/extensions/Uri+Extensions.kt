@@ -31,3 +31,8 @@ fun Uri.share() = ShareIntentBuilder.from(application!!)
 fun Uri.openChromeTab() = CustomTabsIntent.Builder()
     .build()
     .launchUrl(ActivityProvider.currentActivity!!, this)
+
+fun Uri.openDialPad() = toString().replace("tel:", "").openDialPad()
+
+fun Uri.sendEmail() =
+    sendEmail(toString().replace("mailto:", ""))
