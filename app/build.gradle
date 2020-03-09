@@ -17,7 +17,7 @@ apply plugin: 'realm-android'
 
 android {
 
-    // parcilze
+    // parcelize
     androidExtensions {
         experimental = true
     }
