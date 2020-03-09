@@ -12,6 +12,9 @@ fun LocalDateTime.durationUntil(end: LocalDateTime) = Duration(toDateTime(DateTi
 val String.iso8601Date: LocalDateTime
     get() = LocalDateTime.parse(this, iso8601Formatter)
 
+val LocalDateTime.iso8601Date: String
+    get() = toString(iso8601Formatter)
+
 /**
  * 2013-01-09T19:32:49.103+05:30
  */
